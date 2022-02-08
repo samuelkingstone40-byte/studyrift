@@ -1,7 +1,73 @@
 @extends('layouts.app')
 @section('content')
+<style type="text/css">
+
+#show-pdf-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#file-to-upload {
+	display: none;
+}
+
+#pdf-main-container {
+	width: 100%;
+	margin: 20px auto;
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+</style>
 <section class="section_gap">
-    <div class="container py-2">
+    <div class="container  py-2">
         <div class="row">
             <div class="col-sm-8">
                <div class="card">
@@ -10,38 +76,84 @@
                            <h3>{{$doc->title}}</h3>
                        </div>
                        <p> {{$doc->description}}</p>
-                       <input type="hidden"  id="file2" value="{{$doc->filename}}">
-                       <div id="my_pdf_viewer" >
-                       <div id="canvas_container" >
-                            <canvas id="pdf_renderer" style="max-width:100%"></canvas>
+                       <div id="pdf-main-container">
+                        <div id="pdf-loader">Loading document ...</div>
+                         <div id="pdf-contents">
+                            <div id="pdf-meta">
+                                <div id="pdf-buttons">
+                                    <button id="pdf-prev">Previous</button>
+                                    <button id="pdf-next">Next</button>
+                                </div>
+                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                            </div>
+                            <canvas id="pdf-canvas" width="650"></canvas>
+                            <div id="page-loader">Loading page ...</div>
                         </div>
+                      </div>
+
+                      
+                       <div class="text-center">
+                           <label for="" id="pages"></label>
                        </div>
-                   </div>
-               </div>
-               <div class="card mt-4">
-                   <div class="card-body">
-                       Reviews
-                   </div>
-               </div>
+                       <input type="hidden"  id="file2" value="{{$doc->filename}}">
+                       <!-- <div id="my_pdf_viewer" >
+                        <div id="canvas_container" style="width:100%;height:500px;overflow-y:scroll;" >
+                            <div id="my_canvas">
 
-
-               <div class="card mt-2">
-                   <div class="card-body">
-                      <h4 class="font-bold"> Recommended For You</h4>
+                            </div>
+                        </div>
+                       </div> -->
                    </div>
                </div>
+               
+
+               
+            
 
             </div>
             <div class="col-sm-4">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h4 class="font-bold">{{$doc->cname}}</h4>
+                        <h4 class="font-bold">{{$doc->sname}}: {{$doc->cname}}</h4>
                         <h3 class="font-bold text-success">$ {{number_format($doc->price,2)}}</h3>
                         <div class="mt-3">
-                            <a href="{{ route('add.to.cart', $doc->id) }}" class="btn btn-primary "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</a>
+                 
+                            <a href="{{ route('add.to.cart', $doc->id) }}" class="primary-btn "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</a>
+
+                          
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-12 mt-2">
+            <div class="row">
+          <!-- single course -->
+          <div class="col-lg-12">
+              <h2>Recommended for you</h2>
+            <div class="owl-carousel active_course">
+                @foreach($recommends as  $recommend)
+              <div class="single_course">
+                <div class="course_head">
+                <img class="img-fluid" style="height:240px" src="{{$recommend->image}}" alt="" />
+                </div>
+                <div class="course_content">
+                  <span class="price">${{number_format($recommend->price)}}</span>
+                  <span class="tag mb-4 d-inline-block">{{$recommend->sname}}/ {{$recommend->cname}}</span>
+                  <h4 class="mb-3">
+                    <a href="course-details.html">{{$recommend->title}}</a>
+                  </h4>
+                  
+                  
+                </div>
+              </div>
+              @endforeach
+
+            
+
+              
+            </div>
+          </div>
+        </div>
             </div>
         </div>
 
@@ -50,66 +162,131 @@
 @endsection
 
 @section('scripts')
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js">
-</script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js">  -->
+<!-- </script> -->
 <script>
+$("#download-image").on('click', function() {
+   
+	$(this).attr('href', $('#pdf-canvas').get(0).toDataURL());
+	
+	// Specfify download option with name
+	$(this).attr('download', 'page.png');
+});
+var filename=$('#file2').val();
+var filepath="{{asset('files')}}/"+ filename
 
-$(document).ready(function(){
-    var myState = {
-            pdf: null,
-            currentPage: 1,
-            zoom: 3
-        }
-     var filename2=document.getElementById("file2").value;
-  
+var _PDF_DOC,
+    _CURRENT_PAGE,
+    _TOTAL_PAGES,
+    _PAGE_RENDERING_IN_PROGRESS = 0,
+    _CANVAS = document.querySelector('#pdf-canvas');
+
+// initialize and load the PDF
+async function showPDF(pdf_url) {
+    document.querySelector("#pdf-loader").style.display = 'block';
+
+    // get handle of pdf document
+    try {
+        _PDF_DOC = await pdfjsLib.getDocument({ url: pdf_url });
+    }
+    catch(error) {
+        alert(error.message);
+    }
+
+    // total pages in pdf
+    _TOTAL_PAGES = _PDF_DOC.numPages;
     
-        pdfjsLib.getDocument("{{asset('files')}}/"+filename2).then((pdf) => {
-     
-            myState.pdf = pdf;
-            render();
+    // Hide the pdf loader and show pdf container
+    document.querySelector("#pdf-loader").style.display = 'none';
+    document.querySelector("#pdf-contents").style.display = 'block';
+    document.querySelector("#pdf-total-pages").innerHTML = _TOTAL_PAGES;
 
-        });
+    // show the first page
+    showPage(1);
+}
 
-        function render() {
-            myState.pdf.getPage(myState.currentPage).then((page) => {
-         
-                var canvas = document.getElementById("pdf_renderer");
-                var ctx = canvas.getContext('2d');
-     
-                var viewport = page.getViewport(myState.zoom);
+// load and render specific page of the PDF
+async function showPage(page_no) {
+    _PAGE_RENDERING_IN_PROGRESS = 1;
+    _CURRENT_PAGE = page_no;
 
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-         
-                page.render({
-                    canvasContext: ctx,
-                    viewport: viewport
-                });
-            });
-        }
+    // disable Previous & Next buttons while page is being loaded
+    document.querySelector("#pdf-next").disabled = true;
+    document.querySelector("#pdf-prev").disabled = true;
 
-        $(".update-cart").change(function (e) {
-        e.preventDefault();
-   
-        var ele = $(this);
-   
-        $.ajax({
-            url: '{{ route('update.cart') }}',
-            method: "patch",
-            data: {
-                _token: '{{ csrf_token() }}', 
-                id: ele.parents("tr").attr("data-id"), 
-                quantity: ele.parents("tr").find(".quantity").val()
-            },
-            success: function (response) {
-               window.location.reload();
-            }
-        });
-    });
+    // while page is being rendered hide the canvas and show a loading message
+    document.querySelector("#pdf-canvas").style.display = 'none';
+    document.querySelector("#page-loader").style.display = 'block';
 
-})
-  
-   
-    </script>
+    // update current page
+    document.querySelector("#pdf-current-page").innerHTML = page_no;
+    
+    // get handle of page
+    try {
+        var page = await _PDF_DOC.getPage(page_no);
+    }
+    catch(error) {
+        alert(error.message);
+    }
+
+    // original width of the pdf page at scale 1
+    var pdf_original_width = page.getViewport(1).width;
+    
+    // as the canvas is of a fixed width we need to adjust the scale of the viewport where page is rendered
+    var scale_required = _CANVAS.width / pdf_original_width;
+
+    // get viewport to render the page at required scale
+    var viewport = page.getViewport(scale_required);
+
+    // set canvas height same as viewport height
+    _CANVAS.height = viewport.height;
+
+    // setting page loader height for smooth experience
+    document.querySelector("#page-loader").style.height =  _CANVAS.height + 'px';
+    document.querySelector("#page-loader").style.lineHeight = _CANVAS.height + 'px';
+
+    // page is rendered on <canvas> element
+    var render_context = {
+        canvasContext: _CANVAS.getContext('2d'),
+        viewport: viewport
+    };
+        
+    // render the page contents in the canvas
+    try {
+        await page.render(render_context);
+    }
+    catch(error) {
+        alert(error.message);
+    }
+
+    _PAGE_RENDERING_IN_PROGRESS = 0;
+
+    // re-enable Previous & Next buttons
+    document.querySelector("#pdf-next").disabled = false;
+    document.querySelector("#pdf-prev").disabled = false;
+
+    // show the canvas and hide the page loader
+    document.querySelector("#pdf-canvas").style.display = 'block';
+    document.querySelector("#page-loader").style.display = 'none';
+}
+
+// click on "Show PDF" buuton
+
+showPDF(filepath);
+// click on the "Previous" page button
+document.querySelector("#pdf-prev").addEventListener('click', function() {
+    if(_CURRENT_PAGE != 1)
+        showPage(--_CURRENT_PAGE);
+});
+
+// click on the "Next" page button
+document.querySelector("#pdf-next").addEventListener('click', function() {
+    if(_CURRENT_PAGE != Math.round(_TOTAL_PAGES*0.12))
+        showPage(++_CURRENT_PAGE);
+});
+
+
+
+
+</script>
 @endsection

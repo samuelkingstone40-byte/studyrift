@@ -7,25 +7,54 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    public function documents(){
-        $data['notes']=DB::table('notes')
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
+    public function documents(Request $request){
+        $search_text=$request->get('search_text');
+        $notes =DB::table('notes');
+        if ($search_text) {
+            $notes->where('title', 'Like', '%' . $search_text . '%');
+        }
+        $notes=$notes->leftJoin('files', 'notes.id', '=', 'files.document_id')
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
-        ->get();
+        ->paginate(10);
+
+        
+        $data['notes']=$notes;
         return view('documents',$data);
+
+      
+
+        
+       
     }
 
     public function document_preview($slug=null){
-        $data['doc']=DB::table('notes')
+        $file=DB::table('notes')
         ->where('notes.slug',$slug)
         ->leftJoin('files', 'notes.id', '=', 'files.document_id')
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
+        $data['doc']=$file;
+        $title=$file->title;
+        $data['recommends']=$this->get_related($title);
         return view('document-preview',$data);
+    }
+
+    public function get_related($title)
+    {
+        $notes =DB::table('notes')
+        ->where('title', 'Like', '%' . $title. '%')
+        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
+        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
+        ->leftJoin('categories','notes.category_id','=','categories.id')
+        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+        ->get();
+
+        return $notes;
+        
     }
     public function cart()
     {
@@ -48,7 +77,7 @@ class PublicController extends Controller
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
-                "image" => $product->filename
+                "image" => $product->image
             ];
         }
            

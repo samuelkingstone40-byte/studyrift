@@ -2,11 +2,12 @@
       <div class="main_menu">
         <div class="search_input" id="search_input_box">
           <div class="container">
-            <form class="d-flex justify-content-between" method="" action="">
+            <form class="d-flex justify-content-between" method="get" action="{{route('search')}}">
               <input
                 type="text"
                 class="form-control"
                 id="search_input"
+                name="search_text"
                 placeholder="Search Here"
               />
               <button type="submit" class="btn"></button>
@@ -54,17 +55,24 @@
 
               <ul class="nav navbar-nav menu_nav ml-auto">
               <li class="nav-item">
-                  <a class="nav-link" href="{{url('upload')}}">Sell Documents</a>
-                </li>
-                <li class="nav-link">
+                  <a class="nav-link" href="{{url('upload')}}">Upload <i class="fa fa-upload fa-lg ml-2"></i></a>
+                </li>     
+                <li class="nav-item">
+                  <a class="nav-link" href="{{route('search', array('search_text' => '') )}}">Buy <i class="fa fa-download fa-lg ml-2" aria-hidden="true"></i></a>
+                </li> 
+                @if(count((array) session('cart'))>0)
+                <li class="nav-item">
                 <div class="dropdown">
                 <a class="nav-link" style="color:white;font:700"  data-toggle="dropdown">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger ml-1">{{ count((array) session('cart')) }}</span>
+                        <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> 
+                   
+                         <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                        
                       </a>
                     <div class="dropdown-menu">
                         <div class="row total-header-section">
                             <div class="col-lg-6 col-sm-6 col-6">
-                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                                <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                             </div>
                             @php $total = 0 @endphp
                             @foreach((array) session('cart') as $id => $details)
@@ -78,15 +86,9 @@
                             @foreach(session('cart') as $id => $details)
                                 <div class="row cart-detail">
                                     <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                    <div  id="my_pdf_viewer" >
-                       <div class="myClass" id="companyInfo" >
-                       <input  type="hidden"  id="file" value="{{$details['image']}}">
-                            <canvas   id="pdf_renderer{{$loop->index}}" style="max-width:100%"></canvas>
-                        </div>
-                       </div>
-                                    
-                                    
-                                   
+                            
+                                    <img class="img-thumbnail" src="{{$details['image']}}" alt="">
+
                                     </div>
                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                                         <p class="text-sm"><small>{{ $details['name'] }}</small></p>
@@ -104,6 +106,7 @@
                 </div>
 
                 </li>
+                @endif
               @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -147,7 +150,7 @@
      <li class="nav-item dropdown no-arrow mx-1 ml-2"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-bell"></i> <span class="badge badge-danger badge-counter">4</span> </a>
          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
              <h6 class="dropdown-header"> Messages </h6> <a class="dropdown-item d-flex align-items-center" href="#">
-                 <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="https://i.imgur.com/nUNhspp.jpg" alt="">
+                 <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="" alt="">
                      <div class="status-indicator bg-success"></div>
                  </div>
                  <div class="font-weight-bold">
@@ -155,7 +158,7 @@
                      <div class="small text-gray-500">Andy flower · 8m</div>
                  </div>
              </a> <a class="dropdown-item d-flex align-items-center" href="#">
-                 <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="https://i.imgur.com/uIgDDDd.jpg" alt="">
+                 <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="" alt="">
                      <div class="status-indicator"></div>
                  </div>
                  <div>
@@ -163,7 +166,7 @@
                      <div class="small text-gray-500">John wrong · 4h</div>
                  </div>
              </a> <a class="dropdown-item d-flex align-items-center" href="#">
-                 <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="https://i.imgur.com/HjKTNkG.jpg" alt="">
+                 <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="" alt="">
                      <div class="status-indicator bg-warning"></div>
                  </div>
                  <div>
@@ -188,16 +191,17 @@
          <div style="width:230px" class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
            <a class="dropdown-item" href="{{url('home')}}"> <i class="fa fa-tachometer  fa-sm fa-fw mr-2 text-gray-400"></i>Dashboord </a>
            <a class="dropdown-item" href="{{url('uploads')}}"> <i class="fa fa-cloud-upload fa-sm fa-fw mr-2 text-gray-400"></i>Uploads </a>
-           <a class="dropdown-item" href="#"> <i class="fa fa-cloud-download fa-sm fa-fw mr-2 text-gray-400"></i>Downloads </a>
-           <a class="dropdown-item" href="#"> <i class="fa fa-money  fa-sm fa-fw mr-2 text-gray-400"></i>Earning </a>
+           <a class="dropdown-item" href="{{url('downloads')}}"> <i class="fa fa-cloud-download fa-sm fa-fw mr-2 text-gray-400"></i>Downloads </a>
+           <a class="dropdown-item" href="{{url('earnings')}}"> <i class="fa fa-money  fa-sm fa-fw mr-2 text-gray-400"></i>Earning </a>
            <a class="dropdown-item" href="{{url('profile')}}"> <i class="fa fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Profile Settings </a>
           <div class="dropdown-divider"></div>
-          <a class="mr-2" href="{{ route('logout') }}"  onclick="event.preventDefault();
+          <a class=" dropdown-item mr-2" href="{{ route('logout') }}"  onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
                     <i class="fa fa-sign-out fa-sm fa-fw mr-2 text-gray-400"></i>     {{ __('Logout') }}
                       </a>
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                           @csrf
+</form>
                     
          </div>
      </li>

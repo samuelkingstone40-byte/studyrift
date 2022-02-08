@@ -1,51 +1,100 @@
-@extends('layouts.app');
+@extends('layouts.app')
 @section('content')
-<div class="container">
+<section class="section_gap">
+  <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-<div class="wrapper bg-white mt-sm-5">
-    <h4 class="pb-4 border-bottom">Profile Setting</h4>
-    <div class="d-flex align-items-start py-3 border-bottom"> <img style="6px" src="https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" class="img-thumbnail" alt="">
-        <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
-            <p>Accepted file type .png. Less than 1MB</p> <button class="btn button border"><b>Upload</b></button>
-        </div>
-    </div>
-    <div class="">
-        <div class="row py-1">
-            <div class="col-md-6"> <label for="firstname">First Name</label> <input type="text" class="bg-light form-control" placeholder="Steve"> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="lastname">Last Name</label> <input type="text" class="bg-light form-control" placeholder="Smith"> </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="email">Email Address</label> <input type="text" class="bg-light form-control" placeholder="steve_@email.com"> </div>
-            <div class="col-md-6 pt-md-0 pt-3"> <label for="phone">Phone Number</label> <input type="tel" class="bg-light form-control" placeholder="+1 213-548-6015"> </div>
-        </div>
-        <div class="row py-2">
-            <div class="col-md-6"> <label for="country">Country</label> <select name="country" id="country" class="bg-light">
-                    <option value="india" selected>India</option>
-                    <option value="usa">USA</option>
-                    <option value="uk">UK</option>
-                    <option value="uae">UAE</option>
-                </select> </div>
-            <div class="col-md-6 pt-md-0 pt-3" id="lang"> <label for="language">Language</label>
-                <div class="arrow"> <select name="language" id="language" class="bg-light">
-                        <option value="english" selected>English</option>
-                        <option value="english_us">English (United States)</option>
-                        <option value="enguk">English UK</option>
-                        <option value="arab">Arabic</option>
-                    </select> </div>
-            </div>
-        </div>
-        <div class="py-3 pb-4 border-bottom"> <button class="btn btn-primary mr-3">Save Changes</button> <button class="btn border button">Cancel</button> </div>
-        <div class="d-sm-flex align-items-center pt-3" id="deactivate">
-            <div> <b>Deactivate your account</b>
-                <p>Details about your company account and password</p>
-            </div>
-            <div class="ml-auto"> <button class="btn danger">Deactivate</button> </div>
-        </div>
-    </div>
-</div>
+        <div class="col-sm-10 mt-4 mb-4">
+         <h4 class="mb-2">Edit Profile</h4>
+         @if (\Session::has('success'))
+          <div class="alert alert-success">
+            {!! \Session::get('success') !!}   
+           </div>
+        @endif
 
-</div>
+        @if (\Session::has('error'))
+          <div class="alert alert-danger">
+            {!! \Session::get('error') !!}   
+           </div>
+        @endif
+        <div class="card">
+            <div class="card-body">
+            <form meth0d="post" action="{{route('update-profile')}}">
+              @csrf
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Name</label>
+                  <input required value="{{$user->name}}" name="name" type="text" class="form-control" id="inputEmail4" placeholder="Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Email</label>
+                  <input required value="{{$user->email}}" name="email" type="email" class="form-control" id="inputPassword4" placeholder="Email">
+                </div>
+              </div>
+                <button type="submit" class="primary-btn">Update</button>
+            </form> 
+            </div>
+        </div>
     </div>
-</div>
+
+    <div class="col-sm-10 mb-4">
+         <h4 class="mb-2">Paypal Email</h4>
+        <div class="card">
+            <div class="card-body">
+            <form method="post" action="{{route('update-paypal')}}">
+              @csrf
+                <div class="form-group">
+                  <label for="inputAddress">Paypal Email</label>
+                  <input value="{{$user->paypalEmail}}" name="paypal" required type="email" class="form-control" id="inputAddress" placeholder="Paypal Email">
+                </div>
+               <button type="submit" class="primary-btn">Update Paypal Email</button>
+            </form> 
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-10 mb-4">
+         <h4 class="py-2">Edit Password</h4>
+        <div class="card">
+            <div class="card-body">
+            <form method="post" action="{{route('update-password')}}"> 
+              @csrf
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="inputEmail4">New Password</label>
+                    <input id="password" type="password" placeholder="Enter Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
+                            @error('password')
+                                <span class="invalid-feedback d-block" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="inputPassword4">Confirm Password</label>
+                      <input id="password-confirm" type="password" placeholder="Confirm Password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                    </div>
+                  </div>
+                  <button type="submit" class="primary-btn">Update</button>
+             </form> 
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-10 mb-4">
+         <h4 class="mb-2">Deactivate Account</h4>
+        <div class="card">
+            <div class="card-body">
+            <form method="post" action="{{route('deactivate-account')}}">
+              @csrf
+              <div class="form-group">
+               <label for="inputAddress">Deactivate this account</label>
+              </div>
+              <button type="submit" class="primary-btn">Deactivate Account</button>
+            </form> 
+            </div>
+        </div>
+    </div>
+
+  </div>
+  </div>
+</section>
 @endsection

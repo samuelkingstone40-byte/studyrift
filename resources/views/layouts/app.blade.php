@@ -19,6 +19,8 @@
     <link rel="stylesheet" href="{{asset('theme/css/themify-icons.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/vendors/owl-carousel/owl.carousel.min.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/vendors/nice-select/css/nice-select.css')}}" />
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- main css -->
     <link rel="stylesheet" href="{{asset('theme/css/nav.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/cart.css')}}" />
@@ -29,11 +31,11 @@
   <body>
     <!--================ Start Header Menu Area =================-->
     @include('includes.header')
-    <section class="">
-    <main class="">
+    <div>
+ 
             @yield('content')
-        </main>
-    </section>
+      
+</div>
     
     @include('includes.footer')
     <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
@@ -42,11 +44,17 @@
     <script src="{{asset('theme/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
     <script src="{{asset('theme/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
     <script src="{{asset('theme/js/owl-carousel-thumb.min.js')}}"></script>
-    <script src="{{asset('theme/js/jquery.ajaxchimp.min.js')}}"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <!-- <script src="{{asset('theme/js/jquery.ajaxchimp.min.js')}}"></script> -->
     <!-- <script src="{{asset('theme/js/mail-script.js')}}"></script> -->
     <!--gmaps Js-->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script> -->
     <!-- <script src="{{asset('theme/js/gmaps.min.js')}}"></script> -->
+    <!-- <script src="{{asset('pdfjs/build/pdf.js')}}"></script>
+    <script src="{{asset('pdfjs/build/pdf.worker.js')}}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
+
     <script src="{{asset('theme/js/theme.js')}}"></script>
     @yield('scripts')
 

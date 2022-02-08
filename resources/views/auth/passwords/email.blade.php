@@ -1,12 +1,16 @@
-@extends('layouts.default')
+@extends('layouts.app')
 
 @section('content')
+<section class="section_gap">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
           <div class="register_form">
+              <div class="text-center">
               <h3 class="mb-5">{{ __('Reset Password') }}</h3>
 
+              </div>
+           
           
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -41,4 +45,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

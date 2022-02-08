@@ -14,7 +14,7 @@ class AddSlugToNotes extends Migration
     public function up()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->string('slug')->unique();
+            $table->string('slug');
         });
     }
 

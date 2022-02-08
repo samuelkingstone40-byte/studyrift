@@ -1,65 +1,151 @@
 @extends('layouts.app')
 
 @section('content')
+<style type="text/css">
+
+#show-pdf-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#file-to-upload {
+	display: none;
+}
+
+#pdf-main-container {
+
+  margin-left: auto;
+    margin-right: auto;
+  text-align:center;
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+
+#pdf-contents {
+	display: none;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 0 0 20px 0;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	border: 1px solid rgba(0,0,0,0.2);
+	box-sizing: border-box;
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+</style>
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">
 
 <section class="section_gap">
-  <div class="container">
+
+  <div class="container py-2">
     <div class="row justify-content-center">
         <div class="col-md-10">
-        <form method="POST" enctype="multipart/form-data"  action="{{url('post-document')}}" >
-
-         
-             @csrf
-             <div class="card">
-              <div class="card-body">
+          <h3 class="font-bold mb-2">Upload Your Document</h3>
+          <form method="post" enctype="multipart/form-data"  action="{{route('post-document')}}" >
+              @csrf
+              <div class="card">
+               <div class="card-body">
                 <div class="form-row">
                   <div class="form-group col-md-12">
                     <label for="inputEmail4">Document Title</label>
-                    <input type="text" name="title" require class="form-control" id="inputEmail4" placeholder="Title">
+                    <input type="text" name="title" required class="form-control" id="inputEmail4" placeholder="Title">
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label for="inputPassword4">Subject</label>
-                    <select id="inputState" name="subject" class="form-control">
+                    <select id="inputState" required name="subject" class="form-control">
                       <option selected>Choose...</option>
                       @foreach($subjects as $subject)
                       <option value="{{$subject->id}}">{{$subject->name}}</option>
                       @endforeach
                     </select>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-4">
                     <label for="inputPassword4">Category</label>
-                    <select id="inputState" name="category" class="form-control ">
+                    <select id="inputState" required name="category" class="form-control ">
                       <option selected>Choose...</option>
                       @foreach($categories as $category)
                       <option value="{{$category->id}}">{{$category->name}}</option>
                      @endforeach
                     </select>
                   </div>
+
+                  <div class="form-group col-md-4">
+                    <label for="inputPassword4">Unit Code(Optional)</label>
+                     <input type="text" name="code" class="form-control" id="">
+                  </div>
                   <div class="form-group col-md-12">
                     <label for="exampleFormControlTextarea1">Description</label>
-                    <textarea class="form-control" name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <textarea class="form-control" required name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
                   </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                       <label for="inputCity">Price</label>
-                      <input type="text" name="price" class="form-control" id="inputCity">
+                      <input type="number" required name="price" class="form-control" id="price">
                     </div>
                     <div class="form-group col-md-6">
                       <label for="inputState">Earning Per Downloads</label>
-                      <input type="text" class="form-control" id="inputCity">
+                      <input id="earning" type="text" class="form-control" disabled>
                     </div>
                 </div>
 
                 <div class="form-row ">
 
-        <div class="col-md-12">
+        <div class="col-md-12 ">
+        <div id="pdf-main-container">
+                        <div id="pdf-loader">Loading document ...</div>
+                         <div id="pdf-contents">
+                            <div id="pdf-meta">
+                                <div id="pdf-buttons">
+                                    <button id="pdf-prev">Previous</button>
+                                    <button id="pdf-next">Next</button>
+                                </div>
+                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                            </div>
+                            <canvas id="pdf-canvas" width="600"></canvas>
+                            <div id="page-loader">Loading page ...</div>
+                        </div>
+                      </div>
+
+                    
         <div class="item-wrapper one">
-    <div class="item">
-
-
-
+           <div class="item">
             <div class="item-inner">
                 <div class="item-content">
                   
@@ -74,14 +160,19 @@
                                         <h6 class="mt-10 mb-70">Or Drop Your Image Here</h6>
                                     </div>
                                 </div>
-                                <label class="py-2" id="filename"></label>
+                                <label class="" id="filename"></label>
                             </div>
                          
-                            <!--upload-content--> 
-                            <input data-required="image" type="file" name="file" id="file_upload" class="image-input" data-traget-resolution="image_resolution"
+                            <!-- //upload-content  -->
+                            <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
+                            <input data-required="image"  type="file"  name="file" id="file_upload" class="image-input" data-traget-resolution="image_resolution"
                             
                             accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation"value="">
-                          </label> 
+                          
+                          </label>
+                         
+                            
+                           
                      
                       </div>
                 </div>
@@ -93,16 +184,17 @@
  
     <!--item-->
 </div>
-      
 
-
-                <div class="form-row">
-                     <button type="submit" class="primary-btn ">SAVE & NEXT</button>
+                <div class="text-right">
+                     <button type="submit" class="primary-btn ">SAVE</button>
                 </div>
               </div>
             </div>          
          </form>
       </div>
+   
+    
+                           
     </div>
   </div>
 </section>
@@ -118,19 +210,14 @@ $(document).ready(function (e) {
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
    });
-  
-   $('#file_upload').change(function(){
-           
-    let reader = new FileReader();
 
-    reader.onload = (e) => { 
-      $('#filename').html(this.files[0].name);
-      $('#image_preview_container').attr('src', e.target.result); 
-    }
-
-    reader.readAsDataURL(this.files[0]); 
+   $("input[type=number]").bind('keyup input', function(){
+    var price=this.value;
+     var earning=price * 0.3;
+     $('#earning').val(earning);
+});
   
-   });
+
   
    $('#upload_image_form').submit(function(e) {
 
@@ -154,6 +241,140 @@ $(document).ready(function (e) {
          }
        });
    });
+
+
+   var _PDF_DOC,
+    _CURRENT_PAGE,
+    _TOTAL_PAGES,
+    _PAGE_RENDERING_IN_PROGRESS = 0,
+    _CANVAS = document.querySelector('#pdf-canvas');
+
+// initialize and load the PDF
+async function showPDF(pdf_url) {
+    document.querySelector("#pdf-loader").style.display = 'block';
+
+    // get handle of pdf document
+    try {
+        _PDF_DOC = await pdfjsLib.getDocument({ url: pdf_url });
+    }
+    catch(error) {
+        alert(error.message);
+    }
+
+    // total pages in pdf
+    _TOTAL_PAGES = _PDF_DOC.numPages;
+    
+    // Hide the pdf loader and show pdf container
+    document.querySelector("#pdf-loader").style.display = 'none';
+    document.querySelector("#pdf-contents").style.display = 'block';
+    document.querySelector("#pdf-total-pages").innerHTML = _TOTAL_PAGES;
+
+    // show the first page
+    showPage(1);
+}
+
+// load and render specific page of the PDF
+async function showPage(page_no) {
+    _PAGE_RENDERING_IN_PROGRESS = 1;
+    _CURRENT_PAGE = page_no;
+
+    // disable Previous & Next buttons while page is being loaded
+    document.querySelector("#pdf-next").disabled = true;
+    document.querySelector("#pdf-prev").disabled = true;
+
+    // while page is being rendered hide the canvas and show a loading message
+    document.querySelector("#pdf-canvas").style.display = 'none';
+    document.querySelector("#page-loader").style.display = 'block';
+
+    // update current page
+    document.querySelector("#pdf-current-page").innerHTML = page_no;
+    
+    // get handle of page
+    try {
+        var page = await _PDF_DOC.getPage(page_no);
+    }
+    catch(error) {
+        alert(error.message);
+    }
+
+    // original width of the pdf page at scale 1
+    var pdf_original_width = page.getViewport(1).width;
+    
+    // as the canvas is of a fixed width we need to adjust the scale of the viewport where page is rendered
+    var scale_required = _CANVAS.width / pdf_original_width;
+
+    // get viewport to render the page at required scale
+    var viewport = page.getViewport(scale_required);
+
+    // set canvas height same as viewport height
+    _CANVAS.height = viewport.height;
+
+    // setting page loader height for smooth experience
+    document.querySelector("#page-loader").style.height =  _CANVAS.height + 'px';
+    document.querySelector("#page-loader").style.lineHeight = _CANVAS.height + 'px';
+
+    // page is rendered on <canvas> element
+    var render_context = {
+        canvasContext: _CANVAS.getContext('2d'),
+        viewport: viewport
+    };
+        
+    // render the page contents in the canvas
+    try {
+        await page.render(render_context);
+    }
+    catch(error) {
+        alert(error.message);
+    }
+
+    _PAGE_RENDERING_IN_PROGRESS = 0;
+
+    // re-enable Previous & Next buttons
+    document.querySelector("#pdf-next").disabled = false;
+    document.querySelector("#pdf-prev").disabled = false;
+
+    // show the canvas and hide the page loader
+    document.querySelector("#pdf-canvas").style.display = 'block';
+    document.querySelector("#page-loader").style.display = 'none';
+    $('#thumb').val($('#pdf-canvas').get(0).toDataURL("image/png"))
+    $('#frame').attr('src', $('#pdf-canvas').get(0).toDataURL());
+}
+
+// click on "Show PDF" buuton
+
+$('#file_upload').change(function(){
+           
+           let reader = new FileReader();
+          
+           reader.onload = (e) => { 
+             
+             $('#image_preview_container').attr('src', e.target.result); 
+            
+             var image=$('#pdf-canvas').get(0).toDataURL()
+             $('#filename').html(this.files[0].name);
+           //  alert($('#pdf-canvas').get(0).toDataURL("image/jpeg", 0.8))
+            
+            
+             showPDF(e.target.result);
+             
+           }
+           reader.readAsDataURL(this.files[0]); 
+         
+           
+         
+          });
+
+// click on the "Previous" page button
+document.querySelector("#pdf-prev").addEventListener('click', function() {
+    if(_CURRENT_PAGE != 1)
+        showPage(--_CURRENT_PAGE);
+});
+
+// click on the "Next" page button
+document.querySelector("#pdf-next").addEventListener('click', function() {
+    if(_CURRENT_PAGE != _TOTAL_PAGES)
+        showPage(++_CURRENT_PAGE);
+});
 });
 </script>
 

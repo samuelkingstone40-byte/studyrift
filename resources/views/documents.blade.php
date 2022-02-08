@@ -36,43 +36,50 @@
 
            
     <div class="d-flex justify-content-center row">
-        <div class="col-md-11">
+        <div class="col-md-12">
         @foreach($notes as $index => $note)
             <div class="row p-2 bg-white mb-3 border rounded">
                 <div class="col-md-3 mt-1">
-
-              
-                       <div  id="my_pdf_viewer" >
-                       <div class="myClass" id="docs" >
-                       <input  type="hidden"  id="file" value="{{$note->filename}}">
-                            <canvas   id="pdf_renderer1{{$index}}" style="max-width:100%"></canvas>
-                        </div>
-                       </div>
-                </div>
-                <div class="col-md-6 mt-1">
-                    <h4>{{$note->sname}} / {{$note->cname}}</h4>
-                    <h5>{{$note->title}}</h5>
                    
-                    <div class="d-flex flex-row">
-                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div><span>310</span>
+                <img src="{{$note->image }}" width="230">
+              
+                      
+                </div>
+                <div class="col-md-6 py-4">
+                    <h4>{{$note->sname}} / {{$note->cname}}</h4>
+                    <h5 class="font-bold py-2">{{$note->title}}</h5>
+                   
+                   
+                    <p class="text-justify text-truncate para ">
+                    {{$note->description}}
+                   </p>
+                    <h5 class="numPages" id="{{$note->slug}}"></h5>
+                    <p>Date Posted - <span class="font-bold">{{$note->created_at}}</span></p>
+                </div>
+                <div class="col-md-3 border-left mt-1">
+                    <div class="text-center py-4">
+                       <h4>{{$note->sname}} / {{$note->cname}}</h4>
+                       
+                        <h2 class="mr-1 text-success">${{number_format($note->price,2)}}</h2><span class="strike-text"></span>
+                    
+                        <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                     </div>
                   
-                    <p class="text-justify text-truncate para mb-0">
-                    {{$note->description}}
-                    <br><br></p>
-                </div>
-                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
-                    <div class="d-flex flex-row align-items-center">
-                        <h3 class="mr-1 text-success">${{number_format($note->price,2)}}</h3><span class="strike-text"></span>
-                    </div>
-                    <h6 class="text-success">Free shipping</h6>
-                    <div class="d-flex flex-column mt-4"><a href="{{url('document-preview/'.$note->slug)}}" class="btn btn-primary btn-sm" >Details</a><button class="btn btn-outline-primary btn-sm mt-2" type="button">Add to wishlist</button></div>
+                    <div class="d-flex flex-column mt-2"><a href="{{url('document-preview/'.$note->slug)}}" class="primary-btn btn-sm font-weight" >Details</a></div>
                 </div>
             </div>
             @endforeach
             
         </div>
+        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                
+                                {{$notes->links()}}
+                                
+                            </ul>
+                        </nav>
     </div>
+    
 </div>
 
             
@@ -88,11 +95,13 @@
 var myState = {
             pdf: null,
             currentPage: 1,
-            zoom: 1
+            zoom:.6
         }
+       
 $('#docs input').each(function ( value,index) {
     var filename=$(this).val()
-    pdfjsLib.getDocument("{{asset('files')}}/"+ filename).then((pdf) => {
+        pdfjsLib.getDocument("{{asset('files')}}/"+ filename).then((pdf) => {
+        $(".numPages").text("Number of Pages : "+ pdf.numPages);
         myState.pdf = pdf;
         render();
     });
@@ -105,7 +114,7 @@ $('#docs input').each(function ( value,index) {
             var viewport = page.getViewport(myState.zoom);
 
             canvas.width = viewport.width;
-            canvas.height = viewport.height;
+            canvas.height = 330;
      
             page.render({
                 canvasContext: ctx,

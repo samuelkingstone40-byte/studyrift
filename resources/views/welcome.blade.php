@@ -7,16 +7,29 @@
           <div class="row">
             <div class="col-lg-12">
               <div class="banner_content text-center">
+               
+                <h2 class="text-uppercase mt-4 mb-2">
+                  One Step Ahead This Season
+                </h2>
                 <p class="text-uppercase">
                   Best online education service In the world
                 </p>
-                <h2 class="text-uppercase mt-4 mb-5">
-                  One Step Ahead This Season
-                </h2>
-                <div>
+                <div class=" m-4">
+                <div class="search"> 
+                  <i class="fa fa-search"></i>
+                  <form action="{{route('search')}}" method="get">
+                  
+                   <input type="text" name="search_text" class="form-control" placeholder="Quick search? title, decription, author...">
+                   <button type="submit" class="primary-btn">Search</button>
+                 </form>
+                   
+                </div>
+                </div>
+                <!-- <div>
+                 
                   <a href="{{url('upload')}}" class="primary-btn2 mb-3 mb-sm-0">Sell</a>
                   <a href="{{url('browse-files')}}" class="primary-btn ml-sm-3 ml-0">Browse</a>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

@@ -28,10 +28,7 @@ button.btn.btn-info {
 .main-section{
     background-color: #F8F8F8;
 }
-.dropdown{
-    
-    padding-top: 11px;
-}
+
 
 .btn{
     border:0px;
@@ -42,7 +39,7 @@ button.btn.btn-info {
     padding: 20px;
     top: 60px !important;
     width: 350px !important;
-    left: -230px !important;
+    left: -280px !important;
     box-shadow: 0px 5px 30px black;
 }
 .total-header-section{

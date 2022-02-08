@@ -19,7 +19,7 @@ class CreateNotesTable extends Migration
             $table->integer('subject_id');
             $table->integer('category_id');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->double('price');
             $table->string('year');
             $table->timestamps();
