@@ -18,7 +18,7 @@
                                                 <th>Subject</th>
                                                 <th>Category</th>
                                               
-                                                <th>Amount($)</th>
+                                                <th>Amount</th>
                                                 <th>Status</th>
                                                 <th></th>
                                                
@@ -37,7 +37,7 @@
                                                 <th>Subject</th>
                                                 <th>Category</th>
                                               
-                                                <th>Amount($)</th>
+                                                <th>Amount</th>
                                                 <th>Status</th>
                                                 <th></th>
                                                
@@ -61,12 +61,12 @@
         ajax: "{{route('get_all_sales')}}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'created_at', name: 'created_at'},
+            {data: 'date', name: 'date'},
             {data: 'orderId', name: 'orderId'},
             {data: 'uname', name: 'uname'},
             {data: 'sname', name: 'sname'},
             {data: 'cname', name: 'cname'},
-            {data: 'earning', name: 'earning'},
+            {data: 'amount', name: 'amount'},
             {data: 'status', name: 'status'},
             {
                 data: 'action', 

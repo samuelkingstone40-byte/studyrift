@@ -61,7 +61,7 @@
             {data: 'cname', name: 'cname'},
             {data: 'title', name: 'title'},
 
-            {data: 'price', name: 'price'},
+            {data: 'amount', name: 'amount'},
 
            
         

@@ -65,18 +65,26 @@
 	font-size: 13px;
 }
 
+
+
 </style>
-<section class="section_gap">
-    <div class="container  py-2">
-        <div class="row">
-            <div class="col-sm-8">
-               <div class="card">
-                   <div class="card-body">
-                       <div class="text-left mb-2">
-                           <h3>{{$doc->title}}</h3>
-                       </div>
-                       <p> {{$doc->description}}</p>
-                       <div id="pdf-main-container">
+<section class="course_details_area section_gap">
+        <div class="container">
+        <nav aria-label="breadcrumb " class="py-1">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+    <li class="breadcrumb-item"><a href="{{url('search/')}}">List</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+            <div class="row">
+                <div class="col-lg-8 course_details_left">
+                    
+                    <div class="content_wrapper">
+                        <h4 class="title">{{$doc->title}}</h4>
+                        <div class="content">
+                        <div id="pdf-main-container">
+                        <input type="hidden"  id="file2" value="{{$doc->filename}}">
                         <div id="pdf-loader">Loading document ...</div>
                          <div id="pdf-contents">
                             <div id="pdf-meta">
@@ -90,46 +98,87 @@
                             <div id="page-loader">Loading page ...</div>
                         </div>
                       </div>
-
-                      
-                       <div class="text-center">
-                           <label for="" id="pages"></label>
-                       </div>
-                       <input type="hidden"  id="file2" value="{{$doc->filename}}">
-                       <!-- <div id="my_pdf_viewer" >
-                        <div id="canvas_container" style="width:100%;height:500px;overflow-y:scroll;" >
-                            <div id="my_canvas">
-
-                            </div>
                         </div>
-                       </div> -->
-                   </div>
-               </div>
-               
 
-               
-            
-
-            </div>
-            <div class="col-sm-4">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h4 class="font-bold">{{$doc->sname}}: {{$doc->cname}}</h4>
-                        <h3 class="font-bold text-success">$ {{number_format($doc->price,2)}}</h3>
-                        <div class="mt-3">
-                 
-                            <a href="{{ route('add.to.cart', $doc->id) }}" class="primary-btn "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</a>
-
-                          
+                        <h4 class="title">Details</h4>
+                        <div class="content">
+                              {{$doc->description}}
                         </div>
+
+                        
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 mt-2">
-            <div class="row">
-          <!-- single course -->
-          <div class="col-lg-12">
-              <h2>Recommended for you</h2>
+
+
+                <div class="col-lg-4 right-contents py-5">
+                    <ul>
+                        <li>
+                            <a class="justify-content-between d-flex" href="#">
+                                <p>Subject</p>
+                                <span class="or">{{$doc->sname}} </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="justify-content-between d-flex" href="#">
+                                <p>Category </p>
+                                <span class="or">{{$doc->cname}}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="justify-content-between d-flex" href="#">
+                                <p>Date Posted </p>
+                                <span class="or">15</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="justify-content-between d-flex" href="#">
+                                <p>Price </p>
+                                <span ><h4 class="font-bold text-success">$ {{number_format($doc->price,2)}}</h4></span>
+                            </a>
+                        </li>
+                    </ul>
+                   
+                    <input type="hidden" name="" id="docId" value="{{$doc->id}}">
+                    <a id="addToCart" href="" class="primary-btn text-uppercase enroll rounded-0 "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</a>
+
+                    <h4 class="title">Reviews</h4>
+                    <div class="content">
+                        <div class="review-top row pt-40">
+                            <div class="col-lg-12">
+                               
+                                <div class="d-flex flex-row reviews justify-content-between">
+                                    <span>Downloads</span>
+                                    
+                                    <span>10</span>
+                                </div>
+                                <div class="d-flex flex-row reviews justify-content-between">
+                                    <span>Rating</span>
+                                    <div class="star">
+                                        <i class="ti-star checked"></i>
+                                        <i class="ti-star checked"></i>
+                                        <i class="ti-star checked"></i>
+                                        <i class="ti-star"></i>
+                                        <i class="ti-star"></i>
+                                    </div>
+                                  
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="feedeback">
+                            <h6>Your Feedback</h6>
+                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
+                            <div class="mt-10 text-right">
+                                <a href="#" class="primary-btn2 text-right rounded-0 text-white">Submit</a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+<hr class="mt-3">
+          <h3 class="title">Recommended for you</h3>
             <div class="owl-carousel active_course">
                 @foreach($recommends as  $recommend)
               <div class="single_course">
@@ -146,19 +195,30 @@
                   
                 </div>
               </div>
-              @endforeach
-
-            
-
-              
+               @endforeach
             </div>
           </div>
         </div>
-            </div>
         </div>
 
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content text-center  mx-auto py-md-5 px-md-4 p-sm-3 p-4">
+            <h3 class="text-success">Success</h3> <i class="fa fa-check fa-lg text-success"></i>
+            <p class="r3 px-md-5 px-sm-1">Item added to your cart</p>
+            <div class="text-center mb-3"> 
+                <a href="{{route('cart')}}" class="genric-btn primary circle w-50">Checkout</a>
+             </div>
+
+              <a class="genric-btn link-border" href="{{route('search')}}">Continue Shopping</a>
+        </div>
     </div>
-</section>
+</div>
+
+    </section>
+
+
+
 @endsection
 
 @section('scripts')
@@ -172,6 +232,22 @@ $("#download-image").on('click', function() {
 	// Specfify download option with name
 	$(this).attr('download', 'page.png');
 });
+
+$('#addToCart').click(function(e){
+    var id=$('#docId').val();
+  
+    e.preventDefault();
+    $.ajax({
+            url: '{{ url("add-to-cart") }}/'+id,
+            method: "get",
+           
+            success: function (response) {
+                $('#cartModal').modal('show');
+            }
+        });
+
+    
+})
 var filename=$('#file2').val();
 var filepath="{{asset('files')}}/"+ filename
 
@@ -240,6 +316,7 @@ async function showPage(page_no) {
 
     // set canvas height same as viewport height
     _CANVAS.height = viewport.height;
+ 
 
     // setting page loader height for smooth experience
     document.querySelector("#page-loader").style.height =  _CANVAS.height + 'px';

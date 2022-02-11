@@ -18,11 +18,13 @@
 <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                <th>No</th>
+                <th>File</th>
+                <th>Date</th>
                 <th>Subject</th>
                 <th>Category</th>
                 <th>Title</th>
                 <th>Price</th>
+                <th>Earning/Download</th>
               
                 <th>Action</th>
             </tr>
@@ -45,11 +47,13 @@
         serverSide: true,
         ajax: "{{route('my-uploads')}}",
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'image', name: 'image'},
+            {data:'date',name:'date'},
             {data: 'sname', name: 'sname'},
             {data: 'cname', name: 'cname'},
             {data: 'title', name: 'title'},
-            {data: 'price', name: 'price'},
+            {data: 'cash', name: 'cash'},
+            {data:'earning',name:'earning'},
            
             {
                 data: 'action', 

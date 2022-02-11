@@ -213,7 +213,7 @@ $(document).ready(function (e) {
 
    $("input[type=number]").bind('keyup input', function(){
     var price=this.value;
-     var earning=price * 0.3;
+     var earning=price * 0.7;
      $('#earning').val(earning);
 });
   

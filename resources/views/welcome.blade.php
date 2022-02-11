@@ -8,19 +8,19 @@
             <div class="col-lg-12">
               <div class="banner_content text-center">
                
-                <h2 class="text-uppercase mt-4 mb-2">
+                <h2 class="text-uppercase py-1">
                   One Step Ahead This Season
                 </h2>
                 <p class="text-uppercase">
                   Best online education service In the world
                 </p>
-                <div class=" m-4">
+                <div class="">
                 <div class="search"> 
                   <i class="fa fa-search"></i>
                   <form action="{{route('search')}}" method="get">
                   
                    <input type="text" name="search_text" class="form-control" placeholder="Quick search? title, decription, author...">
-                   <button type="submit" class="primary-btn">Search</button>
+                   <button type="submit" class="genric-btn primary radius"><i class="fa fa-search"></i>Search</button>
                  </form>
                    
                 </div>
@@ -44,9 +44,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Awesome Feature</h2>
+              <h2 class="mb-3">How it works</h2>
               <p>
-                Replenish man have thing gathering lights yielding shall you
+               Easy, Efficient, Earn
               </p>
             </div>
           </div>
@@ -101,115 +101,48 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Our Popular Courses</h2>
+              <h2 class="mb-3">Our Popular Downloads </h2>
               <p>
-                Replenish man have thing gathering lights yielding shall you
+            The most popular uploads are listed below:
               </p>
             </div>
           </div>
         </div>
         <div class="row">
           <!-- single course -->
+
+        
           <div class="col-lg-12">
             <div class="owl-carousel active_course">
-              <div class="single_course">
+            @foreach($uploads as $upload)
+              <div class="single_course" >
                 <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c1.jpg" alt="" />
+                <img class="img-fluid" style="height:220px" src="{{$upload->image}}" alt="" />
                 </div>
                 <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
+                  <span class="price">${{number_format($upload->price,2)}}</span>
+                  <span class="tag mb-4 d-inline-block">{{$upload->sname}}</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">Custom Product Design</a>
+                    <a href="{{url('document-preview/'.$upload->slug)}}">{{$upload->title}}</a>
                   </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
+                  
                   <div
                     class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
                   >
-                    <div class="authr_meta">
-                      <img src="img/courses/author1.png" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
+                    
                     <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
+                      <span class="meta_info mr-4 font-bold">
+                        <a href="#"> <i class="ti-download"></i> downloads ({{$upload-> count_click}}) </a>
                       </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
+                      
                     </div>
                   </div>
                 </div>
               </div>
+              @endforeach
+              
 
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c2.jpg" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.html">Social Media Network</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="img/courses/author2.png" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c3.jpg" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.html">Computer Engineering</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="img/courses/author3.png" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+         
             </div>
           </div>
         </div>
@@ -226,67 +159,27 @@
               <div class="col-lg-12">
                 <h1 class="mb-3">Register Now</h1>
                 <p>
-                  There is a moment in the life of any aspiring astronomer that
-                  it is time to buy that first telescope. It’s exciting to think
-                  about setting up your own viewing station.
+                It's simple and straightforward to make extra cash as a student, just upload your notes to us and we'll handle the sales side and pass the money back to you. Docmerit offers the highest payout ratio: you earn up to 85% per sale. We transfer the money to your bank account within 24 working hours. Sign up for free today and start earning while helping other fellow students!
                 </p>
               </div>
               <div class="col clockinner1 clockinner">
                 <h1 class="days">150</h1>
-                <span class="smalltext">Days</span>
+                <span class="smalltext">uploads</span>
               </div>
               <div class="col clockinner clockinner1">
                 <h1 class="hours">23</h1>
-                <span class="smalltext">Hours</span>
+                <span class="smalltext">downloads</span>
               </div>
               <div class="col clockinner clockinner1">
                 <h1 class="minutes">47</h1>
-                <span class="smalltext">Mins</span>
+                <span class="smalltext">users</span>
               </div>
-              <div class="col clockinner clockinner1">
-                <h1 class="seconds">59</h1>
-                <span class="smalltext">Secs</span>
-              </div>
+             
             </div>
           </div>
           <div class="col-lg-4 offset-lg-1">
-            <div class="register_form">
-              <h3>Courses for Free</h3>
-              <p>It is high time for learning</p>
-              <form
-                class="form_area"
-                id="myForm"
-                action="mail.html"
-                method="post"
-              >
-                <div class="row">
-                  <div class="col-lg-12 form_group">
-                    <input
-                      name="name"
-                      placeholder="Your Name"
-                      required=""
-                      type="text"
-                    />
-                    <input
-                      name="name"
-                      placeholder="Your Phone Number"
-                      required=""
-                      type="tel"
-                    />
-                    <input
-                      name="email"
-                      placeholder="Your Email Address"
-                      pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                      required=""
-                      type="email"
-                    />
-                  </div>
-                  <div class="col-lg-12 text-center">
-                    <button class="primary-btn">Submit</button>
-                  </div>
-                </div>
-              </form>
-            </div>
+            <img src="{{asset('theme/img/banner/free.png')}}" alt="">
+            
           </div>
         </div>
       </div>

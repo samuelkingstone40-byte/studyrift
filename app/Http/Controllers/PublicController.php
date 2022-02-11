@@ -4,9 +4,29 @@ namespace App\Http\Controllers;
 use DB;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicController extends Controller
 {
+
+    public function index(){
+        $data['uploads']=$this->popular_downloads();
+        return view('welcome',$data);
+    }
+
+    public function popular_downloads(){
+        $downloads=DB::table('orders')
+        ->leftJoin('notes','notes.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
+        ->groupBy('orders.docId','orders.earning','subjects.name','notes.title','notes.image','notes.price','notes.slug')
+        ->orderBy(DB::raw('COUNT(orders.earning)'), 'desc')
+        ->select('notes.title','notes.slug','notes.image','notes.price','orders.docId','subjects.name as sname',
+         DB::raw("COUNT(orders.docId) as count_click"),DB::raw("sum(orders.earning) as sum_earning"))
+         ->limit(10)
+        ->get();
+
+        return $downloads;
+    }
     public function documents(Request $request){
         $search_text=$request->get('search_text');
         $notes =DB::table('notes');
@@ -17,15 +37,12 @@ class PublicController extends Controller
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+        ->orderBy('notes.id','desc')
         ->paginate(10);
 
         
         $data['notes']=$notes;
-        return view('documents',$data);
-
-      
-
-        
+        return view('documents',$data);   
        
     }
 
@@ -40,7 +57,20 @@ class PublicController extends Controller
         $data['doc']=$file;
         $title=$file->title;
         $data['recommends']=$this->get_related($title);
+        if(Auth::user()){
+            $data['purchased']=$this->check_if_purchased($file->id);
+
+        }
         return view('document-preview',$data);
+    }
+
+    public function check_if_purchased($id){
+        
+        $purchased=DB::table('orders')
+          ->where('user_id',Auth::id())
+          ->where('docId',$id)
+          ->first();
+        return $purchased;
     }
 
     public function get_related($title)
@@ -100,8 +130,7 @@ class PublicController extends Controller
         }
     }
 
-      public function remove(Request $request)
-    {
+    public function remove(Request $request){
         if($request->id) {
             $cart = session()->get('cart');
             if(isset($cart[$request->id])) {
@@ -111,4 +140,6 @@ class PublicController extends Controller
             session()->flash('success', 'Product removed successfully');
         }
     }
+
+   
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Order;
+use App\Models\User;
 use App\Models\Transaction as Transactions;
 use DB;
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ use PayPal\Api\PayoutItem;
 use PayPal\Api\PayoutSenderBatchHeader;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Rest\ApiContext;
-
+use App\Notifications\PurchaseNotification;
 class PayPalPaymentController extends Controller
 {
 
@@ -57,6 +58,7 @@ class PayPalPaymentController extends Controller
       }
 
       $this->sales_transaction($amount,$transId,$status);
+    
         //return dd($request->all());
        //$order = Order::create(['orderId' => $request->get('orderId'),
                       // 'status' => $request->get('status'),
@@ -78,9 +80,17 @@ class PayPalPaymentController extends Controller
                 'transactionId'=>$transId,
                 'docId'=>$docId,
                 'earning'=>($doc->price)*0.7,
-                'status' => $status]);
+                'income'=>($doc->price)*0.3,
 
+                'status' => 'Available']);
+        $user=User::where('id',$doc->user_id)->first();
+        $message=[
+            'message'=>'your document has been purchased',
+            'doc_id'=>$docId,
+            'slug'=>$doc->slug
+        ];
 
+        $user->notify(new PurchaseNotification($message));
    }
 
    public function sales_transaction($amount,$transId,$status){
@@ -168,8 +178,8 @@ class PayPalPaymentController extends Controller
 public function update_orders(){
   $update=DB::table('orders')
   ->where('owner_id',Auth::id())
-  ->where('status','COMPLETED')
-  ->update(['status'=>'WITHDRAWN']);
+  ->where('status','Available')
+  ->update(['status'=>'Paid']);
 }
    
 }

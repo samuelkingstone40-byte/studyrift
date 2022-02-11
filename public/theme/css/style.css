@@ -57,12 +57,12 @@ theme.
 
 
 body {
-  background-color: #f2f2f2;
+  background-color: #f1f1f1;
   line-height: 25px;
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  color: #7b838a; }
+  color:#000; }
 
 h1,
 h2,
@@ -360,14 +360,18 @@ button:focus {
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
+ background: rgba(76, 175, 80, 0.3);
   z-index: 1;
   min-height: 900px;
   position: relative;
-  background: url(../img/banner/home-banner.jpg) no-repeat center;
-  background-size: cover; }
+  background-size:contain;
+background-position:center;
+  background: url(../img/banner/home-banner.png) no-repeat center;
+  }
   .home_banner_area .banner_inner {
+    
     position: absolute;
-    top: 35%;
+    top: 40%;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -377,8 +381,9 @@ button:focus {
     width: 100%; }
     @media (max-width: 991px) {
       .home_banner_area .banner_inner {
-        top: 50%; } }
+        top: 40%; } }
     .home_banner_area .banner_inner .banner_content h2 {
+      color:#f8b600;
       font-size: 48px;
       font-weight: 500; }
     .home_banner_area .banner_inner .banner_content p {
@@ -623,7 +628,7 @@ button:focus {
     background: #fdc632;
     font-family: "Rubik", sans-serif;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 16px;
     -webkit-transition: all 0.3s ease 0s;
     -moz-transition: all 0.3s ease 0s;
     -o-transition: all 0.3s ease 0s;
@@ -636,6 +641,7 @@ button:focus {
       transition: all 0.3s ease 0s; }
   .single_course .course_content {
     padding: 30px 26px;
+    height: 200px;
     background: #f9f9ff;
     position: relative;
     -webkit-transition: all 0.3s ease 0s;
@@ -649,7 +655,7 @@ button:focus {
       background: #002347;
       text-transform: uppercase; }
     .single_course .course_content h4 {
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 500; }
       .single_course .course_content h4 a {
         color: #002347; }

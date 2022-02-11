@@ -8,7 +8,7 @@
                                
                                 <div class="table-responsive">
                                     <table id="multi_col_order"
-                                        class="table table-striped table-bordered display no-wrap table-users" style="width:100%">
+                                        class="table table-striped table-sm table-bordered display no-wrap table-users" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -55,20 +55,9 @@
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
-            {data: 'created_at', name: 'created_at'},
-            {data: 'status', name: 'status'},
-
-           
-        
-           
-         
-           
-            {
-                data: 'action', 
-                name: 'action', 
-                orderable: true, 
-                searchable: true
-            },
+            {data: 'date', name: 'date'},
+            {data: 'state', name: 'state'},
+            { data: 'action',  name: 'action',   orderable: true,   searchable: true },
         ]
        
     });

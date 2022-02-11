@@ -56,12 +56,16 @@
         </tr>
         <tr>
             <td  colspan="5">
-            <a href="{{ url('browse-files') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+            <a href="{{ url('search') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
 
             </td>
             <td>
-              
-                    <div id="paypal-button-container" style="width:300px"></div>
+            @guest
+            <a href="{{route('login')}}" class="genric-btn info radius  btn-block">Login </a>
+
+            @else
+            <div id="paypal-button-container" style="width:300px"></div>
+            @endguest
                     
                 </div>
               
@@ -185,7 +189,7 @@ paypal.Buttons({
                   .catch(function(error) {
                       console.log(error)
                       // redirect to failed page if internal error occurs
-                      window.location.href = '/pay-failed?reason=internalFailure';
+                      //window.location.href = '/pay-failed?reason=internalFailure';
                   });
           }else{
               window.location.href = '/pay-failed?reason=failedToCapture';

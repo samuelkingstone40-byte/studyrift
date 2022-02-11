@@ -136,19 +136,7 @@
                                 <a class="dropdown-item" href="#">Something else here</a>
                             </div>
                         </li>
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link" href="javascript:void(0)">
-                                <div class="customize-input">
-                                    <select
-                                        class="custom-select form-control bg-white custom-radius custom-shadow border-0">
-                                        <option selected>EN</option>
-                                        <option value="1">AB</option>
-                                        <option value="2">AK</option>
-                                        <option value="3">BE</option>
-                                    </select>
-                                </div>
-                            </a>
-                        </li>
+                        
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
@@ -157,7 +145,7 @@
                         <!-- ============================================================== -->
                         <!-- Search -->
                         <!-- ============================================================== -->
-                        <li class="nav-item d-none d-md-block">
+                        <!-- <li class="nav-item d-none d-md-block">
                             <a class="nav-link" href="javascript:void(0)">
                                 <form>
                                     <div class="customize-input">
@@ -167,7 +155,7 @@
                                     </div>
                                 </form>
                             </a>
-                        </li>
+                        </li> -->
                         <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
@@ -241,17 +229,12 @@
                                     class="hide-menu">Uploads
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="3"
-                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
-                                    class="hide-menu">Subjects
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="4"
-                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
-                                    class="hide-menu">Categories
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/sales')}}"
+                       
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                    class="hide-menu">Accounting </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                            <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/sales')}}"
                                 aria-expanded="false"><i data-feather="shopping-bag" class="feather-icon"></i><span
                                     class="hide-menu">Sales
                                 </span></a>
@@ -261,13 +244,37 @@
                                     class="hide-menu">Withdrawals
                                 </span></a>
                         </li>
-
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/general-ledger')}}"
+                                aria-expanded="false"><i data-feather="book-open" class="feather-icon"></i><span
+                                    class="hide-menu">General Ledger
+                                </span></a>
+                        </li>
                         <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/transactions')}}"
-                                aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="layers" class="feather-icon"></i><span
                                     class="hide-menu">Transactions
                                 </span></a>
                         </li>
-                               
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                    class="hide-menu">Default Settings </span></a>
+                            <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                            <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/subjects')}}"
+                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
+                                    class="hide-menu">Subjects
+                                </span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/categories')}}"
+                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
+                                    class="hide-menu">Categories
+                                </span></a>
+                        </li>
+                      
+                            </ul>
+                        </li>
+                        
                         
                         <li class="list-divider"></li>
                         <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>

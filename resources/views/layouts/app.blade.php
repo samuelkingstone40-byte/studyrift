@@ -31,15 +31,18 @@
   <body>
     <!--================ Start Header Menu Area =================-->
     @include('includes.header')
-    <div>
- 
-            @yield('content')
+  
+
+     @yield('content')
+
+
       
 </div>
-    
+
     @include('includes.footer')
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
-    <script src="{{asset('theme/js/popper.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('theme/vendors/nice-select/js/jquery.nice-select.min.js')}}"></script>
     <script src="{{asset('theme/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
@@ -56,6 +59,74 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
 
     <script src="{{asset('theme/js/theme.js')}}"></script>
+    <script>
+
+document.tidioIdentify = {
+  distinct_id: "unique_id", // Unique visitor ID in your system
+  email: "contact@mail", // visitor email
+  name: "John Doe", // Visitor name
+  phone: "+44 2032897807" //Visitor phone
+};
+    </script>
+    <script src="//code.tidio.co/i9ufambn5yx4wchck1pjck0ztacye4pu.js" async></script>
+    <script>
+  $(document).ready(function(){
+     getMessage();
+    function getMessage() {
+   
+            $.ajax({
+               type:'POST',
+               url:'{{route("notifications")}}',
+               data: {
+                _token: '{{ csrf_token() }}', 
+               
+            },
+               success:function(data) {
+                
+                console.log(data)
+                appendData(data);
+                
+               }
+            });
+         }
+     Echo.private('App.Models.User.3')
+       .notification((notification) => {
+        getMessage();
+    });
+
+    function appendData(data) {
+            var mainContainer = document.getElementById("top");
+            var length = 0;
+            for (var i = 0; i < data.length; i++) {
+                var div = document.createElement("div");
+                if(data[i].read==null){
+                  var msg='<small class="text_msg font-weight-bold">'+data[i].message.message+'</small>\n'
+                ++length;
+                }else{
+                  var msg='<small class="text_msg ">'+data[i].message.message+'</small>\n'
+                }
+                div.innerHTML ='<a class="dropdown-item d-flex align-items-center mark"  href="{{url("view-document")}}/'+data[i].message.slug+'">\n' +
+                 '<div class="mr-3">\n' +
+                     '<div class="icon-circle"> <i class="fa fa-cloud-download"></i> </div>\n' +
+                 '</div>\n' +
+                 '<div>\n' +
+                     '<div class="small text-gray-500">'+data[i].date+'</div>\n' +
+                      msg +
+                '</div>\n' +
+             '</a>'
+                
+                
+              
+               
+                mainContainer.appendChild(div);
+               
+            }
+
+            $('#count').html(length)
+        }
+   
+})
+    </script>
     @yield('scripts')
 
   </body>

@@ -8,14 +8,14 @@
         <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                <th>No</th>
+                <th>File</th>
                 <th>Date Purchased</th>
                 <th>OrderId</th>
                 <th>Subject</th>
                 <th>Category</th>
                 <th>Title</th>
                
-                <th>Action</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -35,8 +35,8 @@
         serverSide: true,
         ajax: "{{route('fetch-downloads')}}",
         columns: [
-            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'created_at', name: 'created_at'},
+            {data: 'image', name: 'image'},
+            {data: 'date', name: 'date'},
             {data: 'orderId', name: 'orderId'},
             {data: 'sname', name: 'sname'},
             {data: 'cname', name: 'cname'},

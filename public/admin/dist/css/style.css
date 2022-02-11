@@ -80,9 +80,9 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #7c8798;
+  color: #7b838b;
   text-align: left;
-  background-color: #f9fbfd; }
+  background-color: #f2f2f2; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -156,11 +156,11 @@ sup {
   top: -.5em; }
 
 a {
-  color: #5f76e8;
+  color: #fff3e1;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #1f3fdb;
+    color: #f8b600;
     text-decoration: none; }
 
 a:not([href]):not([tabindex]) {
@@ -7910,6 +7910,7 @@ Main sidebar
 sidebar navigation
 ******************/
 .scroll-sidebar {
+  background-color: #002347;
   height: 100%;
   position: relative; }
 
@@ -7919,14 +7920,16 @@ sidebar navigation
   -moz-box-shadow: 0px 3px 9px 0px rgba(162, 176, 190, 0.15); }
 
 .sidebar-nav {
+ 
   padding-top: 30px; }
   .sidebar-nav #sidebarnav {
+    
     /*******************
          Small cap
          ******************/ }
     .sidebar-nav #sidebarnav .list-divider {
       height: 1px;
-      background: #818181;
+      background: #002347;
       display: block;
       margin: 10px 0 20px 30px;
       opacity: .1; }
@@ -7962,7 +7965,7 @@ sidebar navigation
       .sidebar-nav #sidebarnav .sidebar-item.selected > .sidebar-link {
         border-radius: 0px 60px 60px 0px;
         color: #fff !important;
-        background: linear-gradient(to right, #8971ea, #7f72ea, #7574ea, #6a75e9, #5f76e8);
+        background: #f8b600;
         box-shadow: 0px 7px 12px 0px rgba(95, 118, 232, 0.21);
         opacity: 1; }
         .sidebar-nav #sidebarnav .sidebar-item.selected > .sidebar-link .feather-icon,
@@ -8125,7 +8128,7 @@ User Profile
     #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .list-divider, #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .list-divider {
       background: #818181; }
     #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .sidebar-link, #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .sidebar-link {
-      color: #818181; }
+      color: #fff; }
       #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .sidebar-link .feather-icon,
       #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .sidebar-link i, #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .sidebar-link .feather-icon,
       #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .sidebar-link i {
@@ -8133,7 +8136,7 @@ User Profile
     #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .first-level .sidebar-item.active > .sidebar-link.active,
     #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .first-level .sidebar-item.active > .sidebar-link.active > i, #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .first-level .sidebar-item.active > .sidebar-link.active,
     #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item .first-level .sidebar-item.active > .sidebar-link.active > i {
-      color: #1c2d41; }
+      color: #fff; }
     #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item.selected > .sidebar-link .feather-icon,
     #main-wrapper[data-layout="vertical"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item.selected > .sidebar-link i, #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item.selected > .sidebar-link .feather-icon,
     #main-wrapper[data-layout="horizontal"] .left-sidebar[data-sidebarbg="skin6"] .sidebar-nav ul .sidebar-item.selected > .sidebar-link i {

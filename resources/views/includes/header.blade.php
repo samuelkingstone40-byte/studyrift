@@ -1,3 +1,5 @@
+
+
 <header class="header_area white-header">
       <div class="main_menu">
         <div class="search_input" id="search_input_box">
@@ -99,7 +101,7 @@
                         @endif
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                <a href="{{ route('cart') }}" class="btn btn-primary btn-block">View all</a>
+                                <a href="{{ route('cart') }}" class="btn btn-primary btn-block">Checkout</a>
                             </div>
                         </div>
                     </div>
@@ -121,33 +123,15 @@
                             @endif
                         @else
                        
-                <li class="nav-item dropdown no-arrow mx-1 mr-4"> <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell fa-fw"></i> <span class="badge badge-danger badge-counter">3+</span> </a>
+                <li class="nav-item dropdown no-arrow mx-1 mr-4"> <a class="nav-link dropdown-toggle"  id="msg" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell fa-lg"></i>
+                 <span class="badge badge-danger badge-counter" id="count"></span> </a>
          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in">
-             <h6 class="dropdown-header"> Alerts Center </h6> <a class="dropdown-item d-flex align-items-center" href="#">
-                 <div class="mr-3">
-                     <div class="icon-circle"> <i class="fa fa-file"></i> </div>
-                 </div>
-                 <div>
-                     <div class="small text-gray-500">March 12, 2020</div> <span class="font-weight-bold">related snippets sent</span>
-                 </div>
-             </a> <a class="dropdown-item d-flex align-items-center" href="#">
-                 <div class="mr-3">
-                     <div class="icon-circle"> <i class="ti ti-user"></i> </div>
-                 </div>
-                 <div>
-                     <div class="small text-gray-500">Feb 7, 2020</div> you updated your profile!
-                 </div>
-             </a> <a class="dropdown-item d-flex align-items-center" href="#">
-                 <div class="mr-3">
-                     <div class="icon-circle"> <i class="fa fa-download"></i> </div>
-                 </div>
-                 <div>
-                     <div class="small text-gray-500">Jan 2, 2020</div> You just downloaded 3 snippets
-                 </div>
-             </a> <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
+             <h6 class="dropdown-header"> Alerts Center </h6> 
+             <div id="top"></div>
+             <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
          </div>
      </li>
-     <li class="nav-item dropdown no-arrow mx-1 ml-2"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="ti-bell"></i> <span class="badge badge-danger badge-counter">4</span> </a>
+     <li class="nav-item dropdown no-arrow mx-1 ml-2"> <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-envelope fa-lg"></i> <span class="badge badge-danger badge-counter">4</span> </a>
          <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
              <h6 class="dropdown-header"> Messages </h6> <a class="dropdown-item d-flex align-items-center" href="#">
                  <div class="dropdown-list-image mr-3"> <img class="rounded-circle" src="" alt="">
@@ -216,44 +200,37 @@
           </div>
         </nav>
       </div>
+<!-- 
+      <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 200px;">
+  
+  <div class="bg-primary text-white"  style="position: absolute; top: 15px; right: 0;">
+
+    
+
+    <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-autohide="false">
+            <div class="toast-header" >
+                
+                <strong class="mr-auto">Bootstrap</strong>
+                <small class="text-muted ml-5">2 seconds ago</small>
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Heads up, toasts will stack automatically
+            </div>
+      
+    </div>
+  </div>
+</div> -->
+
     </header>
+
+
+
+
     @section('scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
-<script>
 
-var myState = {
-            pdf: null,
-            currentPage: 1,
-            zoom: 1
-        }
-$('#companyInfo input').each(function ( value,index) {
-    var filename=$(this).val()
-    console.log(filename)
-    pdfjsLib.getDocument("{{asset('files')}}/"+ filename).then((pdf) => {
-        myState.pdf = pdf;
-        render();
-    });
-    function render() {
-        myState.pdf.getPage(myState.currentPage).then((page) => {
-     
-            var canvas = document.getElementById("pdf_renderer"+ value);
-            var ctx = canvas.getContext('2d');
- 
-            var viewport = page.getViewport(myState.zoom);
-
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-     
-            page.render({
-                canvasContext: ctx,
-                viewport: viewport
-            });
-        });
-    }
-});
-        
-    
-    </script>
  
 @endsection

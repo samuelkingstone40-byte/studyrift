@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\File;
 use Response;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
 
 
 
@@ -23,6 +23,33 @@ class ClientController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function fetch_notifications(){
+        $user=Auth::user();
+        $notifications=array();
+        
+        foreach ($user->notifications as $key=> $notification) {
+            
+           
+             $notifications[]=array(
+                 'message'=>$notification->data,
+                 'date'=>$notification->created_at->diffForHumans(),
+                 'read'=>$notification->read_at,
+                 'id'=>$notification->id
+
+             );
+             
+            
+        }
+        return $notifications;
+    }
+
+    public function mark_as_read(Request $request){
+        $user=Auth::user();
+        foreach ($user->unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
     }
     
     public function sell(){
@@ -50,7 +77,7 @@ class ClientController extends Controller
 
         $this->uploadFile($docId,$request);
 
-        return redirect()->route('uploads')->with('success', 'Your document upload successful');
+        return redirect()->route('view-document',$slug)->with('success', 'Your document upload successful');
     }
 
     public function edit_document($slug){
@@ -62,6 +89,32 @@ class ClientController extends Controller
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         return view('client/edit-document',$data);
+    }
+
+    public function view_document($slug){
+        $doc=DB::table('notes')
+        ->where('notes.slug',$slug)
+         ->leftJoin('users','users.id','=','notes.user_id')
+        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
+        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
+        ->leftJoin('categories','notes.category_id','=','categories.id')
+        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname','users.name as uname')
+        ->first();
+        $data['doc']=$doc;
+        $data['purchased']=$this->check_if_purchased($doc->id);
+        $data['downloads']=DB::table('orders')
+        ->where('docId',$doc->id)
+        ->count();
+        return view('client/document-view',$data);
+    }
+
+    public function check_if_purchased($id){
+        
+        $purchased=DB::table('orders')
+          ->where('user_id',Auth::id())
+          ->where('docId',$id)
+          ->first();
+        return $purchased;
     }
 
     public function notes_update(Request $request){
@@ -132,14 +185,31 @@ class ClientController extends Controller
             ->get();
             return DataTables::of($data)
             ->editColumn('title', function ($data) {
-                return Str::limit($data->title, 50);
+                return Str::limit($data->title, 25);
             })
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="/document-preview/'.$row->slug.'" class="edit btn btn-success btn-sm"><i class="fa fa-eye"></i> pre-view</a> <a href="/edit-document/'.$row->slug.'" class="delete btn btn-primary btn-sm">Edit</a>';
+
+            ->editColumn('date', function ($data) {
+                return Carbon::create($data->created_at)->toDateString();
+            })
+
+            ->editColumn('cash', function ($data) {
+                return "$".number_format($data->price,2);
+            })
+            
+            ->addIndexColumn()
+            ->addColumn('earning', function($row){
+                $earning = number_format($row->price*0.7,2);
+                return "$".$earning;
+            })
+            ->addColumn('image', function($row){
+                    $fileimage = '<img class="img-thumbnail" width="60" src="'.$row->image.'"/>';
+                    return $fileimage;
+            })
+            ->addColumn('action', function($row){
+                    $actionBtn = '<a href="view-document/'.$row->slug.'" class="genric-btn primary small"><i class="fa fa-eye fa-lg"></i></a> <a href="/edit-document/'.$row->slug.'" class="genric-btn info small"><i class="fa fa-pencil fa-lg"></i></a>';
                     return $actionBtn;
-                })
-                ->rawColumns(['action'])
+            })
+                ->rawColumns(['image','earning','action'])
                 ->make(true);
         }
     }
@@ -259,6 +329,10 @@ class ClientController extends Controller
     }
 
     public function downloads(){
+
+        
+
+
         return view('client/downloads');
     }
 
@@ -270,20 +344,29 @@ class ClientController extends Controller
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->select('orders.*','notes.title','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
+        ->select('orders.*','notes.title','notes.image','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
         ->orderBy('orders.id','desc')
         ->get();
         return DataTables::of($data)
         ->editColumn('title', function ($data) {
-            return Str::limit($data->title, 50);
+            return Str::limit($data->title, 25);
         })
-            ->addIndexColumn()
-            ->addColumn('action', function($row){
-                $actionBtn = '<a href="/download/'.$row->filename.'" class="edit btn btn-success btn-sm">Download <i class="fa fa-download" aria-hidden="true"></i>
+
+        ->editColumn('date', function ($data) {
+            return Carbon::create($data->created_at)->toDateString();
+        })
+        
+        ->addIndexColumn()
+        ->addColumn('image', function($row){
+            $fileimage = '<img class="img-thumbnail" width="70" src="'.$row->image.'"/>';
+            return $fileimage;
+        })
+         ->addColumn('action', function($row){
+                $actionBtn = '<a href="/view-document/'.$row->slug.'" class="genric-btn primary small">Download <i class="fa fa-download" aria-hidden="true"></i>
                 </a>';
                 return $actionBtn;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['image','action'])
             ->make(true);
         }
     }
@@ -296,7 +379,7 @@ class ClientController extends Controller
     public function earnings(){
         $data['current_earnings']=DB::table('orders')
         ->where('owner_id',Auth::id())
-        ->where('status','COMPLETED')
+        ->where('status','Available')
         ->sum('earning');
 
         $data['total_earnings']=DB::table('orders')
@@ -313,11 +396,20 @@ class ClientController extends Controller
             ->leftJoin('subjects','notes.subject_id','=','subjects.id')
             ->leftJoin('categories','notes.category_id','=','categories.id')
             ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-            ->select('orders.*','notes.title','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
+            ->select('orders.*','notes.title','notes.price','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
             ->get();
             return DataTables::of($data)
             ->editColumn('title', function ($data) {
-                return Str::limit($data->title, 50);
+                return Str::limit($data->title, 20);
+            })
+
+            ->editColumn('date', function ($data) {
+                return Carbon::create($data->created_at)->toDateString();
+            })
+
+            ->addColumn('earning', function($data){
+                $earning = number_format($data->price*0.7,2);
+                return "$".$earning;
             })
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -325,7 +417,7 @@ class ClientController extends Controller
                     </a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['earning','action'])
                 ->make(true);
             }
     }

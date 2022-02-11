@@ -9,7 +9,7 @@
                                
                                 <div class="table-responsive">
                                     <table id="multi_col_order"
-                                        class="table table-striped table-bordered display no-wrap table-users" style="width:100%">
+                                        class="table table-sm table-striped table-bordered display no-wrap table-users" style="width:100%">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
@@ -17,8 +17,8 @@
                                                 <th>TransID</th>
                                                 <th>User</th>
                                                 <th>Type</th>
-                                                <th>Amount($)</th>
-                                                <th></th>
+                                                <th>Amount</th>
+                                                
                                                
                                             </tr>
                                         </thead>
@@ -32,9 +32,9 @@
                                                 <th>Date</th>
                                                 <th>TransID</th>
                                                 <th>User</th>
-                                                <th>Type</th>
-                                                <th>Amount($)</th>
-                                                <th></th>
+                                                <th>Detail</th>
+                                                <th>Amount</th>
+                                             
                                                
                                             </tr>
                                         </tfoot>
@@ -56,19 +56,14 @@
         ajax: "{{route('get_all_transactions')}}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-            {data: 'created_at', name: 'created_at'},
+            {data: 'date', name: 'date'},
             {data: 'transId', name: 'transId'},
             {data: 'uname', name: 'uname'},
-            {data: 'type', name: 'type'},
+            {data: 'details', name: 'details'},
 
-            {data: 'amount', name: 'amount'},
+            {data: 'cash', name: 'cash'},
 
-            {
-                data: 'action', 
-                name: 'action', 
-                orderable: true, 
-                searchable: true
-            },
+        
         ]
        
     });
