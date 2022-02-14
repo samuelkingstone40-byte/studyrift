@@ -51,36 +51,44 @@ Route::delete('remove-from-cart', [App\Http\Controllers\PublicController::class,
 
 Route::get('pay-failed',[App\Http\Controllers\PayPalPaymentController::class,'pay_failed'])->name('pay-failed');
 Route::get('pay-success',[App\Http\Controllers\PayPalPaymentController::class,'pay_success'])->name('pay-success');
-Route::post('paypal-capture-payment',[\App\Http\Controllers\PaypalPaymentController::class,'capturePayment']);
-Route::get('paypal-payout',[\App\Http\Controllers\PaypalPaymentController::class,'paypalpayout'])->name('paypal-payout');
+Route::post('paypal-capture-payment',[App\Http\Controllers\PaypalPaymentController::class,'capturePayment']);
+Route::get('paypal-payout',[App\Http\Controllers\PaypalPaymentController::class,'paypalpayout'])->name('paypal-payout');
 
-Route::group(['prefix' => 'admin'], function()  
-{ 
-Route::get('dashboard',[\App\Http\Controllers\Admin\AdminController::class,'dashboard'])->name('dashboard');
-Route::get('users',[\App\Http\Controllers\Admin\AdminController::class,'users'])->name('users');
-Route::get('get_all_users',[\App\Http\Controllers\Admin\AdminController::class,'get_all_users'])->name('get_all_users');
-Route::get('file-uploads',[\App\Http\Controllers\Admin\AdminController::class,'uploads'])->name('file-uploads');
-Route::get('get_all_uploads',[\App\Http\Controllers\Admin\AdminController::class,'get_all_uploads'])->name('get_all_uploads');
-Route::get('user-profile/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_profile'])->name('user-profile');
-Route::get('user-uploads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_uploads'])->name('user-uploads');
-Route::get('user-downloads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_downloads'])->name('user-downloads');
-Route::get('user-transactions/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_transactions'])->name('user-transactions');
-Route::get('document-view/{id}',[\App\Http\Controllers\Admin\AdminController::class,'document_view'])->name('document-view');
+Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
+Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
+Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
+Route::group(['middleware' => 'auth:admin'], function () {
+    Route::group(['prefix' => 'admin'], function()  
+    { 
+        Route::get('/dashboard',[\App\Http\Controllers\Admin\AdminController::class,'dashboard'])->name('admin');
+        Route::get('users',[\App\Http\Controllers\Admin\AdminController::class,'users'])->name('users');
+        Route::get('get_all_users',[\App\Http\Controllers\Admin\AdminController::class,'get_all_users'])->name('get_all_users');
+        Route::get('file-uploads',[\App\Http\Controllers\Admin\AdminController::class,'uploads'])->name('file-uploads');
+        Route::get('get_all_uploads',[\App\Http\Controllers\Admin\AdminController::class,'get_all_uploads'])->name('get_all_uploads');
+        Route::get('user-profile/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_profile'])->name('user-profile');
+        Route::get('user-uploads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_uploads'])->name('user-uploads');
+        Route::get('user-downloads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_downloads'])->name('user-downloads');
+        Route::get('user-transactions/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_transactions'])->name('user-transactions');
+        Route::get('document-view/{id}',[\App\Http\Controllers\Admin\AdminController::class,'document_view'])->name('document-view');
 
-Route::get('general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'general_ledger'])->name('general-ledger');
-Route::get('sales',[\App\Http\Controllers\Admin\TransactionController::class,'sales'])->name('sales');
-Route::get('get_all_sales',[\App\Http\Controllers\Admin\TransactionController::class,'get_all_sales'])->name('get_all_sales');
-Route::get('withdrawals',[\App\Http\Controllers\Admin\TransactionController::class,'withdrawals'])->name('withdrawals');
-Route::get('get_all_withdrawals',[\App\Http\Controllers\Admin\TransactionController::class,'get_all_withdrawals'])->name('get_all_withdrawals');
-Route::get('transactions',[\App\Http\Controllers\Admin\TransactionController::class,'transactions'])->name('transactions');
-Route::get('get_all_transactions',[\App\Http\Controllers\Admin\TransactionController::class,'get_all_transactions'])->name('get_all_transactions');
-Route::get('fetch-general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'fetch_general_ledger'])->name('fetch-general-ledger');
+        Route::get('general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'general_ledger'])->name('general-ledger');
+        Route::get('sales',[\App\Http\Controllers\Admin\TransactionController::class,'sales'])->name('sales');
+        Route::get('get_all_sales',[\App\Http\Controllers\Admin\TransactionController::class,'get_all_sales'])->name('get_all_sales');
+        Route::get('withdrawals',[\App\Http\Controllers\Admin\TransactionController::class,'withdrawals'])->name('withdrawals');
+        Route::get('get_all_withdrawals',[\App\Http\Controllers\Admin\TransactionController::class,'get_all_withdrawals'])->name('get_all_withdrawals');
+        Route::get('transactions',[\App\Http\Controllers\Admin\TransactionController::class,'transactions'])->name('transactions');
+        Route::get('get_all_transactions',[\App\Http\Controllers\Admin\TransactionController::class,'get_all_transactions'])->name('get_all_transactions');
+        Route::get('fetch-general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'fetch_general_ledger'])->name('fetch-general-ledger');
+        Route::get('account-balance',[\App\Http\Controllers\Admin\TransactionController::class,'account_balance'])->name('Admin-account-balance');
+        Route::get('fetch-account-balance',[\App\Http\Controllers\Admin\TransactionController::class,'fetch_account_balance'])->name('fetch-account-balance');
 
 
-Route::get('subjects',[\App\Http\Controllers\Admin\SettingController::class,'subjects'])->name('subjects');
-Route::post('post-subject',[\App\Http\Controllers\Admin\SettingController::class,'post_subject'])->name('post-subject');
-Route::get('categories',[\App\Http\Controllers\Admin\SettingController::class,'categories'])->name('categories');
-Route::post('post-category',[\App\Http\Controllers\Admin\SettingController::class,'post_category'])->name('post-category');
+        Route::resource('subjects', \App\Http\Controllers\Admin\SubjectController::class);
+        Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
 
+        Route::get('profile',[\App\Http\Controllers\Admin\SettingController::class,'profile'])->name('Adminprofile');
+        
+
+    });
 
 });

@@ -36,7 +36,8 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Name</th>
-                                                <th>Manage</th>
+                                                <th></th>
+                                               
                                                
                                             </tr>
                                         </thead>
@@ -45,9 +46,15 @@
                                             <tr>
                                                 <td>{{$index+1}}</td>
                                                 <td>{{$subject->name}}</td>
+                                                
                                                 <td>
-                                                    <a data-toggle="modal"
-                                                      data-target="#subject-modal" href="http://" class="btn btn-primary btn-sm">Manage</a>
+                                                    <form action="{{ route('subjects.destroy',$subject->id) }}" method="POST">   
+                                                        <a  href="{{route('subjects.edit',$subject->id)}}" class="btn btn-primary btn-sm">Manage</a>
+
+                                                        @csrf
+                                                        @method('DELETE')      
+                                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -80,7 +87,7 @@
                                             <div class="modal-body">
                                            
 
-                                                <form action="{{route('post-subject')}}" method="post" class="pl-3 pr-3">
+                                                <form action="" method="post" class="pl-3 pr-3">
                                                     @csrf
 
                                                     <div class="form-group">

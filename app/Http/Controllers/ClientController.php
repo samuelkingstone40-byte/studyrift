@@ -339,7 +339,7 @@ class ClientController extends Controller
     public function fetch_downloads(Request $request){
      if ($request->ajax()) {
         $data=DB::table('orders')
-        ->where('orders.user_id',Auth::id())
+        ->where('orders.owner_id',Auth::id())
         ->leftJoin('notes','notes.id','=','orders.docId')
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')

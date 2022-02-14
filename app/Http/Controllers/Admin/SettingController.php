@@ -22,6 +22,10 @@ class SettingController extends Controller
 
     }
 
+    public function view_subject($id){
+        return view('admin/edit-subject');
+    }
+
     public function categories(){
         $data['categories']=Category::orderBy('name','asc')->get();
         return view('admin/categories',$data);
@@ -33,5 +37,9 @@ class SettingController extends Controller
         $subject->save();
         return redirect()->back()->with('success', 'Category has been added!');   
 
+    }
+
+    public function profile(){
+        return view('admin/profile');
     }
 }

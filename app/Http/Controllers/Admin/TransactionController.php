@@ -68,7 +68,7 @@ class TransactionController extends Controller
             })
                     ->addIndexColumn()
                     ->addColumn('action', function($row){
-                        $actionBtn = '<a href="/document-preview/'.$row->id.'" class="edit btn btn-success btn-sm">View</a> ';
+                        $actionBtn = '<a href="/admin/document-view/'.$row->id.'" class="edit btn btn-success btn-sm">View</a> ';
                         return $actionBtn;
                     })
                     ->rawColumns(['action'])
@@ -151,5 +151,31 @@ class TransactionController extends Controller
             ->make(true);
         }
     }
+
+
+    public function account_balance(){
+        
+        return view('admin/balance');
+    }
+
+    public function fetch_account_balance(Request $request){
+        $sales=DB::table('transactions')->where('type','sales');
+        $withdrawal=DB::table('transactions')->where('type','withdrawal');
+        if ($request->ajax()) {
+           
+        }
+
+        $sales=$sales->sum('amount');
+        $withdrawal=$withdrawal->sum('amount');
+
+        $data['sales']="$".number_format($sales,2);
+        $data['withdrawals']="$".number_format($withdrawal,2);
+        $data['income']="$".number_format($sales-$withdrawal,2);
+        return $data;
+    }
+
+
+
+
 
 }

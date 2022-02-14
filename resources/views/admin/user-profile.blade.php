@@ -37,23 +37,41 @@
 
                                 <div class="tab-content">
                                     <div class="tab-pane show active" id="profile-b1">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="card">
+                                                    <div class="card-body text-center">
+                                                        <div class="profile-pic mb-3 mt-3">
+                                                            <img src="../assets/images/users/5.jpg" width="150" class="rounded-circle" alt="user" />
+                                                            <h4 class="mt-3 mb-0">{{$user->name}}</h4>
+                                                            <a href="mailto:danielkristeen@gmail.com">{{$user->email}}</a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label for="">Name</label>
+                                                    <input type="text" name="" value="{{$user->name}}" class="form-control" id="">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="">Email</label>
+                                                    <input type="text" name="" value="{{$user->email}}" class="form-control" id="">
+                                                </div>
+                                            
+                                                <div class="form-group">
+                                                    <label for="">Paypal Email</label>
+                                                    <input type="text" name="" value="{{$user->paypalEmail}}" class="form-control" id="">
+                                                </div>
+                                          
+                                            </div>
+                                        </div>
                                  
                     
-                         <div class="form-group">
-                             <label for="">Name</label>
-                             <input type="text" name="" value="{{$user->name}}" class="form-control" id="">
-                         </div>
-                     
-                         <div class="form-group">
-                             <label for="">Email</label>
-                             <input type="text" name="" value="{{$user->email}}" class="form-control" id="">
-                         </div>
-                     
-                         <div class="form-group">
-                             <label for="">Paypal Email</label>
-                             <input type="text" name="" value="{{$user->paypalEmail}}" class="form-control" id="">
-                         </div>
-                   
+                        
                      
                            </div>
                                    

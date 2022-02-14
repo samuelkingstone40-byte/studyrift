@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth as Aut;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,23 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-   // protected $redirectTo = RouteServiceProvider::HOME;
-   public function redirectTo() {
-    $role = Aut::user()->role; 
-    switch ($role) {
-      case 1:
-        return '/admin/dashboard';
-        break;
-      case 0:
-        return '/home';
-        break; 
-  
-      default:
-        return '/welcome'; 
-      break;
-    }
-  }
-
+    protected $redirectTo = RouteServiceProvider::HOME;
     /**
      * Create a new controller instance.
      *
@@ -51,6 +36,27 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('guest:admin')->except('logout');
         $this->middleware('guest')->except('logout');
     }
+    public function showAdminLoginForm()
+    {
+        return view('auth.adminLogin', ['url' => 'admin']);
+    }
+
+    public function adminLogin(Request $request)
+    {
+       
+        $this->validate($request, [
+            'email'   => 'required|email',
+            'password' => 'required|min:6'
+        ]);
+
+        if (Aut::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+
+            return redirect()->intended('/admin/dashboard');
+        }
+        return back()->withInput($request->only('email', 'remember'));
+    }
+
 }

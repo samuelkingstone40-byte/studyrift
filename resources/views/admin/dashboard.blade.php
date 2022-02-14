@@ -91,55 +91,37 @@
                                     <table class="table no-wrap v-middle mb-0">
                                         <thead>
                                             <tr class="border-0">
-                                                <th class="border-0 font-14 font-weight-medium text-muted">Team Lead
+                                                <th class="border-0 font-14 font-weight-medium text-muted">File
                                                 </th>
-                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Project
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Subject
                                                 </th>
-                                                <th class="border-0 font-14 font-weight-medium text-muted">Team</th>
-                                                <th class="border-0 font-14 font-weight-medium text-muted text-center">
-                                                    Status
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Category
                                                 </th>
-                                                <th class="border-0 font-14 font-weight-medium text-muted text-center">
-                                                    Weeks
-                                                </th>
-                                                <th class="border-0 font-14 font-weight-medium text-muted">Budget</th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Title</th>
+                                               
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Total Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach($topDownloads as $top)
                                             <tr>
                                                 <td class="border-top-0 px-2 py-4">
+                                                    <a href="{{url('admin/document-view/'.$top->docId)}}">
                                                     <div class="d-flex no-block align-items-center">
                                                         <div class="mr-3"><img
-                                                                src="../assets/images/users/widget-table-pic1.jpg"
-                                                                alt="user" class="rounded-circle" width="45"
+                                                                src="{{$top->image}}"
+                                                                alt="user" class="img-thumbnail" width="45"
                                                                 height="45" /></div>
-                                                        <div class="">
-                                                            <h5 class="text-dark mb-0 font-16 font-weight-medium">Hanna
-                                                                Gover</h5>
-                                                            <span class="text-muted font-14">hgover@gmail.com</span>
-                                                        </div>
+                                                      
                                                     </div>
+                                                </a>
                                                 </td>
-                                                <td class="border-top-0 text-muted px-2 py-4 font-14">Elite Admin</td>
+                                                <td class="border-top-0 text-muted px-2 py-4 font-14">{{$top->sname}}</td>
                                                 <td class="border-top-0 px-2 py-4">
-                                                    <div class="popover-icon">
-                                                        <a class="btn btn-primary rounded-circle btn-circle font-12"
-                                                            href="javascript:void(0)">DS</a>
-                                                        <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
-                                                            href="javascript:void(0)">SS</a>
-                                                        <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
-                                                            href="javascript:void(0)">RP</a>
-                                                        <a class="btn btn-success text-white rounded-circle btn-circle font-20"
-                                                            href="javascript:void(0)">+</a>
-                                                    </div>
+                                                    {{$top->cname}}
                                                 </td>
-                                                <td class="border-top-0 text-center px-2 py-4"><i
-                                                        class="fa fa-circle text-primary font-12" data-toggle="tooltip"
-                                                        data-placement="top" title="In Testing"></i></td>
-                                                <td
-                                                    class="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
-                                                    35
+                                                <td class="border-top-0 px-2 py-4">
+                                                    {{\Str::limit($top->title,30)}}
                                                 </td>
                                                 <td class="font-weight-medium text-dark border-top-0 px-2 py-4">${{$top->sum_earning}}
                                                 </td>

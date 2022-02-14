@@ -160,7 +160,7 @@ a {
   text-decoration: none;
   background-color: transparent; }
   a:hover {
-    color: #f8b600;
+    color: #000;
     text-decoration: none; }
 
 a:not([href]):not([tabindex]) {

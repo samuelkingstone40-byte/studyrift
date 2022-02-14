@@ -182,7 +182,7 @@ paypal.Buttons({
                   })
                   .then(status)
                   .then(function(response){
-                      //console.log(response)
+                      console.log(response)
                       // redirect to the completed page if paid
                      window.location.href = '/pay-success';
                   })

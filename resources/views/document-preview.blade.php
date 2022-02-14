@@ -127,7 +127,7 @@
                         <li>
                             <a class="justify-content-between d-flex" href="#">
                                 <p>Date Posted </p>
-                                <span class="or">15</span>
+                                <span class="or">{{$doc->created_at}}</span>
                             </a>
                         </li>
                         <li>
@@ -358,10 +358,18 @@ document.querySelector("#pdf-prev").addEventListener('click', function() {
 
 // click on the "Next" page button
 document.querySelector("#pdf-next").addEventListener('click', function() {
-    if(_CURRENT_PAGE != Math.round(_TOTAL_PAGES*0.12))
+    if(_TOTAL_PAGES =>10){
+        if(_CURRENT_PAGE != Math.round(_TOTAL_PAGES*0.12))
         showPage(++_CURRENT_PAGE);
-});
 
+    }else{
+        if(_CURRENT_PAGE != 1)
+        document.querySelector("#pdf-next").disabled = true;
+    document.querySelector("#pdf-prev").disabled = true;
+      
+    }
+    
+});
 
 
 

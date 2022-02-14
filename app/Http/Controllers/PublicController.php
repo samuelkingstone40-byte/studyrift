@@ -55,6 +55,7 @@ class PublicController extends Controller
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         $data['doc']=$file;
+        
         $title=$file->title;
         $data['recommends']=$this->get_related($title);
         if(Auth::user()){

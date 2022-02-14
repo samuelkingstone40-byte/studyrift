@@ -46,7 +46,14 @@
                                             <tr>
                                                 <td>{{$index+1}}</td>
                                                 <td>{{$category->name}}</td>
-                                                <td></td>
+                                                <td>
+                                                <form action="{{ route('categories.destroy',$category->id) }}" method="POST">   
+                                                    <a class="btn btn-primary btn-sm" href="{{ route('categories.edit',$category->id) }}">Edit</a>   
+                                                    @csrf
+                                                    @method('DELETE')      
+                                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                                </td>
                                             </tr>
                                             @endforeach
                                            
@@ -80,7 +87,7 @@
                                             <div class="modal-body">
                                            
 
-                                                <form action="{{route('post-category')}}" method="post" class="pl-3 pr-3">
+                                                <form action="{{route('categories.store')}}" method="post" class="pl-3 pr-3">
                                                     @csrf
 
                                                     <div class="form-group">

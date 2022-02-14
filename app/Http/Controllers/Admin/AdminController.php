@@ -37,9 +37,13 @@ class AdminController extends Controller
 
     public function top_downloads(){
         $downloads=DB::table('orders')
-        ->groupBy('orders.docId','orders.earning')
+        ->leftJoin('notes','notes.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
+        ->leftJoin('categories','categories.id','=','notes.category_id')
+        ->groupBy('orders.docId','orders.earning','notes.slug','notes.title','subjects.name','categories.name','notes.image')
         ->orderBy(DB::raw('COUNT(orders.earning)'), 'desc')
-        ->select('orders.docId', DB::raw("COUNT(orders.docId) as count_click"),DB::raw("sum(orders.earning) as sum_earning"))
+        ->select('orders.docId', DB::raw("COUNT(orders.docId) as count_click"),DB::raw("sum(orders.earning) as sum_earning"),
+        'notes.slug','notes.title','subjects.name as sname','categories.name as cname','notes.image')
         ->get();
 
         return $downloads;

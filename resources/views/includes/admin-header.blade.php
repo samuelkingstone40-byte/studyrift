@@ -164,15 +164,15 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 <img src="{{asset('admin/assets/images/users/profile-pic.jpg')}}" alt="user" class="rounded-circle"
                                     width="40">
-                                <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                <span class="ml-2 d-none d-lg-inline-block"><span>Welcome,</span> <span
+                                        class="text-dark">{{Auth::user()->name}}</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="user"
+                                <a class="dropdown-item" href="{{route('Adminprofile')}}"><i data-feather="user"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Profile</a>
-                                <a class="dropdown-item" href="javascript:void(0)"><i data-feather="credit-card"
+                                <a class="dropdown-item" href="{{route('Admin-account-balance')}}"><i data-feather="credit-card"
                                         class="svg-icon mr-2 ml-1"></i>
                                     My Balance</a>
                                 <a class="dropdown-item" href="javascript:void(0)"><i data-feather="mail"
@@ -190,9 +190,8 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                          @csrf
                                     </form>
-                                <div class="dropdown-divider"></div>
-                                <div class="pl-4 p-3"><a href="javascript:void(0)" class="btn btn-sm btn-info">View
-                                        Profile</a></div>
+                               
+                                
                             </div>
                         </li>
                         <!-- ============================================================== -->
@@ -224,21 +223,30 @@
                                     class="hide-menu">Manage Users
                                 </span></a>
                         </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/file-uploads')}}"
-                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
+                        
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
+                            aria-expanded="false"><i data-feather="folder" class="feather-icon"></i><span
+                                class="hide-menu">Manage Documents </span></a>
+                        <ul aria-expanded="false" class="collapse  first-level base-level-line">
+                            <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/file-uploads')}}"
+                                aria-expanded="false"><i data-feather="arrow-up" class="feather-icon"></i><span
                                     class="hide-menu">Uploads
                                 </span></a>
+                           </li>
+
+                            <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/sales')}}"
+                            aria-expanded="false"><i data-feather="arrow-down" class="feather-icon"></i><span
+                                class="hide-menu">Downloads
+                            </span></a>
+                         </li>
+                        </ul>
                         </li>
                        
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="briefcase" class="feather-icon"></i><span
                                     class="hide-menu">Accounting </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/sales')}}"
-                                aria-expanded="false"><i data-feather="shopping-bag" class="feather-icon"></i><span
-                                    class="hide-menu">Sales
-                                </span></a>
-                        </li>
+                            
                         <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/withdrawals')}}"
                                 aria-expanded="false"><i data-feather="trending-down" class="feather-icon"></i><span
                                     class="hide-menu">Withdrawals
@@ -257,17 +265,17 @@
                             </ul>
                         </li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
-                                aria-expanded="false"><i data-feather="grid" class="feather-icon"></i><span
+                        <li class="sidebar-item"> <a class="sidebar-link has-arrow text-white" href="javascript:void(0)"
+                                aria-expanded="false"><i data-feather="settings" class="feather-icon"></i><span
                                     class="hide-menu">Default Settings </span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
                             <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/subjects')}}"
-                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="layers" class="feather-icon"></i><span
                                     class="hide-menu">Subjects
                                 </span></a>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/categories')}}"
-                                aria-expanded="false"><i data-feather="upload" class="feather-icon"></i><span
+                                aria-expanded="false"><i data-feather="folder" class="feather-icon"></i><span
                                     class="hide-menu">Categories
                                 </span></a>
                         </li>
@@ -277,9 +285,9 @@
                         
                         
                         <li class="list-divider"></li>
-                        <li class="nav-small-cap"><span class="hide-menu">Authentication</span></li>
+                        <li class="nav-small-cap text-white"><span class="hide-menu">Authentication</span></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="authentication-login1.html"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link text-white" href="authentication-login1.html"
                                 aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
                                     class="hide-menu">Logout</span></a></li>
 
