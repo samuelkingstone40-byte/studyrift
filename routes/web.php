@@ -52,8 +52,8 @@ Route::delete('remove-from-cart', [App\Http\Controllers\PublicController::class,
 
 Route::get('pay-failed',[App\Http\Controllers\PayPalPaymentController::class,'pay_failed'])->name('pay-failed');
 Route::get('pay-success',[App\Http\Controllers\PayPalPaymentController::class,'pay_success'])->name('pay-success');
-Route::post('paypal-capture-payment',[App\Http\Controllers\PaypalPaymentController::class,'capturePayment']);
-Route::get('paypal-payout',[App\Http\Controllers\PaypalPaymentController::class,'paypalpayout'])->name('paypal-payout');
+Route::post('paypal-capture-payment',[App\Http\Controllers\PayPalPaymentController::class,'capturePayment']);
+Route::get('paypal-payout',[App\Http\Controllers\PayPalPaymentController::class,'paypalpayout'])->name('paypal-payout');
 
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
