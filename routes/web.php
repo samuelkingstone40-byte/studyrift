@@ -58,6 +58,8 @@ Route::get('paypal-payout',[App\Http\Controllers\PayPalPaymentController::class,
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
+Route::post('/logout/admin', [App\Http\Controllers\Auth\RegisterController::class,'AdminLogout']);
+
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::group(['prefix' => 'admin'], function()  
     { 

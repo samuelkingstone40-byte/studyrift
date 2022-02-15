@@ -187,7 +187,7 @@
                          document.getElementById('logout-form').submit();"><i data-feather="power"
                                         class="svg-icon mr-2 ml-1"></i>
                                     Logout</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('AdminLogout') }}" method="POST" class="d-none">
                                          @csrf
                                     </form>
                                
@@ -292,9 +292,7 @@
                         <li class="list-divider"></li>
                         <li class="nav-small-cap text-white"><span class="hide-menu">Authentication</span></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link text-white" href="authentication-login1.html"
-                                aria-expanded="false"><i data-feather="log-out" class="feather-icon"></i><span
-                                    class="hide-menu">Logout</span></a></li>
+                        
 
                         
                     </ul>
