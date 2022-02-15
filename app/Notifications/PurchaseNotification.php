@@ -32,7 +32,7 @@ class PurchaseNotification extends Notification implements ShouldBroadcast
      */
     public function via($notifiable)
     {
-        return ['broadcast','database'];
+        return ['broadcast','database','mail'];
     }
 
     /**
@@ -56,10 +56,12 @@ class PurchaseNotification extends Notification implements ShouldBroadcast
     
     public function toMail($notifiable)
     {
+        $url=url('/document-preview/'.$this->message['slug']);
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        ->greeting('Hello!')
+        ->line('One of your invoices has been paid!')
+        ->action('View Document', $url)
+        ->line('Thank you for using our application!');
     }
 
     /**
