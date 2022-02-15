@@ -1,8 +1,8 @@
 <?php 
 
 return [ 
-    'client_id' => env('PAYPAL_CLIENT_ID','AVQZaJNGJXrEqXf_0TS_3VnG51Sgdc6s5K11YMkkVfaSqvlYw-2XC1XabNWJhlNa0stWsgU-rC7NFyrl'),
-    'secret' => env('PAYPAL_SECRET','EN9TsEqUVPxyjMLiAA1dGhULCfNx4deYS_6_YRVR8BEGJo8syllPsWqfGFDWCIPKWHHr9z_nS9MYTmlk'),
+    'client_id' => env('PAYPAL_CLIENT_ID','AZR8hLRpmE4st9mF0yAH7uLs8OwAh8vuUKNu1sGCkvr_95Sr_m34NFKxGK0IlUw_8SfafXw7IKcF4_1u'),
+    'secret' => env('PAYPAL_SECRET','EFQWaoIk03r2wjjpVJjWejtSx0ImNFYFKinwYGQ2SxikBeoOK3fXdsVMKKJVCGGgbIvP8rXVwqMy15Tp'),
     'settings' => array(
         'mode' => env('PAYPAL_MODE','sandbox'),
         'http.ConnectionTimeOut' => 30,

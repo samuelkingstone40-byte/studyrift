@@ -80,7 +80,7 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://www.paypal.com/sdk/js?client-id=AVQZaJNGJXrEqXf_0TS_3VnG51Sgdc6s5K11YMkkVfaSqvlYw-2XC1XabNWJhlNa0stWsgU-rC7NFyrl&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AZR8hLRpmE4st9mF0yAH7uLs8OwAh8vuUKNu1sGCkvr_95Sr_m34NFKxGK0IlUw_8SfafXw7IKcF4_1u&currency=USD"></script>
 
 <script type="text/javascript">
    $(document).ready(function(){
