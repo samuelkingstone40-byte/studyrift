@@ -68,7 +68,7 @@ document.tidioIdentify = {
   phone: "+44 2032897807" //Visitor phone
 };
     </script>
-    <script src="//code.tidio.co/i9ufambn5yx4wchck1pjck0ztacye4pu.js" async></script>
+    <script src="//code.tidio.co/mu88s7xwwrvlzzyhy4e17htqi2xrgcg8.js" async></script>
     <script>
   $(document).ready(function(){
      getMessage();
@@ -89,10 +89,10 @@ document.tidioIdentify = {
                }
             });
          }
-     Echo.private('App.Models.User.3')
-       .notification((notification) => {
-        getMessage();
-    });
+    //  Echo.private('App.Models.User.3')
+    //    .notification((notification) => {
+    //     getMessage();
+    // });
 
     function appendData(data) {
             var mainContainer = document.getElementById("top");
