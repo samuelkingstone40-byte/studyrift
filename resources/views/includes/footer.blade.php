@@ -74,10 +74,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           </p>
           <div class="col-lg-4 col-sm-12 footer-social">
-            <a href="#"><i class="ti-facebook"></i></a>
-            <a href="#"><i class="ti-twitter"></i></a>
+            <a href="https://www.facebook.com/Studymerit-102010632420278"><i class="ti-facebook"></i></a>
+            {{-- <a href="#"><i class="ti-twitter"></i></a>
             <a href="#"><i class="ti-dribbble"></i></a>
-            <a href="#"><i class="ti-linkedin"></i></a>
+            <a href="#"><i class="ti-linkedin"></i></a> --}}
           </div>
         </div>
       </div>
