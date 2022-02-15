@@ -55,7 +55,7 @@ class PublicController extends Controller
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         $data['doc']=$file;
-        
+        $data['reviews']=$this->get_reviews($file->id);
         $title=$file->title;
         $data['recommends']=$this->get_related($title);
         if(Auth::user()){
@@ -63,6 +63,15 @@ class PublicController extends Controller
 
         }
         return view('document-preview',$data);
+    }
+
+    public function get_reviews($id){
+        $reviews=DB::table('reviews')
+        ->leftJoin('users','users.id','=','reviews.user_id')
+        ->where('reviews.doc_id',$id)
+        ->select('reviews.*','users.name')
+        ->get();
+        return $reviews;
     }
 
     public function check_if_purchased($id){

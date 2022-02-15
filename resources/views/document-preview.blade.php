@@ -65,7 +65,42 @@
 	font-size: 13px;
 }
 
+.rating {
+    display: inline-flex;
+    
+    flex-direction: row-reverse
+}
 
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 2vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
 
 </style>
 <section class="course_details_area section_gap">
@@ -77,6 +112,11 @@
     <li class="breadcrumb-item active" aria-current="page">Data</li>
   </ol>
 </nav>
+@if (\Session::has('success'))
+    <div class="alert alert-success">
+        {!! \Session::get('success') !!}   
+    </div>
+@endif
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     
@@ -143,37 +183,61 @@
 
                     <h4 class="title">Reviews</h4>
                     <div class="content">
-                        <div class="review-top row pt-40">
-                            <div class="col-lg-12">
-                               
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Downloads</span>
-                                    
-                                    <span>10</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Rating</span>
-                                    <div class="star">
-                                        <i class="ti-star checked"></i>
-                                        <i class="ti-star checked"></i>
-                                        <i class="ti-star checked"></i>
-                                        <i class="ti-star"></i>
-                                        <i class="ti-star"></i>
-                                    </div>
-                                  
-                                </div>
-                                
-                            </div>
-                        </div>
+                       
                         <div class="feedeback">
                             <h6>Your Feedback</h6>
-                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
-                            <div class="mt-10 text-right">
-                                <a href="#" class="primary-btn2 text-right rounded-0 text-white">Submit</a>
+                            <form action="{{route('post-review')}}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="">Rate </label>
+                                     <div class="rating">
+                                  
+                                         <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+                                     </div>
+                                 </div>
+                            <input type="hidden" name="docId" value="{{$doc->id}}">
+                            
+                            <div class="form-group">
+                                <label for="">Message</label>
+                                <textarea name="review" required class="form-control" cols="10" rows="10"></textarea>
+
                             </div>
+                           
+                            <div class="mt-10 text-right">
+                                <button type="submit" class="primary-btn2 text-right rounded-0 text-white">Submit</button>
+                            </div>
+                            </form>
                         </div>
                         
                     </div>
+
+                    <div class="comments-area mb-30">
+                        @foreach ($reviews as $review)
+                        <div class="comment-list">
+                            <div class="single-comment single-reviews justify-content-between d-flex">
+                                <div class="user justify-content-between d-flex">
+                                    <div class="thumb">
+                                        <img class="img-thumbnails circle" width="65" src="{{asset('theme/img/default-user.png')}}" alt="">
+                                    </div>
+                                    <div class="desc">
+                                        <h5><a href="javascript:void(0)">{{$review->name}}</a>
+                                            <div class="star">
+                                                @for($i=0;$i<=$review->rating;$i++)
+                                                <span class="ti-star checked"></span>
+                                                @endfor
+                                            </div>
+                                        </h5>
+                                        <p class="comment">
+                                            {{$review->review}}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach  
+                      
+                    </div>
+
                 </div>
 
                 <div class="col-lg-12">

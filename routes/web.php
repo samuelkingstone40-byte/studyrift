@@ -38,6 +38,7 @@ Route::post('file-update', [App\Http\Controllers\ClientController::class, 'file_
 Route::post('notifications', [App\Http\Controllers\ClientController::class, 'fetch_notifications'])->name('notifications');
 Route::post('mark-as-read', [App\Http\Controllers\ClientController::class, 'mark_as_read'])->name(' mark-as-read');
 Route::get('view-document/{slug}',[App\Http\Controllers\ClientController::class,'view_document'])->name('view-document');
+Route::post('post-review',[App\Http\Controllers\ClientController::class,'post_review'])->name('post-review');
 
 Route::get('earnings', [App\Http\Controllers\ClientController::class, 'earnings'])->name('earnings');
 Route::get('fetch-earnings', [App\Http\Controllers\ClientController::class, 'fetch_earnings'])->name('fetch-earnings');

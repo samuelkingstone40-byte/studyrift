@@ -71,11 +71,11 @@
   
 <div class="row d-flex justify-content-center">
 @if (\Session::has('success'))
-          <div class="alert alert-success">
-            {!! \Session::get('success') !!}   
-           </div>
-        @endif
-    <div class="col-md-10">
+    <div class="alert alert-success">
+        {!! \Session::get('success') !!}   
+    </div>
+@endif
+    <div class="col-md-11">
         <div class="card">
             <div class="card-body">
                <h4 class="font-bold py-2">
@@ -139,7 +139,7 @@
            
     </div>
   
-    <div class="col-md-10 py-2">
+    <div class="col-md-11 py-2">
         <div class="card">
             <div class="card-body">
                 <h4 class="py-2">
@@ -152,6 +152,39 @@
             </div>
         </div>
     </div>
+<div class="col-md-11">
+
+    <div class="comments-area mb-20">
+        <h4>Reviews</h4>
+        @foreach ($reviews as $review)
+        <div class="comment-list">
+            <div class="single-comment single-reviews justify-content-between d-flex">
+                <div class="user justify-content-between d-flex">
+                    <div class="thumb">
+                        <img class="img-thumbnail" width="85" src="{{asset('theme/img/default-user.png')}}" alt="">
+                    </div>
+                    <div class="desc">
+                        <h5><a href="javascript:void(0)">{{$review->name}}</a>
+                            <div class="star">
+                                @for($i=0;$i<=$review->rating;$i++)
+                                <span class="ti-star checked"></span>
+                                @endfor
+                            </div>
+                        </h5>
+                        <p class="comment">
+                            {{$review->review}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endforeach
+        
+    </div>
+</div>
+
+</div>
+
 </div>
 </div>
 

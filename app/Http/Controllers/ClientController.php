@@ -12,6 +12,7 @@ use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\File;
+use App\Models\Review;
 use Response;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -73,7 +74,9 @@ class ClientController extends Controller
       
         $data=array('user_id'=>$user,'title'=>$title,"subject_id"=>$subject,"category_id"=>$category,
         "description"=>$detail,"price"=>$price,'slug'=>$slug,'image'=>$image,'code'=>$code);
-        $docId=DB::table('notes')->insertGetId($data);
+        $doc=Note::create($data);
+
+        $docId=$doc->id;
 
         $this->uploadFile($docId,$request);
 
@@ -102,10 +105,20 @@ class ClientController extends Controller
         ->first();
         $data['doc']=$doc;
         $data['purchased']=$this->check_if_purchased($doc->id);
+        $data['reviews']=$this->get_fetch($doc->id);
         $data['downloads']=DB::table('orders')
         ->where('docId',$doc->id)
         ->count();
         return view('client/document-view',$data);
+    }
+
+    public function get_fetch($id){
+        $reviews=DB::table('reviews')
+        ->leftJoin('users','users.id','=','reviews.user_id')
+        ->where('reviews.doc_id',$id)
+        ->select('reviews.*','users.name')
+        ->get();
+        return $reviews;
     }
 
     public function check_if_purchased($id){
@@ -420,5 +433,15 @@ class ClientController extends Controller
                 ->rawColumns(['earning','action'])
                 ->make(true);
             }
+    }
+
+    public function post_review(Request $request){
+        $review=Review::create([
+            'user_id'=>Auth::id(),
+            'doc_id'=>$request->input('docId'),
+            'review'=>$request->input('review'),
+            'rating'=>$request->input('rating')
+        ]);
+        return redirect()->back()->with('success', 'Your review have been submited');   
     }
 }
