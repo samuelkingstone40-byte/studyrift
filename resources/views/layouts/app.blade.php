@@ -40,7 +40,7 @@
 </div>
 
     @include('includes.footer')
-    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
     <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
