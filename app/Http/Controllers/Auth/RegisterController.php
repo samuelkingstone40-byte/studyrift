@@ -79,6 +79,8 @@ class RegisterController extends Controller
         return view('auth.register', ['url' => 'admin']);
     }
 
+    
+
     protected function createAdmin(Request $request)
     {
         $this->validator($request->all())->validate();

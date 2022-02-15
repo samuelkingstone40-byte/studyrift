@@ -220,7 +220,7 @@
 
                         <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/users')}}"
                                 aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
-                                    class="hide-menu">Manage Users
+                                    class="hide-menu">Manage Clients
                                 </span></a>
                         </li>
                         
@@ -278,6 +278,11 @@
                                 aria-expanded="false"><i data-feather="folder" class="feather-icon"></i><span
                                     class="hide-menu">Categories
                                 </span></a>
+                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{{route('system-users')}}"
+                            aria-expanded="false"><i data-feather="target" class="feather-icon"></i><span
+                                class="hide-menu">Manage Users
+                            </span></a>
                         </li>
                       
                             </ul>

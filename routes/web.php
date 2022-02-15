@@ -88,7 +88,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class);
 
         Route::get('profile',[\App\Http\Controllers\Admin\SettingController::class,'profile'])->name('Adminprofile');
-        
+        Route::get('system-users',[\App\Http\Controllers\Admin\SettingController::class,'system_users'])->name('system-users');
+        Route::post('post-users',[\App\Http\Controllers\Admin\SettingController::class,'post_user'])->name('postUser');
 
     });
 
