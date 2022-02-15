@@ -9,7 +9,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Notification;
 
-class PurchaseNotification extends Notification implements ShouldBroadcast
+class PurchaseNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
