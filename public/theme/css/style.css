@@ -34,6 +34,16 @@ theme.
   width: 2em
 }
 
+.circlespinner2 {
+  animation: spin 1s infinite ease-in-out;
+  border-radius: 50%;
+  border-top: 2px solid red;
+  display: inline-block;
+  height: 2em;
+  margin: calc(50vh - 1em) calc(50vw - 1em);
+  width: 2em
+}
+
 @keyframes spin {
   100% {
       -webkit-transform: rotate(360deg);

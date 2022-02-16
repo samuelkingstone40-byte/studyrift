@@ -127,7 +127,13 @@
                         <div class="content">
                         <div id="pdf-main-container">
                         <input type="hidden"  id="file2" value="{{$doc->filename}}">
-                        <div id="pdf-loader">Loading document ...</div>
+                        <div class="text-center">
+                        </div>
+                        <div id="pdf-loader">
+                            <div class="spinner-border text-warning" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </div>
                          <div id="pdf-contents">
                             <div id="pdf-meta">
                                 <div id="pdf-buttons">
@@ -291,7 +297,7 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js">  -->
 <!-- </script> -->
 <script>
-     $('#loader').hide();
+ $('#loader').hide();
 $("#download-image").on('click', function() {
    
 	$(this).attr('href', $('#pdf-canvas').get(0).toDataURL());
