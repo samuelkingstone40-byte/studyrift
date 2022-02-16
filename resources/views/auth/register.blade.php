@@ -24,7 +24,7 @@
                         @enderror
                       </div>
                       <div class="form-group">
-                          <label for="">dsd</label>
+                        
                       <input id="email" type="email" placeholder="Your Email Address" class="@error('email') is-invalid @enderror form-control" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                             @error('email')
