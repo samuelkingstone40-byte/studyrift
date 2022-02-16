@@ -32,7 +32,15 @@
   <body>
     <!--================ Start Header Menu Area =================-->
     @include('includes.header')
-  
+    @guest
+    <input type="hidden" id="user_id" value="">
+    <input type="hidden" id="name" value="">
+    <input type="hidden" id="email" value="">
+    @else
+    <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
+    <input type="hidden" id="name" value="{{Auth::user()->name}}">
+    <input type="hidden" id="email" value="{{Auth::user()->email}}">
+    @endguest
 
      @yield('content')
 
@@ -62,11 +70,11 @@
     <script src="{{asset('theme/js/theme.js')}}"></script>
     <script>
 
-document.tidioIdentify = {
-  distinct_id: "unique_id", // Unique visitor ID in your system
-  email: "contact@mail", // visitor email
-  name: "John Doe", // Visitor name
-  phone: "+44 2032897807" //Visitor phone
+       document.tidioIdentify = {
+       distinct_id: $('#user_id').val(), // Unique visitor ID in your system
+       email: $('#email').val(), // visitor email
+       name: $('#name').val() // Visitor name
+    
 };
     </script>
     <script src="//code.tidio.co/mu88s7xwwrvlzzyhy4e17htqi2xrgcg8.js" async></script>

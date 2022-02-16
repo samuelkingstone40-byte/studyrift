@@ -112,67 +112,93 @@ class PayPalPaymentController extends Controller
     $request->session()->forget('cart');
     return view('pay-success');
    }
+   public function pay_pal_accessToken(){
+    $client ="AZR8hLRpmE4st9mF0yAH7uLs8OwAh8vuUKNu1sGCkvr_95Sr_m34NFKxGK0IlUw_8SfafXw7IKcF4_1u";
+    $secret= "EFQWaoIk03r2wjjpVJjWejtSx0ImNFYFKinwYGQ2SxikBeoOK3fXdsVMKKJVCGGgbIvP8rXVwqMy15Tp";
 
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, "https://api-m.paypal.com/v1/oauth2/token");
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_USERPWD, $client.":".$secret);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, "grant_type=client_credentials");
+    $result = curl_exec($ch);
+
+    if(empty($result))die("Error: No response.");
+    else
+    {
+    $json = json_decode($result); 
+    $accessToken=$json->access_token;
+    return $accessToken;
+    }
+}
    public function paypalpayout(Request $request){
-
-    // $userid=auth('sanctum')->user()->Id;
-    // $user=User::find($userid);
-
-    $amount=DB::table('orders')
-    ->where('owner_id',Auth::id())
-    ->where('status','COMPLETED')
-    ->sum('earning');
-    $payouts=new Payout();
-    $senderBatchHeader  = new PayoutSenderBatchHeader();
+    $accessToken=$this->pay_pal_accessToken();
 
     
+    $user=Auth::user();
+    $user_email=$user->paypalEmail;
 
-    $senderBatchHeader->setSenderBatchId(uniqid())
-        ->setEmailSubject("BrainySolver Payment ");
+    $amount=DB::table('orders')
+      ->where('owner_id',Auth::id())
+      ->where('status','Available')
+      ->sum('earning');
+    
+      $data='{
 
-    $senderItem =   new PayoutItem();
-    $senderItem->setRecipientType('Email')
-        ->setNote("Brainy Solver New Payment")
-        ->setReceiver('sb-tvg5d507654@personal.example.com')
-        ->setSenderItemId(uniqid())
-        ->setAmount(new Currency('{
-        "value":"'.$amount.'",
-        "currency":"USD"
-        }'));
+        "sender_batch_header": {
+            "sender_batch_id": "Payouts_'.uniqid().'",
+            "email_subject": "Studymerit Payout",
+            "email_message": "You have received a payout! Thanks for using our Studymerit!"
+          },
+          "items": [
+            {
+              "recipient_type": "EMAIL",
+              "amount": {
+                "value": "'.$amount.'",
+                "currency": "USD"
+              },
+              "note": "Thanks for your patronage!",
+              "sender_item_id": "'.$user->id.'",
+              "receiver": "'.$user_email.'"
 
-    $payouts->setSenderBatchHeader($senderBatchHeader)
-        ->addItem($senderItem);
-      
-    $request= clone $payouts;
-   
-    try{
-      $output = $payouts->create(array('sync_mode' => 'false'), $this->_api_context);
-            }catch (Exception $ex){
-        return $ex->getMessage();
+            }
+            
+          ]
+    }';
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, "https://api-m.paypal.com/v1/payments/payouts");
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json","Authorization: Bearer ".$accessToken));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    $result = curl_exec($ch);
+    $json = json_decode($result);
+
+   //return dd($json);
+    $state=$json->batch_header;
+    if($state->batch_status =='PENDING'){
+  
+      $transaction=new Transactions;
+      $transaction->transId=$state->payout_batch_id;
+      $transaction->user_id=Auth::id();
+      $transaction->amount=$amount;
+      $transaction->type='withdrawal';
+      $transaction->details='User withdrawal';
+      $transaction->status=1;
+      $transaction->save();
+
+      $this->update_orders();
+      return redirect()->back()->with('success', 'Your payment has been processed successful');
+    
     }
-   
-
-    //record transaction
-    if($output->batch_header->batch_status =='PENDING')
-    {
-      
-      //return redirect()->back()->with('success', 'Your payment has been processed successful');   
-     $transaction=new Transactions;
-     $transaction->transId=$output->batch_header->payout_batch_id;
-     $transaction->user_id=Auth::id();
-     $transaction->amount=$amount;
-     $transaction->type='withdrawal';
-     $transaction->details='User withdrawal';
-     $transaction->status=1;
-     $transaction->save();
-
-     $this->update_orders();
-     return redirect()->back()->with('success', 'Your payment has been processed successful');   
-    }
-    else{
-    return response()->json('failed');
-
-    }
+ 
+    
 }
 
 public function update_orders(){

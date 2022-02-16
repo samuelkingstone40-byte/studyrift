@@ -139,7 +139,7 @@
          </div>
      </li>
      <div class="topbar-divider d-none d-sm-block"></div>
-     <li class="nav-item dropdown no-arrow ml-4"> <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span> <img class="img-profile rounded-circle" src="{{asset('theme/img/testimonials/t1.jpg')}}"> </a>
+     <li class="nav-item dropdown no-arrow ml-4"> <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <span class="mr-2 d-none d-lg-inline text-gray-600 small"></span> <img class="img-profile rounded-circle" src="{{asset('thumbnails/'.Auth::user()->image)}}"> </a>
          <div style="width:230px" class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
            <a class="dropdown-item" href="{{url('home')}}"> <i class="fa fa-tachometer  fa-sm fa-fw mr-2 text-gray-400"></i>Dashboord </a>
            <a class="dropdown-item" href="{{url('uploads')}}"> <i class="fa fa-cloud-upload fa-sm fa-fw mr-2 text-gray-400"></i>Uploads </a>

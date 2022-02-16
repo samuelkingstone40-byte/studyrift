@@ -43,6 +43,8 @@ Route::post('post-review',[App\Http\Controllers\ClientController::class,'post_re
 Route::get('earnings', [App\Http\Controllers\ClientController::class, 'earnings'])->name('earnings');
 Route::get('fetch-earnings', [App\Http\Controllers\ClientController::class, 'fetch_earnings'])->name('fetch-earnings');
 
+Route::post('uploadImg',[App\Http\Controllers\ClientController::class,'upload_profile_img'])->name('uploadImg');
+
 Route::get('search/', [App\Http\Controllers\PublicController::class,'documents'])->name('search');
 Route::get('document-preview/{slug}', [App\Http\Controllers\PublicController::class,'document_preview']);
 Route::get('cart', [App\Http\Controllers\PublicController::class, 'cart'])->name('cart');

@@ -2,9 +2,7 @@
 @section('content')
 <section class="section_gap">
   <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-sm-10 mt-4 mb-4">
-         <h4 class="mb-2">Edit Profile</h4>
+    <h4 class="mb-2">Edit Profile</h4>
          @if (\Session::has('success'))
           <div class="alert alert-success">
             {!! \Session::get('success') !!}   
@@ -16,8 +14,31 @@
             {!! \Session::get('error') !!}   
            </div>
         @endif
+    <div class="row justify-content-left">
+      
+      <div class="col-sm-4">
+        
+        <div class="card">
+          <div class="card-body">
+            <div class=" align-items-center ">
+              <img class="rounded-circle mb-2"  src="{{asset('profiles/'.$user->image)}}" >
+              <form action="{{route('uploadImg')}}" method="post" enctype="multipart/form-data">
+                @csrf
+              <div class="form-group">
+               
+                <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
+              </div>
+              <button type="submi" class="primary-btn"> Upload</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-sm-10 mt-4 mb-4">
+         
         <div class="card">
             <div class="card-body">
+              
             <form meth0d="post" action="{{route('update-profile')}}">
               @csrf
               <div class="form-row">

@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5 offset-lg-1">
         <div class="register_form">
-            <div class="text-center py-2">
+            <div class="text-center py-1">
             <h3 >Create a free account</h3>
             </div>
               
@@ -58,6 +58,14 @@
                                     </a>
                                 @endif
                   </div>
+                  <div class=" ">
+                    <h4>Already have an account? <span>
+                     <a class="btn btn-link" href="{{ route('login') }}">
+                       <b> Sign In</b>
+                     </a>
+                   </span></h4> 
+                                  
+                     </div>
                   </div>
                 
                  </div>
@@ -65,6 +73,8 @@
                 
                  
                 </div>
+
+                
               </form>
             </div>
         </div>

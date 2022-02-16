@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Note;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
 use DB;
@@ -16,7 +17,7 @@ use App\Models\Review;
 use Response;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
-
+use Image;
 
 
 class ClientController extends Controller
@@ -444,4 +445,31 @@ class ClientController extends Controller
         ]);
         return redirect()->back()->with('success', 'Your review have been submited');   
     }
+
+    public function upload_profile_img(Request $request)
+    {
+        request()->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+       ]);
+       if ($files = $request->file('image')) {
+        $ImageUpload = Image::make($files);
+        $originalPath = public_path().'/profiles/';
+        $ImageUpload->save($originalPath.$files->getClientOriginalName());
+     
+    // for save thumnail image
+        $thumbnailPath = public_path().'/thumbnails/';
+        $ImageUpload->resize(250,125);
+        $ImageUpload = $ImageUpload->save($thumbnailPath.$files->getClientOriginalName());
+ 
+   
+
+            $user_info=User::find(Auth::id());
+            $user_info->image =$files->getClientOriginalName();
+            $user_info->save();
+
+        return redirect()->back()->with('success', 'Your profile image has been uploaded');   
+
+    }
+}
+
 }
