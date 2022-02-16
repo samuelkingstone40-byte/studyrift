@@ -184,7 +184,7 @@
                                     Account Setting</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item"  href="{{ route('AdminLogout') }}"  onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();"><i data-feather="power"
+                                          document.getElementById('logout-form').submit();"><i data-feather="power"
                                         class="svg-icon mr-2 ml-1"></i>
                                     Logout</a>
                                     <form id="logout-form" action="{{ route('AdminLogout') }}" method="POST" class="d-none">

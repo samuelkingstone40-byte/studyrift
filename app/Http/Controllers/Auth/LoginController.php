@@ -63,11 +63,13 @@ class LoginController extends Controller
     {
        
         // Auth::guard('admin')->logout();
-        // $request->session()->invalidate();
-        // return redirect()->guest(route( 'admin.login' ));
         
-        Auth::guard('admin')->logout();
-        return redirect()->route('/home');
+        // return redirect()->guest(route( 'admin.login' ));
+        if(Auth::guard('admin')->check()){ // this means that the admin was logged in.
+          Auth::guard('admin')->logout();
+          $request->session()->invalidate();
+          return redirect()->route('/welcome');
+        }
     }
 
 }

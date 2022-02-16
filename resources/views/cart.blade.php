@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
+
+<span  id="loader" class="circlespinner"></span>
 <div class="section_gap">
+   
     <div class="container py-4">
         <div class="card" style="background:transparent">
        
@@ -85,11 +88,11 @@
 <script type="text/javascript">
    $(document).ready(function(){
 
-  
+    $('#loader').hide();
 
     $(".update-cart").change(function (e) {
         e.preventDefault();
-   
+        $('#loader').show();
         var ele = $(this);
    
         $.ajax({

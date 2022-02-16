@@ -103,7 +103,9 @@
 }
 
 </style>
+<span  id="loader" class="circlespinner"></span>
 <section class="course_details_area section_gap">
+    
         <div class="container">
         <nav aria-label="breadcrumb " class="py-1">
   <ol class="breadcrumb">
@@ -289,6 +291,7 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js">  -->
 <!-- </script> -->
 <script>
+     $('#loader').hide();
 $("#download-image").on('click', function() {
    
 	$(this).attr('href', $('#pdf-canvas').get(0).toDataURL());
@@ -299,13 +302,14 @@ $("#download-image").on('click', function() {
 
 $('#addToCart').click(function(e){
     var id=$('#docId').val();
-  
+    $('#loader').show();
     e.preventDefault();
     $.ajax({
             url: '{{ url("add-to-cart") }}/'+id,
             method: "get",
            
             success: function (response) {
+                $('#loader').hide();
                 $('#cartModal').modal('show');
             }
         });
