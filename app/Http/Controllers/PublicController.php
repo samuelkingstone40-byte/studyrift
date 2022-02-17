@@ -22,7 +22,7 @@ class PublicController extends Controller
         ->orderBy(DB::raw('COUNT(orders.earning)'), 'desc')
         ->select('notes.title','notes.slug','notes.image','notes.price','orders.docId','subjects.name as sname',
          DB::raw("COUNT(orders.docId) as count_click"),DB::raw("sum(orders.earning) as sum_earning"))
-         ->limit(10)
+         ->limit(4)
         ->get();
 
         return $downloads;

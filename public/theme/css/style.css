@@ -407,12 +407,12 @@ button:focus {
 /* Home Banner Area css
 ============================================================================================ */
 .home_banner_area {
- background: transparent;
+  background:#000;
   z-index: 1;
   min-height: 900px;
   position: relative;
-  background-size:contain;
-background-position:center;
+  background-size:cover;
+  background-position:center;
   background: url(../img/banner/home-banner.jpg) no-repeat center;
   }
   .home_banner_area .banner_inner {
@@ -424,7 +424,7 @@ background-position:center;
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
-    z-index: 10;
+   
     width: 100%; }
     @media (max-width: 991px) {
       .home_banner_area .banner_inner {
