@@ -66,7 +66,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature">
-              <div class="icon"><span class="flaticon-book"></span></div>
+              <div class="icon"><span class="fa fa-cloud-upload"></span></div>
               <div class="desc">
                 <h4 class="mt-3 mb-2">Upload</h4>
                 <p>
@@ -82,7 +82,7 @@
               <div class="desc">
                 <h4 class="mt-3 mb-2">Set a Price</h4>
                 <p>
-                  Set the price for your notes and wait to sell! You earn money from each document you sell. This money is added to your account instantly.
+                  Set the price for your notes and wait to sell! You earn money from each document purchased. This money is added to your account instantly.
                 </p>
               </div>
             </div>

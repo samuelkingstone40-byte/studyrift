@@ -81,7 +81,13 @@
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                        <label class="form-check-label" for="remember">{{ __('Remember Me') }} </label>
                                      </div>
-
+                                     <div class="form-group">
+                                        {!! RecaptchaV3::initJs() !!}
+                                        {!! RecaptchaV3::field('contact-us') !!}
+                                        @error('g-recaptcha-response')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+                                        </div>
                                 </div>
                                 <div class="col-lg-12 text-center">
                                     <button type="submit" class="btn btn-block btn-dark">Sign In</button>
