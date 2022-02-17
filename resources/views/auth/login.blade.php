@@ -40,6 +40,13 @@
                       <div class="form-group">
                          <button type="submit" class="primary-btn">Submit</button>
                       </div>
+                      <div class="form-group">
+                        {!! RecaptchaV3::initJs() !!}
+                        {!! RecaptchaV3::field('contact-us') !!}
+                        @error('g-recaptcha-response')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                        </div>
                    
                   </div>
                  
