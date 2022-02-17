@@ -7,23 +7,18 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <div class="navbar-brand">
+                    <div class="navbar-brand" style="background-color:gray">
                         <!-- Logo icon -->
                         <a href="{{url('admin/dashboard')}}">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
-                                <img src="{{asset('admin/assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" />
+                                <img src="{{asset('theme/img/logo2.png')}}" alt="homepage" class="dark-logo" />
                                 <!-- Light Logo icon -->
                                 <img src="{{asset('admin/assets/images/logo-icon.png')}}" alt="homepage" class="light-logo" />
                             </b>
                             <!--End Logo icon -->
                             <!-- Logo text -->
-                            <span class="logo-text">
-                                <!-- dark Logo text -->
-                                <img src="{{asset('admin/assets/images/logo-text.png')}}" alt="homepage" class="dark-logo" />
-                                <!-- Light Logo text -->
-                                <img src="{{asset('admin/assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" />
-                            </span>
+                           
                         </a>
                     </div>
                     <!-- ============================================================== -->

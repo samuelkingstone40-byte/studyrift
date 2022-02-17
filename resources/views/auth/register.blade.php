@@ -45,7 +45,13 @@
                       <div class="form-group">
                          <input id="password-confirm" type="password" placeholder="Confirm Password" class="" name="password_confirmation" required autocomplete="new-password">
                       </div>
-                    
+                      <div class="form-group">
+                        {!! RecaptchaV3::initJs() !!}
+                        {!! RecaptchaV3::field('contact-us') !!}
+                        @error('g-recaptcha-response')
+                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                        </div>
                     <div class="form-group">
                     <button type="submit" class="primary-btn">Submit</button>
                    
