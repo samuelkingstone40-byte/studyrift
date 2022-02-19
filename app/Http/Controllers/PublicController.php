@@ -16,6 +16,7 @@ class PublicController extends Controller
 
     public function popular_downloads(){
         $downloads=DB::table('orders')
+        ->whereNull('notes.status')
         ->leftJoin('notes','notes.id','=','orders.docId')
         ->leftJoin('subjects','subjects.id','=','notes.subject_id')
         ->groupBy('orders.docId','orders.earning','subjects.name','notes.title','notes.image','notes.price','notes.slug')
@@ -33,17 +34,34 @@ class PublicController extends Controller
         if ($search_text) {
             $notes->where('title', 'Like', '%' . $search_text . '%');
         }
+        if ($request->get('subject')) {
+            $notes->where('subject_id',  $request->get('subject'));
+           
+        }
+
+        if ($request->get('category')) {
+            $notes->Where('category_id',  $request->get('category'));
+        }
         $notes=$notes->leftJoin('files', 'notes.id', '=', 'files.document_id')
+        ->whereNull('notes.status')
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
         ->orderBy('notes.id','desc')
         ->paginate(10);
 
-        
+        $data['subjects']=$this->getSubjects();
+        $data['categories']=$this->getCategories();
         $data['notes']=$notes;
         return view('documents',$data);   
        
+    }
+
+    public function getSubjects(){
+        return DB::table('subjects')->orderBy('name','desc')->get();
+    }
+    public function getCategories(){
+        return DB::table('categories')->orderBy('name','desc')->get();
     }
 
     public function document_preview($slug=null){
@@ -86,6 +104,7 @@ class PublicController extends Controller
     public function get_related($title)
     {
         $notes =DB::table('notes')
+        ->whereNull('notes.status')
         ->where('title', 'Like', '%' . $title. '%')
         ->leftJoin('files', 'notes.id', '=', 'files.document_id')
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')

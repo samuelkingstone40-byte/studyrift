@@ -192,6 +192,7 @@ class ClientController extends Controller
     public function my_uploads(Request $request){
         if ($request->ajax()) {
             $data = DB::table('notes')
+            ->whereNull('notes.status')
             ->where('notes.user_id',Auth::id())
             ->leftJoin('subjects','notes.subject_id','=','subjects.id')
             ->leftJoin('categories','notes.category_id','=','categories.id')
@@ -230,6 +231,7 @@ class ClientController extends Controller
 
     public function uploads(){
         $data['notes']=DB::table('notes')
+          ->whereNull('notes.status')
          ->leftJoin('files', 'notes.id', '=', 'files.document_id')
          ->leftJoin('subjects','notes.subject_id','=','subjects.id')
          ->leftJoin('categories','notes.category_id','=','categories.id')
@@ -470,6 +472,13 @@ class ClientController extends Controller
         return redirect()->back()->with('success', 'Your profile image has been uploaded');   
 
     }
+}
+
+public function file_delete($id){
+    $file=DB::table('notes')
+    ->where('id',$id)
+    ->update(['status'=>0]);
+    return redirect('uploads')->with('success', 'file deleted successfuly!'); 
 }
 
 }

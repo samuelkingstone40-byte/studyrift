@@ -67,7 +67,18 @@
 }
 
 </style>
+@if (\Session::has('success'))
+<div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show"
+    role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Success - </strong> {!! \Session::get('success') !!}  
+</div>
+
+@endif
 <div class="row">
+   
     <div class="col-md-7">
     <h4 class="font-bold py-2">
                     {{$doc->title}}
@@ -106,6 +117,39 @@
   <li class="list-group-item">Downloads <span class="float-right"> <b>{{number_format($downloads)}}</b></span></li>
 
 </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body">
+                <button type="button" class="btn btn-danger" data-toggle="modal"
+                data-target="#deleteModal"><i class="fa fa-trash"></i> Delete file</button>
+
+                <div id="deleteModal" class="modal fade" tabindex="-1" role="dialog"
+                aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-danger text-white">
+                            <h4 class="modal-title" id="myModalLabel">Delete file</h4>
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">×</button>
+                        </div>
+                        <form action="{{route('deleteFile',$doc->id)}}" method="post">
+                            @csrf
+                        <div class="modal-body text-center">
+                          
+                           <h4>Are you sure you want to delete this file?</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light"
+                                data-dismiss="modal">No</button>
+                            <button type="submit" class="btn btn-success">Yes </button>
+                        </div>
+                        </form>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+    
             </div>
         </div>
     </div>

@@ -87,8 +87,10 @@
                     </span>
                     @else
                     <span class="float-right">
-                        <a href="{{url('edit-document/'.$doc->slug)}}" class="genric-btn link"> <i class="fa fa-pencil"></i> Edit</a>
-                    
+                        <a href="{{url('edit-document/'.$doc->slug)}}" class="btn btn-primary"> <i class="fa fa-pencil"></i> Edit</a>
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#deleteModal"><i class="fa fa-trash"></i> Delete file</button>
+        
                     </span>
                     @endif
                 </h4>
@@ -182,7 +184,30 @@
         
     </div>
 </div>
-
+<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header bg-danger text-white">
+            <h4 class="modal-title" id="myModalLabel">Delete file</h4>
+            <button type="button" class="close" data-dismiss="modal"
+                aria-hidden="true">×</button>
+        </div>
+        <form action="{{route('fileDelete',$doc->id)}}" method="post">
+            @csrf
+        <div class="modal-body text-center">
+          
+           <h4>Are you sure you want to delete this file?</h4>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light"
+                data-dismiss="modal">No</button>
+            <button type="submit" class="btn btn-success">Yes </button>
+        </div>
+        </form>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 </div>
 
 </div>

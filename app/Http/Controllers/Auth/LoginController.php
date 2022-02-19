@@ -36,8 +36,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest:admin')->except('logout');
-        $this->middleware('guest')->except('logout');
+        
     }
     public function showAdminLoginForm()
     {
@@ -62,15 +61,20 @@ class LoginController extends Controller
 
     public function AdminLogout(Request $request)
     {
+
        
-        // Auth::guard('admin')->logout();
-        
-        // return redirect()->guest(route( 'admin.login' ));
-        if(Auth::guard('admin')->check()){ // this means that the admin was logged in.
-          Auth::guard('admin')->logout();
-          $request->session()->invalidate();
-          return redirect()->route('/welcome');
-        }
+       
+        if(Aut::guard('admin')->check()) // this means that the admin was logged in.
+      {
+        auth()->guard()->logout();
+
+        $request->session()->flush();
+        return redirect()->route('welcome');
+    }
+
+    $this->guard()->logout();
+    $request->session()->invalidate();
+    return $this->loggedOut($request) ?: redirect('/');
     }
 
 }

@@ -98,6 +98,7 @@ class AdminController extends Controller
         if ($request->ajax()) {
             $data = DB::table('notes')
              ->where('notes.user_id',$id)
+             ->whereNull('notes.status')
             ->leftJoin('subjects','notes.subject_id','=','subjects.id')
             ->leftJoin('categories','notes.category_id','=','categories.id')
             ->select('notes.*','subjects.name as sname','categories.name as cname')
@@ -176,6 +177,7 @@ class AdminController extends Controller
     public function get_all_uploads(Request $request){
         if ($request->ajax()) {
             $data = DB::table('notes')
+            ->whereNull('notes.status')
             ->leftJoin('users','users.id','=','notes.user_id')
             ->leftJoin('subjects','notes.subject_id','=','subjects.id')
             ->leftJoin('categories','notes.category_id','=','categories.id')
@@ -218,6 +220,13 @@ class AdminController extends Controller
         ->where('docId',$id)
         ->count();
         return view('admin/document',$data);
+    }
+
+    public function delete_file($id){
+        $file=DB::table('notes')
+        ->where('id',$id)
+        ->update(['status'=>0]);
+        return redirect()->back()->with('success', 'file deleted successfuly!'); 
     }
    
 }

@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [App\Http\Controllers\PublicController::class,'index']);
+Route::get('/', [App\Http\Controllers\PublicController::class,'index'])->name('welcome');
 Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -42,6 +42,7 @@ Route::post('post-review',[App\Http\Controllers\ClientController::class,'post_re
 
 Route::get('earnings', [App\Http\Controllers\ClientController::class, 'earnings'])->name('earnings');
 Route::get('fetch-earnings', [App\Http\Controllers\ClientController::class, 'fetch_earnings'])->name('fetch-earnings');
+Route::post('fileDelete/{id}',[\App\Http\Controllers\ClientController::class,'file_delete'])->name('fileDelete');
 
 Route::post('uploadImg',[App\Http\Controllers\ClientController::class,'upload_profile_img'])->name('uploadImg');
 
@@ -60,9 +61,10 @@ Route::get('paypal-payout',[App\Http\Controllers\PayPalPaymentController::class,
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
-Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
 
 Route::group(['middleware' => 'auth:admin'], function () {
+    Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
+
     Route::group(['prefix' => 'admin'], function()  
     { 
         Route::get('/dashboard',[\App\Http\Controllers\Admin\AdminController::class,'dashboard'])->name('admin');
@@ -75,6 +77,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('user-downloads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_downloads'])->name('user-downloads');
         Route::get('user-transactions/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_transactions'])->name('user-transactions');
         Route::get('document-view/{id}',[\App\Http\Controllers\Admin\AdminController::class,'document_view'])->name('document-view');
+        Route::post('deleteFile/{id}',[\App\Http\Controllers\Admin\AdminController::class,'delete_file'])->name('deleteFile');
 
         Route::get('general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'general_ledger'])->name('general-ledger');
         Route::get('sales',[\App\Http\Controllers\Admin\TransactionController::class,'sales'])->name('sales');
