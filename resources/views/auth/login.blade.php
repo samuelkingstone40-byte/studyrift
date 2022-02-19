@@ -36,10 +36,6 @@
                          <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                         <label class="form-check-label" for="remember">{{ __('Remember Me') }} </label>
                       </div>
-
-                      <div class="form-group">
-                         <button type="submit" class="primary-btn">Submit</button>
-                      </div>
                       <div class="form-group">
                         {!! RecaptchaV3::initJs() !!}
                         {!! RecaptchaV3::field('contact-us') !!}
@@ -47,6 +43,10 @@
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                         </div>
+                      <div class="form-group">
+                         <button type="submit" class="primary-btn">Submit</button>
+                      </div>
+                   
                    
                   </div>
                  

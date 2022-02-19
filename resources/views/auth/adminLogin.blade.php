@@ -50,7 +50,7 @@
                         </div>
                         <h2 class="mt-3 text-center">Sign In</h2>
                         <p class="text-center">Enter your email address and password to access admin panel.</p>
-                        <form class="mt-4" method="post" action="{{route('adminLogin')}}">
+                        <form class="mt-4" method="POST" action="{{route('adminLogin')}}">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-12">
@@ -83,7 +83,7 @@
                                      </div>
                                      <div class="form-group">
                                         {!! RecaptchaV3::initJs() !!}
-                                        {!! RecaptchaV3::field('contact-us') !!}
+                                        {!! RecaptchaV3::field('validate') !!}
                                         @error('g-recaptcha-response')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                         @enderror
