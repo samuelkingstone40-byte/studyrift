@@ -154,9 +154,9 @@
           <div class="col-lg-7">
             <div class="row clock_sec clockdiv" id="clockdiv">
               <div class="col-lg-12">
-                <h1 class="mb-3">Register Now</h1>
+                <h1 class="mb-3">Why use Study Merit?</h1>
                 <p>
-                It's simple and straightforward to make extra cash as a student, just upload your notes to us and we'll handle the sales side and pass the money back to you. Docmerit offers the highest payout ratio: you earn up to 85% per sale. We transfer the money to your bank account within 24 working hours. Sign up for free today and start earning while helping other fellow students!
+                  Keeping students and parents in mind, studymerit.com is conceptualized to consider the importance of time management. Searching through material that you don't need can be a waste of time and effort. Here at Study Merit, you can get straight to the point and find the content you need.
                 </p>
               </div>
               <div class="col clockinner1 clockinner">
