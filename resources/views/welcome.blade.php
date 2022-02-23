@@ -11,7 +11,7 @@
                 <h2 class="text-uppercase py-1">
                   Get quality notes in one place
                 </h2>
-                <p class="text-uppercase font-weight-bold">
+                <p class="font-weight-bold">
                   Access verified materials written by world's best student
                 </p>
                 <div class="">
