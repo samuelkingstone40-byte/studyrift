@@ -435,7 +435,7 @@ button:focus {
       font-weight: 500; }
     .home_banner_area .banner_inner .banner_content p {
       font-size: 20px;
-      color: #dc143c;
+      color: rgba(0, 35, 71, 0.8);
       font-weight: 500; }
 
 .blog_banner {

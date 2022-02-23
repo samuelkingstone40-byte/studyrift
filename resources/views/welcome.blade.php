@@ -9,10 +9,10 @@
               <div class="banner_content text-center">
                
                 <h2 class="text-uppercase py-1">
-                  One Step Ahead This Season
+                  Get quality notes in one place
                 </h2>
-                <p class="text-uppercase">
-                  Best online education service In the world
+                <p class="text-uppercase font-weight-bold">
+                  Access verified materials written by world's best student
                 </p>
                 <div class="">
                 <div class="search"> 
@@ -46,7 +46,7 @@
             <div class="main_title">
               <h2 class="mb-3">How it works</h2>
               <p>
-                If you've got good notes from any college or university around the world, then Study Merit is the BEST place to sell them and make passive income through work you've already done. 
+                Upload and download notes with students and professional learners globally and make money!
               </p>
             </div>
           </div>
