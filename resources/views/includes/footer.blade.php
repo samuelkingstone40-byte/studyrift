@@ -11,7 +11,7 @@
           <div class="col-lg-2 col-md-6 single-footer-widget">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#">Abouts Us</a></li>
+              <li><a href="#">About Us</a></li>
               <li><a href="#">Contact</a></li>
              
             </ul>
