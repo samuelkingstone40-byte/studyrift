@@ -93,58 +93,7 @@
     <!--================ End Feature Area =================-->
 
     <!--================ Start Popular Courses Area =================-->
-    <div class="popular_courses">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3">Our Popular Downloads </h2>
-              <p>
-            The most popular uploads are listed below:
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- single course -->
-
-        
-          <div class="col-lg-12">
-            <div class="owl-carousel active_course">
-            @foreach($uploads as $upload)
-              <div class="single_course" >
-                <div class="course_head">
-                <img class="img-fluid" style="height:220px" src="{{$upload->image}}" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">${{number_format($upload->price,2)}}</span>
-                  <span class="tag mb-4 d-inline-block">{{$upload->sname}}</span>
-                  <h4 class="mb-3">
-                    <a href="{{url('document-preview/'.$upload->slug)}}">{{$upload->title}}</a>
-                  </h4>
-                  
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4 font-bold">
-                        <a href="#"> <i class="ti-download"></i> downloads ({{$upload-> count_click}}) </a>
-                      </span>
-                      
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endforeach
-              
-
-         
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
     <!--================ End Popular Courses Area =================-->
 
     <!--================ Start Registration Area =================-->
@@ -160,15 +109,15 @@
                 </p>
               </div>
               <div class="col clockinner1 clockinner">
-                <h1 class="days">150</h1>
+                <h1 class="days">+150K</h1>
                 <span class="smalltext">uploads</span>
               </div>
               <div class="col clockinner clockinner1">
-                <h1 class="hours">23</h1>
+                <h1 class="hours">+13K</h1>
                 <span class="smalltext">downloads</span>
               </div>
               <div class="col clockinner clockinner1">
-                <h1 class="minutes">47</h1>
+                <h1 class="minutes">+2.5K</h1>
                 <span class="smalltext">users</span>
               </div>
              
@@ -184,109 +133,7 @@
     <!--================ End Registration Area =================-->
 
     <!--================ Start Trainers Area =================-->
-    <section class="trainer_area section_gap_top">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3">Our Expert Trainers</h2>
-              <p>
-                Replenish man have thing gathering lights yielding shall you
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center d-flex align-items-center">
-          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
-            <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t1.jpg" alt="" />
-            </div>
-            <div class="meta-text text-sm-center">
-              <h4>Mated Nithan</h4>
-              <p class="designation">Sr. web designer</p>
-              <div class="mb-4">
-                <p>
-                  If you are looking at blank cassettes on the web, you may be
-                  very confused at the.
-                </p>
-              </div>
-              <div class="align-items-center justify-content-center d-flex">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-                <a href="#"><i class="ti-pinterest"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
-            <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t2.jpg" alt="" />
-            </div>
-            <div class="meta-text text-sm-center">
-              <h4>David Cameron</h4>
-              <p class="designation">Sr. web designer</p>
-              <div class="mb-4">
-                <p>
-                  If you are looking at blank cassettes on the web, you may be
-                  very confused at the.
-                </p>
-              </div>
-              <div class="align-items-center justify-content-center d-flex">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-                <a href="#"><i class="ti-pinterest"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
-            <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t3.jpg" alt="" />
-            </div>
-            <div class="meta-text text-sm-center">
-              <h4>Jain Redmel</h4>
-              <p class="designation">Sr. Faculty Data Science</p>
-              <div class="mb-4">
-                <p>
-                  If you are looking at blank cassettes on the web, you may be
-                  very confused at the.
-                </p>
-              </div>
-              <div class="align-items-center justify-content-center d-flex">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-                <a href="#"><i class="ti-pinterest"></i></a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
-            <div class="thumb d-flex justify-content-sm-center">
-              <img class="img-fluid" src="img/trainer/t4.jpg" alt="" />
-            </div>
-            <div class="meta-text text-sm-center">
-              <h4>Nathan Macken</h4>
-              <p class="designation">Sr. web designer</p>
-              <div class="mb-4">
-                <p>
-                  If you are looking at blank cassettes on the web, you may be
-                  very confused at the.
-                </p>
-              </div>
-              <div class="align-items-center justify-content-center d-flex">
-                <a href="#"><i class="ti-facebook"></i></a>
-                <a href="#"><i class="ti-twitter"></i></a>
-                <a href="#"><i class="ti-linkedin"></i></a>
-                <a href="#"><i class="ti-pinterest"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+  
     <!--================ End Trainers Area =================-->
 
     <!--================ Start Events Area =================-->
