@@ -12,7 +12,7 @@
                   Get quality notes in one place
                 </h2>
                 <p class="font-weight-bold">
-                  Access verified materials written by world's best student
+                  Upload and download notes with students and professional learners globally and make money!
                 </p>
                 <div class="">
                 <div class="search"> 
