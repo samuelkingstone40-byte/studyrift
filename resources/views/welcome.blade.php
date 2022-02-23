@@ -180,7 +180,7 @@
                   <div class="testi_text">
                     <h4>Davil Saden</h4>
                     <p>
-                      As a post graduate student, I believe Stydymerit.com provides a great deal of content on the site with an excellent customer service too
+                      As a post graduate student, I believe Studymerit.com provides a great deal of content on the site with an excellent customer service too
                     </p>
                   </div>
                 </div>

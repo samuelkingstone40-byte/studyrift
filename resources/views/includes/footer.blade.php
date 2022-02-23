@@ -33,7 +33,7 @@
           </div>
           <div class="col-lg-4 col-md-6 single-footer-widget">
             <h4>Newsletter</h4>
-            <p>You can trust us. we only send promo offers,</p>
+            <p style="color:#7b838a">You can trust us. we only send promo offers,</p>
             <div class="form-wrap" id="mc_embed_signup">
               <form
                 target="_blank"
