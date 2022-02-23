@@ -299,9 +299,9 @@
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">Client say about me</h2>
+              <h2 class="mb-3">What users are saying</h2>
               <p>
-                Replenish man have thing gathering lights yielding shall you
+                
               </p>
             </div>
           </div>
@@ -312,15 +312,13 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
+                  <img src="{{asset('theme/img/testimonials/t3.jpg')}}" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
                     <h4>Elite Martin</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      The site is so easy to use. The design and usability makes it easy to upload notes to share with new professionals an make money from it too!
                     </p>
                   </div>
                 </div>
@@ -329,15 +327,13 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
+                  <img src="{{asset('theme/img/testimonials/t4.png')}}" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
                     <h4>Davil Saden</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      As a post graduate student, L believe Stydymerit.com provides a great deal of content on the site with an excellent customer service too
                     </p>
                   </div>
                 </div>
@@ -346,71 +342,19 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
+                  <img src="{{('theme/img/testimonials/t1.jpg')}}" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
-                    <h4>Elite Martin</h4>
+                    <h4>Justin mUsk</h4>
                     <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
+                      I got to know of Study Merit from a class mate  who had used the site before, I uploaded my notes from a medical class and within a day, I had sold all but one. The site is quit useful to anyone who has quality class content
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>Davil Saden</h4>
-                    <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t1.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>Elite Martin</h4>
-                    <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="testi_item">
-              <div class="row">
-                <div class="col-lg-4 col-md-6">
-                  <img src="img/testimonials/t2.jpg" alt="" />
-                </div>
-                <div class="col-lg-8">
-                  <div class="testi_text">
-                    <h4>Davil Saden</h4>
-                    <p>
-                      Him, made can't called over won't there on divide there
-                      male fish beast own his day third seed sixth seas unto.
-                      Saw from
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
