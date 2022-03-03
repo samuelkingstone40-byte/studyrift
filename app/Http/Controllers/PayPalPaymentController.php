@@ -180,7 +180,7 @@ class PayPalPaymentController extends Controller
     $result = curl_exec($ch);
     $json = json_decode($result);
 
-   return dd($json);
+   //return dd($json);
     $state=$json->batch_header;
     if($state->batch_status =='PENDING'){
   
