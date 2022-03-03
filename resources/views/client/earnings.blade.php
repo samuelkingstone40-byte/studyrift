@@ -26,9 +26,7 @@
 
 </ul>
 
-<a href="{{route('paypal-payout')}}" class="primary-btn2 text-uppercase enroll rounded-0 ">Withdraw $({{number_format($current_earnings,2)}})</a>
 
-<p><span class="text-danger">* <b>minimum withdrawal $20.00</b></p>
 </div>
 
         <div class="col-sm-8">
