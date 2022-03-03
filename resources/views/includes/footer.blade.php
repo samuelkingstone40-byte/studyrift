@@ -11,16 +11,16 @@
           <div class="col-lg-2 col-md-6 single-footer-widget">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="{{route('about')}}">About Us</a></li>
+              <li><a href="{{route('contact')}}">Contact</a></li>
              
             </ul>
           </div>
           <div class="col-lg-2 col-md-6 single-footer-widget">
             <h4>Legal</h4>
             <ul>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Privacy Statement</a></li>
+              <li><a href="{{route('terms-of-service')}}">Terms of Service</a></li>
+              <li><a href="{{route('privacy')}}">Privacy Statement</a></li>
              
             </ul>
           </div>

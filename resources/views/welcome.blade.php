@@ -105,7 +105,13 @@
               <div class="col-lg-12">
                 <h1 class="mb-3">Why use Study Merit?</h1>
                 <p>
-                  Keeping students and parents in mind, studymerit.com is conceptualized to consider the importance of time management. Searching through material that you don't need can be a waste of time and effort. Here at Study Merit, you can get straight to the point and find the content you need.
+                  Finding homework assistance does not have to be difficult. Why hasn't there been a change in how you get help with your course work, although practically every element of education and instruction has improved thanks to better technology and the Internet? Why is it difficult to locate a reasonably priced educator or subject matter expert? There is, at long last! StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.
+                  
+                </p>
+
+                <p>
+
+                  StudyMerits connects you with tutors for any topic or allows you to earn money by tutoring others. Before today, there was no method to use the Internet as a useful and inexpensive study tool for course/assignment-specific learning. StudyMerits provides you with the answers and solutions you require in a wide range of courses, allowing you to learn more quickly and effectively. You can also earn money by assisting others in their education. What a wonderful way to give back. Please don't put it off! For a limited time, you can join Study Merits for free.
                 </p>
               </div>
               <div class="col clockinner1 clockinner">

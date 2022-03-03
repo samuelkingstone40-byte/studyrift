@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\PublicController::class,'index'])->name('welcome');
+Route::get('/about-us',[App\Http\Controllers\PublicController::class,'about'])->name('about');
+Route::get('/contact-us',[App\Http\Controllers\PublicController::class,'contact'])->name('contact');
+Route::get('/term-of-service',[App\Http\Controllers\PublicController::class,'termsofservice'])->name('terms-of-service');
+Route::get('/privacy-statement',[App\Http\Controllers\PublicController::class,'privacy'])->name('privacy');
+
 Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

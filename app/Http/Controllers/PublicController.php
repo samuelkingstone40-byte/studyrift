@@ -171,5 +171,21 @@ class PublicController extends Controller
         }
     }
 
+    public function about(){
+        return view('about');
+    }
+
+    public function contact(){
+        return view('contacts');
+    }
+
+    public function termsofservice(){
+        return view('term-of-service');
+    }
+
+    public function privacy(){
+        return view('privacy');
+    }
+
    
 }
