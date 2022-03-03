@@ -73,6 +73,7 @@ class PublicController extends Controller
         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         $data['doc']=$file;
+       
         $data['reviews']=$this->get_reviews($file->id);
         $title=$file->title;
         $data['recommends']=$this->get_related($title);

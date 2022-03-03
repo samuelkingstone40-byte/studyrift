@@ -25,7 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['count_uploads']=DB::table('notes')->where('user_id',Auth::id())->count();
+        $data['count_uploads']=DB::table('notes')
+        ->where('user_id',Auth::id())
+        ->whereNull('notes.status')
+        ->count();
         $data['count_downloads']=DB::table('orders')->where('user_id',Auth::id())->count();
         $data['earnings']=DB::table('orders')
         ->where('owner_id',Auth::id())

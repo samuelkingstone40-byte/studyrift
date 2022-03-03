@@ -1,4 +1,7 @@
 @extends('layouts.app')
+<title>{{$doc->title}}</title>
+<meta name="description" content="{{$doc->description}}">
+<meta name="keywords" content="study documents,lecture notes,summaries,practice exams,online tutoring,homework help,online homework help">
 @section('content')
 <style type="text/css">
 
@@ -110,8 +113,8 @@
         <nav aria-label="breadcrumb " class="py-1">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{url('search/')}}">List</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Data</li>
+    <li class="breadcrumb-item"><a href="{{url('search/')}}">Documents</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{$doc->title}}</li>
   </ol>
 </nav>
 @if (\Session::has('success'))
