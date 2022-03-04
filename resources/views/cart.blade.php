@@ -63,11 +63,14 @@
 
             </td>
             <td>
-             <h5 class="text-warning">Select payment option</h5>
+            
             @guest
             <a href="{{route('login')}}" class="genric-btn info radius  btn-block">Login </a>
 
             @else
+            <h5 class="text-warning">Select payment option</h5>
+            <input type="hidden" id="cemail" value="{{Auth::user()->email}}">
+            <input type="hidden" id="cname" value="{{Auth::user()->name}}">
             <button type="button" style="background:#04091e" class="btn  btn-block btn-lg text-white" id="ravepay" ><img  width="30" src="{{asset('theme/img/rave.png')}}" class="mr-2"> Pay with flutterwave</button>
             <div id="paypal-button-container" style="width:300px"></div>
             @endguest
@@ -228,8 +231,8 @@
      
        
        customer: {
-         email: "{{Auth::user()->email}}",
-         name: "{{Auth::user()->name}}",
+         email: $('#cemail').val(),
+         name: $('#cname').val(),
        },
        
        customizations: {
