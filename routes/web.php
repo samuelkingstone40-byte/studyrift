@@ -62,6 +62,7 @@ Route::get('pay-failed',[App\Http\Controllers\PayPalPaymentController::class,'pa
 Route::get('pay-success',[App\Http\Controllers\PayPalPaymentController::class,'pay_success'])->name('pay-success');
 Route::post('paypal-capture-payment',[App\Http\Controllers\PayPalPaymentController::class,'capturePayment']);
 Route::get('paypal-payout',[App\Http\Controllers\PayPalPaymentController::class,'paypalpayout'])->name('paypal-payout');
+Route::post('verify-payment',[App\Http\Controllers\PayPalPaymentController::class,'verify'])->name('verify-payment');
 
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 

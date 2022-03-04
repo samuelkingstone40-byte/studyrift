@@ -63,10 +63,12 @@
 
             </td>
             <td>
+             <p>Select payment option</p>
             @guest
             <a href="{{route('login')}}" class="genric-btn info radius  btn-block">Login </a>
 
             @else
+            <button type="button" class="btn btn-secondary btn-block btn-lg" id="ravepay" ><img  style="width:100%;height:30px" src="{{asset('theme/img/flutterwave.svg')}}"></button>
             <div id="paypal-button-container" style="width:300px"></div>
             @endguest
                     
@@ -84,13 +86,12 @@
 @endsection
 @section('scripts')
 <script src="https://www.paypal.com/sdk/js?client-id=AZR8hLRpmE4st9mF0yAH7uLs8OwAh8vuUKNu1sGCkvr_95Sr_m34NFKxGK0IlUw_8SfafXw7IKcF4_1u&currency=USD"></script>
+<script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script type="text/javascript">
    $(document).ready(function(){
-
-    $('#loader').hide();
-
-    $(".update-cart").change(function (e) {
+     $('#loader').hide();
+     $(".update-cart").change(function (e) {
         e.preventDefault();
         $('#loader').show();
         var ele = $(this);
@@ -129,24 +130,22 @@
         }
     });
 
-   
- 
-
-function myOrders() {
-    var orders=[];
-    $(".doc td:nth-child(1)").each(function() {
+  
+    function myOrders() {
+     var orders=[];
+     $(".doc td:nth-child(1)").each(function() {
         orders.push($(this).text());
       
-    })
-    return orders;
-}
+      })
+      return orders;
+    }
 
-paypal.Buttons({
-    createOrder: function(data, actions) {
+    paypal.Buttons({
+     createOrder: function(data, actions) {
       // This function sets up the details of the transaction, including the amount and line item details.
       return actions.order.create({
         application_context: {
-          brand_name : 'Laravel Book Store Demo Paypal App',
+          brand_name : 'Study Merit',
           user_action : 'PAY_NOW',
         },
         purchase_units: [{
@@ -195,13 +194,13 @@ paypal.Buttons({
                       //window.location.href = '/pay-failed?reason=internalFailure';
                   });
           }else{
-              window.location.href = '/pay-failed?reason=failedToCapture';
+              alert('failed')
           }
       });
     },
 
     onCancel: function (data) {
-        window.location.href = '/pay-failed?reason=userCancelled';
+        alert('failed')
     }
 
 
@@ -215,7 +214,60 @@ paypal.Buttons({
       }
       return res;
     }
+
+
+    $('#ravepay').click(function(e) {
+       e.preventDefault();
+       let orders=myOrders();
+       FlutterwaveCheckout({
+       public_key: "FLWPUBK_TEST-c9d6287a35aee9e2cc16accad023e22b-X",
+       tx_ref: "SM_{{substr(rand(0,time()),0,7)}}",
+       amount: $('#total').html(),
+       currency: "USD",
+       payment_options: "card",
+     
+       
+       customer: {
+         email: "gathogoantony390@gmail.com",
+         name: "Anthony Gathogo",
+       },
+       
+       customizations: {
+         title: "Study Merit",
+         description: "Payment for an awesome cruise",
+         logo: "https://studymerit.com/theme/img/logo2.png",
+       },
+       callback : function(data){
+         var transid=data.transaction_id;
+         var _token=$("input[name='_token']").val();
+         $.ajax({
+             type:'post',
+             url:"{{route('verify-payment')}}",
+             data:{
+                 transid,
+                 _token,
+                 docs:orders
+             },
+             success:function(response){
+                if(response=='success'){
+                window.location.href = '/pay-success';
+                }
+             }
+             
+         })
+       },
+       onclose:function(){
+ 
+       },
+      
+     });
    
+       
+         })
+
+
 });
+
+
 </script>
 @endsection

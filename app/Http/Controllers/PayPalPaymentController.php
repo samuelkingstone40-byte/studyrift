@@ -42,6 +42,42 @@ class PayPalPaymentController extends Controller
       $this->_api_context->setConfig($paypal_conf['settings']);
 
   }
+
+  public function verify(Request $request){
+    $accessToken="FLWSECK_TEST-74893c254744408619f23efe48f0c3de-X";
+    $curl= curl_init();
+    curl_setopt_array($curl,array(
+        CURLOPT_URL => "https://api.flutterwave.com/v3/transactions/3192844/verify",
+        CURLOPT_RETURNTRANSFER=>true,
+        CURLOPT_CUSTOMREQUEST=>'GET',
+        CURLOPT_HTTPHEADER=>array("Content-Type: application/json","Authorization: Bearer ".$accessToken),
+    ));
+
+      $response=curl_exec($curl);
+      curl_close($curl);
+
+      $res=json_decode($response);
+
+     // return $res->data;
+
+      if($res->status=='success'){
+      $amount=$res->data->amount;
+      $orders=$request->get('docs');
+      $orderId=$res->data->flw_ref;
+      $transId=$request->transid;
+      $status="Avaialble";
+
+      for($i=0;$i< count($orders);$i++){
+        $this->add_orders($orderId,$transId,$status,$orders[$i]);
+         //return dd($orders[$i]);
+      }
+
+      $this->sales_transaction($amount,$transId,$status);
+
+      return "sucess";
+    }
+
+}
  
   public function capturePayment(Request $request){
     
