@@ -74,7 +74,7 @@ class PayPalPaymentController extends Controller
 
       $this->sales_transaction($amount,$transId,$status);
 
-      return "sucess";
+      return "success";
     }
 
 }
