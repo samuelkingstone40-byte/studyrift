@@ -18,7 +18,9 @@ Route::get('/about-us',[App\Http\Controllers\PublicController::class,'about'])->
 Route::get('/contact-us',[App\Http\Controllers\PublicController::class,'contact'])->name('contact');
 Route::get('/term-of-service',[App\Http\Controllers\PublicController::class,'termsofservice'])->name('terms-of-service');
 Route::get('/privacy-statement',[App\Http\Controllers\PublicController::class,'privacy'])->name('privacy');
-
+Route::get('blogs/{slug}',[App\Http\Controllers\BlogController::class,'view']);
+Route::get('blog-list',[App\Http\Controllers\BlogController::class,'blogs']);
+Route::resource('blogs',App\Http\Controllers::class);
 Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -103,6 +105,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('profile',[\App\Http\Controllers\Admin\SettingController::class,'profile'])->name('Adminprofile');
         Route::get('system-users',[\App\Http\Controllers\Admin\SettingController::class,'system_users'])->name('system-users');
         Route::post('post-users',[\App\Http\Controllers\Admin\SettingController::class,'post_user'])->name('postUser');
+
+        Route::get('blogs',[App\Http\Controllers\BlogController::class,'adminBlog'])->name('admin-blogs');
+        Route::get('blogs/create',[App\Http\Controllers\BlogController::class,'create']);
+        Route::get('blogs/edit/{id}',[App\Http\Controllers\BlogController::class,'edit']);
+        Route::post('blogs/store',[App\Http\Controllers\BlogController::class,'store']);
 
     });
 

@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        'Intervention\Image\ImageServiceProvider',
 
     ],
 
@@ -233,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
+        'Image' => 'Intervention\Image\Facades\Image',
 
     ],
 

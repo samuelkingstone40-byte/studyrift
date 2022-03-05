@@ -4,7 +4,7 @@
           <div class="col-lg-2 col-md-6 single-footer-widget">
             <h4>Information</h4>
             <ul>
-              <li><a href="#">Blogs</a></li>
+              <li><a href="{{url('/blog-list/')}}">Blogs</a></li>
             
             </ul>
           </div>

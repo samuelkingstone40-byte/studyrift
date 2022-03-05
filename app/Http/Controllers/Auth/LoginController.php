@@ -49,7 +49,7 @@ class LoginController extends Controller
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6',
-            'g-recaptcha-response' => 'required|recaptchav3:validate,0.5'
+           // 'g-recaptcha-response' => 'required|recaptchav3:validate,0.5'
         ]);
 
         if (Aut::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {

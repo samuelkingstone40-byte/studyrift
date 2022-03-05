@@ -259,7 +259,11 @@
                         </li>
                             </ul>
                         </li>
-
+                        <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/blogs')}}"
+                            aria-expanded="false"><i data-feather="folder" class="feather-icon"></i><span
+                                class="hide-menu">Blogs
+                            </span></a>
+                    </li>
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow text-white" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="settings" class="feather-icon"></i><span
                                     class="hide-menu">Default Settings </span></a>
