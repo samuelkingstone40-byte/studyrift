@@ -4,24 +4,19 @@
     <div class="container ">
       <h3 class="my-4"><b>Please get in touch with us.</b></h3>
       <p class="text-muted">Do you have an issue or a question?</p>
+      <p>No problem, complete the form. You may use this form to i. Get in touch with us if you have any general queries or issues</p>
       <div class="row">
         <div class="col-lg-3">
           <div class="contact_info">
-            <div class="info_item">
-              <i class="ti-home"></i>
-              <h6>California, United States</h6>
-              <p>Santa monica bullevard</p>
+            <div class="">
+              <ul>
+                <li><p>Notify authorities if there is any suspicious activity.</p></li>
+                <li><p>Complain about cheating</p></li>
+                <li><p>File a copyright complaint</p></li>
+              </ul>
+              
             </div>
-            <div class="info_item">
-              <i class="ti-headphone"></i>
-              <h6><a href="#">00 (440) 9865 562</a></h6>
-              <p>Mon to Fri 9am to 6 pm</p>
-            </div>
-            <div class="info_item">
-              <i class="ti-email"></i>
-              <h6><a href="#">support@colorlib.com</a></h6>
-              <p>Send us your query anytime!</p>
-            </div>
+           
           </div>
         </div>
         <div class="col-lg-9">
