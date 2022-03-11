@@ -2,80 +2,124 @@
 @section('content')
 
 <span  id="loader" class="circlespinner"></span>
-<div class="section_gap">
-   
-    <div class="container py-4">
-        <div class="card" style="background:transparent">
-       
-            <div class="card-body">
-                <h3 class="font-bold py-2">My Order</h3>
-          
-       <table id="cart" class="table table-hover table-condensed">
-         <thead>
-         <tr>
-            <th style="width:5%">ID</th>
-            <th style="width:50%">Document</th>
-            <th style="width:10%">Price</th>
-            <th style="width:5%">Quantity</th>
-            <th style="width:10%" class="text-center">Subtotal</th>
-            <th style="width:20%"></th>
-         </tr>
-         </thead>
-        <tbody>
-        @php $total = 0 @endphp
-        @if(session('cart'))
+<div class="section_gap ">
+    <div class="container">
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+          <h4 class="d-flex justify-content-between align-items-center mb-3 mt-4">
+            <span class="text-muted">Your cart</span>
+            <span class="badge badge-secondary badge-pill">{{count(session('cart'))}}</span>
+          </h4>
+          <ul class="list-group mb-3 mt-4">
+            @php $total = 0 @endphp
+            @if(session('cart'))
             @foreach(session('cart') as $id => $details)
-                @php $total += $details['price'] * $details['quantity'] @endphp
-                <tr data-id="{{ $id }}" class="doc">
-                <td data-th="">{{ $id }}</td>
-                    <td data-th="Product">
-                        <div class="row">
-                            <div class="col-sm-3 hidden-xs">
-                                
-                        <img class="img-thumbnail" src="{{$details['image']}}" alt="">
-                            </div>
-                            <div class="col-sm-9">
-                                <h4 class="nomargin">{{ Str::limit($details['name'],60) }}</h4>
-                            </div>
-                        </div>
-                    </td>
-                    <td data-th="Price">${{ $details['price'] }}</td>
-                    <td data-th="Quantity">
-                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
-                    </td>
-                    <td data-th="Subtotal"  class="text-center">{{ $details['price'] * $details['quantity'] }}</td>
-                    <td class="actions" data-th="">
-                        <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
-                    </td>
-                </tr>
+            @php $total += $details['price'] * $details['quantity'] @endphp
+            <li id="{{ $id }}"  class="list-group-item d-flex justify-content-between lh-condensed item">
+              <div>
+                <h6 class="my-0">Product name</h6>
+                <small class="text-muted">{{$details['name']}}</small>
+              </div>
+              <span class="text-muted">${{ $details['price'] }}</span>
+            </li>
             @endforeach
-        @endif
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4"></td>
-            <td ><h3><strong>Total<h3><strong> </td>
-            <td  class="text-right h3 font-bold" id="total">{{ $total }}</td>
-        </tr>
-        <tr>
-            <td  colspan="5">
-            <a href="{{ url('search') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-
-            </td>
-            <td>
-
-                <a href="{{route('checkout')}}" class="btn btn-success btn-block">Proceed Checkout</a>
-            
            
-              
-            </td>
-        </tr>
-    </tfoot>
-</table>
-      
-</div>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total (USD)</span>
+              <strong>${{ $total }}</strong>
+              <input type="hidden" id="total" value="{{$total}}">
+            </li>
+          </ul>
+           @endif
+        
         </div>
-</div>
+        <div class="col-md-8 order-md-1">
+          <h3 class="mb-3 mt-4">Billing address</h3>
+          <form class="needs-validation" novalidate>
+              @csrf
+            @guest
+            <div class="row">
+                
+              <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" class="form-control" id="cname" placeholder=""  required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="lastName">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder=""  required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+            </div>
+    
+           
+    
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <input type="email" class="form-control"   id="cemail" placeholder="you@example.com">
+              <div class="invalid-feedback">
+                Please enter a valid email address for shipping updates.
+              </div>
+            </div>
+            @else
+
+            <div class="row">
+                
+                <div class="col-md-6 mb-3">
+                  <label for="firstName">First name</label>
+                  <input type="text" class="form-control" id="cname" placeholder="" value="{{Auth::user()->name}}" required>
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="lastName">Last name</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+              </div>
+      
+             
+      
+              <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" value="{{Auth::user()->email}}"   id="cemail" placeholder="you@example.com">
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              </div>
+            @endguest
+    
+            
+    
+        
+           
+            <hr class="mb-4">
+    
+            <h4 class="mb-3">Payment Option</h4>
+    
+            
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" style="background:#04091e;width:300px" class="btn btn-warning text-centre text-white" id="ravepay" ><img style="height: 40px"  src="{{asset('theme/img/rave.png')}}" class="mr-2"> Pay with flutterwave</button>
+                </div>
+                <div class="col-12">
+                    <div id="paypal-button-container" style="width:300px"></div>
+                </div>
+               
+            </div>
+           
+           
+          </form>
+        </div>
+      </div>
+    </div>
 </div>
 @endsection
 @section('scripts')
@@ -126,12 +170,15 @@
 
   
     function myOrders() {
-     var orders=[];
-     $(".doc td:nth-child(1)").each(function() {
-        orders.push($(this).text());
-      
-      })
-      return orders;
+
+     var items=document.getElementsByClassName("item")
+      , orders = []
+      ; 
+    for(var i = 0, c = items.length; i<c; i++) {
+        orders.push(items[i].id);
+      }
+
+      return orders
     }
 
     paypal.Buttons({
@@ -144,7 +191,7 @@
         },
         purchase_units: [{
           amount: {
-            value: $('#total').html()
+            value: $('#total').val()
           }
         }],
       });
@@ -213,10 +260,12 @@
     $('#ravepay').click(function(e) {
        e.preventDefault();
        let orders=myOrders();
+
+       console.log(orders)
        FlutterwaveCheckout({
        public_key: "FLWPUBK_TEST-c9d6287a35aee9e2cc16accad023e22b-X",
        tx_ref: "SM_{{substr(rand(0,time()),0,7)}}",
-       amount: $('#total').html(),
+       amount: $('#total').val(),
        currency: "USD",
        payment_options: "card",
      
@@ -228,7 +277,7 @@
        
        customizations: {
          title: "Study Merit",
-         description: "Payment for study notes",
+         description: "Payment for an awesome cruise",
          logo: "https://studymerit.com/theme/img/logo2.png",
        },
        callback : function(data){

@@ -101,7 +101,7 @@
                         @endif
                         <div class="row">
                             <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                <a href="{{ route('cart') }}" class="btn btn-primary btn-block">Checkout</a>
+                                <a href="{{ route('checkout') }}" class="btn btn-primary btn-block">Checkout</a>
                             </div>
                         </div>
                     </div>

@@ -387,10 +387,6 @@ class ClientController extends Controller
         }
     }
 
-    public function download_file($filename){
-        $filepath = public_path('files/'.$filename);
-        return Response::download($filepath); 
-    }
 
     public function earnings(){
         $data['current_earnings']=DB::table('orders')

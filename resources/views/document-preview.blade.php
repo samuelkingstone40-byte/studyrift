@@ -282,7 +282,7 @@
             <h3 class="text-success">Success</h3> <i class="fa fa-check fa-lg text-success"></i>
             <p class="r3 px-md-5 px-sm-1">Item added to your cart</p>
             <div class="text-center mb-3"> 
-                <a href="{{route('cart')}}" class="genric-btn primary circle w-50">Checkout</a>
+                <a href="{{route('checkut')}}" class="genric-btn primary circle w-50">Checkout</a>
              </div>
 
               <a class="genric-btn link-border" href="{{route('search')}}">Continue Shopping</a>

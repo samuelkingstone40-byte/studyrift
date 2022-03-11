@@ -52,7 +52,7 @@ class BlogController extends Controller
         $thumbnailPath = public_path().'/blogs/thumbnail/';
         $originalPath = public_path().'/blogs/images/';
         $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
-        $thumbnailImage->resize(512,512);
+        $thumbnailImage->resize(300,300);
         $thumbnailImage->save($thumbnailPath.time().$originalImage->getClientOriginalName()); 
        Blog::create([
            'category'=>$request->category,

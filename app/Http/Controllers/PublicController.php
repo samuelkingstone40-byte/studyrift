@@ -5,6 +5,7 @@ use DB;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Response;
 
 class PublicController extends Controller
 {
@@ -120,6 +121,10 @@ class PublicController extends Controller
     {
         return view('cart');
     }
+
+    public function checkout(){
+        return view('checkout');
+    }
     public function addToCart($id)
     {
         $product = DB::table('notes')
@@ -185,6 +190,12 @@ class PublicController extends Controller
 
     public function privacy(){
         return view('privacy');
+    }
+
+    
+    public function download_file($filename){
+        $filepath = public_path('files/'.$filename);
+        return Response::download($filepath); 
     }
 
    

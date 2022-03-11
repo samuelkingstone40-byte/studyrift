@@ -7,7 +7,7 @@ use App\Models\Transaction as Transactions;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Response;
 
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
@@ -68,20 +68,22 @@ class PayPalPaymentController extends Controller
       $status="Avaialble";
 
       for($i=0;$i< count($orders);$i++){
-        $this->add_orders($orderId,$transId,$status,$orders[$i]);
+        if(Auth::user()){
+          $this->add_orders($orderId,$transId,$status,$orders[$i]);
+        }
+        $docId=$orders[$i];
+        $this->download_file($docId);
          //return dd($orders[$i]);
       }
 
       $this->sales_transaction($amount,$transId,$status);
 
-      return "success";
+     return "success";
     }
 
 }
  
   public function capturePayment(Request $request){
-    
-
       $amount=$request->get('orders')[0]['amount']['value'];
       $orders=$request->get('docs');
       $orderId=$request->get('orderId');
@@ -90,6 +92,8 @@ class PayPalPaymentController extends Controller
 
       for($i=0;$i< count($orders);$i++){
         $this->add_orders($orderId,$transId,$status,$orders[$i]);
+        $docId=$orders[$i];
+        $this->download_file($docId);
          //return dd($orders[$i]);
       }
 
@@ -130,7 +134,12 @@ class PayPalPaymentController extends Controller
    }
 
    public function sales_transaction($amount,$transId,$status){
+    if(Auth::user())
+    {
     $user_id=Auth::id();
+    }else{
+      $user_id='000000';
+    }
     $order = Transactions::create([
              'transId'=>$transId,
              'user_id'=>$user_id,
@@ -243,5 +252,29 @@ public function update_orders(){
   ->where('status','Available')
   ->update(['status'=>'Paid']);
 }
+
+public function download_file($docId){
+    $doc=DB::table('notes')->where('notes.id',$docId)
+    ->leftJoin('files','files.document_id','=','notes.id')
+    ->select('notes.*','files.filename')
+    ->first();
+ 
+      $downloads = session()->get('downlads', []);
+     
+          $downloads[] = [
+              "name" => $doc->title,
+              "quantity" => 1,
+              "price" => $doc->price,
+              "image" => $doc->image,
+              'filename'=>$doc->filename
+          ];
+      
+         
+      session()->put('downloads', $downloads);
+
+    
+  
+}
+
    
 }

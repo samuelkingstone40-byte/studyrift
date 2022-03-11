@@ -35,7 +35,7 @@ Route::get('my-uploads', [App\Http\Controllers\ClientController::class, 'my_uplo
 Route::get('edit-document/{id}', [App\Http\Controllers\ClientController::class, 'edit_document'])->name('edit-document');
 Route::get('downloads', [App\Http\Controllers\ClientController::class, 'downloads'])->name('downloads');
 Route::get('fetch-downloads', [App\Http\Controllers\ClientController::class, 'fetch_downloads'])->name('fetch-downloads');
-Route::get('download/{filename}', [App\Http\Controllers\ClientController::class, 'download_file'])->name('download');
+Route::get('download/{filename}', [App\Http\Controllers\PublicController::class, 'download_file'])->name('download');
 Route::post('update-profile', [App\Http\Controllers\ClientController::class, 'update_profile'])->name('update-profile');
 Route::post('update-paypal', [App\Http\Controllers\ClientController::class, 'update_paypal'])->name('update-paypal');
 Route::post('update-password', [App\Http\Controllers\ClientController::class, 'update_password'])->name('update-password');
@@ -56,6 +56,8 @@ Route::post('uploadImg',[App\Http\Controllers\ClientController::class,'upload_pr
 Route::get('search/', [App\Http\Controllers\PublicController::class,'documents'])->name('search');
 Route::get('document-preview/{slug}', [App\Http\Controllers\PublicController::class,'document_preview']);
 Route::get('cart', [App\Http\Controllers\PublicController::class, 'cart'])->name('cart');
+Route::get('checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
+
 Route::get('add-to-cart/{id}', [App\Http\Controllers\PublicController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [App\Http\Controllers\PublicController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [App\Http\Controllers\PublicController::class, 'remove'])->name('remove.from.cart');
