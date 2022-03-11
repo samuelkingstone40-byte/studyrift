@@ -205,6 +205,7 @@
 
       // This function captures the funds from the transaction.
       return actions.order.capture().then(function(details) {
+          
           if(details.status == 'COMPLETED'){
             return fetch('/paypal-capture-payment', {
                       method: 'post',
@@ -235,7 +236,7 @@
                       //window.location.href = '/pay-failed?reason=internalFailure';
                   });
           }else{
-              alert('failed')
+              alert('Cancled')
           }
       });
     },
@@ -261,14 +262,19 @@
        e.preventDefault();
        let orders=myOrders();
 
-       console.log(orders)
+       var cname=$('#cname').val();
+       var cemail=$('#cname').val();
+       if (cname == null || cname == "", cemail == null || cemail== "") {
+           alert('Name and email fields are required')
+       }else{
        FlutterwaveCheckout({
        public_key: "FLWPUBK_TEST-c9d6287a35aee9e2cc16accad023e22b-X",
        tx_ref: "SM_{{substr(rand(0,time()),0,7)}}",
        amount: $('#total').val(),
        currency: "USD",
        payment_options: "card",
-     
+       
+       
        
        customer: {
          email: $('#cemail').val(),
@@ -304,6 +310,7 @@
        },
       
      });
+    }
    
        
          })
