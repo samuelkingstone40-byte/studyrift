@@ -47,8 +47,7 @@
                       </div>
                       <div class="form-group">
                                      
-                        {!! NoCaptcha::renderJs() !!}
-                        {!! NoCaptcha::display() !!}
+                      
                      </div>
                     <div class="form-group">
                     <button type="submit" class="primary-btn">Submit</button>
