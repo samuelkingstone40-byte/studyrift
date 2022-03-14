@@ -106,9 +106,7 @@
     
             
             <div class="row">
-                <div class="col-12">
-                    <button type="button" style="background:#04091e;width:300px" class="btn btn-warning text-centre text-white" id="ravepay" ><img style="height: 40px"  src="{{asset('theme/img/rave.png')}}" class="mr-2"> Pay with flutterwave</button>
-                </div>
+               
                 <div class="col-12">
                     <div id="paypal-button-container" style="width:300px"></div>
                 </div>
