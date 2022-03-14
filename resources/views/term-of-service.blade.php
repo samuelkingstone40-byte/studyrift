@@ -103,6 +103,160 @@
                     </ol>
                   </li>
               </ul>
+              <h5>Section 6.0 Downloading Study Note</h5>
+              <ul>
+                <li>6.1 By using the Platform it is possible to download Study Note whether free or for payment. 
+                  It is necessary to have a Profile if you wish to download Study Note. The profile will show what Study Note you have downloaded.
+                   The Study Note you have downloaded will remain accessible to you unless you delete it yourself. After the deletion of Study Note you will no longer be able to access it unless you download it again if that is still possible.
+                  </li>
+                  <li>6.2 If you create a Profile you have the possibility to rate the Study Note of other users in the manner stated on the Platform.</li>
+                  <li>
+                    6.3 If the Study Note is offered for payment, you must pay the requested amount in advance before you can download the Study Note. Payment options are stated on the Platform. Further details regarding payments are listed in <b>Section 7</b>.
+                  </li>
+                  <li>6.4 Study Merit will refund your purchase on the Study Note if it is not possible to download and/or the Study Note is demonstrably defect due to an error in the Platform. If bound by these requirements, the “100% Money Back Guarantee” will come into play.</li>
+              </ul>
+              <p>To qualify for the "money back guarantee", you must meet the following conditions:</p>
+              <ol style="list-style-type: lower-roman;">
+                <li>Your purchase was within the last 14 days</li>
+                <li>You contacted the seller of the item to tell him/her why you are dissatisfied with the quality</li>
+                <li>You verified that you file a complaint about a lack of information, chapters, or subjects that the seller did describe were missing in the purchased content</li>
+                <li>You have not downloaded the document</li>
+                
+              </ol>
+              <p>Particularly, do not download the document! It is particularly important if you would like to have a refund. Everyone can see the whole document in the viewer, before downloading. During the process of downloading the document on your computer, we first always ask you if you read the whole document and if you are happy with the quality of the document.
+                 If you agree to this, then you will not be able to ask for a refund anymore. </p>
+
+                 <h5>Section 7.0 Credits, Fees, Services, Pricing, and Payments</h5>
+                 <ul>
+                   <li>
+                   7.1     <span class="font-weight-bold">All about Credits</span>
+                    <p>Credits are like Study Merit’s very own currency and can be used to download any file on Study Merit – including educational resources such as syllabuses course contents, lecture/course notes, case studies, research papers, and lesson plans. Credits are sold in pre-set packs – the larger the credit pack, the less you will pay per credit. View credit pack pricing.
+                    </p>
+                   </li>
+                   <li>
+                    7.2     <span class="font-weight-bold">Credit Expiry</span>
+                    <p>Credits never expire when you use your Study Merit account once a year. Using your account is as easy as signing into your account.</p>
+                   </li>
+                   <li>
+                    7.3     <span class="font-weight-bold">Credit Pack Refunds</span>
+                    <p>Unused credit packs can be returned for a full refund within 14 days of purchase.
+                       If any credits from a credit pack have been used, no refunds will be offered.</p>
+                   </li>
+                   <li>
+                    7.4    <span class="font-weight-bold">Referral Credit</span>
+                    <p>
+                      After registering for a new account, you can use the “My Referrals” feature (available from a link located within the My Account portal) to receive a unique-to-you Promo Link.
+                       When new members register with the Service using this link, your Study Merit account will receive 1 referral credit, added to your wallet, provided that the individual associated with the new account has not previously opened any account through the Service. Please note that new member must use this Promo Link directly when they sign up to qualify. Study Merit reserves the right to withhold payment or demand refunds from individual users who attempt to open multiple accounts using such Promo Links.
+                    </p>
+                   </li>
+                   <li>
+                    7.5     <span class="font-weight-bold">Referral Credit Rules</span>
+                    <p>For any Study Merit Referral Credit offer that involves free credit, the general rules below apply:</p>
+                    <ul>
+                      <li>7.5.1 Any Study Merit Referral Credit offer is limited to one per customer and cannot be used in conjunction with any other offer.</li>
+                      <li>7.5.2 In the event of a Member opening more than one account in order to claim multiple referral offers, or claiming an offer on duplicate accounts, we reserve the right to suspend and close any duplicate accounts and make void any credit placed.</li>
+                      <li>7.5.3 Referral credits can be only used on market providing the value of the credit referral does not exceed the maximum credit amount on any account.</li>
+                      <li>7.5.4 Study Merit reserves the right to refuse a Referral Credit to a user, member where Study Merit reasonably believes that such member is abusing or defrauding the Referral credit system.</li>
+                      <li>7.5.5 Study Merit reserves the right to amend or withdraw any promotion at any point for whatever reason.</li>
+                      <li>7.5.6 Study Merit decisions are final and correspondence will not be entered into relation to such decisions.</li>
+                      <li>7.5.7 Referral Credit tokens may not be withdrawing as actual currency</li>
+                    </ul>
+                   </li>
+                   <li>
+                    7.8   <span class="font-weight-bold"> Pricing</span>
+                    <p>Sellers are solely responsible for setting the prices for the sale of their Content distributed through the Service, including both electronic and physical materials, provided that such pricing (for items that are not offered free of charge) is not below the minimum price set by Study Merit. Although the user is using credit to buy notes, all note prices will be set in USD by the seller and minimum price is set at $5 Credit to ensure all costs are covered.
+                       Sellers are obligated to sell their Content at the prices listed on the Service.</p>
+                   </li>
+                   <li>
+                    7.9    <span class="font-weight-bold">Purchases</span>
+                    <p>When you (Buyer/Student-Buyer) purchase original digital Content you will have the ability to download the materials from your My Purchases page for as long as the materials are available through the Service. In the case of digital video or audio content,
+                       you will have the ability to stream the content from your My Purchases page, again, for as long as the materials are available through the Service. We may, in our sole discretion, make original digital Content you purchase available indefinitely, 
+                      but your access to such materials through your My Purchases page may be disabled if the material is removed from the Service, for example, by the original seller as a result of the original seller’s account being closed or the materials being removed in response to an intellectual property complaint or Digital Millennium Copyright Act notification.
+                       For this reason, we encourage you to download any original digital Content you may purchase, and to backup those materials accordingly.
+                      </p>
+                      <ul>
+                        <li>7.9.1 Study Merit cannot restore access to, or provide copies of, purchased materials that have been removed from our Service.</li>
+                        <li>7.9.2 You agree not to share your purchases with your colleagues unless you have purchased additional licenses. You agree not to post your purchased or freely downloaded files on the Internet.</li>
+                        <li>7.9.3 You agree to pay in full for all Content purchased through the Service, and agree that Study Merit may charge your credit card, PayPal or other account for any Content purchased, including any applicable shipping charges, and for any additional amounts (including any taxes and late fees, as applicable) as may be accrued to or in connection with your Member Account.</li>
+                        <li>7.9.4 Study Merit merely acts as an intermediary by offering a Platform which allows users to upload Study Note and it merely facilities the payments. These Terms and Conditions therefore only apply to the use of the Platform and not to the agreement between users of the Platform.</li>
+                        <li>7.9.5 The methods of payment available when purchasing items are listed on the Platform. All payments are handled in cooperation with a third party, who will transfer the earnings involved with all sales amongst sellers.</li>
+                        <li>7.9.6 From the amount that is paid to every respective user, the Service costs will be deducted. If you upload Study Note and set a price on the Platform you can, in real time, see the amount of money you will receive grossly.</li>
+                        <li>7.9.7 With regard to the amount of payments you receive from Study Merit, the data of Study Merit will be assumed to be correct unless you can prove this data to be incorrect.</li>
+                        <li>7.9.8 Study Merit accepts no liability whatsoever regarding errors in the orders of Study Notes, for instance, regarding the number of copies or the type of Study Note. It is not possible to cancel the purchase of any Study Note or to change. For any of the issues above, Study Merit refers you to the user responsible for selling the Study Note.</li>
+                        <li>7.9.9 Students are personally responsible for any necessary declaration of income at the tax collector's office in the country where tax is to be paid.</li>
+                        <li>
+                          
+                        </li>
+                      </ul>
+                   </li>
+                   <li>
+                     <p>YOU ARE RESPONSIBLE FOR THE TIMELY PAYMENT OF ALL SALES PRICES AND FEES, AND FOR PROVIDING STUDY MERIT WITH VALID CREDIT CARD INFORMATION OR PAYPAL ACCOUNT DETAILS FOR PAYMENTS OF ALL SUCH FEES AND CHARGES.</p>
+                   </li>
+                 </ul>
+                 <h5>Section 8.0 Notice and Take Down</h5>
+                 <ul>
+                   <li>8.1 In order to stop infringement of the rights of third parties as soon as possible, Study Merit has developed a procedure for reporting infringing Study Note by means of a notice.</li>
+                   <li>8.2 If you claim that certain Study Note infringes on your rights, you can report this alleged infringement to Study Merit by sending a notice to (Insert email to report infringement). Study Merit will examine the notice and, if possible and necessary, take the measures stated in this section.</li>
+                   <li>8.3 The notice should include:
+                     <ul>
+                       <li>8.3.1 The URL within the website on which the allegedly infringing Study Note can be found.</li>
+                       <li>8.3.2 A statement that your rights have been infringed and why.</li>
+                       <li>8.3.3 Contact details which Study Merit can use to contact you, such as your complete name, address, telephone number and email address.</li>
+                       <li>8.3.4 A statement supported by documentary evidence that the information in your notice is accurate and complete and - if it concerns the alleged infringement of Intellectual Property Rights - that you are the holder of the respective
+                          Intellectual Property Rights or that you are authorized to act on behalf of the holder; and</li>
+                        <li>
+                          8.3.5 A description of the work or works which have been allegedly infringed, with a specification of the precise nature of that alleged infringement.
+                        </li>
+                     
+                     </ul>
+                   </li>
+                   <li>8.4 Study Merit reserves the right to forward the notice to the party responsible for the Study Note to which the notice refers.</li>
+                   <li>8.5 In the event that it is evident from the notice that the Study Note the notice refers to is manifestly unlawful, Study Merit will remove or block access to the Study Note.</li>
+                   <li>8.6 Study Merit reserves the right not to grant a request to remove or make inaccessible Study Note if it has well-founded reasons to doubt the accuracy of the notice or the lawful nature of the evidence submitted, or if the Study Note to which the notice refers do not appear to be manifestly unlawful. Within that scope Study Merit may for instance require a judicial decision of a competent court in the United Kingdom,
+                      whose decision demonstrates that the Study Note concerned is manifestly unlawful.</li>
+                    <li>
+                      8.7 By issuing a notice you indemnify Study Merit against any claim of third parties with regard to removing or making inaccessible the Study Note and/or the provision of the name, address and place of residence of the user who sent the notice. Such indemnification also covers all the damage that Study Merit suffers and the costs it incurs in relation to such a claim,
+                       including - but not limited to - reimbursing the costs of legal assistance.
+                    </li>
+                    <li>8.8 Study Merit will not in any way whatsoever be a party to any dispute between the party that issued the notice and the other party.</li>
+                 </ul>
+                 <h5>Section 9.0 License to use website</h5>
+                 <ul>
+                   <li>
+                    9.1 Unless otherwise stated, Study Merit and/or its licensors own the intellectual property rights on the website and material on the website. Subject to the license below, all these intellectual property rights are reserved.
+                    <p>
+                      You may view, download for caching purposes only, and print pages from the website for your own personal use, subject to the restrictions set out below and elsewhere in these terms and conditions. 
+                    </p>
+                    <p>You must not: </p>
+                    <ol style="list-style-type: lower-roman;">
+                      <li>i. republish material from this website (including republication on another website). </li>
+                      <li>ii. sell, rent or sub-license material from the website. </li>
+                      <li>iii. show any material from the website in public. </li>
+                      <li>iv. reproduce, duplicate, copy or otherwise exploit material on this website for a commercial purpose. </li>
+                      <li>v. edit or otherwise modify any material on the website; or </li>
+                      <li>vi. redistribute material from this website except for content specifically and expressly made available for redistribution. </li>
+
+                    </ol>
+                    <p>Where content is specifically made available for redistribution, it may only be redistributed within your organisation</p>
+                   </li>
+                   <li>9.2 Under the conditions stated in this Terms and Conditions, Study Merit hereby grants you a limited, personal, revocable, non-exclusive, non-licensable, non-assignable right to use the Platform and the 
+                     Content and view it in the manner and the format as used on the Platform.</li>
+                    <li>9.3 You may not change, render illegible or remove any trademark or recognition signs affixed to the Website, the Content and/or any references to Intellectual Property Rights.</li>
+                    <li>9.4 Nothing in these Terms and Conditions is construed to transfer any Intellectual Property Rights to you. You will refrain from any action which may infringe on the Intellectual Property Rights of Study Merit such as registering domain names, trademarks or Google AdWords that are identical 
+                      and/or like any Intellectual Property Rights of Study Merit.</li>
+                    <li>9.5 Without prior written consent of Study Merit no one is allowed to retrieve and re-use a substantial part of the Contents of (parts of) the Platform and/or retrieve and repeatedly and systematically re-use non-substantial parts of the Contents of the Platform within the sense of the UK Databases Act.</li>
+                    <li>9.6 Study Note offered on Study Merit is only to be used as a study aid. You are not permitted to submit Study Note found on Study Merit as your own work if it is not, as this is in breach of copyright. This is also plagiarism and constitutes academic misconduct at all academic institutions.</li>
+                 </ul>
+
+                 <h5>Section 10.0 Acceptable Use</h5>
+                 <ul>
+                   <li>10.1 You must not use this website in any way that causes, or may cause, damage to the website or impairment of the availability or accessibility of the website; or in any way which is unlawful, illegal, fraudulent or harmful, or in connection with any unlawful, illegal, fraudulent or harmful purpose or activity.</li>
+                   <li>10.2 You must not use this website to copy, store, host, transmit, send, use, publish or distribute any material which consists of (or is linked to) any spyware, computer virus, Trojan horse, worm, keystroke logger, root kit or other malicious computer software.</li>
+                   <li>10.3 You must not conduct any systematic or automated data collection activities (including without limitation scraping, data mining, data extraction and data harvesting) on or in relation to this website without Study Merit express written consent.</li>
+                   <li>10.4 You must not use this website to transmit or send unsolicited commercial communications.</li>
+                   <li>10.5 You must not use this website for any purposes related to marketing without Study Merit express written consent.</li>
+                 </ul>
+
               </div>
             
              
