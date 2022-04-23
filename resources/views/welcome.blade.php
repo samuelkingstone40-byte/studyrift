@@ -106,7 +106,6 @@
                 <h1 class="mb-3">Why use Study Merit?</h1>
                 <p>
                   Finding homework assistance does not have to be difficult. Why hasn't there been a change in how you get help with your course work, although practically every element of education and instruction has improved thanks to better technology and the Internet? Why is it difficult to locate a reasonably priced educator or subject matter expert? There is, at long last! StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.
-                  
                 </p>
 
                 <p>
