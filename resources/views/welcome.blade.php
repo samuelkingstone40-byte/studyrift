@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
-
+<style>
+  .contimg{
+    width:80%;
+  }
+</style>
     <section class="home_banner_area">
       <div class="banner_inner">
         <div class="container">
@@ -40,7 +44,7 @@
 
     <!--================ Start Feature Area =================-->
     <section class="feature_area section_gap_top">
-      <div class="container">
+      <div class="m-5">
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="main_title">
@@ -97,44 +101,50 @@
     <!--================ End Popular Courses Area =================-->
 
     <!--================ Start Registration Area =================-->
-    <div class="section_gap registration_area">
-      <div class="container">
+
+    <section>
+      <div class="section bg-white">
+        <div class="m-5">
         <div class="row align-items-center">
-          <div class="col-lg-7">
-            <div class="row clock_sec clockdiv" id="clockdiv">
-              <div class="col-lg-12">
-                <h1 class="mb-3">Why use Study Merit?</h1>
-                <p>
-                  Finding homework assistance does not have to be difficult. Why hasn't there been a change in how you get help with your course work, although practically every element of education and instruction has improved thanks to better technology and the Internet? Why is it difficult to locate a reasonably priced educator or subject matter expert? There is, at long last! StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.
-                </p>
-
-                <p>
-
-                  StudyMerits connects you with tutors for any topic or allows you to earn money by tutoring others. Before today, there was no method to use the Internet as a useful and inexpensive study tool for course/assignment-specific learning. StudyMerits provides you with the answers and solutions you require in a wide range of courses, allowing you to learn more quickly and effectively. You can also earn money by assisting others in their education. What a wonderful way to give back. Please don't put it off! For a limited time, you can join Study Merits for free.
-                </p>
-              </div>
-              <div class="col clockinner1 clockinner">
-                <h1 class="days">+150K</h1>
-                <span class="smalltext">uploads</span>
-              </div>
-              <div class="col clockinner clockinner1">
-                <h1 class="hours">+13K</h1>
-                <span class="smalltext">downloads</span>
-              </div>
-              <div class="col clockinner clockinner1">
-                <h1 class="minutes">+2.5K</h1>
-                <span class="smalltext">users</span>
-              </div>
-             
-            </div>
+          <div class="col-md-12 text-center">
+          <h1 class="py-4">Why use Study Merit?</h1>
           </div>
-          <div class="col-lg-4 offset-lg-1">
-            <img src="{{asset('theme/img/banner/free.png')}}" alt="">
-            
+          <div class="col-md-3">
+            <h3>Access quality learning materials</h3>
+            <p>
+            StudyMerits provides you with the answers and solutions you require in a wide range of courses, allowing you to learn more quickly and effectively.
+            </p>
+            <img class="contimg" src="{{asset('theme/img/students.png')}}" alt="">
           </div>
+        
+
+        <div class="col-sm-3">
+        <img class="contimg" src="{{asset('theme/img/win.png')}}" alt="">
+           <h3>Improve your academic performance</h3>
+           <p>
+           StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.
+           </p>
         </div>
+
+        <div class="col-sm-3">
+          <h3>Learn and Earn</h3>
+          <p>You can also earn money by assisting others in their education. What a wonderful way to give back.Share your notes withs and earn out if it</p>
+           <img class="contimg" src="{{asset('theme/img/earn.png')}}" alt="">
+        </div>
+
+       <div class="col-sm-3">
+       <img class="contimg" src="{{asset('theme/img/access.png')}}" alt="">
+         <h3>Convinience</h3>
+         <p>
+         Why is it difficult to locate a reasonably priced educator or subject matter expert? There is, at long last! StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.Connect from anywhere at anytime.
+         </p>
+       </div>
+
+      
+
       </div>
-    </div>
+    </section>
+    
     <!--================ End Registration Area =================-->
 
     <!--================ Start Trainers Area =================-->
