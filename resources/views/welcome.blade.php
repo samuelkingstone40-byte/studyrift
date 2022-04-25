@@ -56,7 +56,7 @@
         <div class="row ">
           <div class="col-lg-4 col-md-6">
             <div class="single_feature bg-white text-center">
-              <div class="icon"><i class="fa fa-user fa-5x"></i></div>
+              <div class="icon"><i class="fa fa-user fa-4x"></i></div>
               <div class="desc">
                 <h3 class="mt-3 mb-2">Sign up</h3>
                 <p>
@@ -68,7 +68,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature bg-white text-center">
-              <div class="icon"><i class="fa fa-cloud-upload fa-5x "></i></div>
+              <div class="icon"><i class="fa fa-cloud-upload fa-4x "></i></div>
               <div class="desc">
                 <h3 class="mt-3 mb-2">Upload</h3>
                 <p>
@@ -80,7 +80,7 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature bg-white text-center">
-              <div class="icon"><span class="fa fa-money fa-5x"></span></div>
+              <div class="icon"><i class="fa fa-money fa-4x"></i></div>
               <div class="desc">
                 <h3 class="mt-3 mb-2">Set a Price</h3>
                 <p>
