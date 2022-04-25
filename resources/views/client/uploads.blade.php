@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <section class="section_gap">
- <div class="container py-2">
+ <div class="m-4 py-2">
 
    
       <h3 class="mb-2">My Upoads</h3>

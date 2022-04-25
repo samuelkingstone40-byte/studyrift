@@ -121,7 +121,7 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://www.paypal.com/sdk/js?client-id=AZR8hLRpmE4st9mF0yAH7uLs8OwAh8vuUKNu1sGCkvr_95Sr_m34NFKxGK0IlUw_8SfafXw7IKcF4_1u&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AYtW_ATgH0S2gv_oxT9HWy1DgnJB4FtZqYZ139foyxgp6_vLtuzbhLLAHhGqKGpds1BM0xjOdzA3qcT7&currency=USD"></script>
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script type="text/javascript">

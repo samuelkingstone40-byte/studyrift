@@ -43,24 +43,22 @@
     <!--================ End Home Banner Area =================-->
 
     <!--================ Start Feature Area =================-->
-    <section class="feature_area section_gap_top">
-      <div class="m-5">
+    <section class="feature_area  mt-4">
+      <div class="ma-5">
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="main_title">
-              <h2 class="mb-3">How it works</h2>
-              <p>
-                Upload and download notes with students and professional learners globally and make money!
-              </p>
+              <h2 class="mb-3 mt-4">How it works</h2>
+             
             </div>
           </div>
         </div>
-        <div class="row">
+        <div class="row ">
           <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="fa fa-user"></span></div>
+            <div class="single_feature bg-white text-center">
+              <div class="icon"><i class="fa fa-user fa-5x"></i></div>
               <div class="desc">
-                <h4 class="mt-3 mb-2">Sign up</h4>
+                <h3 class="mt-3 mb-2">Sign up</h3>
                 <p>
                   Create a free account on Study merit 
                 </p>
@@ -69,10 +67,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="fa fa-cloud-upload"></span></div>
+            <div class="single_feature bg-white text-center">
+              <div class="icon"><i class="fa fa-cloud-upload fa-5x "></i></div>
               <div class="desc">
-                <h4 class="mt-3 mb-2">Upload</h4>
+                <h3 class="mt-3 mb-2">Upload</h3>
                 <p>
                   Upload your study guides, summaries, practice questions, lecture notes, assignments, solutions and much more!
                 </p>
@@ -81,10 +79,10 @@
           </div>
 
           <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="fa fa-money"></span></div>
+            <div class="single_feature bg-white text-center">
+              <div class="icon"><span class="fa fa-money fa-5x"></span></div>
               <div class="desc">
-                <h4 class="mt-3 mb-2">Set a Price</h4>
+                <h3 class="mt-3 mb-2">Set a Price</h3>
                 <p>
                   Set the price for your notes and wait to sell! You earn money from each document purchased. This money is added to your account instantly.
                 </p>
@@ -107,7 +105,7 @@
         <div class="m-5">
         <div class="row align-items-center">
           <div class="col-md-12 text-center">
-          <h1 class="py-4">Why use Study Merit?</h1>
+          <h1 class="py-4 mt-4">Why use Study Merit?</h1>
           </div>
           <div class="col-md-3">
             <h3>Access quality learning materials</h3>
@@ -128,7 +126,9 @@
 
         <div class="col-sm-3">
           <h3>Learn and Earn</h3>
-          <p>You can also earn money by assisting others in their education. What a wonderful way to give back.Share your notes withs and earn out if it</p>
+          <p>
+          Studymerit is a perfect way to sell & buy study materials  and other class supplements. If you have done well in your classes, and want others to succeed in college. Use Studymerit as an outlet, and get paid at the same time.
+          </p>
            <img class="contimg" src="{{asset('theme/img/earn.png')}}" alt="">
         </div>
 
@@ -157,11 +157,11 @@
 
     <!--================ Start Testimonial Area =================-->
     <div class="testimonial_area section_gap">
-      <div class="container">
+      <div class="ma-5">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">
-              <h2 class="mb-3">What users are saying</h2>
+              <h2 class="mb-3">What students say about Studymerit</h2>
               <p>
                 
               </p>
@@ -204,13 +204,29 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="{{('theme/img/testimonials/t1.jpg')}}" alt="" />
+                  <img src="{{('theme/img/testimonials/t4.png')}}" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
                     <h4>Justin mUsk</h4>
                     <p>
                       I got to know of Study Merit from a class mate  who had used the site before, I uploaded my notes from a medical class and within a day, I had sold all but one. The site is quit useful to anyone who has quality class content
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testi_item">
+              <div class="row">
+                <div class="col-lg-4 col-md-6">
+                  <img src="{{('theme/img/testimonials/t5.png')}}" alt="" />
+                </div>
+                <div class="col-lg-8">
+                  <div class="testi_text">
+                    <h4>Davidson Ford</h4>
+                    <p>
+                    I think Studymerit is a great way to share your work and help others, while also earning money for your efforts. I believe it's a very useful tool.
                     </p>
                   </div>
                 </div>

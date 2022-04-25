@@ -61,14 +61,7 @@
                                            
                                            
                                         </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>Name</th>
-                                                <th>Manage</th>
-                                               
-                                            </tr>
-                                        </tfoot>
+                                        
                                     </table>
                                 </div>
                             </div>

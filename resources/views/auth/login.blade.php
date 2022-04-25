@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<section class="section_gap">
-<div class="container">
+<section class="section_gap ">
+<div class="container py-4" >
     <div class="row justify-content-center">
       <div class="col-lg-5 offset-lg-1">
             <div class="register_form">
-              <div class="text-center mb-4">
+              <div class="mb-4">
                   <h3>Sign In</h3>
               </div>
               

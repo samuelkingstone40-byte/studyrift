@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'role'=>0,
             'name' => $data['name'],
             'email' => $data['email'],
+            'paypalEmail' => "Not Set",
             'password' => Hash::make($data['password']),
             'status'=>1,
         ]);
