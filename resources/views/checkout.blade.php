@@ -23,7 +23,7 @@
               <span class="text-muted">${{ $details['price'] }}</span>
             </li>
             @endforeach
-           
+
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
               <strong>${{ $total }}</strong>
@@ -31,7 +31,7 @@
             </li>
           </ul>
            @endif
-        
+
         </div>
         <div class="col-md-8 order-md-1">
           <h3 class="mb-3 mt-4">Billing address</h3>
@@ -39,7 +39,7 @@
               @csrf
             @guest
             <div class="row">
-                
+
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
                 <input type="text" class="form-control" id="cname" placeholder=""  required>
@@ -55,9 +55,9 @@
                 </div>
               </div>
             </div>
-    
-           
-    
+
+
+
             <div class="mb-3">
               <label for="email">Email</label>
               <input type="email" class="form-control"   id="cemail" placeholder="you@example.com">
@@ -68,7 +68,7 @@
             @else
 
             <div class="row">
-                
+
                 <div class="col-md-6 mb-3">
                   <label for="firstName">First name</label>
                   <input type="text" class="form-control" id="cname" placeholder="" value="{{Auth::user()->name}}" required>
@@ -84,9 +84,9 @@
                   </div>
                 </div>
               </div>
-      
-             
-      
+
+
+
               <div class="mb-3">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" value="{{Auth::user()->email}}"   id="cemail" placeholder="you@example.com">
@@ -95,30 +95,28 @@
                 </div>
               </div>
             @endguest
-    
-            
-    
-        
-           
+
+
+
+
+
             <hr class="mb-4">
-    
-            <h4 class="mb-3">Payment Option</h4>
-    
+
             
+
+
             <div class="row">
-               
+
                 <div class="col-12">
                <form>
-  <div>
-    Your order is ₦54,600
-  </div>
-  <button type="button" id="ravepay" >Pay Now</button>
+
+  <button type="button" class="btn btn-warning btn-lg text-white" id="ravepay" >Pay With Flutterwave <img width="45px" src="{{asset('theme/img/rave.png')}}"/></button>
 </form>
                 </div>
-               
+
             </div>
-           
-           
+
+
           </form>
         </div>
       </div>
@@ -130,20 +128,20 @@
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script type="text/javascript">
-  
+
    $(document).ready(function(){
      $('#loader').hide();
      $(".update-cart").change(function (e) {
         e.preventDefault();
         $('#loader').show();
         var ele = $(this);
-   
+
         $.ajax({
             url: '{{ route('update.cart') }}',
             method: "patch",
             data: {
-                _token: '{{ csrf_token() }}', 
-                id: ele.parents("tr").attr("data-id"), 
+                _token: '{{ csrf_token() }}',
+                id: ele.parents("tr").attr("data-id"),
                 quantity: ele.parents("tr").find(".quantity").val()
             },
             success: function (response) {
@@ -151,18 +149,18 @@
             }
         });
     });
-   
+
     $(".remove-from-cart").click(function (e) {
         e.preventDefault();
-   
+
         var ele = $(this);
-   
+
         if(confirm("Are you sure want to remove?")) {
             $.ajax({
                 url: '{{ route('remove.from.cart') }}',
                 method: "DELETE",
                 data: {
-                    _token: '{{ csrf_token() }}', 
+                    _token: '{{ csrf_token() }}',
                     id: ele.parents("tr").attr("data-id")
                 },
                 success: function (response) {
@@ -172,12 +170,12 @@
         }
     });
 
-  
+
     function myOrders() {
 
      var items=document.getElementsByClassName("item")
       , orders = []
-      ; 
+      ;
     for(var i = 0, c = items.length; i<c; i++) {
         orders.push(items[i].id);
       }
@@ -200,16 +198,16 @@
         }],
       });
     },
-    
+
 
     onApprove: function(data, actions) {
-      
+
       let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
       let orders=myOrders();
 
       // This function captures the funds from the transaction.
       return actions.order.capture().then(function(details) {
-          
+
           if(details.status == 'COMPLETED'){
             return fetch('/paypal-capture-payment', {
                       method: 'post',
@@ -277,14 +275,14 @@
        amount: $('#total').val(),
        currency: "USD",
        payment_options: "card",
-       
-       
-       
+
+
+
        customer: {
          email: $('#cemail').val(),
          name: $('#cname').val(),
        },
-       
+
        customizations: {
          title: "Study Merit",
          description: "Payment for an awesome cruise",
@@ -306,17 +304,17 @@
                 window.location.href = '/pay-success';
                 }
              }
-             
+
          })
        },
        onclose:function(){
              location.reload();
        },
-      
+
      });
     }
-   
-       
+
+
          })
 
 
