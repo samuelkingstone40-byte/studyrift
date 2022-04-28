@@ -108,7 +108,12 @@
             <div class="row">
                
                 <div class="col-12">
-                    <div id="paypal-button-container" style="width:300px"></div>
+               <form>
+  <div>
+    Your order is ₦54,600
+  </div>
+  <button type="button" id="ravepay" >Pay Now</button>
+</form>
                 </div>
                
             </div>
@@ -125,6 +130,7 @@
 <script src="https://checkout.flutterwave.com/v3.js"></script>
 
 <script type="text/javascript">
+  
    $(document).ready(function(){
      $('#loader').hide();
      $(".update-cart").change(function (e) {
@@ -266,7 +272,7 @@
            alert('Name and email fields are required')
        }else{
        FlutterwaveCheckout({
-       public_key: "FLWPUBK_TEST-c9d6287a35aee9e2cc16accad023e22b-X",
+       public_key: "FLWPUBK-68785a86d1281b5d9fae604b977cf150-X",
        tx_ref: "SM_{{substr(rand(0,time()),0,7)}}",
        amount: $('#total').val(),
        currency: "USD",
