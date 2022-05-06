@@ -5,35 +5,83 @@
 <div class="section_gap ">
     <div class="container">
     <div class="row">
-        <div class="col-md-4 order-md-2 mb-4">
-          <h4 class="d-flex justify-content-between align-items-center mb-3 mt-4">
-            <span class="text-muted">Your cart</span>
-            <span class="badge badge-secondary badge-pill">{{count(session('cart'))}}</span>
-          </h4>
-          <ul class="list-group mb-3 mt-4">
-            @php $total = 0 @endphp
-            @if(session('cart'))
+        <div class="col-md-7 order-md-2 mb-7 mx-auto">
+      <div class="card">
+        <div class="card-body">
+        <h4 class="mb-3 mt-4">Your cart</h4>
+        <table id="cart" class="table  table-condensed">
+         <thead>
+         <tr>
+           
+            <th style="width:70%">Document</th>
+            <th style="width:20%" class="text-center">Qty</th>
+            <th style="width:5%" class="text-center">Price</th>
+            <th style="width:5%">Remove</th>
+         </tr>
+         </thead>
+        <tbody>
+        @php $total = 0 @endphp
+        @if(session('cart'))
             @foreach(session('cart') as $id => $details)
-            @php $total += $details['price'] * $details['quantity'] @endphp
-            <li id="{{ $id }}"  class="list-group-item d-flex justify-content-between lh-condensed item">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">{{$details['name']}}</small>
-              </div>
-              <span class="text-muted">${{ $details['price'] }}</span>
-            </li>
+                @php $total += $details['price'] * $details['quantity'] @endphp
+                <tr data-id="{{ $id }}" class="doc">
+               
+                    <td data-th="Product">
+                        <div class="row">
+                            <div class="col-sm-3 hidden-xs">
+                                
+                        <img class="img-thumbnail" src="{{$details['image']}}" alt="">
+                            </div>
+                            <div class="col-sm-9">
+                                <p class="nomargin">{{ Str::limit($details['name'],60) }}</p>
+                            </div>
+                        </div>
+                    </td>
+                    
+                    <td data-th="Quantity">
+                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
+                    </td>
+                    <td data-th="Subtotal"  class="text-center">{{ $details['price'] * $details['quantity'] }}</td>
+                    <td class="actions" data-th="">
+                        <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                </tr>
             @endforeach
+        @endif
+    </tbody>  <tfooter>
+        <tr>
+            <td colspan="2"></td>
+            <td ><h4><strong>Total<h4><strong> </td>
+            <td  class="" >
+            {{ number_format($total,2) }}
+            <input type="hidden" name="" id="total" value="{{$total}}">
+            </td>
+        </tr>
+</tfooter>
 
-            <li class="list-group-item d-flex justify-content-between">
-              <span>Total (USD)</span>
-              <strong>${{ $total }}</strong>
-              <input type="hidden" id="total" value="{{$total}}">
-            </li>
-          </ul>
-           @endif
+</table>
+      
+
+           <div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+
+    <div id="smart-button-container">
+      <div style="text-align: center;">
+         <div id="paypal-button-container"></div>
+       </div>
+    </div>
+        </div>
+      </div>
+          
+
+
+   
 
         </div>
-        <div class="col-md-8 order-md-1">
+        <!-- <div class="col-md-5 order-md-1">
           <h3 class="mb-3 mt-4">Billing address</h3>
           <form class="needs-validation" novalidate>
               @csrf
@@ -100,19 +148,19 @@
 
 
 
-            <hr class="mb-4">
-
             
 
 
-            <div class="row">
+ 
 
-                <div class="col-12">
+              </div> -->
+
+                <!-- <div class="col-12">
                <form>
 
   <button type="button" class="btn btn-warning btn-lg text-white" id="ravepay" >Pay With Flutterwave <img width="45px" src="{{asset('theme/img/rave.png')}}"/></button>
 </form>
-                </div>
+                </div> -->
 
             </div>
 
@@ -124,8 +172,8 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://www.paypal.com/sdk/js?client-id=AYtW_ATgH0S2gv_oxT9HWy1DgnJB4FtZqYZ139foyxgp6_vLtuzbhLLAHhGqKGpds1BM0xjOdzA3qcT7&currency=USD"></script>
 <script src="https://checkout.flutterwave.com/v3.js"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AS7kIbBnwq1Hbq-xPoMHJJbmvKW0xu3hD6CcdAyvFryIpuyA_3oq_eqz3QvqO-FZvO3e5KfbZmlP52hQ&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
 
 <script type="text/javascript">
 
@@ -182,27 +230,29 @@
 
       return orders
     }
-
-    paypal.Buttons({
-     createOrder: function(data, actions) {
-      // This function sets up the details of the transaction, including the amount and line item details.
-      return actions.order.create({
-        application_context: {
-          brand_name : 'Study Merit',
-          user_action : 'PAY_NOW',
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'pill',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'pay',
+          
         },
-        purchase_units: [{
-          amount: {
-            value: $('#total').val()
-          }
-        }],
-      });
-    },
 
+        createOrder: function(data, actions) {
+          return actions.order.create({
 
-    onApprove: function(data, actions) {
+            purchase_units: [{"amount":{"currency_code":"USD","value":$('#total').val()}}],
+            application_context: {
+           brand_name : 'Study Merit',
+           user_action : 'PAY_NOW',
+         },
+          });
+        },
 
-      let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        onApprove: function(data, actions) {
+          let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
       let orders=myOrders();
 
       // This function captures the funds from the transaction.
@@ -219,7 +269,7 @@
                       },
                       body: JSON.stringify({
                           orders:details.purchase_units,
-                          orderId     : data.orderID,
+                          orderId : data.orderID,
                           id : details.id,
                           status: details.status,
                           payerEmail: details.payer.email_address,
@@ -241,15 +291,82 @@
               alert('Cancled')
           }
       });
-    },
+        },
 
-    onCancel: function (data) {
-        alert('failed')
+        onError: function(err) {
+          alert('Cancled')
+        }
+      }).render('#paypal-button-container');
     }
+    initPayPalButton();
+
+    // paypal.Buttons({
+    //  createOrder: function(data, actions) {
+    //   // This function sets up the details of the transaction, including the amount and line item details.
+    //   return actions.order.create({
+    //     application_context: {
+    //       brand_name : 'Study Merit',
+    //       user_action : 'PAY_NOW',
+    //     },
+    //     purchase_units: [{
+    //       amount: {
+    //         value: $('#total').val()
+    //       }
+    //     }],
+    //   });
+    // },
+
+
+    // onApprove: function(data, actions) {
+
+    //   let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    //   let orders=myOrders();
+
+    //   // This function captures the funds from the transaction.
+    //   return actions.order.capture().then(function(details) {
+
+    //       if(details.status == 'COMPLETED'){
+    //         return fetch('/paypal-capture-payment', {
+    //                   method: 'post',
+    //                   headers: {
+    //                       'content-type': 'application/json',
+    //                       "Accept": "application/json, text-plain, */*",
+    //                       "X-Requested-With": "XMLHttpRequest",
+    //                       "X-CSRF-TOKEN": token
+    //                   },
+    //                   body: JSON.stringify({
+    //                       orders:details.purchase_units,
+    //                       orderId     : data.orderID,
+    //                       id : details.id,
+    //                       status: details.status,
+    //                       payerEmail: details.payer.email_address,
+    //                       docs:orders
+    //                   })
+    //               })
+    //               .then(status)
+    //               .then(function(response){
+    //                   console.log(response)
+    //                   // redirect to the completed page if paid
+    //                  window.location.href = '/pay-success';
+    //               })
+    //               .catch(function(error) {
+    //                   console.log(error)
+    //                   // redirect to failed page if internal error occurs
+    //                   //window.location.href = '/pay-failed?reason=internalFailure';
+    //               });
+    //       }else{
+    //           alert('Cancled')
+    //       }
+    //   });
+    // },
+
+    // onCancel: function (data) {
+    //     alert('failed')
+    // }
 
 
 
-    }).render('#paypal-button-container');
+    // }).render('#paypal-button-container');
     // This function displays Smart Payment Buttons on your web page.
 
     function status(res) {

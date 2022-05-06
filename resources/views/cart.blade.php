@@ -55,7 +55,10 @@
         <tr>
             <td colspan="4"></td>
             <td ><h3><strong>Total<h3><strong> </td>
-            <td  class="text-right h3 font-bold" id="total">{{ $total }}</td>
+            <td  class="text-right h3 font-bold">
+                {{ number_format($total,2) }}
+            <input type="hidden" name="" id="total" value="{{$total}}">
+            </td>
         </tr>
         <tr>
             <td  colspan="5">
