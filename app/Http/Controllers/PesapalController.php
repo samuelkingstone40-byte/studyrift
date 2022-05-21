@@ -44,11 +44,9 @@ public function payment(Request $request){//initiates payment
    $iframe=Pesapal::makePayment($details);
    if($iframe){
       for($i=0;$i< count($orders);$i++){
-         if(Auth::user()){
-           $this->add_orders($orderId,$transId,$status,$orders[$i]);
-         }
-         $docId=$orders[$i];
-         $this->download_file($docId);
+          $docId=$orders[$i];
+           $this->add_orders($orderId,$transId,$status,$docId);
+         ///$this->download_file($docId);
           //return dd($orders[$i]);
        }
    }
@@ -100,10 +98,9 @@ public function add_orders($orderId,$transId,$status,$docId)
              'owner_id'=>$doc->user_id,
              'orderId' => $orderId,
              'transactionId'=>$transId,
-             'docId'=>$docId,
+             'docId'=>$doc->id,
              'earning'=>($doc->price)*0.7,
              'income'=>($doc->price)*0.3,
-
              'status' => 'Available']);
      $user=User::where('id',$doc->user_id)->first();
      $message=[
