@@ -123,7 +123,13 @@ class PublicController extends Controller
     }
 
     public function checkout(){
-        return view('checkout');
+        
+        if(Auth::user()){
+          $user=Auth::user();
+        }else{
+            $user='';
+        }
+        return view('checkout')->with(compact('user'));
     }
     public function addToCart($id)
     {
