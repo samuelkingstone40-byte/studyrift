@@ -63,6 +63,8 @@ public function paymentsuccess(Request $request)//just tells u payment has gone 
    $payments -> tracking_id = $trackingid;
    $payments -> status = 'PENDING';
    $payments -> save();
+
+   $request->session()->forget('cart');
    //go back home
    //$payments=Payment::all();
    return view('pay-success', compact('payments'));
@@ -142,5 +144,10 @@ public function update_orders(){
      
    
  }
+
+ public function pay_success(Request $request){
+   $request->session()->forget('cart');
+   return view('pay-success');
+  }
 
 }
