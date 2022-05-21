@@ -49,7 +49,7 @@
                 <input type="text" name="address" class="form-control" id="address2" placeholder="Apartment or suite">
               </div>
               <input type="hidden" required name="amount" id="total_amount">
-              <input type="text" name="docs[]" id="docs">
+              <input type="hidden" name="docs[]" id="docs">
               <hr class="mb-4">
               <button class="btn btn-primary btn-lg btn-block" type="submit">Proceede to payment</button>
            </form>
