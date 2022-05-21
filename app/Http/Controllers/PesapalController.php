@@ -92,7 +92,7 @@ public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_noti
 public function add_orders($orderId,$transId,$status,$docId)
 {
     $doc=DB::table('notes')->where('id',$docId)->first();
-    $user_id=Auth::id();
+    $user_id=Auth::id() ?:0;
     $order = Order::create([
              'user_id'=>$user_id,
              'owner_id'=>$doc->user_id,
