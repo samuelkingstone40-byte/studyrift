@@ -14,7 +14,7 @@ return [
     /*
      * ISO code for the currency
      */
-    'currency'        => env('PESAPAL_CURRENCY', 'USD'),
+    'currency'        => env('PESAPAL_CURRENCY', 'KES'),
 
     /*
      * controller method to call for instant notifications IPN as relative path from App\Http\Controllers\

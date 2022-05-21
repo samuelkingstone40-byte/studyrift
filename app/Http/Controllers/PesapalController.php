@@ -36,7 +36,7 @@ public function payment(Request $request){//initiates payment
        'phonenumber' => $request->get('phone'),
        'reference' =>   $payments -> transId,
        'height'=>'400px',
-       'currency' => 'USD'
+       'currency' => 'KES'
    );
    $status="Pending";
    $transId=$payments -> transId;
