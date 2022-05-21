@@ -120,8 +120,8 @@ Route::post('payment',[App\Http\Controllers\PesapalController::class,'payment'])
 Route::get('pesapal-callback',[App\Http\Controllers\PesapalAPIController::class,'handleCallback'])->name('pesapal-callback');
 Route::get('pesapal-ipn', ['as'=>'pesapal-ipn', 'uses'=>'Knox\Pesapal\PesapalAPIController@handleIPN']);
 Route::get('donepayment',[App\Http\Controllers\PesapalController::class,'paymentsuccess'])->name('paymentsuccess');
+Route::get('paymentconfirmation', [App\Http\Controllers\PesapalController::class,'paymentconfirmation'])->name('paymentconfirmation');
 
 Route::group(['prefix' => '/webhooks'], function () {
     //PESAPAL
-    Route::get('paymentconfirmation', [App\Http\Controllers\PesapalController::class,'paymentconfirmation']);
 });
