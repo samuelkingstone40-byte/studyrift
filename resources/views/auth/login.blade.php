@@ -1,22 +1,24 @@
 @extends('layouts.app')
-
 @section('content')
 <section class="section_gap ">
-<div class="container py-4" >
+  <div class="container py-4" >
     <div class="row justify-content-center">
-      <div class="col-lg-5 offset-lg-1">
-            <div class="register_form">
-              <div class="mb-4">
-                  <h3>Sign In</h3>
-              </div>
-              
+      <div class="col-lg-7 offset-lg-1">
+        <div class="register_form">
+          <div class="py-4 text-center">
+            <h2>Studymerit</h2>
+          </div>
+
+          <div class="body mt-2">
+            <h4 class="py-2">Please provide your credentials </h4>
            
-              <form  class="form_area" method="POST" action="{{ route('login') }}">
+          <form  class="form_area" method="POST" action="{{ route('login') }}">
                         @csrf
                 <div class="row">
                   <div class="col-lg-12 form_group">
                       <div class="form-group">
-                      <input id="email" type="email" placeholder="Your Email Address" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                        <label for="email">Email Address</label>
+                        <input id="email" type="email" placeholder="you@host.com" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -24,7 +26,8 @@
                             @enderror
                       </div>
                       <div class="form-group">
-                      <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <label for="password">Password</label>
+                      <input id="password" type="password" class=" @error('password') is-invalid @enderror" name="password" placeholder="Password" required autocomplete="current-password">
 
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -75,12 +78,10 @@
                   </div>
 
               </form>
-             
-            </div>
-            
           </div>
-
-
+        </div>
+    </div>     
+  </div>
 </section>
        
 @endsection

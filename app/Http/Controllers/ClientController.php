@@ -85,6 +85,8 @@ class ClientController extends Controller
     }
 
     public function edit_document($slug){
+        $data['subjects']=DB::select('select * from subjects');
+        $data['categories']=DB::select('select * from categories');
         $data['doc']=DB::table('notes')
         ->where('notes.slug',$slug)
         ->leftJoin('files', 'notes.id', '=', 'files.document_id')
@@ -360,7 +362,7 @@ class ClientController extends Controller
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->select('orders.*','notes.title','notes.image','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
+        ->select('orders.*','notes.title','notes.price','notes.image','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
         ->orderBy('orders.id','desc')
         ->get();
         return DataTables::of($data)

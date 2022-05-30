@@ -56,7 +56,6 @@ Route::post('uploadImg',[App\Http\Controllers\ClientController::class,'upload_pr
 Route::get('search/', [App\Http\Controllers\PublicController::class,'documents'])->name('search');
 Route::get('document-preview/{slug}', [App\Http\Controllers\PublicController::class,'document_preview']);
 Route::get('cart', [App\Http\Controllers\PublicController::class, 'cart'])->name('cart');
-Route::get('checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
 
 Route::get('add-to-cart/{id}', [App\Http\Controllers\PublicController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [App\Http\Controllers\PublicController::class, 'update'])->name('update.cart');
@@ -71,7 +70,9 @@ Route::post('verify-payment',[App\Http\Controllers\PayPalPaymentController::clas
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
-
+Route::middleware(['auth'])->group(function () {
+    Route::get('checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
+});
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
 

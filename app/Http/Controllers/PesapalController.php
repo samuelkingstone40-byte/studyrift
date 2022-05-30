@@ -18,7 +18,7 @@ class PesapalController extends Controller
 public function payment(Request $request){//initiates payment
    $orders=$request->input('docs');
    $payments = new Payment;
-   $payments->user_id=0;
+   $payments->user_id=Auth::user()->id;
    $payments->type="sales";
    $payments->details="Sales";
    $payments -> transId = Pesapal::random_reference();
@@ -35,8 +35,8 @@ public function payment(Request $request){//initiates payment
        'email' => $request->get('email'),
        'phonenumber' => $request->get('phone'),
        'reference' =>   $payments -> transId,
-       'height'=>'400px',
-       'currency' => 'USD'
+       'height'=>'400px'
+       
    );
    $status="Pending";
    $transId=$payments -> transId;
@@ -92,7 +92,7 @@ public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_noti
 public function add_orders($orderId,$transId,$status,$docId)
 {
     $doc=DB::table('notes')->where('id',$docId)->first();
-    $user_id=Auth::id() ?:0;
+    $user_id=Auth::user()->id;
     $order = Order::create([
              'user_id'=>$user_id,
              'owner_id'=>$doc->user_id,
