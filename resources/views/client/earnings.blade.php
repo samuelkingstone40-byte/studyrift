@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.client')
 @section('content')
 <section class="section_gap">
     <div class="cont m-4">

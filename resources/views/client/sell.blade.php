@@ -1,210 +1,132 @@
-@extends('layouts.app')
+@extends('layouts.client')
 
 @section('content')
-<style type="text/css">
 
-#show-pdf-button {
-	width: 150px;
-	display: block;
-	margin: 20px auto;
-}
-
-#file-to-upload {
-	display: none;
-}
-
-#pdf-main-container {
-
-  margin-left: auto;
-    margin-right: auto;
-  text-align:center;
-}
-
-#pdf-loader {
-	display: none;
-	text-align: center;
-	color: #999999;
-	font-size: 13px;
-	line-height: 100px;
-	height: 100px;
-}
-
-#pdf-contents {
-	display: none;
-}
-
-#pdf-meta {
-	overflow: hidden;
-	margin: 0 0 20px 0;
-}
-
-#pdf-buttons {
-	float: left;
-}
-
-#page-count-container {
-	float: right;
-}
-
-#pdf-current-page {
-	display: inline;
-}
-
-#pdf-total-pages {
-	display: inline;
-}
-
-#pdf-canvas {
-	border: 1px solid rgba(0,0,0,0.2);
-	box-sizing: border-box;
-}
-
-#page-loader {
-	height: 100px;
-	line-height: 100px;
-	text-align: center;
-	display: none;
-	color: #999999;
-	font-size: 13px;
-}
-
-</style>
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">
-
-<section class="section_gap">
-
-  <div class="container py-2">
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-          <h3 class="font-bold mb-2">Upload Your Document</h3>
-          <form method="post" enctype="multipart/form-data"  action="{{route('post-document')}}" >
-              @csrf
-              <div class="card">
-               <div class="card-body">
-                <div class="form-row">
-                  <div class="form-group col-md-12">
-                    <label for="inputEmail4">Document Title</label>
-                    <input type="text" name="title" required class="form-control" id="inputEmail4" placeholder="Title">
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputPassword4">Subject</label>
-                    <select id="inputState" required name="subject" class="form-control">
-                      <option selected>Choose...</option>
-                      @foreach($subjects as $subject)
-                      <option value="{{$subject->id}}">{{$subject->name}}</option>
-                      @endforeach
-                    </select>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <label for="inputPassword4">Category</label>
-                    <select id="inputState" required name="category" class="form-control ">
-                      <option selected>Choose...</option>
-                      @foreach($categories as $category)
-                      <option value="{{$category->id}}">{{$category->name}}</option>
-                     @endforeach
-                    </select>
-                  </div>
-
-                  <div class="form-group col-md-4">
-                    <label for="inputPassword4">Unit Code(Optional)</label>
-                     <input type="text" name="code" class="form-control" id="">
-                  </div>
-                  <div class="form-group col-md-12">
-                    <label for="exampleFormControlTextarea1">Description</label>
-                    <textarea class="form-control" required name="detail" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="inputCity">Price</label>
-                      <input type="number" required name="price" class="form-control" id="price">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="inputState">Earning Per Downloads</label>
-                      <input id="earning" type="text" class="form-control" disabled>
-                    </div>
-                </div>
-
-                <div class="form-row ">
-
-        <div class="col-md-12 ">
-        <div id="pdf-main-container">
-                        <div id="pdf-loader">Loading document ...</div>
-                         <div id="pdf-contents">
-                            <div id="pdf-meta">
-                                <div id="pdf-buttons">
-                                    <button id="pdf-prev">Previous</button>
-                                    <button id="pdf-next">Next</button>
-                                </div>
-                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
-                            </div>
-                            <canvas id="pdf-canvas" width="600"></canvas>
-                            <div id="page-loader">Loading page ...</div>
-                        </div>
-                      </div>
-
-                    
-        <div class="item-wrapper one">
-           <div class="item">
-            <div class="item-inner">
-                <div class="item-content">
-                  
-                    <div class="image-upload">
-                   
-                        <label style="cursor: pointer;" for="file_upload"> 
-                        <div class="h-100">
-                                <div class="dplay-tbl">
-                                 
-                                    <div class="dplay-tbl-cell"> <i class="fa fa-cloud-upload"></i>
-                                        <h5><b>Choose Your Image to Upload</b></h5>
-                                        <h6 class="mt-10 mb-70">Or Drop Your Image Here</h6>
-                                    </div>
-                                </div>
-                                <label class="" id="filename"></label>
-                            </div>
-                         
-                            <!-- //upload-content  -->
-                            <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
-                            <input data-required="image"  type="file"  name="file" id="file_upload" class="image-input" data-traget-resolution="image_resolution"
-                            
-                            accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation"value="">
-                          
-                          </label>
-                         
-                            
-                           
-                     
-                      </div>
-                </div>
-                <!--item-content-->
-            </div>
-            <!--item-inner-->
-      
-    </div>
- 
-    <!--item-->
-</div>
-
-                <div class="text-right">
-                     <button type="submit" class="primary-btn ">SAVE</button>
-                </div>
+<div class="page-wrapper">
+    <div class="container-xl">
+          <!-- Page title -->
+          <div class="page-header d-print-none">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+               
+                <h2 class="page-title">
+                 Upload Your Document
+                </h2>
               </div>
-            </div>          
-         </form>
-      </div>
-   
-    
-                           
+              <!-- Page title actions -->
+             
+            </div>
+          </div>
     </div>
-  </div>
-</section>
+
+    <div class="page-body">
+      <div class="container-xl">
+        <div class="row row-deck row-cards">
+          <div class="col-sm-7">
+            <form method="post" enctype="multipart/form-data" class="card"  action="{{route('post-document')}}" >
+              @csrf
+                <div class="card-header">
+                  <h4 class="card-title">Document Information</h4>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-xl-12">
+                      <div class="row">
+                        <div class="col-md-10 col-xl-12">
+                            <div class="row">
+                            <div class="mb-3 col-sm-8">
+                              <label class="form-label">Title of the documet</label>
+                              <input type="text" class="form-control" name="title" placeholder="Input placeholder">
+                            </div>
+                            <div class="mb-3 col-sm-4">
+                              <label class="form-label">Unit Code(Optional)</label>
+                              <input type="text" name="code" class="form-control" id="">
+                            </div>
+                            
+                            <div class="mb-3 col-md-6">
+                              <div class="form-label">Subject</div>
+                              <select class="form-select"  name="subject">
+                                @foreach($subjects as $subject)
+                                 <option value="{{$subject->id}}">{{$subject->name}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                            <div class="mb-3 col-md-6">
+                              <div class="form-label">Category</div>
+                              <select name="category" class="form-select" >
+                              <option selected>Choose...</option>
+                                 @foreach($categories as $category)
+                                  <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                              </select>
+                            </div>
+                           
+                            
+                            <div class="mb-3 col-md-6">
+                              <label class="form-label">Price</label>
+                              <input type="text" class="form-control" id="price" name="price" placeholder="Input placeholder">
+                            </div>
+                            <div class="mb-3 col-md-6">
+                              <label class="form-label">Earning</label>
+                              <input type="text" class="form-control" id="earning" placeholder="Input placeholder">
+                            </div>
+                            </div>
+                           
+                            <div class="mb-3">
+                              <label class="form-label">Brief Description</label>
+                              <textarea class="form-control" name="detail" rows="6" placeholder="Content.."></textarea>
+                            </div>
+
+                            <div class="mb-3">
+                            <div class="form-label">Choose File to Upload</div>
+                            <input type="file"  name="file" id="file_upload" class="form-control" data-traget-resolution="image_resolution"
+                            
+                            accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
+                            <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
+                          </div>
+                     
+                           
+                          </div>
+                        </div>
+                        <div class="form-footer">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                      </div>
+                    </div>
+                  </div>
+             </form>
+          </div>
+
+          <div class="col-sm-5">
+             <div id="pdf-main-container">
+              <div id="pdf-loader">Loading document ...</div>
+               <div id="pdf-contents">
+                <div id="pdf-meta">
+                  <div id="pdf-buttons">
+                    <button id="pdf-prev">Previous</button>
+                    <button id="pdf-next">Next</button>
+                  </div>
+                  <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                </div>
+                <canvas id="pdf-canvas" width="600"></canvas>
+                <div id="page-loader">Loading page ...</div>
+              </div>
+            </div>
+
+                            </div>
+             </div>
+            </div>
+          </div>
+    
+       
 
 @endsection
 
 @section('scripts')
+
 <script>
-$(document).ready(function (e) {
-   
+$(document).ready(function (e) {   
    $.ajaxSetup({
        headers: {
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
