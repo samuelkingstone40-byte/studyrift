@@ -104,12 +104,15 @@
                <div id="pdf-contents">
                 <div id="pdf-meta">
                   <div id="pdf-buttons">
-                    <button id="pdf-prev">Previous</button>
-                    <button id="pdf-next">Next</button>
+                    <button class="btn btn-default" id="pdf-prev">Previous</button>
+                    <button class="btn btn-info" id="pdf-next">Next</button>
                   </div>
-                  <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                  <div class="form-group">
+                 <span> <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                 </span>
+                  </div>
                 </div>
-                <canvas id="pdf-canvas" width="600"></canvas>
+                <canvas id="pdf-canvas"  width="400"></canvas>
                 <div id="page-loader">Loading page ...</div>
               </div>
             </div>

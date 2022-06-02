@@ -13,8 +13,7 @@
 }
 
 #pdf-main-container {
-	width: 100%;
-	margin: 20px auto;
+	margin: 10px auto;
 }
 
 #pdf-loader {
@@ -78,11 +77,11 @@
                 </h2>
               </div>
                             <!-- Page title actions -->
-                            <div class="col-12 col-md-auto ms-auto d-print-none">
+                 <div class="col-12 col-md-auto ms-auto d-print-none">
                 <div class="btn-list">
                 @if($purchased)
                     <span class="float-right">
-                        <a href="{{url('download/'.$doc->filename)}}" class="genric-btn primary radius"> <i class="fa fa-download"></i> Download</a>
+                        <a href="{{url('download/'.$doc->filename)}}" class="btn btn-primary radius"> <i class="fa fa-download"></i> Download</a>
                     
                     </span>
                     @else
@@ -101,7 +100,7 @@
         <div class="page-body">
           <div class="container-xl">
             <div class="row row-cards">
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                 <div class="card">
                       <div class="card-header">
                         <h3 class="card-title">
@@ -124,7 +123,7 @@
                         </dl>
                       </div>
                     </div>
-                    <div class="card">
+                    <div class="card mt-2">
             <div class="card-body">
                 <h4 class="py-2">
                     Description
@@ -135,30 +134,8 @@
                 </p>
             </div>
         </div>
-                </div>
-                <div class="col-lg-8">
 
-                <input type="hidden"  id="file2" value="{{$doc->filename}}">
-                <div id="pdf-main-container justify-content-center">
-                        <div id="pdf-loader">Loading document ...</div>
-                         <div id="pdf-contents">
-                            <div id="pdf-meta">
-                                <div id="pdf-buttons">
-                                    <button id="pdf-prev">Previous</button>
-                                    <button id="pdf-next">Next</button>
-                                </div>
-                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
-                            </div>
-                            <canvas id="pdf-canvas" width="600"></canvas>
-                            <div id="page-loader">Loading page ...</div>
-                        </div>
-                      </div>
-                </div>
-            </div>
-
-            <div class="row row-cards mt-3">
-                <div class="col-lg-12">
-                    <div class="card">
+        <div class="card mt-2">
                     <div class="card-header">
                         <h3 class="card-title">
                        Reviews
@@ -194,10 +171,28 @@
                         </div>
                       </div>
                     </div>
+                </div>
+                <div class="col-lg-6">
 
+                <input type="hidden"  id="file2" value="{{$doc->filename}}">
+                <div id="pdf-main-container justify-content-center">
+                        <div id="pdf-loader">Loading document ...</div>
+                         <div id="pdf-contents">
+                            <div id="pdf-meta">
+                                <div id="pdf-buttons">
+                                    <button id="pdf-prev">Previous</button>
+                                    <button id="pdf-next">Next</button>
+                                </div>
+                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                            </div>
+                            <canvas id="pdf-canvas" width="600"></canvas>
+                            <div id="page-loader">Loading page ...</div>
+                        </div>
+                      </div>
                 </div>
             </div>
 
+       
 
 
 
@@ -228,7 +223,6 @@
           </form>
         </div>
       </div>
-    </div>
 
 
   

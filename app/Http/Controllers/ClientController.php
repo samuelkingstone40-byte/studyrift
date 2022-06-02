@@ -199,6 +199,7 @@ class ClientController extends Controller
             ->leftJoin('subjects','notes.subject_id','=','subjects.id')
             ->leftJoin('categories','notes.category_id','=','categories.id')
             ->select('notes.*','subjects.name as sname','categories.name as cname')
+            ->orderBy('notes.id','DESC')
             ->get();
             return DataTables::of($data)
             ->editColumn('title', function ($data) {
@@ -219,11 +220,11 @@ class ClientController extends Controller
                 return "$".$earning;
             })
             ->addColumn('image', function($row){
-                    $fileimage = '<img class="img-thumbnail" width="60" src="'.$row->image.'"/>';
+                    $fileimage = '<img class="img-thumbnail" width="100px" src="'.$row->image.'"/>';
                     return $fileimage;
             })
             ->addColumn('action', function($row){
-                    $actionBtn = '<a href="view-document/'.$row->slug.'" class="genric-btn primary small"><i class="fa fa-eye fa-lg"></i></a> <a href="/edit-document/'.$row->slug.'" class="genric-btn info small"><i class="fa fa-pencil fa-lg"></i></a>';
+                    $actionBtn = '<a href="view-document/'.$row->slug.'" class="btn btn-success" style="margin-right:5px"> View Document</a><a href="/edit-document/'.$row->slug.'" class="btn btn-primary">Edit</a>';
                     return $actionBtn;
             })
                 ->rawColumns(['image','earning','action'])
@@ -238,6 +239,7 @@ class ClientController extends Controller
          ->leftJoin('subjects','notes.subject_id','=','subjects.id')
          ->leftJoin('categories','notes.category_id','=','categories.id')
          ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+         ->orderBy('notes.id','desc')
          ->get();
         return view('client/uploads',$data);
     }
@@ -376,11 +378,11 @@ class ClientController extends Controller
         
         ->addIndexColumn()
         ->addColumn('image', function($row){
-            $fileimage = '<img class="img-thumbnail" width="70" src="'.$row->image.'"/>';
+            $fileimage = '<img class="img-thumbnail" width="100px" src="'.$row->image.'"/>';
             return $fileimage;
         })
          ->addColumn('action', function($row){
-                $actionBtn = '<a href="/view-document/'.$row->slug.'" class="genric-btn primary small">Download <i class="fa fa-download" aria-hidden="true"></i>
+                $actionBtn = '<a href="/view-document/'.$row->slug.'" class="btn btn-primary">Download <i class="fa fa-download" aria-hidden="true"></i>
                 </a>';
                 return $actionBtn;
             })
@@ -478,5 +480,7 @@ public function file_delete($id){
     ->update(['status'=>0]);
     return redirect('uploads')->with('success', 'file deleted successfuly!'); 
 }
+
+
 
 }
