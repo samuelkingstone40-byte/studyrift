@@ -46,7 +46,7 @@ public function payment(Request $request){//initiates payment
       for($i=0;$i< count($orders);$i++){
           $docId=$orders[$i];
            $this->add_orders($orderId,$transId,$status,$docId);
-         ///$this->download_file($docId);
+        $this->download_file($docId);
           //return dd($orders[$i]);
        }
    }
