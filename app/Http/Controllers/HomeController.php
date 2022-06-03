@@ -34,6 +34,33 @@ class HomeController extends Controller
         ->where('owner_id',Auth::id())
         ->where('status','COMPLETED')
         ->sum('earning');
+        $data['downloads']=$this->recent_dowloads();
+        $data['sales']=$this->recent_sales();
         return view('home',$data);
     }
+
+    public function recent_dowloads(){
+        $documents=DB::table('orders')
+        ->leftJoin('notes','notes.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
+        ->where('orders.user_id',Auth::user()->id)
+        ->orderBy('orders.id')
+        ->select('notes.id','notes.subject_id','notes.price','notes.title','orders.created_at','subjects.name')
+        ->get();
+
+        return $documents;
+    }
+
+    public function recent_sales(){
+        $documents=DB::table('orders')
+        ->leftJoin('notes','notes.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
+        ->where('orders.owner_id',Auth::user()->id)
+        ->orderBy('orders.id')
+        ->select('notes.id','notes.subject_id','notes.price','orders.orderId','orders.created_at','orders.earning','subjects.name')
+        ->get();
+
+        return $documents;
+    }
+    
 }
