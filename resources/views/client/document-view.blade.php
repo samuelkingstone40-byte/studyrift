@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.client')
 @section('content')
 <style type="text/css">
 
@@ -13,8 +13,7 @@
 }
 
 #pdf-main-container {
-	width: 100%;
-	margin: 20px auto;
+	margin: 10px auto;
 }
 
 #pdf-loader {
@@ -66,23 +65,23 @@
 }
 
 </style>
-<section class="section_gap">
-    <div class="container">
-  
-<div class="row d-flex justify-content-center">
-@if (\Session::has('success'))
-    <div class="alert alert-success">
-        {!! \Session::get('success') !!}   
-    </div>
-@endif
-    <div class="col-md-11">
-        <div class="card">
-            <div class="card-body">
-               <h4 class="font-bold py-2">
-                    {{$doc->title}}
-                    @if($purchased)
+
+<div class="page-wrapper">
+        <div class="container-xl">
+          <!-- Page title -->
+          <div class="page-header d-print-none">
+            <div class="row g-2 align-items-center">
+              <div class="col">
+                <h2 class="page-title">
+                {{$doc->title}}
+                </h2>
+              </div>
+                            <!-- Page title actions -->
+                 <div class="col-12 col-md-auto ms-auto d-print-none">
+                <div class="btn-list">
+                @if($purchased)
                     <span class="float-right">
-                        <a href="{{url('download/'.$doc->filename)}}" class="genric-btn primary radius"> <i class="fa fa-download"></i> Download</a>
+                        <a href="{{url('download/'.$doc->filename)}}" class="btn btn-primary radius"> <i class="fa fa-download"></i> Download</a>
                     
                     </span>
                     @else
@@ -93,34 +92,89 @@
         
                     </span>
                     @endif
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-body">
+          <div class="container-xl">
+            <div class="row row-cards">
+                <div class="col-lg-6">
+                <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">
+                         Documents Information
+                        </h3>
+
+                      </div>
+                      <div class="card-body">
+                        <dl class="row">
+                          <dt class="col-5">Title:</dt>
+                          <dd class="col-7">{{$doc->title}}</dd>
+                          <dt class="col-5">Subject:</dt>
+                          <dd class="col-7">{{$doc->sname}}</dd>
+                          <dt class="col-5">Category:</dt>
+                          <dd class="col-7">{{$doc->cname}}</dd>
+                          <dt class="col-5">Price:</dt>
+                          <dd class="col-7">${{number_format($doc->price,2)}}</dd>
+                         
+                          
+                        </dl>
+                      </div>
+                    </div>
+                    <div class="card mt-2">
+            <div class="card-body">
+                <h4 class="py-2">
+                    Description
                 </h4>
-                <div class="col-lg-6 right-contents">
-<ul>
-<li>
-<a class="justify-content-between d-flex" href="#">
-<p>Subject</p>
-<span class="or">{{$doc->sname}}</span>
-</a>
-</li>
-<li>
-<a class="justify-content-between d-flex" href="#">
-<p>Category </p>
-<span class="or">{{$doc->cname}}</span>
-</a>
-</li>
-<li>
-<a class="justify-content-between d-flex" href="#">
-<p>Price </p>
-<span class="or">${{number_format($doc->price,2)}}</span>
-</a>
-</li>
 
-</ul>
-</div>
-               
-        
+                <p>
+                    {{$doc->description}}
+                </p>
+            </div>
+        </div>
 
-               <input type="hidden"  id="file2" value="{{$doc->filename}}">
+        <div class="card mt-2">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                       Reviews
+                        </h3>
+
+                      </div>
+                      <div class="card-body card-body-scrollable card-body-scrollable-shadow">
+                        <div class="divide-y">
+                        @foreach ($reviews as $review)
+                          <div>
+                            <div class="row">
+                              <div class="col-auto">
+                                <span class="avatar">{{$review->name}}</span>
+                              </div>
+                              <div class="col">
+                                <div class="text-truncate">
+                                {{$review->review}}
+                                </div>
+                                <div class="text-muted">
+                                <div class="star">
+                                    @for($i=0;$i<=$review->rating;$i++)
+                                    <span class="ti-star checked"></span>
+                                    @endfor
+                               </div>
+                                </div>
+                              </div>
+                              <div class="col-auto align-self-center">
+                                <div class="badge bg-primary"></div>
+                              </div>
+                            </div>
+                          </div>
+                          @endforeach
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+
+                <input type="hidden"  id="file2" value="{{$doc->filename}}">
                 <div id="pdf-main-container justify-content-center">
                         <div id="pdf-loader">Loading document ...</div>
                          <div id="pdf-contents">
@@ -135,56 +189,46 @@
                             <div id="page-loader">Loading page ...</div>
                         </div>
                       </div>
-
-                      </div>
-        </div>
-           
-    </div>
-  
-    <div class="col-md-11 py-2">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="py-2">
-                    Description
-                </h4>
-
-                <p>
-                    {{$doc->description}}
-                </p>
-            </div>
-        </div>
-    </div>
-<div class="col-md-11">
-
-    <div class="comments-area mb-20">
-        <h4>Reviews</h4>
-        @foreach ($reviews as $review)
-        <div class="comment-list">
-            <div class="single-comment single-reviews justify-content-between d-flex">
-                <div class="user justify-content-between d-flex">
-                    <div class="thumb">
-                        <img class="img-thumbnail" width="85" src="{{asset('theme/img/default-user.png')}}" alt="">
-                    </div>
-                    <div class="desc">
-                        <h5><a href="javascript:void(0)">{{$review->name}}</a>
-                            <div class="star">
-                                @for($i=0;$i<=$review->rating;$i++)
-                                <span class="ti-star checked"></span>
-                                @endfor
-                            </div>
-                        </h5>
-                        <p class="comment">
-                            {{$review->review}}
-                        </p>
-                    </div>
                 </div>
             </div>
-        </div>
-        @endforeach
-        
-    </div>
+
+       
+
+
+
 </div>
-<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog"
+
+            </div>
+          </div>
+        </div>
+
+
+
+    <div class="modal modal-blur fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="{{route('fileDelete',$doc->id)}}" method="post">
+            @csrf
+          <div class="modal-body">
+          Are you sure you want to delete this file?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes,Delete</button>
+          </div>
+          </form>
+        </div>
+      </div>
+
+
+  
+
+
+<div id="" class="modal fade" tabindex="-1" role="dialog"
 aria-labelledby="myModalLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
