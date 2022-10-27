@@ -119,7 +119,7 @@
         <div class="m-5">
         <div class="row align-items-center">
           <div class="col-md-12 text-center">
-          <h1 class="py-4 mt-4">Why use Study Merit?</h1>
+          <h1 class="py-4 mb-5 mt-4">Why use StudyMerit?</h1>
           </div>
           <div class="col-md-3">
             <h3>Access quality learning materials</h3>
