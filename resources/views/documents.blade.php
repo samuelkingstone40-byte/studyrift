@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>StudyMerit- Buy and Sell </title>
+<title>Buy and Sell -StudyMerit </title>
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 <section class="section_gap ">
