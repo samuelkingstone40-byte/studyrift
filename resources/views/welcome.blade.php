@@ -16,7 +16,7 @@
                   Get quality notes in one place
                 </h2>
                 <p class="font-weight-bold">
-                  Upload and download notes with students and professional learners globally and make money!
+                  Buy and sell quality study notes and resources
                 </p>
                 <div class="">
                 <div class="search"> 
@@ -105,12 +105,12 @@
         <div class="m-5">
         <div class="row align-items-center">
           <div class="col-md-12 text-center">
-          <h1 class="py-4 mb-5 mt-4">Why use StudyMerit?</h1>
+          <h1 class="py-4 mb-5 mt-4">Why use Studymerit?</h1>
           </div>
           <div class="col-md-3">
             <h3>Access quality learning materials</h3>
             <p>
-            StudyMerits provides you with the answers and solutions you require in a wide range of courses, allowing you to learn more quickly and effectively.
+            Studymerit provides you with the answers and solutions you require in a wide range of courses, allowing you to learn more quickly and effectively.
             </p>
             <img class="contimg" src="{{asset('theme/img/students.png')}}" alt="">
           </div>
@@ -120,7 +120,7 @@
         <img class="contimg" src="{{asset('theme/img/win.png')}}" alt="">
            <h3>Improve your academic performance</h3>
            <p>
-           StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.
+           Studymerit is a straightforward and highly effective online tool that assists you in locating the information you require.
            </p>
         </div>
 
@@ -136,7 +136,7 @@
        <img class="contimg" src="{{asset('theme/img/access.png')}}" alt="">
          <h3>Convinience</h3>
          <p>
-         Why is it difficult to locate a reasonably priced educator or subject matter expert? There is, at long last! StudyMerits is a straightforward and highly effective online tool that assists you in locating the information you require.Connect from anywhere at anytime.
+         Why is it difficult to locate a reasonably priced educator or subject matter expert? There is, at long last! Studymerit is a straightforward and highly effective online tool that assists you in locating the information you require.Connect from anywhere at anytime.
          </p>
        </div>
 
@@ -210,7 +210,7 @@
                   <div class="testi_text">
                     <h4>Justin mUsk</h4>
                     <p>
-                      I got to know of Study Merit from a class mate  who had used the site before, I uploaded my notes from a medical class and within a day, I had sold all but one. The site is quit useful to anyone who has quality class content
+                      I got to know of Studymerit from a class mate  who had used the site before, I uploaded my notes from a medical class and within a day, I had sold all but one. The site is quit useful to anyone who has quality class content
                     </p>
                   </div>
                 </div>
