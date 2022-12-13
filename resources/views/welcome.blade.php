@@ -60,7 +60,7 @@
               <div class="desc">
                 <h3 class="mt-3 mb-2">Sign up</h3>
                 <p>
-                  Create a free account on Study merit 
+                  Create a free account on Studymerit 
                 </p>
               </div>
             </div>
