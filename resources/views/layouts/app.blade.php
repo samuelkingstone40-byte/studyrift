@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Buy and sell quality study notes and resources</title>
 
     
     <link rel="icon" href="{{asset('theme/img/favicon.png')}}" type="image/png" />
