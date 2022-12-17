@@ -5,6 +5,8 @@
             <h4>Social</h4>
             <ul>
               <li> <a href="https://www.facebook.com/Studymerit-102010632420278"><i class="ti-facebook text-primary"></i> Facebook</a></li>
+              <li> <a href=" https://twitter.com/Studymerit1"><i class="ti-twitter" style="color:#1DA1F2 "></i> Twitter</a></li>
+
             </ul>
           </div>
           
