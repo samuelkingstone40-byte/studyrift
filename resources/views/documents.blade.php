@@ -72,7 +72,7 @@
                       
                 </div>
                 <div class="col-md-6 py-4">
-                    <h4>{{$note->sname}} / {{$note->cname}}</h4>
+                    <h4>{{$note->subject}} / {{$note->category}}</h4>
                     <h5 class="font-bold py-2">{{$note->title}}</h5>
                    
                    
@@ -80,11 +80,10 @@
                     {{$note->description}}
                    </p>
                     <h5 class="numPages" id="{{$note->slug}}"></h5>
-                    <p>Date Posted - <span class="font-bold">{{$note->created_at}}</span></p>
                 </div>
                 <div class="col-md-3 border-left mt-1">
                     <div class="text-center py-4">
-                       <h4>{{$note->sname}} / {{$note->cname}}</h4>
+                       <h4>{{$note->subject}} / {{$note->category}}</h4>
                        
                         <h2 class="mr-1 text-success">${{number_format($note->price,2)}}</h2><span class="strike-text"></span>
                     
