@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Response;
 
 class PublicController extends Controller
@@ -29,31 +30,112 @@ class PublicController extends Controller
 
         return $downloads;
     }
-    public function documents(Request $request){
-        $search_text=$request->get('search_text');
-        $notes =DB::table('notes');
-        if ($search_text) {
-            $notes->where('title', 'Like', '%' . $search_text . '%');
-        }
-        if ($request->get('subject')) {
-            $notes->where('subject_id',  $request->get('subject'));
-           
+
+
+    public  function buildSQLQueryFromFilter($request)
+    {
+        $queryStr = "";
+        $sqlQuery = [];
+        $currentIndex = 1;
+       
+        $subject = isset($request->subject) ? trim($request->subject) : null;
+        $category = isset($request->category) ? trim($request->category) : null;
+        $search = isset($request->search) ? trim($request->search) : null;
+       
+
+        // $ cannot be used to parse params on query
+
+        if ($search != null) {
+            $queryStr .= " AND (n.title LIKE :p$currentIndex  OR c.description LIKE :p$currentIndex )";
+            $sqlQuery['p' . $currentIndex] = '%' . $search . '%';
+            $sqlQuery['query_str'] = $queryStr;
+            $currentIndex++;
         }
 
-        if ($request->get('category')) {
-            $notes->Where('category_id',  $request->get('category'));
+        if ($category != null) {
+            $queryStr .= " AND (n.category_id = :p$currentIndex)";
+            $sqlQuery['p' . $currentIndex] =  $category;
+            $sqlQuery['query_str'] = $queryStr;
+            $currentIndex++;
         }
-        $notes=$notes->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->whereNull('notes.status')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
-        ->orderBy('notes.id','desc')
-        ->paginate(10);
+
+        if ($subject != null) {
+            $queryStr .= " AND (n.category_id = :p$currentIndex)";
+            $sqlQuery['p' . $currentIndex] =  $subject;
+            $sqlQuery['query_str'] = $queryStr;
+            $currentIndex++;
+        }
+        $sqlQuery['current_index'] = $currentIndex;
+        return $sqlQuery;
+    }
+
+    
+    public function documents(Request $request){
+        $allDocuments = [];
+        $query="SELECT n.id,n.price,n.slug,n.title,n.description,n.image,c.name AS category, s.name AS subject,f.filename
+        FROM notes n LEFT JOIN categories c ON c.id=n.category_id LEFT JOIN subjects s ON s.id=n.subject_id
+        LEFT JOIN files f ON f.document_id=n.id WHERE true";
+
+        $sqlQuery = $this->buildSQLQueryFromFilter($request);
+        if (isset($sqlQuery['query_str'])) {
+            $query .= $sqlQuery['query_str'];
+        }
+
+        $pageQuery = $this->paginationFilter($request);
+        if ($pageQuery['status'] != 200) {
+            return [
+                'status' => 400,
+                'message' => $pageQuery['message']
+            ];
+        }
+
+        $query .= $pageQuery['query_str'];
+        $pagination = $pageQuery['pagination'];
+
+        $notes=DB::select($query);
+
+        // $search_text=$request->get('search_text');
+        // $notes =DB::table('notes');
+        // if ($search_text) {
+        //     $notes->where('title', 'Like', '%' . $search_text . '%');
+        // }
+        // if ($request->get('subject')) {
+        //     $notes->where('subject_id',  $request->get('subject'));
+           
+        // }
+
+        // if ($request->get('category')) {
+        //     $notes->Where('category_id',  $request->get('category'));
+        // }
+        // $notes=$notes->leftJoin('files', 'notes.id', '=', 'files.document_id')
+        // ->whereNull('notes.status')
+        // ->leftJoin('subjects','notes.subject_id','=','subjects.id')
+        // ->leftJoin('categories','notes.category_id','=','categories.id')
+        // ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+        // ->orderBy('notes.id','desc')
+        // ->paginate(10);
+
+        $total=count($notes);
+        $per_page = 5;
+        $current_page = $request->input("page") ?? 1;
+
+        $starting_point = ($current_page * $per_page) - $per_page;
+
+        $array = array_slice($notes, $starting_point, $per_page, true);
+    
+        $array = array_slice($array, $starting_point, $per_page, true);
+
+        $array = new Paginator($array, $total, $per_page, $current_page, [
+            'path' => $request->url(),
+            'query' => $request->query(),
+        ]);
 
         $data['subjects']=$this->getSubjects();
         $data['categories']=$this->getCategories();
-        $data['notes']=$notes;
+        $data['notes']=$array;
+        $data['pagination']=$pagination;
+
+       // dd($array);
         return view('documents',$data);   
        
     }
@@ -203,6 +285,59 @@ class PublicController extends Controller
         $filepath = public_path('files/'.$filename);
         return Response::download($filepath); 
     }
+
+
+    public function paginationFilter($request)
+    {
+        $queryStr = "";
+        $pageQuery = [];
+        $pagination = [];
+        $get = $request;
+        $per = isset($get['per']) ? intval(trim($get['per'])) : null;
+        $page = isset($get['page']) ? intval(trim($get['page'])) : null;
+
+        if ($per == null) {
+            $per = 10;
+        }
+
+        if ($page == null) {
+            $page = 1;
+        }
+
+        if (!is_int($per) || !is_int($page)) {
+            $pageQuery['status'] = 400;
+            $pageQuery['message'] = 'per and page values must be digits';
+            return $pageQuery;
+        }
+
+        $pagination['page'] = $page;
+        $pagination['per'] = $per;
+
+        $page = ($page - 1) * $per;
+        $queryStr .= " LIMIT $per OFFSET $page ";
+
+        $pageQuery['status'] = 200;
+        $pageQuery['pagination'] = $pagination;
+        $pageQuery['query_str'] = $queryStr;
+        $pageQuery['message'] = 'success';
+
+        return $pageQuery;
+    }
+
+    // public static function sortByFilter()
+    // {
+    //     $queryStr = "";
+    //     $get = Yii::$app->request->get();
+    //     $sort = isset($get['sort']) ? trim($get['sort']) : null;
+
+    //     if (strtolower($sort) != 'asc') {
+    //         $sort = 'DESC';
+    //     }
+
+    //     $queryStr .= " $sort";
+
+    //     return $queryStr;
+    // }
 
    
 }

@@ -137,7 +137,7 @@
                             <span class="sr-only">Loading...</span>
                           </div>
                         </div>
-                         <div id="pdf-contents">
+                         <div  id="pdf-contents">
                             <div id="pdf-meta">
                                 <div id="pdf-buttons">
                                     <button id="pdf-prev">Previous</button>
@@ -145,7 +145,7 @@
                                 </div>
                                 <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
                             </div>
-                            <canvas id="pdf-canvas" width="650"></canvas>
+                            <div class="col-lg-8"><canvas id="pdf-canvas" width="650"></canvas></div>
                             <div id="page-loader">Loading page ...</div>
                         </div>
                       </div>

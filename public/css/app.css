@@ -341,7 +341,9 @@ input,
 button,
 select,
 optgroup,
+form-control,
 textarea {
+ 
   margin: 0;
   font-family: inherit;
   font-size: inherit;
@@ -386,9 +388,6 @@ button:not(:disabled),
   border-style: none;
 }
 
-textarea {
-  resize: vertical;
-}
 
 fieldset {
   min-width: 0;
@@ -396,6 +395,7 @@ fieldset {
   margin: 0;
   border: 0;
 }
+
 
 legend {
   float: left;
