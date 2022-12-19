@@ -1,3 +1,4 @@
+<title>Uploads - Studymerit</title>
 @extends('layouts.client')
 @section('content')
 
