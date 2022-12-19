@@ -15,16 +15,19 @@
                 <h2 class="text-uppercase py-1">
                   Get quality notes in one place
                 </h2>
-                <p class="font-weight-bold">
+                <p class="text-black" style="color: black">
                   Buy and sell quality study notes and resources
                 </p>
                 <div class="">
-                <div class="search"> 
-                  <i class="fa fa-search"></i>
+                <div class=""> 
+                 
                   <form action="{{route('search')}}" method="get">
-                  
-                   <input type="text" name="search_text" class="form-control" placeholder="Quick search? title, decription, author...">
-                   <button type="submit" class="genric-btn primary radius"><i class="fa fa-search"></i>Search</button>
+                   <div class=" search form-group">
+                    <i class="fa fa-search"></i>
+                    <input type="text" name="search_text" class="form-control" placeholder="Quick search? title, decription, author...">
+
+                   </div>
+                   <button type="submit"  class="genric-btn btn-lg primary btn-block radius">Search</button>
                  </form>
                    
                 </div>

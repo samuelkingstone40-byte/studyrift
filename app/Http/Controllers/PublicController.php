@@ -72,10 +72,14 @@ class PublicController extends Controller
     
     public function documents(Request $request){
     
-         $search_text=$request->get('search_text');
-        $notes =DB::table('notes')
-      
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
+        $search_text=strip_tags($request->get('search_text'));
+        $notes =DB::table('notes');
+
+        if($search_text){
+            $notes->where('notes.title','like','%'.$search_text.'%');
+        }
+        $notes=$notes->
+        leftJoin('files', 'notes.id', '=', 'files.document_id')
         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
         ->leftJoin('categories','notes.category_id','=','categories.id')
         ->select('notes.id','notes.title','notes.description','notes.slug','notes.price','notes.image','files.filename','subjects.name as subject','categories.name as category')
