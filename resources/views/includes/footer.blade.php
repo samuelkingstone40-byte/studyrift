@@ -2,10 +2,12 @@
       <div  style="margin:0 40px 0 40px">
         <div class="row">
           <div class="col-lg-2 col-md-2 single-footer-widget ">
-            <h4>Social</h4>
+            <h4>Follow us on</h4>
             <ul>
               <li> <a href="https://www.facebook.com/Studymerit-102010632420278"><i class="ti-facebook text-primary"></i> Facebook</a></li>
               <li> <a href=" https://twitter.com/Studymerit1"><i class="ti-twitter" style="color:#1DA1F2 "></i> Twitter</a></li>
+              
+               <li> <a href="https://www.instagram.com/studymerit_official/"><i class="ti-instagram" style="color:pink "></i> Instagram</a></li>
 
             </ul>
           </div>

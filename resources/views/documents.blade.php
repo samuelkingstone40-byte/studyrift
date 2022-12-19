@@ -67,7 +67,7 @@
             <div class="row p-2 bg-white mb-3 border rounded">
                 <div class="col-md-3 mt-1">
                    
-                <img src="{{$note->image }}" width="230">
+                <img src="{{$note->image }}" class="img-fluid">
               
                       
                 </div>
@@ -124,42 +124,3 @@
 </section>
 @endsection
 
-@section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.943/pdf.min.js"></script>
-<script>
-
-var myState = {
-            pdf: null,
-            currentPage: 1,
-            zoom:.6
-        }
-       
-$('#docs input').each(function ( value,index) {
-    var filename=$(this).val()
-        pdfjsLib.getDocument("{{asset('files')}}/"+ filename).then((pdf) => {
-        $(".numPages").text("Number of Pages : "+ pdf.numPages);
-        myState.pdf = pdf;
-        render();
-    });
-    function render() {
-        myState.pdf.getPage(myState.currentPage).then((page) => {
-     
-            var canvas = document.getElementById("pdf_renderer1"+ value);
-            var ctx = canvas.getContext('2d');
- 
-            var viewport = page.getViewport(myState.zoom);
-
-            canvas.width = viewport.width;
-            canvas.height = 330;
-     
-            page.render({
-                canvasContext: ctx,
-                viewport: viewport
-            });
-        });
-    }
-});
-        
-    
-    </script>
-@endsection

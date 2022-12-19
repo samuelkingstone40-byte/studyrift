@@ -71,71 +71,22 @@ class PublicController extends Controller
 
     
     public function documents(Request $request){
-        $allDocuments = [];
-        $query="SELECT n.id,n.price,n.slug,n.title,n.description,n.image,c.name AS category, s.name AS subject,f.filename
-        FROM notes n LEFT JOIN categories c ON c.id=n.category_id LEFT JOIN subjects s ON s.id=n.subject_id
-        LEFT JOIN files f ON f.document_id=n.id WHERE true";
-
-        $sqlQuery = $this->buildSQLQueryFromFilter($request);
-        if (isset($sqlQuery['query_str'])) {
-            $query .= $sqlQuery['query_str'];
-        }
-
-        $pageQuery = $this->paginationFilter($request);
-        if ($pageQuery['status'] != 200) {
-            return [
-                'status' => 400,
-                'message' => $pageQuery['message']
-            ];
-        }
-
-        $query .= $pageQuery['query_str'];
-        $pagination = $pageQuery['pagination'];
-
-        $notes=DB::select($query);
-
-        // $search_text=$request->get('search_text');
-        // $notes =DB::table('notes');
-        // if ($search_text) {
-        //     $notes->where('title', 'Like', '%' . $search_text . '%');
-        // }
-        // if ($request->get('subject')) {
-        //     $notes->where('subject_id',  $request->get('subject'));
-           
-        // }
-
-        // if ($request->get('category')) {
-        //     $notes->Where('category_id',  $request->get('category'));
-        // }
-        // $notes=$notes->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        // ->whereNull('notes.status')
-        // ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        // ->leftJoin('categories','notes.category_id','=','categories.id')
-        // ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
-        // ->orderBy('notes.id','desc')
-        // ->paginate(10);
-
-        $total=count($notes);
-        $per_page = 5;
-        $current_page = $request->input("page") ?? 1;
-
-        $starting_point = ($current_page * $per_page) - $per_page;
-
-        $array = array_slice($notes, $starting_point, $per_page, true);
     
-        $array = array_slice($array, $starting_point, $per_page, true);
+         $search_text=$request->get('search_text');
+        $notes =DB::table('notes')
+      
+        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
+        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
+        ->leftJoin('categories','notes.category_id','=','categories.id')
+        ->select('notes.id','notes.title','notes.description','notes.slug','notes.price','notes.image','files.filename','subjects.name as subject','categories.name as category')
+        ->whereNull('notes.status')
 
-        $array = new Paginator($array, $total, $per_page, $current_page, [
-            'path' => $request->url(),
-            'query' => $request->query(),
-        ]);
-
+        ->orderBy('notes.id','desc')
+        ->simplePaginate(5);
+        
         $data['subjects']=$this->getSubjects();
         $data['categories']=$this->getCategories();
-        $data['notes']=$array;
-        $data['pagination']=$pagination;
-
-       // dd($array);
+        $data['notes']=$notes;
         return view('documents',$data);   
        
     }

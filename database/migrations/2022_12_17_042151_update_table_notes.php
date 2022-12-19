@@ -16,8 +16,10 @@ class UpdateTableNotes extends Migration
         Schema::table('notes', function (Blueprint $table) {
             $table->string('title')->index()->change();
             $table->string('slug')->index()->change();
+             $table->integer('subject_id')->index()->change();
+            $table->integer('category_id')->index()->change();
 
-            $table->index(['subject_id','category_id','slug','title']);
+            
         });
     }
 
@@ -29,7 +31,7 @@ class UpdateTableNotes extends Migration
     public function down()
     {
         Schema::table('notes', function (Blueprint $table) {
-            $table->dropIndex(['subject_id','category_id','slug','title']);
+           // $table->dropIndex(['subject_id','category_id','slug','title']);
         });
     }
 }
