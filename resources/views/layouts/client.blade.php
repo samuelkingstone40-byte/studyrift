@@ -4,9 +4,9 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>StudyMerit</title>
+    <title>Studymerit-</title>
     <!-- CSS files -->
-   
+    <link rel="icon" href="{{asset('theme/img/favicon.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="{{asset('theme/dist/css/tabler.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>

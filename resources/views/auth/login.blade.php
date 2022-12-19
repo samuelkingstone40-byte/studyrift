@@ -8,11 +8,12 @@
       <div class="col-lg-7 offset-lg-1">
         <div class="register_form">
           <div class="py-4 text-center">
+            <img class="img-fluid" src="{{asset('theme/img/favicon.png')}}"/>
             <h2>Studymerit</h2>
           </div>
 
           <div class="body mt-2">
-            <h4 class="py-2">Please provide your credentials </h4>
+            <h4 class="py-2">Login </h4>
            
           <form  class="form_area" method="POST" action="{{ route('login') }}">
                         @csrf

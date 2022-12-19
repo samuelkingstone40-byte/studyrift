@@ -5,9 +5,10 @@
 <section class="section_gap">
 <div class="container py-5">
     <div class="row justify-content-center">
-        <div class="col-lg-5 offset-lg-1">
+        <div class="col-lg-7 offset-lg-1">
         <div class="register_form">
             <div class="text-center py-1">
+              <img src="{{asset('theme/img/favicon.png')}}"/>
             <h3 class="py-4">Create a free account</h3>
             </div>
               
