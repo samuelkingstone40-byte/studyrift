@@ -23,15 +23,15 @@
         </div>
 
         <nav class="navbar navbar-expand-lg navbar-light">
-          <div class="container">
+         
             <!-- Brand and toggle get grouped for better mobile display -->
             @guest
             <a class="navbar-brand" href="{{url('/')}}">
-              <img class="logo-2" src="{{asset('theme/img/logo2.png')}}" alt="" />
+              <img class="logo-2 img-fluid" src="{{asset('theme/img/logo-new.png')}}" alt="" />
             </a>
             @else
             <a class="navbar-brand" href="{{url('home')}}">
-              <img class="logo-2" src="{{asset('theme/img/logo2.png')}}" alt="" />
+              <img class="logo-2 img-fluid" src="{{asset('theme/img/logo-new.png')}}" alt="" />
             </a>
             @endguest
             <button
@@ -47,15 +47,12 @@
               <span class="icon-bar"></span>
             </button>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div
-              class="collapse navbar-collapse offset"
-              id="navbarSupportedContent"
-            >
+            <div class="collapse navbar-collapse offset mr-4" id="navbarSupportedContent">
 
          
 
 
-              <ul class="nav navbar-nav menu_nav ml-auto">
+              <ul class="nav navbar-nav menu_nav ma-5 ml-auto">
               <li class="nav-item">
                   <a class="nav-link" href="{{url('upload')}}">Upload <i class="fa fa-upload fa-lg ml-2"></i></a>
                 </li>     
@@ -158,14 +155,14 @@
          </div>
      </li>
     @endguest
-     <li class="nav-item">
+     <!-- <li class="nav-item">
                   <a href="#" class="nav-link search" id="search">
                     <i class="ti-search"></i>
                   </a>
-                </li>
+                </li> -->
  </ul>
             </div>
-          </div>
+         
         </nav>
       </div>
 <!-- 

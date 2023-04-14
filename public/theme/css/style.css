@@ -194,7 +194,8 @@ button:focus {
 ============================================================================================ */
 .main_title {
   text-align: center;
-  margin-bottom: 85px; }
+  margin: 45px 0 45px 0;
+ }
   @media (max-width: 991px) {
     .main_title {
       margin-bottom: 40px; } }
@@ -202,6 +203,8 @@ button:focus {
     font-size: 36px;
     line-height: 30px;
     font-weight: bold;
+    text-transform:capitalize;
+    color:#f8b600;
     margin-bottom: 15px; }
     @media (max-width: 575px) {
       .main_title h2 {
@@ -362,24 +365,25 @@ button:focus {
       color: #fdc632; }
 
 #search_input_box {
-  background: #fdc632;
+  background: transparent;
   text-align: center;
   padding: 5px 20px; }
   #search_input_box .form-control {
     padding-left: 0;
     background: transparent;
     border: 0;
+    border-radius: 20px;
     color: #ffffff;
     font-weight: 400;
     font-size: 18px; }
     #search_input_box .form-control:focus {
       box-shadow: none;
       outline: none; }
-  #search_input_box input.placeholder {
+  #search_input_box input::placeholder {
     color: #ffffff;
     font-size: 16px;
     font-weight: normal; }
-  #search_input_box input:-moz-placeholder {
+  #search_input_box input::placeholder {
     color: #ffffff;
     font-size: 16px;
     font-weight: normal; }
@@ -409,33 +413,43 @@ button:focus {
 .home_banner_area {
   background:#000;
   z-index: 1;
-  min-height: 900px;
+  min-height: 850px;
   position: relative;
+  justify-content: center;
+  align-items: center;
+  display: flex;
   background-size:cover;
   background-position:center;
   background: url(../img/banner/home-banner.jpg) no-repeat center;
   }
   .home_banner_area .banner_inner {
-    
+    text-align: center;
+    top: 55%;
     position: absolute;
-    top: 40%;
+    padding: 20px;
+
+    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+    z-index: 2;
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     -o-transform: translateY(-50%);
     transform: translateY(-50%);
    
-    width: 100%; }
+    }
     @media (max-width: 991px) {
       .home_banner_area .banner_inner {
         top: 40%; } }
     .home_banner_area .banner_inner .banner_content h2 {
-      color:#f8b600;
-      font-size: 48px;
-      font-weight: 500; }
+      color:#FFFFFF;
+      font-size: 36px;
+      line-height:1.5;
+      font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
-      font-size: 20px;
-      color: rgba(0, 35, 71, 0.8);
+      font-size: 28px;
+      color:#C6D886;
+     
+      line-height: 50px;
       font-weight: 500; }
 
 .blog_banner {
@@ -571,6 +585,7 @@ button:focus {
 /* Start Features Area css
 ============================================================================================ */
 .feature_area {
+
   padding-bottom: 100px; }
   @media (max-width: 991px) {
     .feature_area {
@@ -578,10 +593,12 @@ button:focus {
 
 .single_feature {
   position: relative;
-  background: #f9f9ff;
-  padding: 40px 36px;
-  margin-bottom: 30px;
-  height: 270px;
+  background: #FFFFFF;
+  
+  border-radius: 40px;
+  height: 100%;
+  margin: 0px 10px 20px 10px;
+ 
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -2034,6 +2051,7 @@ h6 {
   border-top: 1px dotted #eee; }
 
 .button-group-area .genric-btn {
+
   margin-right: 10px;
   margin-top: 10px; }
 
@@ -2046,9 +2064,10 @@ h6 {
 .genric-btn {
   display: inline-block;
   outline: none;
-  line-height: 40px;
+  margin: 20px 0 20px 0;
   padding: 0 30px;
-  font-size: 0.8em;
+  height: 55px;
+  font-size: 1.5em;
   text-align: center;
   text-decoration: none;
   font-weight: 500;
@@ -3122,7 +3141,8 @@ h6 {
     transition: all 400ms linear;
     cursor: pointer; }
 
-  .navbar .container {
+  .navbar .cont {
+    margin: 10px;
     padding-left: 15px;
     padding-right: 15px; }
 
@@ -3266,6 +3286,7 @@ h6 {
 	============================================================================================ */
   .home_banner_area .banner_inner .banner_content h2 {
     font-size: 40px;
+    text-transform: capitalize;
     line-height: 44px; }
 
   .blog_banner .banner_inner .blog_b_text {

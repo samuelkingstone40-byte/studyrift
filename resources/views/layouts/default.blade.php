@@ -19,6 +19,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="{{asset('theme/css/nav.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/style.css')}}" />
+    <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" />
   </head>
 
   <body>
@@ -48,7 +49,7 @@
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <a class="navbar-brand" href="{{url('home')}}">
-              <img class="logo-2" src="{{asset('theme/img/logo2.png')}}" alt="" />
+              <img class="logo-2" src="{{asset('theme/img/logo-new.png')}}" alt="" />
             </a>
             <button
               class="navbar-toggler"

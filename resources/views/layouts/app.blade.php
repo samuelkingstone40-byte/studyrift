@@ -25,7 +25,7 @@
     <!-- main css -->
     <link rel="stylesheet" href="{{asset('theme/css/nav.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/cart.css')}}" />
-
+    <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/style.css')}}" />
   </head>
 
