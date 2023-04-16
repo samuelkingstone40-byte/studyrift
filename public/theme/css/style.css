@@ -3104,7 +3104,7 @@ h6 {
   .navbar-toggler {
     border: none;
     border-radius: 0px;
-    padding: 0px;
+    padding: 8px;
     cursor: pointer;
     margin-top: 27px;
     margin-bottom: 23px; }
@@ -3112,8 +3112,13 @@ h6 {
   .header_area {
     position: absolute; }
 
+    .home_banner_area .banner_inner{
+      top: 55%;
+    }
+  
+
   .header_area .navbar {
-    background: #868686; }
+    background: #002347; }
 
   .navbar-toggler[aria-expanded="false"] span:nth-child(2) {
     opacity: 1; }
@@ -3241,7 +3246,7 @@ h6 {
   /* Blog Page Area css
 	============================================================================================ */
   .blog_banner .banner_inner .blog_b_text h2 {
-    font-size: 40px;
+    font-size: 30px;
     line-height: 50px; }
 
   .blog_info.text-right {
@@ -3250,6 +3255,10 @@ h6 {
 
   /* End Blog Page Area css
 	============================================================================================ */
+  .home_banner_area .banner_inner{
+    top: 55%;
+  }
+
   .home_banner_area .banner_inner .banner_content h3 {
     font-size: 30px; }
 
@@ -3284,10 +3293,22 @@ h6 {
 
   /* Home Banner Area css
 	============================================================================================ */
+  .home_banner_area .banner_inner{
+    top: 55%;
+    width:100%;
+  
+  }
   .home_banner_area .banner_inner .banner_content h2 {
-    font-size: 40px;
+    font-size: 20px;
     text-transform: capitalize;
-    line-height: 44px; }
+    line-height: 20px;
+  }
+
+  .home_banner_area .banner_inner .banner_content p {
+    font-size: 16px;
+  }
+
+
 
   .blog_banner .banner_inner .blog_b_text {
     margin-top: 0px; }
