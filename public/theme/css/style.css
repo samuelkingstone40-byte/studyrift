@@ -921,22 +921,64 @@ button:focus {
       @media (max-width: 1199px) {
         .clock_sec .clockinner h1 {
           display: block; } }
+.login-section{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container{
+
+
+}
+
+.login-avatar{
+  width: 80px;
+}
+
+
+
 
 .register_form {
+  width: 500px;
   background: #fff;
   text-align: left;
   padding: 40px; }
+
+   .reset{
+    margin-top: 28%;
+    border-radius: 10px;
+  }
+
+
+  .div-image{
+    margin-bottom: 8%;
+  }
+
+  .form-check-label{
+    color: #007bff;
+  }
   @media (max-width: 991px) {
     .register_form {
       margin-top: 60px; } }
   .register_form h3 {
     font-size: 24px;
     margin-bottom: 0; }
-  .register_form input {
+  .register_form input[type="email"],input[type="password"],input[type="text"] {
     width: 100%;
-    border: none;
-    border-bottom: 1px solid #eeeeee;
+    border: 1px solid #f2f2f2;
+    border-radius: 4px;
+    height: 55px;
     padding: 12px; }
+
+   
+   
+
+
+ 
+
+  
     .register_form input:focus {
       outline: none;
       box-shadow: none; }
@@ -948,6 +990,7 @@ button:focus {
     .register_form input:-moz-placeholder {
       color: #aaaaaa;
       font-size: 14px;
+     
       font-weight: 500;
       font-family: "Roboto", sans-serif; }
     .register_form input::-moz-placeholder {
@@ -962,11 +1005,22 @@ button:focus {
       font-family: "Roboto", sans-serif; }
   .register_form .primary-btn {
     width: 100%;
-    border-radius: 0;
+    height: 50px;
+    border-radius: 5px;
     border: none;
-    text-transform: uppercase;
+    font-size: 18px;
+    color: #FFF;
     font-weight: 600;
-    margin-top: 30px; }
+    margin-top: 10px; }
+
+    .register_form .header-section{
+      text-align: center;
+    }
+
+    .register_form .header-section p{
+      font-size: 20px;
+      padding: 10px 0 10px 0;
+    }
 
 /* End Registration Area css
 ============================================================================================ */
