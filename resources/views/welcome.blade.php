@@ -15,7 +15,7 @@
                 <h2 class="text-uppercase py-1">
                   Get quality notes in one place
                 </h2>
-                <p class="text-black" style="color: black">
+                <p >
                   Buy and sell quality study notes and resources
                 </p>
                 <div class="">
@@ -24,10 +24,10 @@
                   <form action="{{route('search')}}" method="get">
                    <div class=" search form-group">
                     <i class="fa fa-search"></i>
-                    <input type="text" name="search_text" class="form-control" placeholder="Quick search? title, decription, author...">
+                    <input id="search_input_box" type="text" name="search_text" class="form-control search_text" placeholder="Quick search? title, decription, author...">
 
                    </div>
-                   <button type="submit"  class="genric-btn btn-lg primary btn-block radius">Search</button>
+                   <button type="submit"  class="genric-btn btn-lg primary radius">Search</button>
                  </form>
                    
                 </div>
@@ -46,21 +46,20 @@
     <!--================ End Home Banner Area =================-->
 
     <!--================ Start Feature Area =================-->
-    <section class="feature_area  mt-4">
-      <div class="ma-5">
+    <section class="feature_area">
+      <div class="">
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="main_title">
-              <h2 class="mb-3 mt-4">How it works</h2>
-             
+              <h2 class="">How it works</h2>
             </div>
           </div>
         </div>
         <div class="row ">
           <div class="col-lg-4 col-md-6">
-            <div class="single_feature bg-white text-center">
-              <div class="icon"><i class="fa fa-user fa-4x"></i></div>
+            <div class="single_feature text-center">
               <div class="desc">
+               <img class="img-fluid" src="{{asset('theme/img/signup.jpg')}}" alt="">
                 <h3 class="mt-3 mb-2">Sign up</h3>
                 <p>
                   Create a free account on Studymerit 
@@ -71,9 +70,9 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature bg-white text-center">
-              <div class="icon"><i class="fa fa-cloud-upload fa-4x "></i></div>
               <div class="desc">
-                <h3 class="mt-3 mb-2">Upload</h3>
+                 <img class="img-fluid" src="{{asset('theme/img/upload-files.jpg')}}" alt="">
+                 <h3 class="mt-3 mb-2">Upload</h3>
                 <p>
                   Upload your study guides, summaries, practice questions, lecture notes, assignments, solutions and much more!
                 </p>
@@ -83,11 +82,11 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="single_feature bg-white text-center">
-              <div class="icon"><i class="fa fa-money fa-4x"></i></div>
               <div class="desc">
+              <img class="img-fluid" src="{{asset('theme/img/earn.png')}}" alt="">
                 <h3 class="mt-3 mb-2">Set a Price</h3>
                 <p>
-                  Set the price for your notes and wait to sell! You earn money from each document purchased. This money is added to your account instantly.
+                  Set the price for your notes and wait to sell.
                 </p>
               </div>
             </div>
@@ -104,12 +103,13 @@
     <!--================ Start Registration Area =================-->
 
     <section>
-      <div class="section bg-white">
+      <div class="section bg-white py-2">
+      <div class="main_title ">
+           <h2 class="">Why use Studymerit?</h1>
+          </div>
         <div class="m-5">
         <div class="row align-items-center">
-          <div class="col-md-12 text-center">
-          <h1 class="py-4 mb-5 mt-4">Why use Studymerit?</h1>
-          </div>
+         
           <div class="col-md-3">
             <h3>Access quality learning materials</h3>
             <p>

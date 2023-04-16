@@ -24,11 +24,11 @@
           <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
           @guest
             <a class="" href="{{url('/')}}">
-              <img class="logo-2" src="{{asset('theme/img/logo2.png')}}" alt="" />
+              <img class="logo-2" src="{{asset('theme/img/logo-new.png')}}" alt="" />
             </a>
             @else
             <a class="" href="{{url('home')}}">
-              <img class="logo-2" src="{{asset('theme/img/logo2.png')}}" alt="" />
+              <img class="logo-2" src="{{asset('theme/img/logo-new.png')}}" alt="" />
             </a>
             @endguest
           </h1>

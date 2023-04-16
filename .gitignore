@@ -4,6 +4,7 @@ public/storage
 public/files
 public/profiles
 public/thumbnails
+public/theme/img
 public/pdfjs
 storage/*.key
 vendor
