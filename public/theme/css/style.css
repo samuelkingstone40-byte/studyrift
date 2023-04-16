@@ -70,6 +70,10 @@ theme.
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .search {
   position: relative;
   box-shadow: 0 0 40px rgba(51, 51, 51, .1)
@@ -173,7 +177,7 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .section_gap {
-  padding: 90px 0; }
+  padding: 50px 0; }
   @media (max-width: 991px) {
     .section_gap {
       padding: 70px 0; } }
@@ -443,7 +447,7 @@ button:focus {
     .home_banner_area .banner_inner .banner_content h2 {
       color:#FFFFFF;
       font-size: 36px;
-      line-height:1.5;
+      line-height:1;
       font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
       font-size: 28px;
@@ -587,6 +591,10 @@ button:focus {
 .feature_area {
 
   padding-bottom: 100px; }
+
+  .single_feature {
+    height: 300px;
+  }
   @media (max-width: 991px) {
     .feature_area {
       padding-bottom: 40px; } }
@@ -594,9 +602,8 @@ button:focus {
 .single_feature {
   position: relative;
   background: #FFFFFF;
-  
-  border-radius: 40px;
-  height: 100%;
+  border-radius:20px;
+  height: 280px;
   margin: 0px 10px 20px 10px;
  
   -webkit-transition: all 0.3s ease 0s;
@@ -605,7 +612,8 @@ button:focus {
   transition: all 0.3s ease 0s; }
   @media (max-width: 480px) {
     .single_feature {
-      padding: 40px 20px; } }
+      height: auto;
+      padding: 20px 10px; } }
   .single_feature .icon span {
     font-size: 30px; }
   .single_feature h4 {
@@ -1092,6 +1100,8 @@ button:focus {
       display: none !important; } }
 
 .testi_item {
+  background-color: #FFFFFF;
+  border-radius: 10px;
   padding: 50px 55px;
   margin-bottom: 200px;
   margin-left: 10px;
@@ -1120,6 +1130,7 @@ button:focus {
     margin-bottom: 15px;
     text-transform: capitalize; }
   .testi_item .testi_text p {
+    font-style: italic;
     margin-bottom: 0px; }
   .testi_item:hover {
     box-shadow: 0px 10px 30px 0px rgba(0, 35, 71, 0.1); }
@@ -3115,6 +3126,10 @@ h6 {
     .home_banner_area .banner_inner{
       top: 55%;
     }
+
+    .single_feature {
+      height: max-content;
+    }
   
 
   .header_area .navbar {
@@ -3247,7 +3262,7 @@ h6 {
 	============================================================================================ */
   .blog_banner .banner_inner .blog_b_text h2 {
     font-size: 30px;
-    line-height: 50px; }
+    line-height: 30px; }
 
   .blog_info.text-right {
     text-align: left !important;
@@ -3258,6 +3273,9 @@ h6 {
   .home_banner_area .banner_inner{
     top: 55%;
   }
+
+ 
+
 
   .home_banner_area .banner_inner .banner_content h3 {
     font-size: 30px; }
@@ -3371,6 +3389,7 @@ h6 {
   /* End Home Banner Area css
 	============================================================================================ */
   .banner_area .banner_inner .banner_content h2 {
+    line-height: 20px;
     font-size: 32px; }
 
   /* Blog Page Area css
