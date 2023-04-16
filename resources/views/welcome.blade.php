@@ -55,8 +55,8 @@
             </div>
           </div>
         </div>
-        <div class="row ">
-          <div class="col-lg-4 col-md-6">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="single_feature text-center">
               <div class="desc">
                <img class="img-fluid" src="{{asset('theme/img/signup.jpg')}}" alt="">
@@ -68,8 +68,8 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature bg-white text-center">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="single_feature  text-center">
               <div class="desc">
                  <img class="img-fluid" src="{{asset('theme/img/upload-files.jpg')}}" alt="">
                  <h3 class="mt-3 mb-2">Upload</h3>
@@ -80,8 +80,8 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature bg-white text-center">
+          <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="single_feature  text-center">
               <div class="desc">
               <img class="img-fluid" src="{{asset('theme/img/earn.png')}}" alt="">
                 <h3 class="mt-3 mb-2">Set a Price</h3>
@@ -177,7 +177,7 @@
             <div class="testi_item">
               <div class="row">
                 <div class="col-lg-4 col-md-6">
-                  <img src="{{asset('theme/img/testimonials/t3.jpg')}}" alt="" />
+                  <img class="img-fluid" src="{{asset('theme/img/testimonials/t3.jpg')}}" alt="" />
                 </div>
                 <div class="col-lg-8">
                   <div class="testi_text">
