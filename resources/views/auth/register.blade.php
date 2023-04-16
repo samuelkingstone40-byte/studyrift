@@ -3,13 +3,14 @@
 @extends('layouts.app')
 @section('content')
 <section class="section_gap">
-<div class="container py-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-7 offset-lg-1">
-        <div class="register_form">
+<div class="login-section" >
+
+<div class="login-container">
+       
+        <div class="register_form ">
             <div class="text-center py-1">
-              <img src="{{asset('theme/img/favicon.png')}}"/>
-            <h3 class="py-4">Create a free account</h3>
+             
+            <h3 class="py-4">CREATE ACCOUNT</h3>
             </div>
               
            
@@ -57,19 +58,13 @@
                    
                     </div>
                    
-                  <div class="text-right">
-                  @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                  </div>
+                
                   <div class=" ">
-                    <h4>Already have an account? <span>
-                     <a class="btn btn-link" href="{{ route('login') }}">
+                    <p>Already have an account? <span>
+                     <a  href="{{ route('login') }}">
                        <b> Sign In</b>
                      </a>
-                   </span></h4> 
+                   </span></p> 
                                   
                      </div>
                   </div>
@@ -83,7 +78,7 @@
                 
               </form>
             </div>
-        </div>
+        
     </div>
 </div>
 </section>

@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="section_gap py-2">
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+<div class="login-section">
+     <div class="justify-content-center">
+          <div class="register_form reset">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">{{ __('Resetss Password') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('password.update') }}">
