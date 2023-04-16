@@ -3,7 +3,7 @@
 @section('content')
 <section class="section_gap">
   <div class="login-section">
-    <div class="justify-content-center">
+     <div class="justify-content-center">
           <div class="register_form reset">
               <div class="text-center">
                 <h3 class="mb-2">{{ __('Forgot Password') }}</h3>
