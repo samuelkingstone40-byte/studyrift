@@ -446,14 +446,15 @@ button:focus {
         top: 40%; } }
     .home_banner_area .banner_inner .banner_content h2 {
       color:#FFFFFF;
-      font-size: 36px;
-      line-height:1;
+      margin-bottom: 10px;
+      font-size: 32px;
+      line-height:30px;
       font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
-      font-size: 28px;
+      font-size: 24px;
       color:#C6D886;
      
-      line-height: 50px;
+      line-height: 18px;
       font-weight: 500; }
 
 .blog_banner {
@@ -950,7 +951,6 @@ button:focus {
     margin-top: 28%;
     border-radius: 10px;
   }
-
 
   .div-image{
     margin-bottom: 8%;
@@ -3335,8 +3335,8 @@ h6 {
   .home_banner_area .banner_inner .banner_content h3 {
     font-size: 30px; }
 
-  .home_banner_area .banner_inner .banner_content p br {
-    display: none; }
+  .home_banner_area .banner_inner .banner_content p {
+  font-size: small; }
 
   .home_banner_area .banner_inner .banner_content h3 span {
     line-height: 45px;
@@ -3378,7 +3378,8 @@ h6 {
   }
 
   .home_banner_area .banner_inner .banner_content p {
-    font-size: 16px;
+    font-size: 14px;
+    
   }
 
 
@@ -3445,7 +3446,12 @@ h6 {
 	============================================================================================ */
   .banner_area .banner_inner .banner_content h2 {
     line-height: 20px;
-    font-size: 32px; }
+    font-size: 21px; }
+
+    .banner_area .banner_inner .banner_content h2 {
+      font-size: 12px;
+    
+    }
 
   /* Blog Page Area css
 	============================================================================================ */
