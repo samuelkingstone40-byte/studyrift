@@ -8,20 +8,21 @@
     <!-- CSS files -->
     <link rel="icon" href="{{asset('theme/img/favicon.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="{{asset('theme/dist/css/tabler.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-payments.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-vendors.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/demo.css')}}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" />
   </head>
   <body>
     <div class="page">
       <header class="navbar navbar-expand-md navbar-bg d-print-none">
-        <div class="container-xl">
+        <div class="container-top">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
+          <div class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
           @guest
             <a class="" href="{{url('/')}}">
               <img class="logo-2" src="{{asset('theme/img/logo-new.png')}}" alt="" />
@@ -31,7 +32,7 @@
               <img class="logo-2" src="{{asset('theme/img/logo-new.png')}}" alt="" />
             </a>
             @endguest
-          </h1>
+          </div>
           <div class="navbar-nav flex-row order-md-last">
             <div class="nav-item d-none d-md-flex me-3">
               <div class="btn-list">

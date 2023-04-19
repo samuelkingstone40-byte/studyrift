@@ -583,6 +583,7 @@ progress {
   padding-left: var(--tblr-gutter-x, 1.5rem);
   margin-right: auto;
   margin-left: auto;
+  
 }
 
 @media (min-width: 576px) {
@@ -3549,6 +3550,9 @@ textarea.form-control-lg {
   justify-content: space-between;
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+ 
+ 
+  
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -3557,10 +3561,12 @@ textarea.form-control-lg {
 .navbar > .container-lg,
 .navbar > .container-xl,
 .navbar > .container-xxl {
+
   display: flex;
   flex-wrap: inherit;
   align-items: center;
   justify-content: space-between;
+ 
 }
 .navbar-brand {
   padding-top: 0.5rem;
@@ -3627,8 +3633,7 @@ textarea.form-control-lg {
   width: 1.5em;
   height: 1.5em;
   vertical-align: middle;
-  background-repeat: no-repeat;
-  background-position: center;
+background-color: #0b956c;
   background-size: 100%;
 }
 
@@ -12071,7 +12076,7 @@ Navbar toggler
 .navbar-toggler-icon {
   height: 2px;
   width: 1.25em;
-  background: currentColor;
+  background:#ffa500;
   border-radius: 10px;
   transition: top 0.2s 0.2s, bottom 0.2s 0.2s, transform 0.2s, opacity 0s 0.2s;
   position: relative;

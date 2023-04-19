@@ -5,9 +5,34 @@
 
 
 
-.desc img{
-    width: 190px;
+.logo-2{
+    width: 250px;
 }
+@media (max-width: 991px) {
+    .logo-2{
+        width: 200px;
+    }
+}
+
+@media (max-width: 767px) {
+    .logo-2{
+        width: 200px;
+    } 
+}
+
+@media (max-width: 575px) {
+    .logo-2{
+        width: 180px;
+    }  
+}
+
+@media (max-width: 480px) {
+    .logo-2{
+        width: 180px;
+    }  
+}
+
+
 
 .desc p{
     font-size: 21px;
@@ -27,5 +52,13 @@
 
 .search_text::-moz-placeholder{
     color: #FFF;
+ }
+
+ .navbar> .container-top {
+    display: flex;
+    width: 100% !important;
+    justify-content: space-between;
+    padding-right: 1rem;
+  
  }
 
