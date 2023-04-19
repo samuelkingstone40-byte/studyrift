@@ -68,7 +68,7 @@
 }
 
 </style>
-<div class="page-wrapper">
+<div class="">
     <div class="container-xl">
           <!-- Page title -->
           <div class="page-header d-print-none">

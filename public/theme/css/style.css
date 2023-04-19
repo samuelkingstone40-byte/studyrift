@@ -428,7 +428,7 @@ button:focus {
   }
   .home_banner_area .banner_inner {
     text-align: center;
-    top: 55%;
+    top: 50%;
     position: absolute;
     padding: 20px;
 
@@ -446,16 +446,22 @@ button:focus {
         top: 40%; } }
     .home_banner_area .banner_inner .banner_content h2 {
       color:#FFFFFF;
-      margin-bottom: 10px;
-      font-size: 32px;
+      margin-bottom: 30px;
+      font-size: 36px;
+      letter-spacing: 3px;
       line-height:30px;
       font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
-      font-size: 24px;
+      font-size: 28px;
       color:#C6D886;
-     
+      margin-bottom: 30px;
       line-height: 18px;
       font-weight: 500; }
+
+      .desc img{
+        width: 190px;
+    }
+    
 
 .blog_banner {
   min-height: 780px;
