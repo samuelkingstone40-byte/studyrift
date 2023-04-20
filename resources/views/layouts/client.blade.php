@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Buy and sell the best textbook notes, study guides, class notes and more-studymerit</title>
     <!-- CSS files -->
-    <link rel="icon" href="{{asset('theme/img/favicon.png')}}" type="image/png" />
+    <link rel="icon" href="{{asset('theme/img/logo-new.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>
