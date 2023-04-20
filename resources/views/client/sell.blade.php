@@ -23,7 +23,7 @@
     <div class="page-body">
       <div class="container-xl">
         <div class="row row-deck row-cards">
-          <div class="col-sm-12">
+          <div class="col-sm-8">
             <form method="post" enctype="multipart/form-data" class="card"  action="{{route('post-document')}}" >
               @csrf
                 <div class="card-header">

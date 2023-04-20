@@ -47,7 +47,7 @@
 
     <!--================ Start Feature Area =================-->
     <section class="feature_area">
-      <div class="">
+      <div class="section-container">
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="main_title">
@@ -104,10 +104,73 @@
 
     <section>
       <div class="section bg-white py-2">
-      <div class="main_title ">
-           <h2 class="">Why use Studymerit?</h1>
-          </div>
-        <div class="m-5">
+       
+       <div class="section-container">
+         <div class="row">
+           <div class=" col-sm-12 col-md-5">
+           <div class="why-title">
+           Get Great Study Materials and <br/>Great Services
+        </div>
+           <img class="img-fluid" src="{{asset('theme/img/learning.png')}}" alt="">
+           </div>
+           <div class="col-sm-12 col-md-7">
+
+           <div class="row  gx-5">
+           <div class="col-md-6">
+             <div class="card why-card">
+              <div class="why-section">
+              <img class="contimg img-fluid" src="{{asset('theme/img/graduation.png')}}" alt="">
+              </div>
+              <h2>Learn with experts</h2>
+              <p>
+              Get high quality, verified notes from your school, professional course, or university. 
+              </p>
+             </div>
+           </div>
+
+           <div class="col-md-6">
+           <div class="card why-card">
+              <div class="why-section">
+              <img class="contimg img-fluid" src="{{asset('theme/img/books.png')}}" alt="">
+              </div>
+              <h2>Learn anything</h2>
+              <p>
+              Buy lecture notes, summaries and practice exams and get higher grades for your exams.  
+              </p>
+             </div>
+           </div>
+
+           <div class="col-md-6">
+           <div class="card why-card">
+              <div class="why-section">
+              <img class="contimg img-fluid" src="{{asset('theme/img/clock.png')}}" alt="">
+              </div>
+              <h2>Flexible learning</h2>
+              <p>
+              Summaries and study guides and tests are 24/7 online available. 
+              </p>
+             </div>
+           </div>
+
+           <div class="col-md-6">
+           <div class="card why-card">
+              <div class="why-section">
+              <img class="contimg img-fluid" src="{{asset('theme/img/calendar.png')}}" alt="">
+              </div>
+              <h2>Individual plans</h2>
+              <p>
+              Make money selling your course notes while helping others learn. 
+              </p>
+             </div>
+           </div>
+        </div>
+           </div>
+         </div>
+
+  
+        </div>
+
+        <!-- <div class="m-5">
         <div class="row align-items-center">
          
           <div class="col-md-3">
@@ -145,6 +208,7 @@
 
       
 
+      </div> -->
       </div>
     </section>
     
