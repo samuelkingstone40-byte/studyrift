@@ -109,7 +109,7 @@
          <div class="row">
            <div class=" col-sm-12 col-md-5">
            <div class="why-title">
-           Get Great Study Materials and <br/>Great Services
+           Get Great Study Materials and Great Services
         </div>
            <img class="img-fluid" src="{{asset('theme/img/learning.png')}}" alt="">
            </div>

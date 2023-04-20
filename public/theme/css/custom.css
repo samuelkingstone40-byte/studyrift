@@ -29,7 +29,7 @@
 
 .why-title{
     font-size: 36px;
-    line-height: 45px;
+    line-height: 35px;
     font-weight: 700;
     letter-spacing: 1.5px;
     margin: 40px 0 10px 0;
@@ -38,21 +38,38 @@
     .logo-2{
         width: 200px;
     }
+    .why-title{
+        font-size: 27px;
+        font-weight: 700;
+    }
 }
 
 @media (max-width: 767px) {
     .logo-2{
         width: 200px;
     } 
+
+    .why-title{
+        font-size: 32px;
+        font-weight: 700;
+    }
 }
 
 @media (max-width: 575px) {
     .logo-2{
         width: 180px;
     }  
+    .why-title{
+        font-size: 24px;
+        font-weight: 700;
+    }
 }
 
 @media (max-width: 480px) {
+    .why-title{
+        font-size: 22px;
+        font-weight: 700;
+    }
     .logo-2{
         width: 180px;
     }  
