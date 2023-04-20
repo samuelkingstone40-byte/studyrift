@@ -47,7 +47,7 @@
 
     <!--================ Start Feature Area =================-->
     <section class="feature_area">
-      <div class="section-container">
+      <div class="section-cont">
         <div class="row justify-content-center">
           <div class="col-lg-12">
             <div class="main_title">
