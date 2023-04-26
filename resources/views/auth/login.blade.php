@@ -1,5 +1,5 @@
 
-<title>Login-Studymerit</title>
+
 @extends('layouts.app')
 @section('content')
 <section class="section_gap">
