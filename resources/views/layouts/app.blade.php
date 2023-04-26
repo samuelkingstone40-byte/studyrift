@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Studymerit- Get quality notes in one place</title>
+    <title>Get quality notes in one place</title>
 
     
     <link rel="icon" href="{{asset('theme/img/logo-new.png')}}" type="image/png" />
