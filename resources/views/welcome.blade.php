@@ -16,7 +16,7 @@
                   Get quality notes in one place
                 </h2>
                 <p >
-                  Buy and sell quality study notes and resources
+                Find study materials, textbooks and other study instruments for all subjects. Find all the documents you need by looking for your subject.
                 </p>
                 <div class="">
                 <div class=""> 
