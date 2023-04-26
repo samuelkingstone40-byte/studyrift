@@ -4,7 +4,9 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <title>Buy and sell the best textbook notes, study guides, class notes and more-studymerit</title>
+    <meta name = "keywords" content = "Study notes,study materials,term papers,textbooks" />
+    <meta name = "description" content = " Find study materials, textbooks and other study instruments for all subjects. Find all the documents you need by looking for your subject." />
+    <title>Get quality notes in one place</title>
     <!-- CSS files -->
     <link rel="icon" href="{{asset('theme/img/logo-new.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
