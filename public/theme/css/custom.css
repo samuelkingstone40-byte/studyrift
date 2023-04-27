@@ -34,6 +34,56 @@
     letter-spacing: 1.5px;
     margin: 40px 0 10px 0;
 }
+
+ .search{
+   
+   
+    
+    
+    }
+
+    .search .form-control{
+    
+     height: 60px;
+     text-indent: 25px;
+     border: 2px solid #d6d4d4;
+
+
+    }
+
+
+    .search input:focus{
+
+     box-shadow: none;
+     border: 2px solid #FFA500;
+
+
+    }
+
+    .search .fa-search{
+     position: absolute;
+     top: 20px !important;
+     left: 16px;
+     font-size: 24px;
+  
+
+    }
+
+    .search .btn2{
+     border-radius: 10px;
+     border: none;
+     position: absolute;
+     top: 5px !important;
+     right: 5px;
+     height: 50px;
+     width: 110px;
+     background: #FFA500;
+
+    }
+
+    .search-box{
+        margin-top: 20px;
+    }
 @media (max-width: 991px) {
     .logo-2{
         width: 200px;
@@ -48,6 +98,11 @@
     .logo-2{
         width: 200px;
     } 
+
+    .search{
+      
+        width: 100%;
+        }
 
     .why-title{
         font-size: 32px;

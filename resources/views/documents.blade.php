@@ -3,12 +3,22 @@
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 <section class="section_gap ">
-    <div class="cont m-4 py-2">
+
+    <div class="cont m-4 py-4">
+        <h3>Documents </h3>
         <div class="row">
             <div class="col-sm-12">
                 
                 <form action="{{route('search')}}" method="get">
-                <div class="row g-3 mt-2">
+               <div class="search-box">
+               <div class="search">
+                      <i class="fa fa-search"></i>
+                      <input type="text" class="form-control" placeholder="title, description, courses....">
+                      <button type="submit" class="btn2">Search</button>
+                </div>
+               </div>
+             
+                <!-- <div class="row g-3 mt-2">
                     <div class="col-md-4">
                         <div class='form-group'>
                             <input type="text"  name="search_text" style="height:50px;background:#f2f2ff;font-size:18px" placeholder="Search title.." class="form-control">
@@ -19,7 +29,7 @@
 
                     </div>
                 </div>
-               
+                -->
             </form>
              
             </div>
@@ -100,7 +110,7 @@
                       <img src="{{asset('theme/img/no-results.png')}}" width="80px" alt="">
                        <h5>Oops! We couldn’t find results for your search:</h5>
                       <h4 class="card-title">No document found</h4>
-                      <a href="{{route('search')}}" class="genric-btn primary radius">Browse</a>
+                      <a href="{{route('search')}}" class="genric-btn btn primary radius">Browse</a>
                   </div>
               </div>
             
