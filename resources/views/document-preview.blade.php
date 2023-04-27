@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<title>{{$doc->title}}</title>
 <meta name="description" content="{{$doc->description}}">
 <meta name="keywords" content="study documents,lecture notes,summaries,practice exams,online tutoring,homework help,online homework help">
 @section('content')
