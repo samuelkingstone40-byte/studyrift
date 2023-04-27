@@ -18,25 +18,27 @@
                 <p >
                 Find study materials, textbooks and other study instruments for all subjects. Find all the documents you need by looking for your subject.
                 </p>
-                <div class="">
-                <div class=""> 
+                
                  
-                  <form action="{{route('search')}}" method="get">
-                   <div class=" search form-group">
+                  <form action="{{route('search')}}" class="form-search" method="get">
+                    <div class="search" id="search">
+                      <i class="fa fa-search"></i>
+                      <input type="text" class="form-control" placeholder="title, description, courses....">
+                      <button type="submit" class="btn2">Search</button>
+                    </div>
+        
+
+                  
+                   <!-- <div class=" search form-group">
                     <i class="fa fa-search"></i>
                     <input id="search_input_box" type="text" name="search_text" class="form-control search_text" placeholder="Quick search? title, decription, author...">
 
-                   </div>
-                   <button type="submit"  class="genric-btn btn-lg primary radius">Search</button>
+                   </div> -->
+                   <!-- <button   class="genric-btn btn-lg primary radius">Search</button> -->
                  </form>
                    
-                </div>
-                </div>
-                <!-- <div>
-                 
-                  <a href="{{url('upload')}}" class="primary-btn2 mb-3 mb-sm-0">Sell</a>
-                  <a href="{{url('browse-files')}}" class="primary-btn ml-sm-3 ml-0">Browse</a>
-                </div> -->
+                
+               
               </div>
             </div>
           </div>
