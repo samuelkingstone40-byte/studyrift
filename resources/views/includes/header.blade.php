@@ -2,7 +2,7 @@
 
 <header class="header_area white-header">
       <div class="main_menu">
-        <div class="search_input" id="search_input_box">
+        <!-- <div class="search_input" id="search_input_box">
           <div class="container">
             <form class="d-flex justify-content-between" method="get" action="{{route('search')}}">
               <input
@@ -20,7 +20,7 @@
               ></span>
             </form>
           </div>
-        </div>
+        </div> -->
 
         <nav class="navbar navbar-expand-lg navbar-light">
          
