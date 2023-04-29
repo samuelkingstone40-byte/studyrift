@@ -13,7 +13,8 @@
                <div class="search-box">
                <div class="search">
                       <i class="fa fa-search"></i>
-                      <input type="text" class="form-control" placeholder="title, description, courses....">
+                      <input type="text" class="form-control"  id="search_input"
+                name="search_text" placeholder="title, description, courses....">
                       <button type="submit" class="btn2">Search</button>
                 </div>
                </div>

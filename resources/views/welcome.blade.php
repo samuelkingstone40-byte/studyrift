@@ -23,8 +23,9 @@
                   <form action="{{route('search')}}" class="form-search" method="get">
                     <div class="search" id="search">
                       <i class="fa fa-search"></i>
-                      <input type="text" class="form-control" placeholder="title, description, courses....">
-                      <button type="submit" class="btn2">Search</button>
+                      <input type="text" class="form-control"  id="search_input"
+                name="search_text" placeholder="title, description, courses....">
+                      <button type="submit" class="btn2 radius">Search</button>
                     </div>
         
 
