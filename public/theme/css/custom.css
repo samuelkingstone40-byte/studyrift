@@ -35,35 +35,32 @@
     margin: 40px 0 10px 0;
 }
 
- .search{
-   
-   
-    
-    
-    }
+
 
     .search .form-control{
-    
      height: 60px;
      text-indent: 25px;
      border: 2px solid #d6d4d4;
-
-
     }
 
 
     .search input:focus{
-
      box-shadow: none;
-     border: 2px solid #FFA500;
+     border: 2px solid #FFA500 !important;
+    }
 
+    .search input::placeholder{
+        font-size: 16px;
+        padding-left: 10px;
+    }
 
+    .search input::-moz-placeholder{
+        margin-left: 10px;
     }
 
     .search .fa-search{
      position: absolute;
-     top: 20px !important;
-     left: 16px;
+     top: 18px !important;
      font-size: 24px;
   
 
