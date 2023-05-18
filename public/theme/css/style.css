@@ -447,13 +447,12 @@ button:focus {
     .home_banner_area .banner_inner .banner_content h2 {
       color:#FFFFFF;
       margin-bottom: 15px;
-      font-size: 36px;
-  
+      font-size: 42px;
       line-height:30px;
       font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
       font-size: 24px;
-      color:#000;
+      color:#FBFBF9	;
       margin-bottom: 18px;
       line-height: 35px;
       font-weight: 500; }
