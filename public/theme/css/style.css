@@ -424,7 +424,8 @@ button:focus {
   display: flex;
   background-size:cover;
   background-position:center;
-  background: url(../img/banner/home-banner.jpg) no-repeat center;
+  background: linear-gradient(to right, rgba(0,0,0,0.2), rgba(198, 216, 134,0.7)), url(../img/banner/home-banner.jpg) no-repeat top center;
+
   }
   .home_banner_area .banner_inner {
     text-align: center;
@@ -432,8 +433,7 @@ button:focus {
     position: absolute;
     padding: 20px;
 
-    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
-    z-index: 2;
+
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
@@ -453,7 +453,7 @@ button:focus {
       font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
       font-size: 24px;
-      color:#C6D886;
+      color:#000;
       margin-bottom: 18px;
       line-height: 35px;
       font-weight: 500; }
