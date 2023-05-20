@@ -417,14 +417,16 @@ button:focus {
 .home_banner_area {
   background:#000;
   z-index: 1;
-  min-height: 850px;
+  height: 900px;
   position: relative;
   justify-content: center;
   align-items: center;
   display: flex;
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
   background-size:cover;
   background-position:center;
-  background: linear-gradient(to right, rgba(0,0,0,0.2), rgba(198, 216, 134,0.7)), url(../img/banner/home-banner.jpg) no-repeat top center;
+  background:   linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../img/banner/home-banner.jpg) no-repeat top center;
 
   }
   .home_banner_area .banner_inner {
