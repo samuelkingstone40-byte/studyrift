@@ -7,7 +7,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="icon" href="{{asset('theme/img/fav.png')}}" sizes="32x32" type="image/png" />
+    <link rel="icon" href="{{asset('theme/img/fav.png')}}" sizes="96x96" type="image/png" />
     <title>{{ config('app.name', 'Study Merit') }}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
