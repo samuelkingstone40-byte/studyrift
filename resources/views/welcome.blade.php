@@ -10,21 +10,19 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <div class="banner_content text-center">
+              <div class="banner_content ">
                
-                <h2 class="text-uppercase py-1">
-                  Get quality notes in one place
-                </h2>
-                <p >
-                Find study materials, textbooks and other study instruments for all subjects. Find all the documents you need by looking for your subject.
-                </p>
+                <h2 class="text-uppercase py-1"> Get quality notes in one place</h2>
+                  <p >
+                     Find study materials, textbooks and other study instruments for all subjects.
+                  </p>
                 
                  
                   <form action="{{route('search')}}" class="form-search" method="get">
                     <div class="search" id="search">
                       <i class="fa fa-search"></i>
                       <input type="text" class="form-control"  id="search_input"
-                name="search_text" placeholder="title, description, courses....">
+                           name="search_text" placeholder="title, description, courses....">
                       <button type="submit" class="btn2 radius">Search</button>
                     </div>
         
@@ -226,8 +224,8 @@
     <!--================ End Events Area =================-->
 
     <!--================ Start Testimonial Area =================-->
-    <div class="testimonial_area section_gap">
-      <div class="ma-5">
+    <div class="testimonial_area section_gap py-4">
+      <div class="my-20">
         <div class="row justify-content-center">
           <div class="col-lg-5">
             <div class="main_title">

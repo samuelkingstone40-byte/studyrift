@@ -18,7 +18,8 @@
 }
 
 .topbar.navbar-light .navbar-nav .nav-item .nav-link {
-    color: #d1d3e2
+    color: #d1d3e2;
+    font-size: 14px;
 }
 
 .dropdown-toggle::after {

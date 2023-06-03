@@ -2,36 +2,16 @@
 
 <header class="header_area white-header">
       <div class="main_menu">
-        <!-- <div class="search_input" id="search_input_box">
-          <div class="container">
-            <form class="d-flex justify-content-between" method="get" action="{{route('search')}}">
-              <input
-                type="text"
-                class="form-control"
-                id="search_input"
-                name="search_text"
-                placeholder="Search Here"
-              />
-              <button type="submit" class="btn"></button>
-              <span
-                class="ti-close"
-                id="close_search"
-                title="Close Search"
-              ></span>
-            </form>
-          </div>
-        </div> -->
-
         <nav class="navbar navbar-expand-lg navbar-light">
          
             <!-- Brand and toggle get grouped for better mobile display -->
             @guest
             <a class="navbar-brand" href="{{url('/')}}">
-              <img class="logo-2 img-fluid" src="{{asset('theme/img/logo-new.png')}}" alt="" />
+              <img class="logo-2 img-fluid" src="{{asset('theme/img/site/logo.png')}}" alt="" />
             </a>
             @else
             <a class="navbar-brand" href="{{url('home')}}">
-              <img class="logo-2 img-fluid" src="{{asset('theme/img/logo-new.png')}}" alt="" />
+              <img class="logo-2 img-fluid" src="{{asset('theme/img/site/logo.png')}}" alt="" />
             </a>
             @endguest
             <button
