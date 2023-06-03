@@ -11,7 +11,7 @@
     <title>Get quality notes in one place</title>
 
     
-    <link rel="icon" href="{{asset('theme/site/favicon.png')}}" sizes="48*48" type="image/png" />
+    <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" sizes="48*48" type="image/png" />
     <title>{{ config('app.name', 'Studymerit') }}</title>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
