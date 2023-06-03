@@ -3,10 +3,8 @@
 @extends('layouts.app')
 @section('content')
 <section class="section_gap">
-
   <div class="login-section" >
-
-    <div class="login-container">
+  
     
     <!-- <div class="py-2 text-center div-image">
       <img class="img-fluid" src="{{asset('theme/img/logo-new.png')}}"/>
@@ -92,7 +90,7 @@
 
               </form>
           </div>
-        </div>
+        
     </div>     
 
 </section>

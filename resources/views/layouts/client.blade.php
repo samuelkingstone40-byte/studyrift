@@ -8,7 +8,7 @@
     <meta name = "description" content = " Find study materials, textbooks and other study instruments for all subjects. Find all the documents you need by looking for your subject." />
     <title>Get quality notes in one place</title>
     <!-- CSS files -->
-    <link rel="icon" href="{{asset('theme/img/logo-new.png')}}" type="image/png" />
+    <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>
