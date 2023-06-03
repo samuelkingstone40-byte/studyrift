@@ -18,6 +18,12 @@ theme.
 /*font Variables*/
 /*Color Variables*/
 /*=================== fonts ====================*/
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,500|Rubik:500, 600");
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
@@ -248,18 +254,21 @@ button:focus {
   z-index: 99;
   transition: background 0.4s, all 0.3s linear; }
   .header_area .navbar {
-    background:#002347;
-    padding: 0px;
+    background:transparent;
+    padding: 5px 20px 5px 20px;
     border: 0px;
     border-radius: 0px; }
     .header_area .navbar .nav .nav-item {
-      margin-right: 45px; }
-      .header_area .navbar .nav .nav-item .nav-link {
-        font: 500 14px/80px "Rubik", sans-serif;
-        text-transform: capitalize;
-        color: #002347;
+      padding: 5px;
+      margin: 0 10px 0 10px;
+      font-size: 18px;
+      color: #fff;
+      }
+      .header_area .navbar .nav .nav-item .nav-link  a{   
         padding: 0px;
-        display: inline-block; }
+        color: #fff;
+        display: inline-block;
+     }
         @media (max-width: 991px) {
           .header_area .navbar .nav .nav-item .nav-link {
             color: #ffffff; } }
@@ -414,33 +423,41 @@ button:focus {
 /*----------------------------------------------------*/
 /* Home Banner Area css
 ============================================================================================ */
+
+
 .home_banner_area {
-  background:#000;
-  z-index: 1;
-  height: 900px;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  background-repeat: no-repeat; 
-  background-attachment: fixed; 
-  background-size:cover;
-  background-position:center;
-  background:   linear-gradient( rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(../img/banner/home-banner.jpg) no-repeat top center;
+   /* Sizing */
 
-  }
-  .home_banner_area .banner_inner {
+   height: 100vh;
+   width: 100vw;
+   
+   /* Flexbox stuff */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+  
+   /* Text styles */
+   text-align: center;
+
+   /* Background styles */
+   background-image:linear-gradient(rgba(0, 0, 0, 0.4),rgba(0, 0, 0, 0.4)), url(../img/site/banner2.jpg);
+   background-size:cover;
+   background-position: center center;
+   background-repeat: no-repeat;
+   
+
+}
+  
+.home_banner_area .banner_inner {
     text-align: center;
-    top: 50%;
-    position: absolute;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.3);
+    
+    margin: auto;
+    align-content: center;
     padding: 20px;
-
-
-    -webkit-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
    
     }
     @media (max-width: 991px) {
@@ -449,11 +466,11 @@ button:focus {
     .home_banner_area .banner_inner .banner_content h2 {
       color:#FFFFFF;
       margin-bottom: 15px;
-      font-size: 42px;
+      font-size: 36px;
       line-height:30px;
       font-weight: 700; }
     .home_banner_area .banner_inner .banner_content p {
-      font-size: 24px;
+      font-size: 16px;
       color:#FBFBF9	;
       margin-bottom: 18px;
       line-height: 35px;
@@ -525,6 +542,7 @@ button:focus {
       bottom: 0;
       background: rgba(0, 35, 71, 0.8); }
     .banner_area .banner_inner .banner_content {
+   
       position: relative;
       z-index: 2;
       color: #fff; }
@@ -3316,9 +3334,10 @@ h6 {
     margin-left: 0px; }
 
   .home_banner_area {
+    
     min-height: 700px; } }
 
-    @media (max-width: 991px) {
+@media (max-width: 991px) {
       .home_banner_area .banner_inner .banner_content h2 {
         font-size: 30px; }
     
@@ -3459,10 +3478,11 @@ h6 {
 	============================================================================================ */
   .home_banner_area .banner_inner{
     height: 90%;
-  
+
   }
  
   .home_banner_area .banner_inner .banner_content {
+  
     margin-top: 40px; }
 
   .home_banner_area .banner_inner .banner_content h2 {

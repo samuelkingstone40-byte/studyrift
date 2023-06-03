@@ -1,12 +1,12 @@
 .main-header{
-    margin-top: 100px;
+   
 }
 
 
 
 
 .logo-2{
-    width: 250px;
+    width: 300px;
 }
 
 .why-card{
@@ -35,10 +35,15 @@
     margin: 40px 0 10px 0;
 }
 
-
+.search{
+    width: 100%;
+   
+ 
+}
 
     .search .form-control{
      height: 60px;
+   
      text-indent: 25px;
      border: 2px solid #d6d4d4;
     }
