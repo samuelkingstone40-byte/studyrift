@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 <title>Buy and sell the best textbook notes, study guides, class notes and more-studymerit </title>
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('content')
 <section class="contact_area section_gap ">
     <div class="container ">

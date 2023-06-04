@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.default')
 
 <meta name="description" content="{{$doc->description}}">
 <meta name="keywords" content="study documents,lecture notes,summaries,practice exams,online tutoring,homework help,online homework help">

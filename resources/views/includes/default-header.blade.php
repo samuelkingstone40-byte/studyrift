@@ -1,6 +1,6 @@
 
 
-<header class="header_area white-header ">
+<header class="header_area2 white-header ">
       <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
          
