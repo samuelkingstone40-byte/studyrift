@@ -1,6 +1,6 @@
 
 
-@extends('layouts.app')
+@extends('layouts.default')
 @section('content')
 <section class="section_gap">
 <div class="login-section" >
