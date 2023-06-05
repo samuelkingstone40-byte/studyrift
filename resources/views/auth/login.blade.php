@@ -1,6 +1,7 @@
 
 
 @extends('layouts.default')
+<title>Login-Studymerit</title>
 @section('content')
 <section class="section_gap">
   <div class="login-section" >

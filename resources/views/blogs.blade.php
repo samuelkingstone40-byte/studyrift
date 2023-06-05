@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>Blogs-Studymerit</title>
 @section('content')
         <!--================Blog Area =================-->
         <section class="blog_area section_gap">
