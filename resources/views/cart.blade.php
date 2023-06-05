@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>Buy-Studymerit</title>
 @section('content')
 
 <span  id="loader" class="circlespinner"></span>

@@ -1,5 +1,5 @@
 @extends('layouts.default')
-<title>Buy and sell the best textbook notes, study guides, class notes and more-studymerit </title>
+<title>Buy-Studymerit </title>
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 <section class="section_gap ">

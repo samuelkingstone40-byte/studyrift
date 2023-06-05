@@ -1,4 +1,5 @@
 @extends('layouts.client')
+<title>Earnings - Studymerit </title>
 @section('content')
 
 <div class="page-wrapper">

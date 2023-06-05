@@ -31,7 +31,7 @@
             </a>
             @else
             <a class="" href="{{url('home')}}">
-              <img class="logo-2" src="{{asset('theme/img/site/logo.png')}}" alt="" />
+              <img class="logo-2 " src="{{asset('theme/img/site/logo.png')}}" alt="" />
             </a>
             @endguest
           </div>

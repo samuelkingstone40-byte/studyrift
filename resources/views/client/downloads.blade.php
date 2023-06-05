@@ -1,5 +1,6 @@
-<title>Downloads - Studymerit </title>
+
 @extends('layouts.client')
+<title>Downloads - Studymerit </title>
 @section('content')
 
 <div class="page-wrapper">

@@ -6,7 +6,8 @@
 
 
 .logo-2{
-    width: 300px;
+    width: 200px;
+    margin-left: 20px;
 }
 
 .why-card{
@@ -98,7 +99,7 @@
 
 @media (max-width: 767px) {
     .logo-2{
-        width: 200px;
+        width: 180px;
     } 
 
     .search{
@@ -114,7 +115,7 @@
 
 @media (max-width: 575px) {
     .logo-2{
-        width: 180px;
+        width: 150px;
     }  
     .why-title{
         font-size: 24px;
@@ -128,7 +129,7 @@
         font-weight: 700;
     }
     .logo-2{
-        width: 180px;
+        width: 100px;
     }  
 }
 
