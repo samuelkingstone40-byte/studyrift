@@ -2,7 +2,7 @@
 
 <meta name="description" content="{{$doc->description}}">
 <meta name="keywords" content="study documents,lecture notes,summaries,practice exams,online tutoring,homework help,online homework help">
-<title>Buy-Studymerit</title>
+<title>{{$doc->title}}</title>
 @section('content')
 <style type="text/css">
 

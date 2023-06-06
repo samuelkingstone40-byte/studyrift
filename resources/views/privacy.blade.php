@@ -1,4 +1,5 @@
 @extends('layouts.default')
+<title>Privacy policy-Studymerit</title>
 @section('content')
 <section class="about_area section_gap">
     <div class="container">
