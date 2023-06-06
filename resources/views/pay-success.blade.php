@@ -1,4 +1,5 @@
 @extends('layouts.app')
+<title>Payment-Studymerit</title>
 @section('content')
 <section class="section_gap">
     <div class="container">

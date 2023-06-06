@@ -1,5 +1,6 @@
 <title>Uploads - Studymerit</title>
 @extends('layouts.client')
+<title>Sell-Studymerit</title>
 @section('content')
 
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">

@@ -1,4 +1,5 @@
 @extends('layouts.default')
+<title>Term of use-Studymerit</title>
 @section('content')
 <section class="about_area section_gap">
     <div class="container">
