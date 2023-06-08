@@ -1,17 +1,20 @@
 
 
 @extends('layouts.default')
+<link href="{{asset('theme/css/login.css')}}" rel="stylesheet">
 <title>Login-Studymerit</title>
 @section('content')
 <section class="section_gap">
-  <div class="login-section" >
-  
-    
-    <!-- <div class="py-2 text-center div-image">
-      <img class="img-fluid" src="{{asset('theme/img/logo-new.png')}}"/>
-    </div> -->
-    
-        <div class="register_form">
+<div class="row justify-content-center">
+				<div class="col-md-12 col-lg-10">
+					<div class="wrap d-md-flex">
+						<div class="login-img">
+			      </div>
+						<div class="login-wrap p-4 p-md-5">
+			      	<div class="d-flex">
+			      		<div class="w-100 login-section ">
+			      			
+                  <div class="register_form">
           <div class="header-section">
             <img class="img-fluid login-avatar" src="{{asset('theme/img/user.png')}}"/>
             <p>Sign In</p>
@@ -91,6 +94,20 @@
 
               </form>
           </div>
+			      		</div>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+  <div class="login-section">
+  
+    
+    <!-- <div class="py-2 text-center div-image">
+      <img class="img-fluid" src="{{asset('theme/img/logo-new.png')}}"/>
+    </div> -->
+    
+       
         
     </div>     
 
