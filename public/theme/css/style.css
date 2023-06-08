@@ -468,6 +468,7 @@ button:focus {
    background-position: center center;
    background-repeat: no-repeat;
    
+   
 
 }
   
@@ -973,10 +974,10 @@ button:focus {
           display: block; } }
 .login-section{
  
-  height: 100%;
+
   display: flex;
   justify-content: center;
-  align-items: center;
+
  
 }
 

@@ -2,13 +2,18 @@
 
 @extends('layouts.default')
 <title>Register-Studymerit</title>
+<link href="{{asset('theme/css/login.css')}}" rel="stylesheet">
 @section('content')
 <section class="section_gap">
-<div class="login-section" >
-
-<div class="login-container">
-       
-        <div class="register_form ">
+   <div class="row justify-content-center">
+		<div class="col-md-12 col-lg-10">
+			<div class="wrap d-md-flex">
+				<div class="login-img">
+			  </div>
+				<div class="login-wrap p-4 p-md-5">
+			    <div class="d-flex">
+			      <div class="w-100 login-section ">
+            <div class="register_form ">
             <div class="text-center py-1">
              
             <h3 class="py-4">CREATE ACCOUNT</h3>
@@ -79,6 +84,17 @@
                 
               </form>
             </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+<div class="login-section" >
+
+<div class="login-container">
+       
+        
         
     </div>
 </div>
