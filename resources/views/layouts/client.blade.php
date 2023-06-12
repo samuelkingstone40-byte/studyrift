@@ -16,8 +16,15 @@
     <link href="{{asset('theme/dist/css/tabler-vendors.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/demo.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" />
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','G-K08LVCH03Q');</script>
   </head>
   <body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-K08LVCH03Q"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="page">
       <header class="navbar navbar-expand-md navbar-bg d-print-none">
         <div class="container-top">
