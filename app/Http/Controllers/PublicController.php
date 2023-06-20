@@ -315,11 +315,11 @@ class PublicController extends Controller
         }
 
 
-     return $data;
+     
 
-        //$query_insert=DB::table('documents')->insert($data);
+        $query_insert=DB::table('documents')->insert($data);
 
-       //return response()->json($query_insert);
+       return response()->json($query_insert);
 
 
     }
