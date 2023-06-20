@@ -295,11 +295,11 @@ class PublicController extends Controller
     // }
 
     public function update_notes_table(){
-       $results= DB::table('notes')
-            ->select('title', 'subject_id','category_id','description','user_id','price','year','code','slug','status')
-            ->get();
+    //    $results= DB::table('notes')
+    //         ->select('title', 'subject_id','category_id','description','user_id','price','year','code','slug','status')
+    //         ->get();
 
-        return $results;
+        return "fdsf";
     //     $data=[];
     //     foreach($results as $result){
     //       $data[]=[
