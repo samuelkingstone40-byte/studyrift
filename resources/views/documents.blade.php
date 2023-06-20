@@ -78,7 +78,7 @@
             <div class="row p-2 bg-white mb-3 border rounded">
                 <div class="col-md-3 mt-1">
                    
-                <img src="{{$note->image }}" class="img-fluid">
+                <!-- <img src="{{$note->image }}" class="img-fluid"> -->
               
                       
                 </div>

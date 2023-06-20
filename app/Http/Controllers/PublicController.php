@@ -295,7 +295,7 @@ class PublicController extends Controller
     // }
 
     public function update_notes_table(){
-        $q="select title,subject_id,category_id,description,user_id,price,year from notes";
+        $q="select title,subject_id,category_id,description,user_id,price,year,code,slug,status from notes";
         $results=DB::select($q);
 
         $data=[];
@@ -309,6 +309,10 @@ class PublicController extends Controller
             'user_id'=>$result->user_id,
             'price'=>$result->price,
             'year'=>$result->year,
+            'code'=>$result->code,
+            'slug'=>$result->slug,
+            'status'=>$result->status
+
           ];
         }
 
