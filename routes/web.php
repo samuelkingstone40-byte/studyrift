@@ -58,6 +58,8 @@ Route::get('search/', [App\Http\Controllers\PublicController::class,'documents']
 Route::get('document-preview/{slug}', [App\Http\Controllers\PublicController::class,'document_preview']);
 Route::get('cart', [App\Http\Controllers\PublicController::class, 'cart'])->name('cart');
 
+Route::get('update-notes-table',[App\Http\Controllers\PublicController::class,'update_notes_table'])->name('update-notes-table');
+
 Route::get('add-to-cart/{id}', [App\Http\Controllers\PublicController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [App\Http\Controllers\PublicController::class, 'update'])->name('update.cart');
 Route::delete('remove-from-cart', [App\Http\Controllers\PublicController::class, 'remove'])->name('remove.from.cart');

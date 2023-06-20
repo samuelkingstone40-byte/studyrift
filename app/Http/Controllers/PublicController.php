@@ -294,5 +294,30 @@ class PublicController extends Controller
     //     return $queryStr;
     // }
 
+    public function update_notes_table(){
+        $q="select title,subject_id,category_id,description,user_id,price,year from notes";
+        $results=DB::select($q);
+
+        $data=[];
+
+        foreach($results as $result){
+          $data[]=[
+            'title' => $result->title,
+            'subject_id' => $result->subject_id,
+            'category_id' => $result->category_id,
+            'description' => $result->description,
+            'user_id'=>$result->user_id,
+            'price'=>$result->price,
+            'year'=>$result->year,
+          ];
+        }
+
+        $query_insert=DB::table('documents')->insert($data);
+
+        return $query_insert;
+
+
+    }
+
    
 }
