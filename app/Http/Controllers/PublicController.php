@@ -306,11 +306,11 @@ class PublicController extends Controller
             'category_id' => $result->category_id,
             'description' => $result->description,
             'user_id'=>$result->user_id,
-            'price'=>$result->price,
-            'year'=>$result->year,
-            'code'=>$result->code,
+            'price'=>$result->price?:0,
+            'year'=>$result->year?:"2023",
+            'code'=>$result->code?:"NIL",
             'slug'=>$result->slug,
-            'status'=>$result->status
+            'status'=>$result->status?:1
           ];
         }
 
