@@ -317,7 +317,7 @@ class PublicController extends Controller
 
         $query_insert=DB::table('documents')->insert($data);
 
-     return response()->json($results);
+     return response()->json($query_insert);
 
 
     }
