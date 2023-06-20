@@ -300,26 +300,26 @@ class PublicController extends Controller
             ->get();
       
 
-        // $data=[];
+        $data=[];
 
-        // foreach($results as $result){
-        //   $data[]=[
-        //     'title' => $result->title,
-        //     'subject_id' => $result->subject_id,
-        //     'category_id' => $result->category_id,
-        //     'description' => $result->description,
-        //     'user_id'=>$result->user_id,
-        //     'price'=>$result->price,
-        //     'year'=>$result->year,
-        //     'code'=>$result->code,
-        //     'slug'=>$result->slug,
-        //     'status'=>$result->status
-        //   ];
-        // }
+        foreach($results as $result){
+          $data[]=[
+            'title' => $result->title,
+            'subject_id' => $result->subject_id,
+            'category_id' => $result->category_id,
+            'description' => $result->description,
+            'user_id'=>$result->user_id,
+            'price'=>$result->price,
+            'year'=>$result->year,
+            'code'=>$result->code,
+            'slug'=>$result->slug,
+            'status'=>$result->status
+          ];
+        }
 
-        // $query_insert=DB::table('documents')->insert($data);
+        $query_insert=DB::table('documents')->insert($data);
 
-     return response()->json($results);
+        return response()->json($query_insert);
 
 
     }
