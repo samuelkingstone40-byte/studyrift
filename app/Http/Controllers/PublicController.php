@@ -309,7 +309,6 @@ class PublicController extends Controller
             'price'=>$result->price?:0,
             'year'=>$result->year?:"2023",
             'code'=>$result->code?:"NIL",
-            'slug'=>$result->slug,
             'status'=>$result->status?:1
           ];
         }
@@ -319,7 +318,7 @@ class PublicController extends Controller
 
         $query_insert=DB::table('documents')->insert($data);
 
-       return response()->json($query_insert);
+       return $query_insert;
 
 
     }
