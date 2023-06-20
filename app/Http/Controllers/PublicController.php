@@ -302,7 +302,7 @@ class PublicController extends Controller
 
         $data=[];
 
-        foreach($results as $result){
+        foreach(array_chunk($data,500) as $result){
           $data[]=[
             'title' => $result->title,
             'subject_id' => $result->subject_id,
