@@ -298,10 +298,7 @@ class PublicController extends Controller
        $results= DB::table('notes')
             ->select('title', 'subject_id','category_id','description','user_id','price','year','code','slug','status')
             ->get();
-      
-
         $data=[];
-
         foreach($results as $result){
           $data[]=[
             'title' => $result->title,
@@ -318,11 +315,11 @@ class PublicController extends Controller
         }
 
 
-        return $data;
+     
 
-        //$query_insert=DB::table('documents')->insert($data);
+        $query_insert=DB::table('documents')->insert($data);
 
-       //return response()->json($query_insert);
+       return response()->json($query_insert);
 
 
     }
