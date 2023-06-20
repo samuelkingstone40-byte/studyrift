@@ -295,35 +295,74 @@ class PublicController extends Controller
     // }
 
     public function update_notes_table(){
-       $results= DB::table('notes')
-            ->select('title', 'subject_id','category_id','description','user_id','price','year','code','slug','status')
-           ->limit(100)
-            ->get();
-        $data=[];
-        foreach($results as $result){
-          $data[]=[
-            'title' => $result->title,
-            'subject_id' => $result->subject_id,
-            'category_id' => $result->category_id,
-            'description' => $result->description,
-            'user_id'=>$result->user_id,
-            'price'=>$result->price?:0,
-            'year'=>$result->year?:"2023",
-            'code'=>$result->code?:"NIL",
-            'slug'=>$result->slug,
-            'status'=>$result->status?:1
-          ];
-        }
+       
+        DB::table('notes')->chunkById(100, function ($documents) {
+           
+            foreach ($documents as $result) {
 
+                DB::table('documents')->insert([
+                    'title' => $result->title,
+                    'subject_id' => $result->subject_id,
+                    'category_id' => $result->category_id,
+                    'description' => $result->description,
+                    'user_id'=>$result->user_id,
+                    'price'=>$result->price?:0,
+                    'year'=>$result->year?:"2023",
+                    'code'=>$result->code?:"NIL",
+                    'slug'=>$result->slug,
+                    'status'=>$result->status?:1
+                ]);
+           
+                  
+
+                 
+            }
+
+
+            //DB::table('documents')->insert($data);
+
+         
+
+           
+           
+        });
+
+       
+
+       
+
+    }
+    
+    //     // DB::table('posts')->orderBy('id')->chunk(50, function (＄posts) {
+    //     //     foreach (＄posts as ＄post) {
+    //   $r= DB::table('documents')->orderBy('id')->chunk(200,function($results){
+    //     $data=[];
+    //     foreach($results as $result){
+        //   $data[]=[
+        //     'title' => $result->title,
+        //     'subject_id' => $result->subject_id,
+        //     'category_id' => $result->category_id,
+        //     'description' => $result->description,
+        //     'user_id'=>$result->user_id,
+        //     'price'=>$result->price?:0,
+        //     'year'=>$result->year?:"2023",
+        //     'code'=>$result->code?:"NIL",
+        //     'slug'=>$result->slug,
+        //     'status'=>$result->status?:1
+        //   ];
+    //     }
+    // });
+
+    // return $data;
 
      
 
-        $query_insert=DB::table('documents')->insert($data);
+    //     $query_insert=DB::table('documents')->insert($data);
 
-       return $query_insert;
+    //    return $query_insert;
 
 
-    }
+    
 
    
 }
