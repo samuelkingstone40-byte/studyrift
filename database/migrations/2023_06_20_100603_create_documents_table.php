@@ -22,6 +22,9 @@ class CreateDocumentsTable extends Migration
             $table->text('description');
             $table->double('price');
             $table->string('year')->nullable();
+            $table->string('slug');
+            $table->string('code')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
