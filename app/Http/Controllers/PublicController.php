@@ -312,13 +312,12 @@ class PublicController extends Controller
             'code'=>$result->code,
             'slug'=>$result->slug,
             'status'=>$result->status
-
           ];
         }
 
         $query_insert=DB::table('documents')->insert($data);
 
-        return $query_insert;
+     return response()->json($results);
 
 
     }
