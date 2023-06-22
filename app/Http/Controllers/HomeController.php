@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -25,9 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data['count_uploads']=DB::table('notes')
+        $data['count_uploads']=DB::table('documents')
         ->where('user_id',Auth::id())
-        ->whereNull('notes.status')
+        ->whereNull('documents.status')
         ->count();
         $data['count_downloads']=DB::table('orders')->where('user_id',Auth::id())->count();
         $data['earnings']=DB::table('orders')
@@ -41,11 +41,11 @@ class HomeController extends Controller
 
     public function recent_dowloads(){
         $documents=DB::table('orders')
-        ->leftJoin('notes','notes.id','=','orders.docId')
-        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
+        ->leftJoin('documents','documents.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','documents.subject_id')
         ->where('orders.user_id',Auth::user()->id)
         ->orderBy('orders.id')
-        ->select('notes.id','notes.subject_id','notes.price','notes.title','orders.created_at','subjects.name')
+        ->select('documents.id','documents.subject_id','documents.price','documents.title','orders.created_at','subjects.name')
         ->get();
 
         return $documents;
@@ -53,11 +53,11 @@ class HomeController extends Controller
 
     public function recent_sales(){
         $documents=DB::table('orders')
-        ->leftJoin('notes','notes.id','=','orders.docId')
-        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
+        ->leftJoin('documents','documents.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','documents.subject_id')
         ->where('orders.owner_id',Auth::user()->id)
         ->orderBy('orders.id')
-        ->select('notes.id','notes.subject_id','notes.price','orders.orderId','orders.created_at','orders.earning','subjects.name')
+        ->select('documents.id','documents.subject_id','documents.price','orders.orderId','orders.created_at','orders.earning','subjects.name')
         ->get();
 
         return $documents;

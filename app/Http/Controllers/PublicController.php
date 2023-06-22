@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
+use Illuminate\Support\Facades\Response as FacadesResponse;
+use Illuminate\Support\Facades\Storage;
 use Response;
 
 class PublicController extends Controller
@@ -18,12 +20,12 @@ class PublicController extends Controller
 
     public function popular_downloads(){
         $downloads=DB::table('orders')
-        ->whereNull('notes.status')
-        ->leftJoin('notes','notes.id','=','orders.docId')
-        ->leftJoin('subjects','subjects.id','=','notes.subject_id')
-        ->groupBy('orders.docId','orders.earning','subjects.name','notes.title','notes.image','notes.price','notes.slug')
+        ->whereNull('documents.status')
+        ->leftJoin('documents','documents.id','=','orders.docId')
+        ->leftJoin('subjects','subjects.id','=','documents.subject_id')
+        ->groupBy('orders.docId','orders.earning','subjects.name','documents.title','documents.price','documents.slug')
         ->orderBy(DB::raw('COUNT(orders.earning)'), 'desc')
-        ->select('notes.title','notes.slug','notes.image','notes.price','orders.docId','subjects.name as sname',
+        ->select('documents.title','documents.slug','documents.price','orders.docId','subjects.name as sname',
          DB::raw("COUNT(orders.docId) as count_click"),DB::raw("sum(orders.earning) as sum_earning"))
          ->limit(4)
         ->get();
@@ -73,19 +75,19 @@ class PublicController extends Controller
     public function documents(Request $request){
     
         $search_text=strip_tags($request->get('search_text'));
-        $notes =DB::table('notes');
+        $notes =DB::table('documents');
 
         if($search_text){
-            $notes->where('notes.title','like','%'.$search_text.'%');
+            $notes->where('documents.title','like','%'.$search_text.'%');
         }
         $notes=$notes->
-        leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->select('notes.id','notes.title','notes.description','notes.slug','notes.price','notes.image','files.filename','subjects.name as subject','categories.name as category')
-        ->whereNull('notes.status')
+        leftJoin('files', 'documents.id', '=', 'files.document_id')
+        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+        ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->select('documents.id','documents.title','documents.description','documents.slug','documents.price','files.filename','subjects.name as subject','categories.name as category')
+        
 
-        ->orderBy('notes.id','desc')
+        ->orderBy('documents.id','desc')
         ->simplePaginate(5);
         
         $data['subjects']=$this->getSubjects();
@@ -98,17 +100,18 @@ class PublicController extends Controller
     public function getSubjects(){
         return DB::table('subjects')->orderBy('name','desc')->get();
     }
+
     public function getCategories(){
         return DB::table('categories')->orderBy('name','desc')->get();
     }
 
     public function document_preview($slug=null){
-        $file=DB::table('notes')
-        ->where('notes.slug',$slug)
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+        $file=DB::table('documents')
+        ->where('documents.slug',$slug)
+        ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+        ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         $data['doc']=$file;
        
@@ -142,13 +145,13 @@ class PublicController extends Controller
 
     public function get_related($title)
     {
-        $notes =DB::table('notes')
-        ->whereNull('notes.status')
+        $notes =DB::table('documents')
+        ->whereNull('documents.status')
         ->where('title', 'Like', '%' . $title. '%')
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+        ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+        ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
         ->get();
 
         return $notes;
@@ -168,6 +171,7 @@ class PublicController extends Controller
         }
         return view('checkout')->with(compact('user'));
     }
+
     public function addToCart($id)
     {
         $product = DB::table('notes')
@@ -238,7 +242,7 @@ class PublicController extends Controller
     
     public function download_file($filename){
         $filepath = public_path('files/'.$filename);
-        return Response::download($filepath); 
+        return response()->download($filepath); 
     }
 
 
@@ -279,88 +283,45 @@ class PublicController extends Controller
         return $pageQuery;
     }
 
-    // public static function sortByFilter()
-    // {
-    //     $queryStr = "";
-    //     $get = Yii::$app->request->get();
-    //     $sort = isset($get['sort']) ? trim($get['sort']) : null;
+    /**
+     * return file from s3 bucket
+     * @param $file_path
+     */
 
-    //     if (strtolower($sort) != 'asc') {
-    //         $sort = 'DESC';
-    //     }
+    public function get_s3_bucket_file($filepath){
+        return Storage::get('documents/'.$filepath);
+    }
 
-    //     $queryStr .= " $sort";
+    public function get_s3_thumbnail($id){
 
-    //     return $queryStr;
-    // }
+    try {
+       return Storage::get('documents-thumbnails/thumbnail-'.$id);
+    } catch (\Throwable $th) {
+        return "";
+    }
+   
+    }
+
 
     public function update_notes_table(){
-       
-        DB::table('notes')->chunkById(100, function ($documents) {
+        
+
+       $path= "https://studymerit.s3.amazonaws.com/documents/1687387642_CUPS+Printer+Driver.pdf";
+
+       return Storage::get('documents/1687390644_1687199849_20230427094221_644a437de6e05_karen_floyd_abdominal_pain_1___1_(1).pdf');
+                   
+    }
+
+
            
-            foreach ($documents as $result) {
-
-                DB::table('documents')->insert([
-                    'title' => $result->title,
-                    'subject_id' => $result->subject_id,
-                    'category_id' => $result->category_id,
-                    'description' => $result->description,
-                    'user_id'=>$result->user_id,
-                    'price'=>$result->price?:0,
-                    'year'=>$result->year?:"2023",
-                    'code'=>$result->code?:"NIL",
-                    'slug'=>$result->slug,
-                    'status'=>$result->status?:1
-                ]);
-           
-                  
-
-                 
-            }
-
-
-            //DB::table('documents')->insert($data);
 
          
 
-           
-           
-        });
-
-       
-
-       
-
-    }
-    
-    //     // DB::table('posts')->orderBy('id')->chunk(50, function (＄posts) {
-    //     //     foreach (＄posts as ＄post) {
-    //   $r= DB::table('documents')->orderBy('id')->chunk(200,function($results){
-    //     $data=[];
-    //     foreach($results as $result){
-        //   $data[]=[
-        //     'title' => $result->title,
-        //     'subject_id' => $result->subject_id,
-        //     'category_id' => $result->category_id,
-        //     'description' => $result->description,
-        //     'user_id'=>$result->user_id,
-        //     'price'=>$result->price?:0,
-        //     'year'=>$result->year?:"2023",
-        //     'code'=>$result->code?:"NIL",
-        //     'slug'=>$result->slug,
-        //     'status'=>$result->status?:1
-        //   ];
-    //     }
-    // });
-
-    // return $data;
-
      
 
-    //     $query_insert=DB::table('documents')->insert($data);
-
-    //    return $query_insert;
-
+    
+    
+    
 
     
 

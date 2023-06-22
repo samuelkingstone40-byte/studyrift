@@ -259,7 +259,7 @@
                 @foreach($recommends as  $recommend)
               <div class="single_course">
                 <div class="course_head">
-                <img class="img-fluid" style="height:240px" src="{{$recommend->image}}" alt="" />
+                    image
                 </div>
                 <div class="course_content">
                   <span class="price">${{number_format($recommend->price)}}</span>
@@ -327,7 +327,7 @@ $('#addToCart').click(function(e){
     
 })
 var filename=$('#file2').val();
-var filepath="{{asset('files')}}/"+ filename
+var filepath="{{route('get-s3-bucket-file',$doc->filename)}}"
 
 var _PDF_DOC,
     _CURRENT_PAGE,

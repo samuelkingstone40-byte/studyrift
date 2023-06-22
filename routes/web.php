@@ -21,6 +21,9 @@ Route::get('/term-of-service',[App\Http\Controllers\PublicController::class,'ter
 Route::get('/privacy-statement',[App\Http\Controllers\PublicController::class,'privacy'])->name('privacy');
 Route::get('blogs/{slug}',[App\Http\Controllers\BlogController::class,'view']);
 Route::get('blog-list',[App\Http\Controllers\BlogController::class,'blogs']);
+Route::get('get-s3-bucket-file/{filepath}',[App\Http\Controllers\PublicController::class,'get_s3_bucket_file'])->name('get-s3-bucket-file');
+Route::get('get-s3-thumbnail/{id}',[App\Http\Controllers\PublicController::class,'get_s3_thumbnail'])->name('get-s3-thumbnail');
+
 Route::resource('blogs',App\Http\Controllers::class);
 Auth::routes();
 

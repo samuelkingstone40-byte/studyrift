@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -9,7 +10,7 @@ use App\Models\Note;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\File;
@@ -69,16 +70,16 @@ class ClientController extends Controller
         $category = $request->input('category');
         $detail = $request->input('detail');
         $price=$request->input('price');
-        $slug = \Str::slug($request->input('title'));
+        $slug = Str::slug($request->input('title'));
         $user=Auth::id();
         $code=$request->input('code');
       
         $data=array('user_id'=>$user,'title'=>$title,"subject_id"=>$subject,"category_id"=>$category,
-        "description"=>$detail,"price"=>$price,'slug'=>$slug,'image'=>$image,'code'=>$code);
-        $doc=Note::create($data);
+        "description"=>$detail,"price"=>$price,'slug'=>$slug,'code'=>$code);
+        $doc=Document::create($data);
 
         $docId=$doc->id;
-
+        Storage::put('documents-thumbnails/thumbnail-'.$docId,$image);
         $this->uploadFile($docId,$request);
 
         return redirect()->route('view-document',$slug)->with('success', 'Your document upload successful');
@@ -87,24 +88,24 @@ class ClientController extends Controller
     public function edit_document($slug){
         $data['subjects']=DB::select('select * from subjects');
         $data['categories']=DB::select('select * from categories');
-        $data['doc']=DB::table('notes')
-        ->where('notes.slug',$slug)
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
+        $data['doc']=DB::table('documents')
+        ->where('documents.slug',$slug)
+        ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+        ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         return view('client/edit-document',$data);
     }
 
     public function view_document($slug){
-        $doc=DB::table('notes')
-        ->where('notes.slug',$slug)
-         ->leftJoin('users','users.id','=','notes.user_id')
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname','users.name as uname')
+        $doc=DB::table('documents')
+        ->where('documents.slug',$slug)
+         ->leftJoin('users','users.id','=','documents.user_id')
+        ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+        ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname','users.name as uname')
         ->first();
         $data['doc']=$doc;
         $data['purchased']=$this->check_if_purchased($doc->id);
@@ -133,9 +134,9 @@ class ClientController extends Controller
         return $purchased;
     }
 
-    public function notes_update(Request $request){
+    public function documents_update(Request $request){
         $slug = \Str::slug($request->input('title'));
-        $notes=DB::table('notes')
+        $documents=DB::table('documents')
         ->where('id',$request->get("id"))
         ->update([
             'title'=>$request->get('title'),
@@ -193,13 +194,13 @@ class ClientController extends Controller
 
     public function my_uploads(Request $request){
         if ($request->ajax()) {
-            $data = DB::table('notes')
-            ->whereNull('notes.status')
-            ->where('notes.user_id',Auth::id())
-            ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-            ->leftJoin('categories','notes.category_id','=','categories.id')
-            ->select('notes.*','subjects.name as sname','categories.name as cname')
-            ->orderBy('notes.id','DESC')
+            $data = DB::table('documents')
+            ->whereNull('documents.status')
+            ->where('documents.user_id',Auth::id())
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
+            ->select('documents.*','subjects.name as sname','categories.name as cname')
+            ->orderBy('documents.id','DESC')
             ->get();
             return DataTables::of($data)
             ->editColumn('title', function ($data) {
@@ -233,13 +234,13 @@ class ClientController extends Controller
     }
 
     public function uploads(){
-        $data['notes']=DB::table('notes')
-          ->whereNull('notes.status')
-         ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-         ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-         ->leftJoin('categories','notes.category_id','=','categories.id')
-         ->select('notes.*','files.filename','subjects.name as sname','categories.name as cname')
-         ->orderBy('notes.id','desc')
+        $data['documents']=DB::table('documents')
+          ->whereNull('documents.status')
+         ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+         ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+         ->leftJoin('categories','documents.category_id','=','categories.id')
+         ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
+         ->orderBy('documents.id','desc')
          ->get();
         return view('client/uploads',$data);
     }
@@ -298,7 +299,7 @@ class ClientController extends Controller
 
     public function upload_files($id){
         $data['docId']=$id;
-        $data['notes']=DB::select('select * from notes');
+        $data['documents']=DB::select('select * from documents');
         return view('client/upload-files',$data);
     }
 
@@ -323,15 +324,17 @@ class ClientController extends Controller
                     //File upload location
                     $location = 'files/';
 
-                   // Upload file
-                    $file->move($location,$filename);
-
+                    Storage::put('documents/'.$filename, file_get_contents($file));
                     $db_file = new File([
                         "document_id"=>$docId,
                         "filename" => $filename,
                         "file_ext" => "jpg",
                     ]);
                     $db_file->save(); // Finally, save the record.
+
+                   
+
+                  
 
                    // Response
                     $data['success'] = 1;
@@ -360,11 +363,11 @@ class ClientController extends Controller
      if ($request->ajax()) {
         $data=DB::table('orders')
         ->where('orders.user_id',Auth::id())
-        ->leftJoin('notes','notes.id','=','orders.docId')
-        ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-        ->leftJoin('categories','notes.category_id','=','categories.id')
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->select('orders.*','notes.title','notes.price','notes.image','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
+        ->leftJoin('documents','documents.id','=','orders.docId')
+        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+        ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+        ->select('orders.*','documents.title','documents.price','documents.image','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
         ->orderBy('orders.id','desc')
         ->get();
         return DataTables::of($data)
@@ -408,11 +411,11 @@ class ClientController extends Controller
         if ($request->ajax()) {
             $data=DB::table('orders')
             ->where('orders.owner_id',Auth::id())
-            ->leftJoin('notes','notes.id','=','orders.docId')
-            ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-            ->leftJoin('categories','notes.category_id','=','categories.id')
-            ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-            ->select('orders.*','notes.title','notes.price','notes.slug','subjects.name as sname','categories.name as cname','files.filename')
+            ->leftJoin('documents','documents.id','=','orders.docId')
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
+            ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+            ->select('orders.*','documents.title','documents.price','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
             ->get();
             return DataTables::of($data)
             ->editColumn('title', function ($data) {
@@ -475,7 +478,7 @@ class ClientController extends Controller
 }
 
 public function file_delete($id){
-    $file=DB::table('notes')
+    $file=DB::table('documents')
     ->where('id',$id)
     ->update(['status'=>0]);
     return redirect('uploads')->with('success', 'file deleted successfuly!'); 

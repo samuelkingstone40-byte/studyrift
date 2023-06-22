@@ -262,7 +262,7 @@ async function showPage(page_no) {
     // show the canvas and hide the page loader
     document.querySelector("#pdf-canvas").style.display = 'block';
     document.querySelector("#page-loader").style.display = 'none';
-    $('#thumb').val($('#pdf-canvas').get(0).toDataURL("image/png"))
+    $('#thumb').val($('#pdf-canvas').get(0).toDataURL("image/jpeg"))
     $('#frame').attr('src', $('#pdf-canvas').get(0).toDataURL());
 }
 

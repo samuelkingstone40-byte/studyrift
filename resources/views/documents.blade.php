@@ -2,10 +2,9 @@
 <title>Buy-Studymerit </title>
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
-<section class="section_gap ">
+<section class="">
 
-    <div class="cont m-4 py-4">
-        <h3>Documents </h3>
+    <div class=" catalogue ">
         <div class="row">
             <div class="col-sm-12">
                 
@@ -35,7 +34,8 @@
              
             </div>
             
-            <div class="col-sm-3">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 my-2">
+                   
              
                 <div class="card">
                     <form action="{{route('search')}}" method="get">
@@ -68,17 +68,19 @@
                 </div>
              
             </div>
-            <div class="col-sm-9">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
 
            
-    <div class="d-flex justify-content-center row">
+    <div class="d-flex justify-content-center row mx-1 ">
         <div class="col-md-12">
         @if(count($notes)>0)
         @foreach($notes as $index => $note)
-            <div class="row p-2 bg-white mb-3 border rounded">
-                <div class="col-md-3 mt-1">
-                   
-                <!-- <img src="{{$note->image }}" class="img-fluid"> -->
+        
+            <div class="row p-2 mb-3 border rounded list-content">
+                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-1">  
+                    
+               
+                <img src="http://127.0.0.1:8008/get-s3-thumbnail/8217" alt="img"/>
               
                       
                 </div>
@@ -101,7 +103,9 @@
                         <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i></div>
                     </div>
                   
-                    <div class="d-flex flex-column mt-2"><a href="{{url('document-preview/'.$note->slug)}}" class="primary-btn btn-sm font-weight" >Details</a></div>
+                    <div class="text-center">
+                        <a href="{{url('document-preview/'.$note->slug)}}" class="btn btn-view" >View</a>
+                    </div>
                 </div>
             </div>
             @endforeach
