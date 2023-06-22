@@ -16,7 +16,7 @@
 			      			
                   <div class="register_form">
           <div class="header-section">
-            <img class="img-fluid login-avatar" src="{{asset('theme/img/user.png')}}"/>
+            <img class="img-fluid login-avatar" src="{{asset('theme/img/site/user.png')}}"/>
             <p>Sign In</p>
           </div>
       
