@@ -63,7 +63,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="single_feature text-center">
               <div class="desc">
-               <img class="img-fluid" src="{{asset('theme/img/signup.jpg')}}" alt="">
+               <img class="img-fluid" src="{{asset('theme/img/site/signup.jpg')}}" alt="">
                 <h3 class="mt-3 mb-2">Sign up</h3>
                 <p>
                   Create a free account on Studymerit 
@@ -75,7 +75,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="single_feature  text-center">
               <div class="desc">
-                 <img class="img-fluid" src="{{asset('theme/img/upload-files.jpg')}}" alt="">
+                 <img class="img-fluid" src="{{asset('theme/img/site/upload-files.jpg')}}" alt="">
                  <h3 class="mt-3 mb-2">Upload</h3>
                 <p>
                   Upload your study guides, summaries, practice questions, lecture notes, assignments, solutions and much more!
@@ -87,7 +87,7 @@
           <div class="col-lg-4 col-md-6 col-sm-12">
             <div class="single_feature  text-center">
               <div class="desc">
-              <img class="img-fluid" src="{{asset('theme/img/earn.png')}}" alt="">
+              <img class="img-fluid" src="{{asset('theme/img/site/earn.png')}}" alt="">
                 <h3 class="mt-3 mb-2">Set a Price</h3>
                 <p>
                   Set the price for your notes and wait to sell.
@@ -115,7 +115,7 @@
            <div class="why-title">
            Get Great Study Materials and Great Services
         </div>
-           <img class="img-fluid" src="{{asset('theme/img/learning.png')}}" alt="">
+           <img class="img-fluid" src="{{asset('theme/img/site/learning.png')}}" alt="">
            </div>
            <div class="col-sm-12 col-md-7">
 
@@ -123,7 +123,7 @@
            <div class="col-md-6">
              <div class="card why-card">
               <div class="why-section">
-              <img class="contimg img-fluid" src="{{asset('theme/img/graduation.png')}}" alt="">
+              <img class="contimg img-fluid" src="{{asset('theme/img/site/graduation.png')}}" alt="">
               </div>
               <h2>Learn with experts</h2>
               <p>
@@ -135,7 +135,7 @@
            <div class="col-md-6">
            <div class="card why-card">
               <div class="why-section">
-              <img class="contimg img-fluid" src="{{asset('theme/img/books.png')}}" alt="">
+              <img class="contimg img-fluid" src="{{asset('theme/img/site/books.png')}}" alt="">
               </div>
               <h2>Learn anything</h2>
               <p>
@@ -147,7 +147,7 @@
            <div class="col-md-6">
            <div class="card why-card">
               <div class="why-section">
-              <img class="contimg img-fluid" src="{{asset('theme/img/clock.png')}}" alt="">
+              <img class="contimg img-fluid" src="{{asset('theme/img/site/clock.png')}}" alt="">
               </div>
               <h2>Flexible learning</h2>
               <p>
@@ -159,7 +159,7 @@
            <div class="col-md-6">
            <div class="card why-card">
               <div class="why-section">
-              <img class="contimg img-fluid" src="{{asset('theme/img/calendar.png')}}" alt="">
+              <img class="contimg img-fluid" src="{{asset('theme/img/site/calendar.png')}}" alt="">
               </div>
               <h2>Individual plans</h2>
               <p>
