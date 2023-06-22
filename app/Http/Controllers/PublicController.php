@@ -293,12 +293,11 @@ class PublicController extends Controller
     }
 
     public function get_s3_thumbnail($id){
-
-    try {
-       return Storage::get('documents-thumbnails/thumbnail-'.$id);
-    } catch (\Throwable $th) {
-        return "";
-    }
+        try {
+           return Storage::get('documents-thumbnails/thumbnail-'.$id);
+        } catch (\Throwable $th) {
+            return Storage::get('documents-thumbnails/thumbnail-8225');
+        }
    
     }
 

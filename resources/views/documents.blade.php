@@ -79,8 +79,8 @@
             <div class="row p-2 mb-3 border rounded list-content">
                 <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 mt-1">  
                     
-               
-                <img src="http://127.0.0.1:8008/get-s3-thumbnail/8217" alt="img"/>
+        
+                <img src="{{route('get-s3-thumbnail',$note->id)}}" width="250" alt="{{route('get-s3-thumbnail',$note->id)}}"/>
               
                       
                 </div>

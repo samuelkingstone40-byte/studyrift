@@ -262,7 +262,7 @@ async function showPage(page_no) {
     // show the canvas and hide the page loader
     document.querySelector("#pdf-canvas").style.display = 'block';
     document.querySelector("#page-loader").style.display = 'none';
-    $('#thumb').val($('#pdf-canvas').get(0).toDataURL("image/jpeg"))
+    $('#thumb').val($('#pdf-canvas').get(0).toDataURL("image/png"))
     $('#frame').attr('src', $('#pdf-canvas').get(0).toDataURL());
 }
 
@@ -278,7 +278,7 @@ $('#file_upload').change(function(){
             
              var image=$('#pdf-canvas').get(0).toDataURL()
              $('#filename').html(this.files[0].name);
-           //  alert($('#pdf-canvas').get(0).toDataURL("image/jpeg", 0.8))
+            alert($('#pdf-canvas').get(0).toDataURL("image/png", 0.8))
             
             
              showPDF(e.target.result);
