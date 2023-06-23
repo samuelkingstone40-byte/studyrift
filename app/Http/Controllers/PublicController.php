@@ -288,8 +288,16 @@ class PublicController extends Controller
      * @param $file_path
      */
 
-    public function get_s3_bucket_file($filepath){
-        return Storage::get('documents/'.$filepath);
+    public function get_s3_bucket_file($filepath=null){
+        if($filepath){
+            try {
+                return Storage::get('files/'.$filepath);
+            } catch (\Throwable $th) {
+                return null;
+            }
+        }
+        
+       
     }
 
     public function get_s3_thumbnail($id){
