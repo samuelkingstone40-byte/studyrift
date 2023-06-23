@@ -1,144 +1,49 @@
 @extends('layouts.default')
-
 <meta name="description" content="{{$doc->description}}">
 <meta name="keywords" content="study documents,lecture notes,summaries,practice exams,online tutoring,homework help,online homework help">
 <title>{{$doc->title}}</title>
 @section('content')
-<style type="text/css">
 
-#show-pdf-button {
-	width: 150px;
-	display: block;
-	margin: 20px auto;
-}
-
-#file-to-upload {
-	display: none;
-}
-
-#pdf-main-container {
-	width: 100%;
-	margin: 20px auto;
-}
-
-#pdf-loader {
-	display: none;
-	text-align: center;
-	color: #999999;
-	font-size: 13px;
-	line-height: 100px;
-	height: 100px;
-}
-
-#pdf-contents {
-	display: none;
-}
-
-#pdf-meta {
-	overflow: hidden;
-	margin: 0 0 20px 0;
-}
-
-#pdf-buttons {
-	float: left;
-}
-
-#page-count-container {
-	float: right;
-}
-
-#pdf-current-page {
-	display: inline;
-}
-
-#pdf-total-pages {
-	display: inline;
-}
-
-#pdf-canvas {
-	border: 1px solid rgba(0,0,0,0.2);
-	box-sizing: border-box;
-}
-
-#page-loader {
-	height: 100px;
-	line-height: 100px;
-	text-align: center;
-	display: none;
-	color: #999999;
-	font-size: 13px;
-}
-
-.rating {
-    display: inline-flex;
-    
-    flex-direction: row-reverse
-}
-
-.rating>input {
-    display: none
-}
-
-.rating>label {
-    position: relative;
-    width: 1em;
-    font-size: 2vw;
-    color: #FFD600;
-    cursor: pointer
-}
-
-.rating>label::before {
-    content: "\2605";
-    position: absolute;
-    opacity: 0
-}
-
-.rating>label:hover:before,
-.rating>label:hover~label:before {
-    opacity: 1 !important
-}
-
-.rating>input:checked~label:before {
-    opacity: 1
-}
-
-.rating:hover>input:checked~label:before {
-    opacity: 0.4
-}
-
-</style>
-<span  id="loader" class="circlespinner"></span>
-<section class="course_details_area section_gap">
-    
-        <div class="container">
-        <nav aria-label="breadcrumb " class="py-1">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-    <li class="breadcrumb-item"><a href="{{url('search/')}}">Documents</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{$doc->title}}</li>
-  </ol>
-</nav>
 @if (\Session::has('success'))
     <div class="alert alert-success">
         {!! \Session::get('success') !!}   
     </div>
 @endif
-            <div class="row">
-                <div class="col-lg-8 course_details_left">
-                    
-                    <div class="content_wrapper">
-                        <h4 class="title">{{$doc->title}}</h4>
-                        <div class="content">
-                        <div id="pdf-main-container">
-                        <input type="hidden"  id="file2" value="{{$doc->filename}}">
-                        <div class="text-center">
-                        </div>
-                        <div id="pdf-loader">
-                            <div class="spinner-border text-warning" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>
-                        </div>
-                         <div  id="pdf-contents">
+
+<span id="loader" class="circlespinner"></span>
+<section class="">
+    <div>
+        <nav aria-label="breadcrumb" class="py-1"  >
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{url('search/')}}">Documents</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$doc->title}}</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="document-section">
+     <input type="hidden"  id="file2" value="{{$doc->filename}}">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div class="content_wrapper">
+              
+                <div class="card document-description">
+                    <div class="document-title">
+                    {{$doc->title}}
+                    </div>
+                    <div class="description">
+                        {{$doc->description}}
+                    </div>
+                </div>
+                <div class="card document-content">
+                    <div id="pdf-main-container">
+                        <div  id="pdf-contents">
+                            <div id="pdf-loader">
+                                    <div class="spinner-border text-warning" role="status">
+                                      <span class="sr-only">Loading...</span>
+                                    </div>
+                            </div>
                             <div id="pdf-meta">
                                 <div id="pdf-buttons">
                                     <button id="pdf-prev">Previous</button>
@@ -146,58 +51,59 @@
                                 </div>
                                 <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
                             </div>
-                            <div class="col-lg-8"><canvas id="pdf-canvas" width="650"></canvas></div>
-                            <div id="page-loader">Loading page ...</div>
+                            <canvas id="pdf-canvas"></canvas>
+                          
+                            
+                            <div id="page-loader">
+
+                            </div>
                         </div>
                       </div>
-                        </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            <div class="card document-right-contents">
+                <div class="text-summary">Subject: <span>{{$doc->sname}}</span></div>
+                <div class="text-summary">Unit Code: <span></span></div>
+                <div class="text-summary">Unit: <span>{{$doc->cname}}</span></div>
+                <div class="text-summary">Price: <span>{{number_format($doc->price,2)}}</span></div>
 
-                        <h4 class="title">Details</h4>
-                        <div class="content">
-                              {{$doc->description}}
-                        </div>
+                <div class="add-to-cart">
+                    <input type="hidden" name="" id="docId" value="{{$doc->id}}">
+                   <button class="btn btn-add-to-cart "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</button>
 
-                        
-                    </div>
                 </div>
 
+            </div>
+            <div class="card seller-details">
+              <div class="feedback-title">Seller</div>
+              <div class="seller-content">
+                <div class="seller-img">
+                 <img class="img-fluid" width="80px" src="{{asset('theme/img/site/user.png')}}"/>
+               </div>
+               <div class="seller-name">
+                Anthony Gathogo
+               </div>
+               <div class="seller-summary">
+                 <div class="seller-summary-box">
+                    <h4>Total Documents Uploads:5</h4>
+                    
+                 </div>
+                 <div class="seller-summary-box">
+                 <h4>Total Downloads: 10</h4>
+                    
+                 </div>
+               </div>
 
-                <div class="col-lg-4 right-contents py-5">
-                    <ul>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Subject</p>
-                                <span class="or">{{$doc->sname}} </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Category </p>
-                                <span class="or">{{$doc->cname}}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Date Posted </p>
-                                <span class="or">{{$doc->created_at}}</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="justify-content-between d-flex" href="#">
-                                <p>Price </p>
-                                <span ><h4 class="font-bold text-success">$ {{number_format($doc->price,2)}}</h4></span>
-                            </a>
-                        </li>
-                    </ul>
-                   
-                    <input type="hidden" name="" id="docId" value="{{$doc->id}}">
-                    <a id="addToCart" href="" class="primary-btn text-uppercase enroll rounded-0 "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</a>
-
-                    <h4 class="title">Reviews</h4>
-                    <div class="content">
-                       
+              </div>
+           
+            </div>
+            <div class="card document-review">
+                <div class="content">
                         <div class="feedeback">
-                            <h6>Your Feedback</h6>
+                            <div class="feedback-title">Your Feedback</div>
                             <form action="{{route('post-review')}}" method="post">
                                 @csrf
                                 <div class="form-group">
@@ -211,7 +117,7 @@
                             
                             <div class="form-group">
                                 <label for="">Message</label>
-                                <textarea name="review" required class="form-control" cols="10" rows="10"></textarea>
+                                <textarea name="review" required class="form-control"  rows="5"></textarea>
 
                             </div>
                            
@@ -222,6 +128,13 @@
                         </div>
                         
                     </div>
+
+            </div>
+                   
+                   
+                   
+
+                  
 
                     <div class="comments-area mb-30">
                         @foreach ($reviews as $review)
@@ -385,15 +298,20 @@ async function showPage(page_no) {
 
     // original width of the pdf page at scale 1
     var pdf_original_width = page.getViewport(1).width;
+
+
     
     // as the canvas is of a fixed width we need to adjust the scale of the viewport where page is rendered
-    var scale_required = _CANVAS.width / pdf_original_width;
+    var scale_required =1.6;
 
     // get viewport to render the page at required scale
     var viewport = page.getViewport(scale_required);
 
+    console.log(viewport)
+
     // set canvas height same as viewport height
-    _CANVAS.height = viewport.height;
+    _CANVAS.height = viewport.height
+    _CANVAS.width=viewport.width
  
 
     // setting page loader height for smooth experience

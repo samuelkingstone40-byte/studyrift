@@ -25,6 +25,7 @@
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <!-- main css -->
     <link rel="stylesheet" href="{{asset('theme/css/nav.css')}}" />
+    <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/cart.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/custom.css?v='.filemtime(public_path('theme/css/custom.css'))) }}" />
     <link rel="stylesheet" href="{{asset('theme/css/style.css?v='.filemtime(public_path('theme/css/style.css'))) }}" />

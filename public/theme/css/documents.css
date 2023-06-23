@@ -58,3 +58,212 @@ h5 {
 .para {
   font-size: 16px
 }
+
+#show-pdf-button {
+	width: 150px;
+	display: block;
+	margin: 20px auto;
+}
+
+#file-to-upload {
+	display: none;
+}
+
+#pdf-main-container {
+	
+  
+}
+
+#pdf-loader {
+	display: none;
+	text-align: center;
+	color: #999999;
+	font-size: 13px;
+	line-height: 100px;
+	height: 100px;
+}
+
+#pdf-contents {
+	width: 100%;
+}
+
+#pdf-meta {
+	overflow: hidden;
+	margin: 10px 40px 10px 40px;
+}
+
+#pdf-buttons {
+	float: left;
+}
+
+#page-count-container {
+	float: right;
+}
+
+#pdf-current-page {
+	display: inline;
+}
+
+#pdf-total-pages {
+	display: inline;
+}
+
+#pdf-canvas {
+	width:100%;
+  padding: 0;
+  height: 1000px;
+
+  
+ 
+}
+
+#page-loader {
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	display: none;
+	color: #999999;
+	font-size: 13px;
+}
+
+.rating {
+    display: inline-flex;
+    
+    flex-direction: row-reverse
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 1em;
+    font-size: 2vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+
+.document-section{
+  margin: 10px 60px 10px 60px;
+}
+
+.document-title{
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.document-description{
+  margin: 10px 0 10px 0;
+  padding: 20px;
+}
+
+.document-description .description{
+  font-size: 18px;
+}
+
+.document-content{
+  padding: 10px 20px 10px 20px;
+}
+
+.document-right-contents{
+  margin-top: 10px;
+  padding: 20px 40px 10px 40px;
+}
+
+.document-review{
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.feedback-title{
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.seller-details{
+  margin:20px 0 10px 0;
+  padding: 20px;
+ 
+}
+
+.add-to-cart{
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-add-to-cart{
+  background-color: #FFD600;
+  color: red;
+  font-size: 21px;
+  font-weight: 700;
+  width: 300px;
+  height: 60px;
+}
+
+.seller-content{
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  margin: auto;
+}
+
+.text-summary{
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 30px;
+}
+
+.text-summary span{
+float: right;
+ font-weight: 800;
+}
+
+.seller-name{
+  margin: 10px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.seller-summary-box{
+  border: 1px solid #f2f2f2;
+  margin-left: 5px;
+  padding: 10px;
+
+  background-color: #808000;
+}
+
+.seller-summary-box h4{
+  font-weight: 800;
+  font-size: 16px;
+  color: #fff;
+}
+
+.seller-summary{
+  display: flex;
+  padding: 10px;
+}
+
+
