@@ -174,10 +174,10 @@ class PublicController extends Controller
 
     public function addToCart($id)
     {
-        $product = DB::table('notes')
-        ->where('notes.id',$id)
-        ->leftJoin('files', 'notes.id', '=', 'files.document_id')
-        ->select('notes.*','files.filename')
+        $product = DB::table('documents as d')
+        ->where('d.id',$id)
+        ->leftJoin('files as f', 'd.id', '=', 'f.document_id')
+        ->select('d.*','f.filename')
         ->first();
            
         $cart = session()->get('cart', []);
@@ -189,7 +189,7 @@ class PublicController extends Controller
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
-                "image" => $product->image
+                "image" => "sdf"
             ];
         }
            

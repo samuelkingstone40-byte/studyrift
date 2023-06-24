@@ -72,7 +72,7 @@
 
                 <div class="add-to-cart">
                     <input type="hidden" name="" id="docId" value="{{$doc->id}}">
-                   <button class="btn btn-add-to-cart "><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</button>
+                   <button class="btn btn-add-to-cart" id="addToCart"><i class="fa fa-shopping-cart fa-lg"></i> Add To Cart</button>
 
                 </div>
 
