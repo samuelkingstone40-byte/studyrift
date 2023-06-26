@@ -114,10 +114,20 @@ class PublicController extends Controller
         ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
         $data['doc']=$file;
+        $seller_id=$file->user_id;
+        $seller_info=DB::table('users')
+            ->where('id',$seller_id)
+            ->select('name')->first();
+        $seller_uploads=DB::table('documents')->where('user_id',$seller_id)->count();
+        $downloads=DB::table('orders')->where(['owner_id'=>$seller_id])->count();
        
         $data['reviews']=$this->get_reviews($file->id);
         $title=$file->title;
         $data['recommends']=$this->get_related($title);
+        $data['uploads']=$seller_uploads;
+        $data['downloads']=$downloads;
+        $data['seller']=$seller_info;
+
         if(Auth::user()){
             $data['purchased']=$this->check_if_purchased($file->id);
 

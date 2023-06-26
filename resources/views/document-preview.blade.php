@@ -84,15 +84,15 @@
                  <img class="img-fluid" width="80px" src="{{asset('theme/img/site/user.png')}}"/>
                </div>
                <div class="seller-name">
-                Anthony Gathogo
+                {{$seller->name}}
                </div>
                <div class="seller-summary">
                  <div class="seller-summary-box">
-                    <h4>Total Documents Uploads:5</h4>
+                    <h4>Total Documents Uploads:{{$uploads}}</h4>
                     
                  </div>
                  <div class="seller-summary-box">
-                 <h4>Total Downloads: 10</h4>
+                 <h4>Total Downloads: {{$downloads}}</h4>
                     
                  </div>
                </div>
