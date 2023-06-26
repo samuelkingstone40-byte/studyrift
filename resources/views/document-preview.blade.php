@@ -68,7 +68,7 @@
                 <div class="text-summary">Subject: <span>{{$doc->sname}}</span></div>
                 <div class="text-summary">Unit Code: <span></span></div>
                 <div class="text-summary">Unit: <span>{{$doc->cname}}</span></div>
-                <div class="text-summary">Price: <span>{{number_format($doc->price,2)}}</span></div>
+                <div class="text-summary">Price: <span>${{number_format($doc->price,2)}}</span></div>
 
                 <div class="add-to-cart">
                     <input type="hidden" name="" id="docId" value="{{$doc->id}}">
