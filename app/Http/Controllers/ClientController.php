@@ -333,7 +333,7 @@ class ClientController extends Controller
                     //File upload location
                     $location = 'files/';
 
-                    Storage::put('documents/'.$filename, file_get_contents($file));
+                    Storage::put('files/'.$filename, file_get_contents($file));
                     $db_file = new File([
                         "document_id"=>$docId,
                         "filename" => $filename,
@@ -376,7 +376,7 @@ class ClientController extends Controller
         ->leftJoin('subjects','documents.subject_id','=','subjects.id')
         ->leftJoin('categories','documents.category_id','=','categories.id')
         ->leftJoin('files', 'documents.id', '=', 'files.document_id')
-        ->select('orders.*','documents.title','documents.price','documents.image','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
+        ->select('orders.*','documents.title','documents.price','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
         ->orderBy('orders.id','desc')
         ->get();
         return DataTables::of($data)
@@ -390,7 +390,7 @@ class ClientController extends Controller
         
         ->addIndexColumn()
         ->addColumn('image', function($row){
-            $fileimage = '<img class="img-thumbnail" width="100px" src="'.$row->image.'"/>';
+            $fileimage = '<img class="img-thumbnail" width="100px" src=""/>';
             return $fileimage;
         })
          ->addColumn('action', function($row){
@@ -470,7 +470,7 @@ class ClientController extends Controller
         $originalPath = public_path().'/profiles/';
         $ImageUpload->save($originalPath.$files->getClientOriginalName());
      
-    // for save thumnail image
+        // for save thumnail image
         $thumbnailPath = public_path().'/thumbnails/';
         $ImageUpload->resize(250,125);
         $ImageUpload = $ImageUpload->save($thumbnailPath.$files->getClientOriginalName());
@@ -483,8 +483,8 @@ class ClientController extends Controller
 
         return redirect()->back()->with('success', 'Your profile image has been uploaded');   
 
-    }
-}
+        }
+    }   
 
 public function file_delete($id){
     $file=DB::table('documents')

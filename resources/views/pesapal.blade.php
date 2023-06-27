@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <section class="section_gap">
-    <div class="container">
+    <div class="con mx-4">
         <div class="card mx-auto text-center align-con">
 
             <div class="card-body">

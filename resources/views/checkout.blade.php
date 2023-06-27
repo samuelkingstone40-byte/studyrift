@@ -3,10 +3,10 @@
 @section('content')
 
 <span  id="loader" class="circlespinner"></span>
-<div class="section_gap ">
-  <div class="container py-4">
+<div class="section_ga ">
+  <div class="cont">
     <div class="row">
-      <div class="col-md-7 order-md-1">
+      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 order-md-1 mb-4">
         <div class="card">
           <div class="card-body">
             <h3 class="mb-5 card-title">Your Billing address</h3>
@@ -52,17 +52,17 @@
               <input type="hidden" required name="amount" id="total_amount">
               <input type="hidden" name="docs[]" id="docs">
               <hr class="mb-4">
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Proceede to payment</button>
+              <button class="btn btn-primary btn-lg float-right" type="submit">Make Payment</button>
            </form>
           </div>
         </div>
       </div>
       
-      <div class="col-md-5 order-md-1">
+      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 order-md-1">
         <div class="card">
           <div class="card-body">
-            <h4 class="mb-3 mt-4">Your cart</h4>
-            <table id="cart" class="table  table-condensed">
+            <h3 class="mb-3 mt-4">My Cart</h3>
+            <table id="cart" class="table">
               <thead>
                 <tr>
                   <th style="width:70%">Document</th>
@@ -79,10 +79,8 @@
                     <tr data-id="{{$id}}" id="{{ $id }}" class="doc">
                       <td data-th="Product">
                         <div class="row">
-                            <div class="col-sm-3 hidden-xs">        
-                              <img class="img-thumbnail" src="{{$details['image']}}" alt="">
-                            </div>
-                            <div class="col-sm-9">
+                            
+                            <div class="col-sm-12">
                               <p class="nomargin">{{ Str::limit($details['name'],60) }}</p>
                             </div>
                         </div>

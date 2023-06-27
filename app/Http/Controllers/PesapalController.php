@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Transaction as Payment;
 use App\Models\User;
 use App\Models\Order;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Notifications\PurchaseNotification;
 
 class PesapalController extends Controller
@@ -91,7 +91,7 @@ public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_noti
 
 public function add_orders($orderId,$transId,$status,$docId)
 {
-    $doc=DB::table('notes')->where('id',$docId)->first();
+    $doc=DB::table('documents')->where('id',$docId)->first();
     $user_id=Auth::user()->id;
     $order = Order::create([
              'user_id'=>$user_id,
@@ -120,9 +120,9 @@ public function update_orders(){
  }
  
  public function download_file($docId){
-     $doc=DB::table('notes')->where('notes.id',$docId)
-     ->leftJoin('files','files.document_id','=','notes.id')
-     ->select('notes.*','files.filename')
+     $doc=DB::table('documents')->where('documents.id',$docId)
+     ->leftJoin('files','files.document_id','=','documents.id')
+     ->select('documents.*','files.filename')
      ->first();
   
        $downloads = session()->get('downlads', []);
@@ -131,7 +131,7 @@ public function update_orders(){
                "name" => $doc->title,
                "quantity" => 1,
                "price" => $doc->price,
-               "image" => $doc->image,
+               "image" =>'',
                'filename'=>$doc->filename
            ];
        

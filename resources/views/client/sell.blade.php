@@ -278,7 +278,7 @@ $('#file_upload').change(function(){
             
              var image=$('#pdf-canvas').get(0).toDataURL()
              $('#filename').html(this.files[0].name);
-            alert($('#pdf-canvas').get(0).toDataURL("image/png", 0.8))
+          
             
             
              showPDF(e.target.result);

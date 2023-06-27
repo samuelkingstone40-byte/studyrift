@@ -1,6 +1,6 @@
 
 
-<header class="header_area white-header">
+<header class="header_area2 white-header">
       <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
          
@@ -42,7 +42,7 @@
                 @if(count((array) session('cart'))>0)
                 <li class="nav-item">
                 <div class="dropdown">
-                <a class="nav-link" style="color:white;font:700"  data-toggle="dropdown">
+                <a class="nav-link" style="font:700"  data-toggle="dropdown">
                         <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i> 
                    
                          <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
