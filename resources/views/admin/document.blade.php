@@ -177,7 +177,7 @@
 <script>
 
 var filename=$('#file2').val();
-var filepath="{{asset('files')}}/"+ filename
+var filepath="{{route('get-s3-bucket-file',$doc->filename)}}/"
 
 var _PDF_DOC,
     _CURRENT_PAGE,

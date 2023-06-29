@@ -109,7 +109,7 @@
                                                     <a href="{{url('admin/document-view/'.$top->docId)}}">
                                                     <div class="d-flex no-block align-items-center">
                                                         <div class="mr-3"><img
-                                                                src="{{$top->image}}"
+                                                                src="{{route('get-s3-thumbnail',$top->docId)}}"
                                                                 alt="user" class="img-thumbnail" width="45"
                                                                 height="45" /></div>
                                                       
