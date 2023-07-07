@@ -117,7 +117,7 @@
                   <table class="table card-table table-vcenter text-nowrap datatable yajra-datatable">
                     <thead>
                       <tr>
-                        <th>File</th>
+                       
                         <th>Date</th>
                         <th>Subject</th>
                         <th>Category</th>
@@ -150,16 +150,17 @@
     var table = $('.yajra-datatable').DataTable({
         processing: true,
         serverSide: true,
+        order:[0,"desc"],
         ajax: "{{route('my-uploads')}}",
         columns: [
-            {data: 'image', name: 'image'},
-            {data:'date',name:'date'},
+           
+            {data:'date',name:'date',orderable: true},
             {data: 'sname', name: 'sname'},
             {data: 'cname', name: 'cname'},
             {data: 'title', name: 'title'},
             {data: 'cash', name: 'cash'},
             {data:'earning',name:'earning'},
-            {data: 'action', name: 'action',  orderable: true,  searchable: true},
+            {data: 'action', name: 'action'},
         ]
     });
     

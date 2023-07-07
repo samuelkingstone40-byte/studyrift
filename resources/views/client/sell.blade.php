@@ -38,7 +38,7 @@
                             <div class="row">
                             <div class="mb-3 col-sm-8">
                               <label class="form-label">Title of the documet</label>
-                              <input type="text" class="form-control" name="title" placeholder="Input placeholder">
+                              <input type="text" class="form-control" required name="title" placeholder="Input placeholder">
                             </div>
                             <div class="mb-3 col-sm-4">
                               <label class="form-label">Unit Code(Optional)</label>
@@ -47,16 +47,17 @@
                             
                             <div class="mb-3 col-md-6">
                               <div class="form-label">Subject</div>
-                              <select class="form-select"  name="subject">
+                              <select class="form-select" required  name="subject">
+                               <option value="" >Select Subject</option>
                                 @foreach($subjects as $subject)
                                  <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
                               </select>
                             </div>
                             <div class="mb-3 col-md-6">
-                              <div class="form-label">Category</div>
-                              <select name="category" class="form-select" >
-                              <option selected>Choose...</option>
+                              <div class="form-label">Choose Category</div>
+                              <select required name="category" class="form-select" >
+                              <option value="" >Select Category</option>
                                  @foreach($categories as $category)
                                   <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
@@ -66,7 +67,7 @@
                             
                             <div class="mb-3 col-md-6">
                               <label class="form-label">Price</label>
-                              <input type="text" class="form-control" id="price" name="price" placeholder="Input placeholder">
+                              <input type="text" required class="form-control" id="price" name="price" placeholder="Input placeholder">
                             </div>
                             <div class="mb-3 col-md-6">
                               <label class="form-label">Earning</label>
@@ -76,12 +77,12 @@
                            
                             <div class="mb-3">
                               <label class="form-label">Brief Description</label>
-                              <textarea class="form-control" name="detail" rows="6" placeholder="Content.."></textarea>
+                              <textarea class="form-control" required name="detail" rows="6" placeholder="Content.."></textarea>
                             </div>
 
                             <div class="mb-3">
                             <div class="form-label">Choose File to Upload</div>
-                            <input type="file"  name="file" id="file_upload" class="form-control" data-traget-resolution="image_resolution"
+                            <input type="file" required  name="file" id="file_upload" class="form-control" data-traget-resolution="image_resolution"
                             
                             accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
                             <input data-required="image"   type="hidden"  name="thumb" id="thumb" >

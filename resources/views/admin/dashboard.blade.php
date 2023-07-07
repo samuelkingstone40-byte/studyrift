@@ -110,11 +110,12 @@
                                                     <div class="d-flex no-block align-items-center">
                                                         <div class="mr-3"><img
                                                                 src="{{route('get-s3-thumbnail',$top->docId)}}"
-                                                                alt="user" class="img-thumbnail" width="45"
-                                                                height="45" /></div>
+                                                                alt="thumbnail" class="img-thumbnail" width="60"
+                                                                height="60" /></div>
                                                       
                                                     </div>
                                                 </a>
+                                               
                                                 </td>
                                                 <td class="border-top-0 text-muted px-2 py-4 font-14">{{$top->sname}}</td>
                                                 <td class="border-top-0 px-2 py-4">

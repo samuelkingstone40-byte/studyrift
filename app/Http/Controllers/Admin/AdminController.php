@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB,DataTables;;
+use DataTables;;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class AdminController extends Controller
 {
     public function dashboard(){
@@ -42,6 +44,7 @@ class AdminController extends Controller
         ->leftJoin('categories','categories.id','=','documents.category_id')
         ->groupBy('orders.docId','orders.earning','documents.slug','documents.title','subjects.name','categories.name')
         ->orderBy(DB::raw('COUNT(orders.earning)'), 'desc')
+        ->limit(10)
         ->select('orders.docId', DB::raw("COUNT(orders.docId) as count_click"),DB::raw("sum(orders.earning) as sum_earning"),
         'documents.slug','documents.title','subjects.name as sname','categories.name as cname')
         ->get();

@@ -178,7 +178,7 @@
                   <span class="price">${{number_format($recommend->price)}}</span>
                   <span class="tag mb-4 d-inline-block">{{$recommend->sname}}/ {{$recommend->cname}}</span>
                   <h4 class="mb-3">
-                    <a href="course-details.html">{{$recommend->title}}</a>
+                    <a href="{{url('document-preview/'.$recommend->slug)}}">{{$recommend->title}}</a>
                   </h4>
                   
                   

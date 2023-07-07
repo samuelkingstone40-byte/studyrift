@@ -63,14 +63,16 @@ class ClientController extends Controller
     }
 
     public function post_document(Request $request){
-     
+        $timestamp=strtotime(date('Y-m-d h:i:s'));
+
         $image = $request->input('thumb');
         $title = $request->input('title');
         $subject = $request->input('subject');
         $category = $request->input('category');
         $detail = $request->input('detail');
         $price=$request->input('price');
-        $slug = Str::slug($request->input('title'));
+        
+        $slug = Str::slug($title.'-'.$timestamp);
         $user=Auth::id();
         $code=$request->input('code');
       
@@ -209,15 +211,16 @@ class ClientController extends Controller
             ->leftJoin('subjects','documents.subject_id','=','subjects.id')
             ->leftJoin('categories','documents.category_id','=','categories.id')
             ->select('documents.*','subjects.name as sname','categories.name as cname')
-            ->orderBy('documents.id','DESC')
+            ->orderBy('created_at','DESC')
             ->get();
             return DataTables::of($data)
+         
             ->editColumn('title', function ($data) {
                 return Str::limit($data->title, 25);
             })
 
             ->editColumn('date', function ($data) {
-                return Carbon::create($data->created_at)->toDateString();
+                return Carbon::create($data->created_at);
             })
 
             ->editColumn('cash', function ($data) {
@@ -229,10 +232,7 @@ class ClientController extends Controller
                 $earning = number_format($row->price*0.7,2);
                 return "$".$earning;
             })
-            ->addColumn('image', function($row){
-                    $fileimage = '<img class="img-thumbnail" width="100px" src="'.$row->image.'"/>';
-                    return $fileimage;
-            })
+        
             ->addColumn('action', function($row){
                     $actionBtn = '<a href="view-document/'.$row->slug.'" class="btn btn-success" style="margin-right:5px"> View Document</a><a href="/edit-document/'.$row->slug.'" class="btn btn-primary">Edit</a>';
                     return $actionBtn;
