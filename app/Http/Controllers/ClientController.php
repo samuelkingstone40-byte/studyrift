@@ -211,7 +211,6 @@ class ClientController extends Controller
             ->leftJoin('subjects','documents.subject_id','=','subjects.id')
             ->leftJoin('categories','documents.category_id','=','categories.id')
             ->select('documents.*','subjects.name as sname','categories.name as cname')
-            ->orderBy('created_at','DESC')
             ->get();
             return DataTables::of($data)
          

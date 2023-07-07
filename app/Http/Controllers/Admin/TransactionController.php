@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB,DataTables;;
+use DataTables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
@@ -17,9 +18,9 @@ class TransactionController extends Controller
     public function get_all_sales(Request $request){
         if ($request->ajax()) {
             $data = DB::table('orders')
-            ->leftJoin('notes','notes.id','=','orders.docId')
-            ->leftJoin('subjects','notes.subject_id','=','subjects.id')
-            ->leftJoin('categories','notes.category_id','=','categories.id')
+            ->leftJoin('documents','documents.id','=','orders.docId')
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
             ->leftJoin('users','users.id','=','orders.user_id')
             ->select('orders.*','subjects.name as sname','categories.name as cname','users.name as uname')
             ->get();
