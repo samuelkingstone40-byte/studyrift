@@ -44,7 +44,7 @@
                             @enderror
               </div>
               <div class="form-group text-center">
-                         <button type="submit" class="primary-btn">Login</button>
+                         <button type="submit" class="primary-btn ext-xl block bg-blue-900">Login</button>
               </div>
               <div class="row g-2">
                 <div class="col-lg-6 col-md-6 col-sm-12">
@@ -85,7 +85,7 @@
                 </div>
                 <div class="">
                  <p>I dont have an account? <span>
-                  <a class="btn btn-link" href="{{ route('register') }}">
+                  <a class="btn btn-link text-xl block text-orange-400" href="{{ route('register') }}">
                     <b> Sign Up</b>
                   </a>
                 </span></p> 
