@@ -3,81 +3,39 @@
 @section('content')
 
 <span  id="loader" class="circlespinner"></span>
-<div class="section_ga ">
-  <div class="cont">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 order-md-1 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="mb-5 card-title">Your Billing address</h3>
-            <form class="needs-validation" action="{{url('payment')}}" method="post">
-              @csrf
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <label for="firstName">First name</label>
-                  <input type="text" name="fname" class="form-control" id="firstName" placeholder="" value="{{Auth::user()->name}}" required>
-                  <div class="invalid-feedback">
-                     Valid first name is required.
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="lastName">Last name</label>
-                  <input type="text" name="lname" class="form-control" id="lastName" placeholder="" value="{{Auth::user()->name}}" required>
-                  <div class="invalid-feedback">
-                    Valid last name is required.
-                  </div>
-                </div>
-              </div>
 
-              <div class="mb-3">
-                <label for="email">Email <span class="text-muted"></span></label>
-                <input type="email" name="email" class="form-control" id="email" required placeholder="you@example.com"  value="{{Auth::user()->email}}">
-                <div class="invalid-feedback">
-                  Please enter a valid email.
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="address">Phone (Optional) </label>
-                <input type="text" name="phone" class="form-control" id="phone" placeholder="+1 XXX XXX" >
-                <div class="invalid-feedback">
-                  Please enter your address.
-                </div>
-              </div>
-
-              <div class="mb-3">
-                <label for="address2">Address <span class="text-muted"></span></label>
-                <input type="text" name="address" class="form-control" id="address2" placeholder="Apartment or suite">
-              </div>
-              <input type="hidden" required name="amount" id="total_amount">
-              <input type="hidden" name="docs[]" id="docs">
-              <hr class="mb-4">
-              <button class="btn btn-primary btn-lg float-right" type="submit">Make Payment</button>
-           </form>
-          </div>
+<div class="">
+  <div class="">
+    <div>
+      @if ($errors->any())
+        <div class="alert alert-danger">
+          <ul>
+              @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+              @endforeach
+          </ul>
         </div>
-      </div>
-      
-      <div class="col-xs-12 col-sm-12 col-md-5 col-lg-4 order-md-1">
-        <div class="card">
-          <div class="card-body">
-            <h3 class="mb-3 mt-4">My Cart</h3>
-            <table id="cart" class="table">
-              <thead>
+      @endif
+    </div>
+    <h3 class="my-4 text-4xl font-bold">Billing</h3>
+   
+    <div>
+      <table id="cart" class="table border-collapse border bg-white">
+          <thead>
                 <tr>
-                  <th style="width:70%">Document</th>
-                  <th style="width:20%" class="text-center">Qty</th>
-                  <th style="width:5%" class="text-center">Price</th>
-                  <th style="width:5%">Remove</th>
+                  <th class="border" style="width:70%">Document Name</th>
+                  <th class="border" style="width:20%" class="text-center">Qty</th>
+                  <th class="border" style="width:5%" class="text-center">Price</th>
+                  <th class="border" style="width:5%">Remove</th>
                 </tr>
-              </thead>
-              <tbody>
+          </thead>
+          <tbody>
                 @php $total = 0 @endphp
                 @if(session('cart'))
                   @foreach(session('cart') as $id => $details)
                     @php $total += $details['price'] * $details['quantity'] @endphp
                     <tr data-id="{{$id}}" id="{{ $id }}" class="doc">
-                      <td data-th="Product">
+                      <td data-th="Product" class="border">
                         <div class="row">
                             
                             <div class="col-sm-12">
@@ -86,157 +44,70 @@
                         </div>
                       </td>
                         
-                      <td data-th="Quantity">
-                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
+                      <td data-th="Quantity" class="border text-center">
+                        <input type="number" disabled value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
                       </td>
-                      <td data-th="Subtotal"  class="text-center">{{ $details['price'] * $details['quantity'] }}</td>
-                      <td class="actions" data-th="">
+                      <td data-th="Subtotal"  class="text-center border">{{ $details['price'] * $details['quantity'] }}</td>
+                      <td class="actions border" data-th="">
                         <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
                       </td>
                     </tr>
                   @endforeach
                 @endif
-              </tbody>
-              <tfooter>
-                <tr>
+          </tbody>
+          <tfooter>
+            <tr>
                     <td colspan="2"></td>
-                    <td ><h4><strong>Total<h4><strong> </td>
-                    <td  class="" >
+                    <td class="text-xl" ><strong>Total<strong> </td>
+                    <td  class="text-xl" >
                     {{ number_format($total,2) }}
-                    <input type="hidden" name="" id="total" value="{{$total}}">
+                    <input type="hidden" name="" class="" id="total" value="{{$total}}">
                     </td>
-                </tr>
-              </tfooter>
+            </tr>
+          </tfooter>
+      </table>
+    </div>
+    <div class="bg-white py-3 px-2">
+      <div class="text-xl font-bold my-2 text-red-500">Select Mode Of Payment</div>
+      <form class="" action="{{url('make-payment')}}" method="post">
+        @csrf
+        <div class="grid grid-cols-2 gap-4">
+          <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+            <input checked id="bordered-radio-2" type="radio" value="pesapal" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="bordered-radio-2" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With PesaPal</label>
+         </div>
+          <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+            <input id="bordered-radio-1" type="radio" value="seerbit" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With SeerBit</label>
+        </div>
+        </div>
 
-            </table>
+     
+          <input type="hidden" required name="amount" id="total_amount">
+          <input type="hidden" name="docs[]" id="docs">
+    
+          <button class="h-12 text-bold text-lg btn bg-green-600 text-white " type="submit">Make Payment</button>
       
 
-           <!-- <div id="smart-button-container">
-      <div style="text-align: center;">
-        <div id="paypal-button-container"></div>
-      </div>
+      </form>
+
     </div>
-
-    <div id="smart-button-container">
-      <div style="text-align: center;">
-         <div id="paypal-button-container"></div>
-       </div>
-    </div> -->
-        </div>
-      </div>
-          
-
-
-   
-
-        </div>
-        <!-- <div class="col-md-5 order-md-1">
-          <h3 class="mb-3 mt-4">Billing address</h3>
-          <form class="needs-validation" novalidate>
-              @csrf
-            @guest
-            <div class="row">
-
-              <div class="col-md-6 mb-3">
-                <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="cname" placeholder=""  required>
-                <div class="invalid-feedback">
-                  Valid first name is required.
-                </div>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder=""  required>
-                <div class="invalid-feedback">
-                  Valid last name is required.
-                </div>
-              </div>
-            </div>
-
-
-
-            <div class="mb-3">
-              <label for="email">Email</label>
-              <input type="email" class="form-control"   id="cemail" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-            @else
-
-            <div class="row">
-
-                <div class="col-md-6 mb-3">
-                  <label for="firstName">First name</label>
-                  <input type="text" class="form-control" id="cname" placeholder="" value="{{Auth::user()->name}}" required>
-                  <div class="invalid-feedback">
-                    Valid first name is required.
-                  </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <label for="lastName">Last name</label>
-                  <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
-                  <div class="invalid-feedback">
-                    Valid last name is required.
-                  </div>
-                </div>
-              </div>
-
-
-
-              <div class="mb-3">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" value="{{Auth::user()->email}}"   id="cemail" placeholder="you@example.com">
-                <div class="invalid-feedback">
-                  Please enter a valid email address for shipping updates.
-                </div>
-              </div>
-            @endguest
-
-
-
-
-
-            
-
-
- 
-
-              </div> -->
-
-                <!-- <div class="col-12">
-               <form>
-
-  <button type="button" class="btn btn-warning btn-lg text-white" id="ravepay" >Pay With Flutterwave <img width="45px" src="{{asset('theme/img/rave.png')}}"/></button>
-</form>
-                </div> -->
-
-            </div>
-
-
-          </form>
-        </div>
-      </div>
-    </div>
+  </div>
 </div>
+
 @endsection
 @section('scripts')
-<script src="https://checkout.flutterwave.com/v3.js"></script>
-<script src="https://www.paypal.com/sdk/js?client-id=AS7kIbBnwq1Hbq-xPoMHJJbmvKW0xu3hD6CcdAyvFryIpuyA_3oq_eqz3QvqO-FZvO3e5KfbZmlP52hQ&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
 
 <script type="text/javascript">
+  $(document).ready(function(){
+    $('#loader').hide();
+    var total_amt=$('#total').val();
+    $('#total_amount').val(total_amt);
+    var docs=myOrders();
+    console.log(docs)
+    $('#docs').val(docs);
 
-   $(document).ready(function(){
-     $('#loader').hide();
-
-  
-     var total_amt=$('#total').val();
-     $('#total_amount').val(total_amt);
-     var docs=myOrders();
-     console.log(docs)
-     $('#docs').val(docs);
-
-     function myOrders() {
+    function myOrders() {
       var items=document.getElementsByClassName("doc")
       let orders = []
       for(var i = 0, c = items.length; i<c; i++) {
@@ -244,8 +115,10 @@
       }
       return orders
     }
+
+
      
-     $(".update-cart").change(function (e) {
+    $(".update-cart").change(function (e) {
         e.preventDefault();
         $('#loader').show();
         var ele = $(this);
@@ -284,211 +157,11 @@
         }
     });
 
+   
+
 
   
-    // function initPayPalButton() {
-    //   paypal.Buttons({
-    //     style: {
-    //       shape: 'pill',
-    //       color: 'gold',
-    //       layout: 'vertical',
-    //       label: 'pay',
-          
-    //     },
 
-    //     createOrder: function(data, actions) {
-    //       return actions.order.create({
-
-    //         purchase_units: [{"amount":{"currency_code":"USD","value":$('#total').val()}}],
-    //         application_context: {
-    //        brand_name : 'Study Merit',
-    //        user_action : 'PAY_NOW',
-    //      },
-    //       });
-    //     },
-
-    //     onApprove: function(data, actions) {
-    //       let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    //   let orders=myOrders();
-
-    //   // This function captures the funds from the transaction.
-    //   return actions.order.capture().then(function(details) {
-
-    //       if(details.status == 'COMPLETED'){
-    //         return fetch('/paypal-capture-payment', {
-    //                   method: 'post',
-    //                   headers: {
-    //                       'content-type': 'application/json',
-    //                       "Accept": "application/json, text-plain, */*",
-    //                       "X-Requested-With": "XMLHttpRequest",
-    //                       "X-CSRF-TOKEN": token
-    //                   },
-    //                   body: JSON.stringify({
-    //                       orders:details.purchase_units,
-    //                       orderId : data.orderID,
-    //                       id : details.id,
-    //                       status: details.status,
-    //                       payerEmail: details.payer.email_address,
-    //                       docs:orders
-    //                   })
-    //               })
-    //               .then(status)
-    //               .then(function(response){
-    //                   console.log(response)
-    //                   // redirect to the completed page if paid
-    //                  window.location.href = '/pay-success';
-    //               })
-    //               .catch(function(error) {
-    //                   console.log(error)
-    //                   // redirect to failed page if internal error occurs
-    //                   //window.location.href = '/pay-failed?reason=internalFailure';
-    //               });
-    //       }else{
-    //           alert('Cancled')
-    //       }
-    //   });
-    //     },
-
-    //     onError: function(err) {
-    //       alert('Cancled')
-    //     }
-    //   }).render('#paypal-button-container');
-    // }
-    //initPayPalButton();
-
-    // paypal.Buttons({
-    //  createOrder: function(data, actions) {
-    //   // This function sets up the details of the transaction, including the amount and line item details.
-    //   return actions.order.create({
-    //     application_context: {
-    //       brand_name : 'Study Merit',
-    //       user_action : 'PAY_NOW',
-    //     },
-    //     purchase_units: [{
-    //       amount: {
-    //         value: $('#total').val()
-    //       }
-    //     }],
-    //   });
-    // },
-
-
-    // onApprove: function(data, actions) {
-
-    //   let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    //   let orders=myOrders();
-
-    //   // This function captures the funds from the transaction.
-    //   return actions.order.capture().then(function(details) {
-
-    //       if(details.status == 'COMPLETED'){
-    //         return fetch('/paypal-capture-payment', {
-    //                   method: 'post',
-    //                   headers: {
-    //                       'content-type': 'application/json',
-    //                       "Accept": "application/json, text-plain, */*",
-    //                       "X-Requested-With": "XMLHttpRequest",
-    //                       "X-CSRF-TOKEN": token
-    //                   },
-    //                   body: JSON.stringify({
-    //                       orders:details.purchase_units,
-    //                       orderId     : data.orderID,
-    //                       id : details.id,
-    //                       status: details.status,
-    //                       payerEmail: details.payer.email_address,
-    //                       docs:orders
-    //                   })
-    //               })
-    //               .then(status)
-    //               .then(function(response){
-    //                   console.log(response)
-    //                   // redirect to the completed page if paid
-    //                  window.location.href = '/pay-success';
-    //               })
-    //               .catch(function(error) {
-    //                   console.log(error)
-    //                   // redirect to failed page if internal error occurs
-    //                   //window.location.href = '/pay-failed?reason=internalFailure';
-    //               });
-    //       }else{
-    //           alert('Cancled')
-    //       }
-    //   });
-    // },
-
-    // onCancel: function (data) {
-    //     alert('failed')
-    // }
-
-
-
-    // }).render('#paypal-button-container');
-    // This function displays Smart Payment Buttons on your web page.
-
-    // function status(res) {
-    //   if (!res.ok) {
-    //       throw new Error(res.statusText);
-    //   }
-    //   return res;
-    // }
-
-
-    // $('#ravepay').click(function(e) {
-    //    e.preventDefault();
-    //    let orders=myOrders();
-
-    //    var cname=$('#cname').val();
-    //    var cemail=$('#cname').val();
-    //    if (cname == null || cname == "", cemail == null || cemail== "") {
-    //        alert('Name and email fields are required')
-    //    }else{
-    //    FlutterwaveCheckout({
-    //    public_key: "FLWPUBK-68785a86d1281b5d9fae604b977cf150-X",
-    //    tx_ref: "SM_{{substr(rand(0,time()),0,7)}}",
-    //    amount: $('#total').val(),
-    //    currency: "USD",
-    //    payment_options: "card",
-
-
-
-    //    customer: {
-    //      email: $('#cemail').val(),
-    //      name: $('#cname').val(),
-    //    },
-
-    //    customizations: {
-    //      title: "Study Merit",
-    //      description: "Payment for an awesome cruise",
-    //      logo: "https://studymerit.com/theme/img/logo2.png",
-    //    },
-    //    callback : function(data){
-    //      var transid=data.transaction_id;
-    //      var _token=$("input[name='_token']").val();
-    //      $.ajax({
-    //          type:'post',
-    //          url:"{{route('verify-payment')}}",
-    //          data:{
-    //              transid,
-    //              _token,
-    //              docs:orders
-    //          },
-    //          success:function(response){
-    //             if(response=='success'){
-    //             window.location.href = '/pay-success';
-    //             }
-    //          }
-
-    //      })
-    //    },
-    //    onclose:function(){
-    //          location.reload();
-    //    },
-
-    //  });
-    // }
-
-
-    //      })
 
 
 });

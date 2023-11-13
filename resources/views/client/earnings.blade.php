@@ -1,97 +1,110 @@
-@extends('layouts.client')
+@extends('layouts.client_layout')
 <title>Earnings - Studymerit </title>
 @section('content')
 
-<div class="page-wrapper">
-        <div class="container-xl">
-          <!-- Page title -->
-          <div class="page-header d-print-none">
-            <div class="row g-2 align-items-center">
-              <div class="col">
-                <h2 class="page-title">
-                My Account
-                </h2>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="page-body">
-          <div class="container-xl">
-           <div class="row row-cards">
-            
-           <div class="col-md-6 col-xl-4">
-                <div class="card card-sm mb-2">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <span class="bg-blue text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/currency-dollar -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16.7 8a3 3 0 0 0 -2.7 -2h-4a3 3 0 0 0 0 6h4a3 3 0 0 1 0 6h-4a3 3 0 0 1 -2.7 -2" /><path d="M12 3v3m0 12v3" /></svg>
-                        </span>
-                      </div>
-                      <div class="col">
-                        <div class="font-weight-medium">
-                         <h2> ${{number_format($total_earnings,2)}} </h2>
-                        </div>
-                        <div class="text-muted">
-                          <h4>Total Earnings</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card card-sm py-2">
-                  <div class="card-body">
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <span class="bg-green text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/shopping-cart -->
-                          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="6" cy="19" r="2" /><circle cx="17" cy="19" r="2" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
-                        </span>
-                      </div>
-                      <div class="col">
-                        <div class="font-weight-medium">
-                          <h2>${{number_format($current_earnings,2)}}</h2>
-                        </div>
-                        <div class="text-muted">
-                          <h4>Available Earning</h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-xl-8">
-              <div class="card">
-                  <div class="card-header">
-                    <h3 class="card-title">Transactions</h3>
-                  </div>
-                  <div class="card-body">
-               <div class="card-table table-responsive">
-               <table class="table table-bordered table-sm  yajra-datatable">
-                    <thead>
-                  <tr>
-               
-                <th>Date</th>
-                <th>Order ID</th>
-                <th>Subject</th>
-                <th>Category</th>
-                <th>Earning</th>
-                <th>Status</th>
-
+<section class="mt-10">
+  <div class="text-3xl font-bold">
+    Transactions
+  </div>
+  <div class="flex gap-4 ">
+    <div class=" xl:p-6 p-4 sm:w-auto w-full bg-white ">
+      <p class="text-3xl font-semibold text-gray-800">${{number_format($total_earnings,2)}}</p>
+      <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Total total_earnings</p>
+  </div>
+  <div class="xl:p-6 p-4 sm:w-auto w-full bg-white ">
+    <p class="text-3xl font-semibold text-gray-800">${{number_format($current_earnings,2)}}</p>
+    <p class="text-base leading-4 xl:mt-4 mt-2 text-gray-600">Available Amount</p>
+</div>
+  </div>
+  <div class="mt-6 bg-white">
+    <div class=" border relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full py-2 text-sm text-left text-gray-500  dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+          
+                  <th scope="col" class="px-6 py-3">
+                      Date
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                     OrderID
+                   </th>
+                  <th scope="col" class="px-6 py-3">
+                    Subject
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Category
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Amount
+                  </th>
+                  
+                  
+                 <th scope="col" class="px-6 py-3">
+                  
+              </th>
+              </tr>
+          </thead>
+          <tbody class="table-tbody">
+              @foreach ($earnings as $item )
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 
-            </tr>
-        </thead>
-        <tbody>
-        </tbody>
-    </table>
-               </div>
-              </div>
-           </div>
-          </div>
-        </div>
-</div>
-        </div>
-</div>
+                <td class="px-6 py-4">
+                  {{$item->created_at}}
+                </td>
+                <td class="px-6 py-4">
+                  {{$item->orderId}}
+                </td>
+                <td class="px-6 py-4">
+                 {{$item->sname}}
+                </td>
+                <td class="px-6 py-4">
+                  {{$item->cname}}
+                </td>
+                <td class="px-6 py-4">
+                  {{$item->price}}
+                </td>
+                <td class="px-6 py-4">
+                 <a href="">View</a>
+                </td>
+              </tr>
+              @endforeach
+              
+          </tbody>
+      </table>
+      <nav class="flex items-center justify-between p-4" aria-label="Table navigation">
+          <span class="text-sm font-normal text-gray-500 dark:text-gray-400">Showing <span class="font-semibold text-gray-900 dark:text-white">1-10</span> of <span class="font-semibold text-gray-900 dark:text-white">1000</span></span>
+          <ul class="inline-flex -space-x-px text-sm h-8">
+              <li>
+                  <a href="#" class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+              </li>
+              <li>
+                  <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
+              </li>
+              <li>
+                  <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
+              </li>
+              <li>
+                  <a href="#" aria-current="page" class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
+              </li>
+              <li>
+                  <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
+              </li>
+              <li>
+                  <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
+              </li>
+              <li>
+                  <a href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+              </li>
+          </ul>
+      </nav>
+    </div>
+
+
+  </div>
+
+</section>
+
+
 
 @endsection
 @section('scripts')

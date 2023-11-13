@@ -10,19 +10,24 @@
     <!-- CSS files -->
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
+    {{-- <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-payments.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-vendors.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/demo.css')}}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" />
+    <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" /> --}}
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','G-K08LVCH03Q');</script>
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','G-K08LVCH03Q');</script>
   </head>
+  
   <body>
+
+   
+    
+
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=G-K08LVCH03Q"height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
@@ -217,7 +222,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
    
     <!-- Libs JS -->
-    <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
+    {{-- <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('theme/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
@@ -228,7 +233,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
 
     <script src="{{asset('theme/dist/js/tabler.min.js')}}" defer ></script>
-    <script src="{{asset('theme/dist/js/demo.min.js')}}" defer></script>
+    <script src="{{asset('theme/dist/js/demo.min.js')}}" defer></script> --}}
 
     @yield('scripts')
 

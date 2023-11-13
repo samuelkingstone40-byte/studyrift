@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.client_layout')
 @section('content')
 <style type="text/css">
 
@@ -66,199 +66,146 @@
 
 </style>
 
-<div class="page-wrapper">
-        <div class="container-xl">
-          <!-- Page title -->
-          <div class="page-header d-print-none">
-            <div class="row g-2 align-items-center">
-              <div class="col">
-                <h2 class="page-title">
-                {{$doc->title}}
-                </h2>
-              </div>
-                            <!-- Page title actions -->
-                 <div class="col-12 col-md-auto ms-auto d-print-none">
-                <div class="btn-list">
-                @if($purchased)
-                    <span class="float-right">
-                        <a href="{{url('download/'.$doc->filename)}}" class="btn btn-primary radius"> <i class="fa fa-download"></i> Download</a>
-                    
-                    </span>
-                    @else
-                    <span class="float-right">
-                        <a href="{{url('edit-document/'.$doc->slug)}}" class="btn btn-primary"> <i class="fa fa-pencil"></i> Edit</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                        data-target="#deleteModal"><i class="fa fa-trash"></i> Delete file</button>
-        
-                    </span>
-                    @endif
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="page-body">
-          <div class="container-xl">
-            <div class="row row-cards">
-                <div class="col-lg-6">
-                <div class="card">
-                      <div class="card-header">
-                        <h3 class="card-title">
-                         Documents Information
-                        </h3>
+<div  class="bg-white p-4">
+  <div class="flex justify-between my-2">
+    <div class="text-3xl font-semibold ">
+      {{$doc->title}}
+    </div>
+    <div>
+      @if($purchased)
+      <a href="{{url('download/'.$doc->id)}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg class="w-6 h-6 pr-2 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
+        </svg>
+        Download
+      </a>
+      @endif
+    </div>
+  </div>
 
+  <div>
+    <div class="text-xl font-semibold mb-2">Subject : {{$doc->sname}}</div>
+    <div class="text-xl font-semibold mb-2">Category : {{$doc->cname}}</div>
+    <div class="text-xl font-semibold mb-2">Price :${{$doc->price}}</div>
+  </div>
+  <div>
+    <h3 class="text-xl font-semibold mb-2">Description</h3>
+    <p>
+      {{$doc->description}}
+    </p>
+  </div>
+
+  <div class="my-4 flex items-center justify-center">
+    <input type="hidden"  id="file2" value="{{$doc->filename}}">
+    <div class="content-center mx-auto" id="pdf-main-container justify-content-center">
+            <div id="pdf-loader">Loading document ...</div>
+             <div id="pdf-contents" class="bg-yellow-200 p-4 flex justify-center">
+                <div id="pdf-meta">
+                    <div id="pdf-buttons">
+                      <div class="flex">
+                        <!-- Previous Button -->
+                        <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                          <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                          </svg>
+                          Previous
+                        </a>
+                        <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                          Next
+                          <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                          </svg>
+                        </a>
                       </div>
-                      <div class="card-body">
-                        <dl class="row">
-                          <dt class="col-5">Title:</dt>
-                          <dd class="col-7">{{$doc->title}}</dd>
-                          <dt class="col-5">Subject:</dt>
-                          <dd class="col-7">{{$doc->sname}}</dd>
-                          <dt class="col-5">Category:</dt>
-                          <dd class="col-7">{{$doc->cname}}</dd>
-                          <dt class="col-5">Price:</dt>
-                          <dd class="col-7">${{number_format($doc->price,2)}}</dd>
-                         
-                          
-                        </dl>
-                      </div>
+                       
                     </div>
-                    <div class="card mt-2">
-            <div class="card-body">
-                <h4 class="py-2">
-                    Description
-                </h4>
-
-                <p>
-                    {{$doc->description}}
-                </p>
-            </div>
-        </div>
-
-        <div class="card mt-2">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                       Reviews
-                        </h3>
-
-                      </div>
-                      <div class="card-body card-body-scrollable card-body-scrollable-shadow">
-                        <div class="divide-y">
-                        @foreach ($reviews as $review)
-                          <div>
-                            <div class="row">
-                              <div class="col-auto">
-                                <span class="avatar">{{$review->name}}</span>
-                              </div>
-                              <div class="col">
-                                <div class="text-truncate">
-                                {{$review->review}}
-                                </div>
-                                <div class="text-muted">
-                                <div class="star">
-                                    @for($i=0;$i<=$review->rating;$i++)
-                                    <span class="ti-star checked"></span>
-                                    @endfor
-                               </div>
-                                </div>
-                              </div>
-                              <div class="col-auto align-self-center">
-                                <div class="badge bg-primary"></div>
-                              </div>
-                            </div>
-                          </div>
-                          @endforeach
-                        </div>
-                      </div>
-                    </div>
+                    <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
                 </div>
-                <div class="col-lg-6">
-
-                <input type="hidden"  id="file2" value="{{$doc->filename}}">
-                <div id="pdf-main-container justify-content-center">
-                        <div id="pdf-loader">Loading document ...</div>
-                         <div id="pdf-contents">
-                            <div id="pdf-meta">
-                                <div id="pdf-buttons">
-                                    <button id="pdf-prev">Previous</button>
-                                    <button id="pdf-next">Next</button>
-                                </div>
-                                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
-                            </div>
-                            <canvas id="pdf-canvas" width="600"></canvas>
-                            <div id="page-loader">Loading page ...</div>
-                        </div>
-                      </div>
-                </div>
+                <canvas class="" id="pdf-canvas" width="600"></canvas>
+                <div id="page-loader">Loading page ...</div>
             </div>
+    </div>
+  </div>
 
-       
-
-
-
-</div>
-
+  <div class="mt-2"> 
+    <h3 class="text-xl font-semibold mb-2">Document Reviews</h3>
+     @foreach ($reviews as $review)
+      <div>
+        <div class="row">
+          <div class="col-auto">
+            <span class="avatar">{{$review->name}}</span>
+          </div>
+          <div class="col">
+            <div class="text-truncate">
+            {{$review->review}}
+            </div>
+            <div class="text-muted">
+            <div class="star">
+                @for($i=0;$i<=$review->rating;$i++)
+                <span class="ti-star checked"></span>
+                @endfor
+           </div>
             </div>
           </div>
-        </div>
-
-
-
-    <div class="modal modal-blur fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="col-auto align-self-center">
+            <div class="badge bg-primary"></div>
           </div>
-          <form action="{{route('fileDelete',$doc->id)}}" method="post">
-            @csrf
-          <div class="modal-body">
-          Are you sure you want to delete this file?
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn me-auto" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes,Delete</button>
-          </div>
-          </form>
         </div>
       </div>
+      @endforeach
+  </div>
 
 
-  
 
+  <!-- Modal toggle -->
+<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+  Delete File
+</button>
 
-<div id="" class="modal fade" tabindex="-1" role="dialog"
-aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header bg-danger text-white">
-            <h4 class="modal-title" id="myModalLabel">Delete file</h4>
-            <button type="button" class="close" data-dismiss="modal"
-                aria-hidden="true">×</button>
-        </div>
-        <form action="{{route('fileDelete',$doc->id)}}" method="post">
+<!-- Main modal -->
+<div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <form action="{{route('fileDelete',$doc->id)}}" method="post">
             @csrf
-        <div class="modal-body text-center">
-          
-           <h4>Are you sure you want to delete this file?</h4>
+            <!-- Modal header -->
+            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                   Delete File
+                </h3>
+                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-6 space-y-6">
+                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                  Are you sure you want to delete this file?
+                </p>
+
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
+                <button data-modal-hide="default-modal" type="submit" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">Delete</button>
+            </div>
+          </form>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-light"
-                data-dismiss="modal">No</button>
-            <button type="submit" class="btn btn-success">Yes </button>
-        </div>
-        </form>
-    </div><!-- /.modal-content -->
-</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+    </div>
 </div>
 
 </div>
-</div>
 
-      
-</div>
+
+
+
+
+
+
 </section>
 @endsection
 
