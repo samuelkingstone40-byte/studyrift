@@ -1,10 +1,11 @@
 @extends('layouts.default')
 <title>Buy-Studymerit </title>
-@section('content')
+
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
+@section('content')
 <section class="">
 
-    <div class=" catalogue ">
+    <div class="">
         <div class="row">
             <div class="col-sm-12">
                 
@@ -18,18 +19,7 @@
                 </div>
                </div>
              
-                <!-- <div class="row g-3 mt-2">
-                    <div class="col-md-4">
-                        <div class='form-group'>
-                            <input type="text"  name="search_text" style="height:50px;background:#f2f2ff;font-size:18px" placeholder="Search title.." class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" style="height:50px" class="genric-btn primary radius btn-lg"><i class="fa fa-search"></i>Search Results</button>
-
-                    </div>
-                </div>
-                -->
+             
             </form>
              
             </div>

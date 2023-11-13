@@ -1,6 +1,6 @@
 
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 fixed top-0 z-50 w-full">
+<nav class="bg-white border-gray-200 dark:bg-gray-900 z-50 w-full">
     <div class=" flex flex-wrap  justify-between items-center px-4 py-2 ">
         <div class="flex items-center justify-start">
             <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -10,14 +10,14 @@
                 </svg>
             </button>
             <a href="{{url('/')}}" class="flex ml-2 md:mr-24">
-                <img class="logo-2 w-64" src="{{asset('theme/img/site/logo.png')}}" alt="" />
+                <img class="logo-2 sm:32 md:w-64" src="{{asset('theme/img/site/logo.png')}}" alt="" />
             </a>
         </div>
 
-        <div class="flex items-center md:order-2 lg:order-2">
+        <div class="flex items-center md:order-2">
             @guest
-                <a href="{{url('login')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</a>
-                <a href="{{url('register')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</a>
+                <a href="{{url('login')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg sm:text-md  md:text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</a>
+                <a href="{{url('register')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg sm:text-md md:text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</a>
             @else
                 @if(count((array) session('cart'))>0)
                     <div class="flex items-center ml-4">
@@ -193,5 +193,5 @@
 
      
     </div>
-  </nav>
+</nav>
   
