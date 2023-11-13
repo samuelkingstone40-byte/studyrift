@@ -74,7 +74,10 @@ class PaymentController extends Controller
                 abort($resp['httpStatus'],$resp['message']);
         }
 
+        return $resp;
+
         $payment_link=$resp['data']['payments']['redirectLink'];
+
         return redirect($payment_link);
 
     }
@@ -113,7 +116,9 @@ class PaymentController extends Controller
   
                 return redirect('payment-complete');
 
-            }
+        }else{
+            return response()->view('pay-failed', [$data['message']], 400);
+        }
         
       
     }
