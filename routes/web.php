@@ -78,7 +78,7 @@ Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'a
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
 Route::middleware(['auth'])->group(function () {
-Route::post('/make-payment',[PaymentController::class,'make_payment']);
+Route::post('make-payment',[PaymentController::class,'make_payment'])->name('make-payment');
 Route::get('/seerbit-access-token',[PaymentController::class,'get_seerbit_authorization_token']);
 Route::get('/seerbit-callback',[PaymentController::class,'handleSeerBitCallback']);
 Route::get('/checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');

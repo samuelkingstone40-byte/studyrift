@@ -33,11 +33,11 @@ class PaymentController extends Controller
         Session::save();
 
        // redirect to mode of payement
-        if($mode=='pesapal'){
+        if($mode == 'pesapal'){
             return $this->process_pesapal_payment($request);
         }
 
-        if($mode== 'seerbit'){
+        if($mode == 'seerbit'){
             return $this->process_seerbit_payment($amount);
         }
      }
