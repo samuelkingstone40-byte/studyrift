@@ -10,6 +10,7 @@
     <!-- CSS files -->
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     {{-- <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('theme/dist/css/tabler-payments.min.css')}}" rel="stylesheet"/>

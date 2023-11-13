@@ -66,7 +66,7 @@
 
 </style>
 
-<div  class="bg-white p-4">
+<div  class="bg-white p-4 mt-10">
   <div class="flex justify-between my-2">
     <div class="text-3xl font-semibold ">
       {{$doc->title}}

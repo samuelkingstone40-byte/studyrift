@@ -43,6 +43,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!--================ Start Header Menu Area =================-->
     @include('includes.header')
+
+    <div class="">
     @guest
     <input type="hidden" id="user_id" value="">
     <input type="hidden" id="name" value="">
@@ -52,6 +54,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <input type="hidden" id="name" value="{{Auth::user()->name}}">
     <input type="hidden" id="email" value="{{Auth::user()->email}}">
     @endguest
+
+
 
      @yield('content')
 

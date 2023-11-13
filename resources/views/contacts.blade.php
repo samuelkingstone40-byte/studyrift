@@ -1,7 +1,7 @@
 @extends('layouts.default')
 @section('content')
 <section class="contact_area section_gap ">
-    <div class="container ">
+    <div class="container mt-10 ">
       <h3 class="my-4"><b>Please get in touch with us.</b></h3>
       <p class="text-muted">Do you have an issue or a question?</p>
       <p>No problem, complete the form. You may use this form to i. Get in touch with us if you have any general queries or issues</p>

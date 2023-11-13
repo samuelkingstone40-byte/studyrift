@@ -88,7 +88,7 @@ class PublicController extends Controller
         
 
         ->orderBy('documents.id','desc')
-        ->simplePaginate(5);
+        ->paginate(10);
         
         $data['subjects']=$this->getSubjects();
         $data['categories']=$this->getCategories();

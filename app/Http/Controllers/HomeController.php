@@ -46,6 +46,7 @@ class HomeController extends Controller
         ->where('orders.user_id',Auth::user()->id)
         ->orderBy('orders.id')
         ->select('documents.id','documents.subject_id','documents.price','documents.title','orders.created_at','subjects.name')
+        ->take(5)
         ->get();
 
         return $documents;
@@ -58,6 +59,7 @@ class HomeController extends Controller
         ->where('orders.owner_id',Auth::user()->id)
         ->orderBy('orders.id')
         ->select('documents.id','documents.subject_id','documents.price','orders.orderId','orders.created_at','orders.earning','subjects.name')
+        ->take(5)
         ->get();
 
         return $documents;

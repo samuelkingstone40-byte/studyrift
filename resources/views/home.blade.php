@@ -3,6 +3,7 @@
 @section('content')
         <div class=" mt-10">
           <!-- Summary -->
+          <h1 class="text-3xl my-2 font-semibold">Dashboard</h1>
           <div class="grid grid-cols-3 gap-4 mb-4">
             <div>
               <div class="border bg-white rounded border-gray-300 mb-1 py-2 content-center flex flex-col items-center ">
@@ -45,8 +46,10 @@
 
           <!-- Content -->
           <div class="grid-container grid grid-cols-5 gap-4">
+           
             <div class="item1 col-span-3">
-              <div class="mt-6 bg-white">
+              <h3 class="text-2xl font-semibold"> Latest Downloads</h3>
+              <div class="mt-2 bg-white">
                 <div class=" border relative overflow-x-auto shadow-md sm:rounded-lg">
                   <table class="w-full py-2 text-sm text-left text-gray-500  dark:text-gray-400">
                       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -118,8 +121,10 @@
             
               </div>
             </div>
+            
             <div class="item2 col-span-2">
-              <div class="mt-6 bg-white">
+              <h3 class="text-2xl font-semibold"> Latest Sales</h3>
+              <div class="mt-2 bg-white">
                 <div class=" border relative overflow-x-auto shadow-md sm:rounded-lg">
                   <table class="w-full py-2 text-sm text-left text-gray-500  dark:text-gray-400">
                       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

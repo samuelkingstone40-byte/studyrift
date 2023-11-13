@@ -9,6 +9,7 @@
         <!-- CSS files -->
         <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" type="image/png" />
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+      
 
         
     </head>
@@ -18,8 +19,8 @@
         @include('includes.header')
         
   
-        <aside id="logo-sidebar" class="fixed left-0 ml-64 z-40 w-64 h-screen pt-10 top-0 transition-transform -translate-x-full bg-blue-800 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
-            <div class="h-full px-3 pb-4 overflow-y-auto bg-blue-800 dark:bg-gray-800">
+        <aside id="logo-sidebar" class="fixed mt-10 left-0 ml-64 z-40 w-64 h-screen pt-10 top-0 transition-transform -translate-x-full bg-blue-800 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+            <div class="h-full mt-6 px-3 pb-4 pt-10 overflow-y-auto bg-blue-800 dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
                 <li>
                     <a href="{{url('home')}}" class="mb-4 lg:text-xl md:lg sm:text-sm flex items-center p-2 text-gray-100 rounded-lg dark:text-white hover:bg-gray-900 dark:hover:bg-gray-700 group">

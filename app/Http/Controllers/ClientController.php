@@ -247,12 +247,13 @@ class ClientController extends Controller
     public function uploads(){
         $data['documents']=DB::table('documents')
           ->whereNull('documents.status')
+            ->where('documents.user_id',Auth::id())
          ->leftJoin('files', 'documents.id', '=', 'files.document_id')
          ->leftJoin('subjects','documents.subject_id','=','subjects.id')
          ->leftJoin('categories','documents.category_id','=','categories.id')
          ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
          ->orderBy('documents.id','desc')
-         ->get();
+         ->paginate(10);
         return view('client/uploads',$data);
     }
 
@@ -371,7 +372,7 @@ class ClientController extends Controller
             ->leftJoin('files', 'documents.id', '=', 'files.document_id')
             ->select('orders.*','documents.title','documents.price','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
             ->orderBy('orders.id','desc')
-            ->get();
+            ->paginate(10);
 
         return view('client/downloads',$data);
     }
@@ -429,7 +430,7 @@ class ClientController extends Controller
             ->leftJoin('categories','documents.category_id','=','categories.id')
             ->leftJoin('files', 'documents.id', '=', 'files.document_id')
             ->select('orders.*','documents.title','documents.price','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
-            ->get();
+            ->paginate(10);
 
 
         return view('client/earnings',$data);

@@ -1,11 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.default')
 <title>Buy-Studymerit</title>
 @section('content')
-
-<span  id="loader" class="circlespinner"></span>
-
-<div class="">
-  <div class="">
+  <div class="container mt-10">
+    <span  id="loader" class="circlespinner"></span>
     <div>
       @if ($errors->any())
         <div class="alert alert-danger">
@@ -17,8 +14,7 @@
         </div>
       @endif
     </div>
-    <h3 class="my-4 text-4xl font-bold">Billing</h3>
-   
+    <h3 class=" text-4xl font-bold my-2">Billing</h3>
     <div>
       <table id="cart" class="table border-collapse border bg-white">
           <thead>
@@ -67,6 +63,7 @@
           </tfooter>
       </table>
     </div>
+
     <div class="bg-white py-3 px-2">
       <div class="text-xl font-bold my-2 text-red-500">Select Mode Of Payment</div>
       <form class="" action="{{url('make-payment')}}" method="post">
@@ -93,7 +90,7 @@
 
     </div>
   </div>
-</div>
+
 
 @endsection
 @section('scripts')

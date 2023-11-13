@@ -1,7 +1,7 @@
 @extends('layouts.default')
 <title>About-Studymerit</title>
 @section('content')
-<section class="about_area section_gap">
+<section class="about_area section_gap mt-10">
     <div class="container">
       <div class="row h_blog_item">
         <div class="col-lg-6">

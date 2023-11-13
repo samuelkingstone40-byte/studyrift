@@ -115,7 +115,7 @@
         <nav class="blog-pagination justify-content-center d-flex">
                             <ul class="pagination">
                                 
-                                {{$notes->links()}}
+                                {{$notes->links('pagination::simple-tailwind')}}
                                 
                             </ul>
                         </nav>

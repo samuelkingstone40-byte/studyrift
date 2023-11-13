@@ -1,19 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.default')
 @section('content')
 <section class="section_gap">
-    <div class="con mx-4">
-        <div class="card mx-auto text-center align-middle">
+    <div class="mt-10 mx-4">
+    
 
-            <div class="card-body ">
-
-                <div class="bg-white align-middle">
+                <div class="bg-white align-middle h-full">
                     {!!$iframe!!}
                 </div>
               
             </div>
         </div>
          
-    </div>
+  
 </section>
 
 @endsection
