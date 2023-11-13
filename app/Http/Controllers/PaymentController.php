@@ -121,9 +121,7 @@ class PaymentController extends Controller
     public function get_seerbit_authorization_token(){
         $public_key = config('seerbit.public_key');
         $secret_key=  config('seerbit.secret_key');
-        
         $curl = curl_init();
-
         curl_setopt_array($curl, array(
             CURLOPT_URL => 'https://seerbitapi.com/api/v2/encrypt/keys',
             CURLOPT_RETURNTRANSFER => true,
