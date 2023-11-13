@@ -31,8 +31,7 @@ class PaymentController extends Controller
 
         Session::put("orders",$arr);
         Session::save();
-
-        return "dsf";
+        
 
        // redirect to mode of payement
         if($mode == 'pesapal'){
