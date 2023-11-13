@@ -58,10 +58,10 @@ class PaymentController extends Controller
   
         $payload = [ 
             "amount" => $amount,
-            "callbackUrl" =>'/seerbit-callback',
-            "country" => "KE",
+            "callbackUrl" =>'https://www.studymerit.com/seerbit-callback',
+            "country" => "US",
             "fullname"=>$name,
-            "currency" => "KES",
+            "currency" => "USD",
             "email" => $email,
             "paymentReference" => $transaction_ref,
             "productDescription" => "product_description",
