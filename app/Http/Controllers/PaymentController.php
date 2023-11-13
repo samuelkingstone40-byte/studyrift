@@ -54,9 +54,7 @@ class PaymentController extends Controller
         $uuid = bin2hex(random_bytes(6));
         $product_id = strtoupper(trim("SB".$uuid));
         $transaction_ref = strtoupper(trim("SB".$uuid));
-
-
-            
+  
         $payload = [ 
             "amount" => $amount,
             "callbackUrl" =>'/seerbit-callback',
@@ -115,13 +113,7 @@ class PaymentController extends Controller
                 return redirect('payment-complete');
 
             }
-            
-
-            
-
-          
-           
-
+        
       
     }
 
