@@ -74,7 +74,7 @@ class PaymentController extends Controller
                 abort($resp['httpStatus'],$resp['message']);
         }
 
-        return $resp;
+      
 
         $payment_link=$resp['data']['payments']['redirectLink'];
 
