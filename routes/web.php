@@ -25,7 +25,7 @@ Route::get('blog-list',[App\Http\Controllers\BlogController::class,'blogs']);
 Route::get('get-s3-bucket-file/{filepath?}',[App\Http\Controllers\PublicController::class,'get_s3_bucket_file'])->name('get-s3-bucket-file');
 Route::get('get-s3-thumbnail/{id}',[App\Http\Controllers\PublicController::class,'get_s3_thumbnail'])->name('get-s3-thumbnail');
 
-Route::resource('blogs',App\Http\Controllers::class);
+//Route::resource('blogs',App\Http\Controllers::class);
 Auth::routes();
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
