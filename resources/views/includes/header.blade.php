@@ -1,6 +1,6 @@
 
 
-<nav class="bg-white border-gray-200 dark:bg-gray-900 z-50 w-full">
+<nav class="fixed bg-white border-gray-200 dark:bg-gray-900 z-50 w-full">
     <div class=" flex flex-wrap  justify-between items-center px-4 py-2 ">
         <div class="flex items-center justify-start">
             <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
