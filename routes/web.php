@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PaymentController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,7 +40,7 @@ Route::get('my-uploads', [App\Http\Controllers\ClientController::class, 'my_uplo
 Route::get('edit-document/{id}', [App\Http\Controllers\ClientController::class, 'edit_document'])->name('edit-document');
 Route::get('downloads', [App\Http\Controllers\ClientController::class, 'downloads'])->name('downloads');
 Route::get('fetch-downloads', [App\Http\Controllers\ClientController::class, 'fetch_downloads'])->name('fetch-downloads');
-Route::get('download/{filename}', [App\Http\Controllers\PublicController::class, 'download_file'])->name('download');
+Route::get('download/{id}', [App\Http\Controllers\ClientController::class, 'download_file'])->name('download');
 Route::post('update-profile', [App\Http\Controllers\ClientController::class, 'update_profile'])->name('update-profile');
 Route::post('update-paypal', [App\Http\Controllers\ClientController::class, 'update_paypal'])->name('update-paypal');
 Route::post('update-password', [App\Http\Controllers\ClientController::class, 'update_password'])->name('update-password');
@@ -68,7 +69,7 @@ Route::patch('update-cart', [App\Http\Controllers\PublicController::class, 'upda
 Route::delete('remove-from-cart', [App\Http\Controllers\PublicController::class, 'remove'])->name('remove.from.cart');
 
 Route::get('pay-failed',[App\Http\Controllers\PayPalPaymentController::class,'pay_failed'])->name('pay-failed');
-Route::get('pay-success',[App\Http\Controllers\PayPalPaymentController::class,'pay_success'])->name('pay-success');
+Route::get('payment-complete',[PaymentController::class,'payment_complete'])->name('payment-complete');
 Route::post('paypal-capture-payment',[App\Http\Controllers\PayPalPaymentController::class,'capturePayment']);
 Route::get('paypal-payout',[App\Http\Controllers\PayPalPaymentController::class,'paypalpayout'])->name('paypal-payout');
 Route::post('verify-payment',[App\Http\Controllers\PayPalPaymentController::class,'verify'])->name('verify-payment');
@@ -77,7 +78,10 @@ Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'a
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
 Route::middleware(['auth'])->group(function () {
-    Route::get('checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
+Route::post('/make-payment',[PaymentController::class,'make_payment']);
+Route::get('/seerbit-access-token',[PaymentController::class,'get_seerbit_authorization_token']);
+Route::get('/seerbit-callback',[PaymentController::class,'handleSeerBitCallback']);
+Route::get('/checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
 });
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
@@ -123,7 +127,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
     });
 
 });
-Route::post('payment',[App\Http\Controllers\PesapalController::class,'payment']);
+
+
+
 Route::get('pesapal-callback',[App\Http\Controllers\PesapalAPIController::class,'handleCallback'])->name('pesapal-callback');
 Route::get('pesapal-ipn', ['as'=>'pesapal-ipn', 'uses'=>'Knox\Pesapal\PesapalAPIController@handleIPN']);
 Route::get('donepayment',[App\Http\Controllers\PesapalController::class,'paymentsuccess'])->name('paymentsuccess');

@@ -30,7 +30,9 @@
     <link rel="stylesheet" href="{{asset('theme/css/cart.css')}}" />
     <link rel="stylesheet" href="{{asset('theme/css/custom.css?v='.filemtime(public_path('theme/css/custom.css'))) }}" />
     <link rel="stylesheet" href="{{asset('theme/css/style.css?v='.filemtime(public_path('theme/css/style.css'))) }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+        <script src="{{ mix('js/app.js') }}"></script>
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -55,7 +57,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <input type="hidden" id="email" value="{{Auth::user()->email}}">
     @endguest
 
+    <div class="p-4 sm:ml-64   ">
+      <div class="container ">
+
      @yield('content')
+
+      </div>
+    </div>
 
 
       
@@ -149,6 +157,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    
 })
     </script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
     @yield('scripts')
 
   </body>

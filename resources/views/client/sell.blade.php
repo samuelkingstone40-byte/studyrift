@@ -1,107 +1,92 @@
 <title>Uploads - Studymerit</title>
-@extends('layouts.client')
-<title>Sell-Studymerit</title>
+@extends('layouts.client_layout')
 @section('content')
-
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">
 <div class="page-wrapper">
-    <div class="container-xl">
+    <div class="mt-5">
           <!-- Page title -->
-          <div class="page-header d-print-none">
-            <div class="row g-2 align-items-center">
-              <div class="col">
-               
-                <h2 class="page-title">
-                 Upload Your Document
-                </h2>
-              </div>
-              <!-- Page title actions -->
-             
-            </div>
-          </div>
-    </div>
+          <div class="text-3xl my-4 font-bold">Upload New Document</div>
 
-    <div class="page-body">
-      <div class="container-xl">
-        <div class="row row-deck row-cards">
-          <div class="col-sm-8">
-            <form method="post" enctype="multipart/form-data" class="card"  action="{{route('post-document')}}" >
+          <!--Form Section -->
+          <section >
+            <form method="post" enctype="multipart/form-data" class="bg-white p-6"  action="{{route('post-document')}}" >
               @csrf
-                <div class="card-header">
-                  <h4 class="card-title">Document Information</h4>
+              <div class="grid-container grid grid-cols-5 gap-4">
+                <div class="item1 col-span-3">
+                  <div class="relative z-0 w-full mb-6 group">
+                    <label for="title" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Title of the document</label>
+                    <input type="text" id="title" name="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title" required>
+                  </div>
                 </div>
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-xl-12">
-                      <div class="row">
-                        <div class="col-md-10 col-xl-12">
-                            <div class="row">
-                            <div class="mb-3 col-sm-8">
-                              <label class="form-label">Title of the documet</label>
-                              <input type="text" class="form-control" required name="title" placeholder="Input placeholder">
-                            </div>
-                            <div class="mb-3 col-sm-4">
-                              <label class="form-label">Unit Code(Optional)</label>
-                              <input type="text" name="code" class="form-control" id="">
-                            </div>
-                            
-                            <div class="mb-3 col-md-6">
-                              <div class="form-label">Subject</div>
-                              <select class="form-select" required  name="subject">
-                               <option value="" >Select Subject</option>
+                <div class="item2 col-span-2">
+                  <div class="relative z-0 w-full mb-6 group">
+                    <label for="code" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Unit Code Optional</label>
+                    <input type="text" id="email" name="code" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Code" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="grid-container grid grid-cols-2 gap-4">
+                <div class="item1 col-span-1">
+                  <div class="relative z-0 w-full mb-6 group">
+                    <label for="title" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Subject</label>
+                    <select id="subject" name="subject" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option value="" >Select Subject</option>
                                 @foreach($subjects as $subject)
                                  <option value="{{$subject->id}}">{{$subject->name}}</option>
                                 @endforeach
-                              </select>
-                            </div>
-                            <div class="mb-3 col-md-6">
-                              <div class="form-label">Choose Category</div>
-                              <select required name="category" class="form-select" >
-                              <option value="" >Select Category</option>
-                                 @foreach($categories as $category)
-                                  <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach
-                              </select>
-                            </div>
-                           
-                            
-                            <div class="mb-3 col-md-6">
-                              <label class="form-label">Price</label>
-                              <input type="text" required class="form-control" id="price" name="price" placeholder="Input placeholder">
-                            </div>
-                            <div class="mb-3 col-md-6">
-                              <label class="form-label">Earning</label>
-                              <input type="text" class="form-control" id="earning" placeholder="Input placeholder">
-                            </div>
-                            </div>
-                           
-                            <div class="mb-3">
-                              <label class="form-label">Brief Description</label>
-                              <textarea class="form-control" required name="detail" rows="6" placeholder="Content.."></textarea>
-                            </div>
-
-                            <div class="mb-3">
-                            <div class="form-label">Choose File to Upload</div>
-                            <input type="file" required  name="file" id="file_upload" class="form-control" data-traget-resolution="image_resolution"
-                            
-                            accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
-                            <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
-                          </div>
-                     
-                           
-                          </div>
-                        </div>
-                        <div class="form-footer">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                      </div>
-                    </div>
+                    </select>                 
                   </div>
-             </form>
-          </div>
+                </div>
+                <div class="item2 col-span-1">
+                  <div class="relative z-0 w-full mb-6 group">
+                    <label for="category" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Category</label>
+                    <select id="category" name="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option value="" >Select Category</option>
+                      @foreach($categories as $category)
+                       <option value="{{$category->id}}">{{$category->name}}</option>
+                     @endforeach
+                    </select>                  </div>
+                </div>
+              </div>
 
-          <div class="col-sm-5">
-             <div id="pdf-main-container">
+
+          
+           
+            
+              <div class="relative z-0 w-full mb-6 group">
+                <label for="description" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Description</label>
+
+                <textarea id="description" name="detail" rows="4" class="block p-2.5 w-full text-lg text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description"></textarea>
+              </div>
+              <div class="grid-container grid grid-cols-2 gap-4">
+                <div class="item1 col-span-1">
+                  <div class="relative z-0 w-full mb-6 group">
+                    <label for="title" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Selling Price</label>
+                    <input type="text" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+                  </div>
+                </div>
+                <div class="item2 col-span-1">
+                  <div class="relative z-0 w-full mb-6 group">
+                    <label for="code" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Earning</label>
+                    <input type="text" id="earning" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+                  </div>
+                </div>
+              </div>
+              <div class="relative z-0 w-full mb-6 group">
+                <label for="file" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Choose File to Upload</label>
+                <input type="file" required  name="file" id="file_upload" class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" data-traget-resolution="image_resolution"
+                            
+                accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation" >
+                <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
+              </div>
+              <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+
+          </section>
+
+          <section>
+            <div id="pdf-main-container">
               <div id="pdf-loader">Loading document ...</div>
                <div id="pdf-contents">
                 <div id="pdf-meta">
@@ -118,11 +103,11 @@
                 <div id="page-loader">Loading page ...</div>
               </div>
             </div>
+          </section>
+         
+    </div>
 
-                            </div>
-             </div>
-            </div>
-          </div>
+
     
        
 

@@ -252,18 +252,13 @@ class PublicController extends Controller
     
     public function download_file($filename){
         //$filepath = public_path('files/'.$filename);
-       
         $attachment = 'files/'.$filename;
- 
         $headers = [
- 
             'Content-Type'        => 'application/jpeg',
- 
             'Content-Disposition' => 'attachment; filename="'. $attachment .'"',
- 
         ];
  
-        return \Response::make(Storage::get($attachment), 200, $headers);
+        return Response::make(Storage::get($attachment), 200, $headers);
     }
 
 

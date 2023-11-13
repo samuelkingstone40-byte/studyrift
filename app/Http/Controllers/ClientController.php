@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Note;
@@ -15,10 +16,12 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Models\File;
 use App\Models\Review;
-use Response;
+
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+
 use Image;
+use Response;
 
 
 class ClientController extends Controller
@@ -277,7 +280,6 @@ class ClientController extends Controller
          return redirect()->back()->with('success', 'Your paypal email has been updated');   
 
     }
-
     public function update_password(Request $request){
         
         $request->validate([
@@ -360,11 +362,18 @@ class ClientController extends Controller
     }
 
     public function downloads(){
+        $data=[];
+        $data['downloads']=DB::table('orders')
+            ->where('orders.user_id',Auth::id())
+            ->leftJoin('documents','documents.id','=','orders.docId')
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
+            ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+            ->select('orders.*','documents.title','documents.price','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
+            ->orderBy('orders.id','desc')
+            ->get();
 
-        
-
-
-        return view('client/downloads');
+        return view('client/downloads',$data);
     }
 
     public function fetch_downloads(Request $request){
@@ -412,6 +421,17 @@ class ClientController extends Controller
         $data['total_earnings']=DB::table('orders')
         ->where('owner_id',Auth::id())
         ->sum('earning');
+
+        $data['earnings']=DB::table('orders')
+            ->where('orders.owner_id',Auth::id())
+            ->leftJoin('documents','documents.id','=','orders.docId')
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
+            ->leftJoin('files', 'documents.id', '=', 'files.document_id')
+            ->select('orders.*','documents.title','documents.price','documents.slug','subjects.name as sname','categories.name as cname','files.filename')
+            ->get();
+
+
         return view('client/earnings',$data);
     }
 
@@ -485,12 +505,43 @@ class ClientController extends Controller
         }
     }   
 
-public function file_delete($id){
-    $file=DB::table('documents')
-    ->where('id',$id)
-    ->update(['status'=>0]);
-    return redirect('uploads')->with('success', 'file deleted successfuly!'); 
-}
+    public function file_delete($id){
+        $file=DB::table('documents')
+        ->where('id',$id)
+        ->update(['status'=>0]);
+        return redirect('uploads')->with('success', 'file deleted successfuly!'); 
+    }
+
+    public function download_file($docId){
+        $doc=DB::table('documents')->where('documents.id',$docId)
+        ->leftJoin('files','files.document_id','=','documents.id')
+        ->select('documents.*','files.filename')
+        ->first();
+
+        // update status of order if its first time download
+
+        DB::table('orders')
+            ->where('status','New')
+            ->where('docId',$docId)
+            ->where('user_id',Auth::user()->id)
+            ->update(['status' => 'Available']);
+
+        $filename=$doc->filename;
+
+        $filepath = public_path('files/'.$filename);
+        $attachment = 'files/'.$filename;
+        $headers = [
+            'Content-Type'        => 'application/jpeg',
+            'Content-Disposition' => 'attachment; filename="'. $attachment .'"',
+        ];
+ 
+        return Response::make(Storage::get($attachment), 200, $headers);
+
+    
+    
+        
+    
+    }
 
 
 
