@@ -4,7 +4,7 @@
 <link href="{{asset('theme/css/login.css')}}" rel="stylesheet">
 <title>Login-Studymerit</title>
 @section('content')
-<section class="section_gap">
+<section class="section_gap mt-10">
 <div class="row justify-content-center">
 				<div class="col-md-12 col-lg-10">
 					<div class="wrap d-md-flex">

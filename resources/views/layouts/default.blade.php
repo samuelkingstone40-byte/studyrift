@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=G-K08LVCH03Q"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!--================ Start Header Menu Area =================-->
-    @include('includes.header')
+    @include('includes.default-header')
 
     <div class="">
     @guest
