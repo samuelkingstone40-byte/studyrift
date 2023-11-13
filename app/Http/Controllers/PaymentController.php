@@ -81,7 +81,7 @@ class PaymentController extends Controller
 
     public function handleSeerBitCallback(Request $request){
 
-        $trans_ref="SBF9227EB2142B";
+        $trans_ref=$request->reference;
         $orders=session()->get('orders');
         
         $response = SeerBit::Standard()->ValidateStatus($trans_ref);
