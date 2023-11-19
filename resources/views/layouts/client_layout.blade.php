@@ -19,7 +19,7 @@
         @include('includes.header')
         
   
-        <aside id="logo-sidebar" class="fixed mt-10 left-0 ml-64 z-40 w-64 h-screen pt-10 top-0 transition-transform -translate-x-full bg-blue-800 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+        <aside id="logo-sidebar" class="fixed mt-1 left-0  z-40 w-64 h-screen pt-10 top-0 transition-transform -translate-x-full bg-blue-800 border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
             <div class="h-full mt-6 px-3 pb-4 pt-10 overflow-y-auto bg-blue-800 dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
                 <li>

@@ -66,7 +66,7 @@
 
 </style>
 
-<div  class="bg-white p-4 mt-10">
+<div  class="p-4 mt-10">
   <div class="flex justify-between my-2">
     <div class="text-3xl font-semibold ">
       {{$doc->title}}
@@ -88,46 +88,51 @@
     <div class="text-xl font-semibold mb-2">Category : {{$doc->cname}}</div>
     <div class="text-xl font-semibold mb-2">Price :${{$doc->price}}</div>
   </div>
-  <div>
-    <h3 class="text-xl font-semibold mb-2">Description</h3>
-    <p>
-      {{$doc->description}}
-    </p>
-  </div>
 
-  <div class="my-4 flex items-center justify-center">
+  <div class="my-2 flex items-center justify-center">
     <input type="hidden"  id="file2" value="{{$doc->filename}}">
-    <div class="content-center mx-auto" id="pdf-main-container justify-content-center">
+    <div class="content-center  mx-auto max-w-screen-lg h-full" id="pdf-main-container justify-content-center">
             <div id="pdf-loader">Loading document ...</div>
-             <div id="pdf-contents" class="bg-yellow-200 p-4 flex justify-center">
-                <div id="pdf-meta">
-                    <div id="pdf-buttons">
-                      <div class="flex">
-                        <!-- Previous Button -->
-                        <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                          <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                          </svg>
-                          Previous
-                        </a>
-                        <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                          Next
-                          <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                          </svg>
-                        </a>
-                      </div>
-                       
-                    </div>
-                    <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
-                </div>
-                <canvas class="" id="pdf-canvas" width="600"></canvas>
+             <div id="pdf-contents" class="p-4 ">
+             
+                <canvas class=" h-full" width="800" height="900" id="pdf-canvas" ></canvas>
+               
                 <div id="page-loader">Loading page ...</div>
             </div>
+            <div id="pdf-meta" class="mt-5">
+              <div id="pdf-buttons">
+                <div class="flex">
+                  <!-- Previous Button -->
+                  <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                    </svg>
+                    Previous
+                  </a>
+                  <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    Next
+                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                  </a>
+                </div>
+                 
+              </div>
+              <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+          </div>
     </div>
   </div>
 
-  <div class="mt-2"> 
+  <div class="bg-white mt-10 mx-4 p-6">
+    <div>
+      <h3 class="text-xl font-semibold mb-2">Description</h3>
+      <p>
+        {{$doc->description}}
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-2 mx-4"> 
     <h3 class="text-xl font-semibold mb-2">Document Reviews</h3>
      @foreach ($reviews as $review)
       <div>
@@ -158,7 +163,7 @@
 
 
   <!-- Modal toggle -->
-<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="block text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="mx-4 my-4 block text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
   Delete File
 </button>
 

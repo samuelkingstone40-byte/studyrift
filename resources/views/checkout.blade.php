@@ -1,97 +1,98 @@
 @extends('layouts.default')
 <title>Buy-Studymerit</title>
 @section('content')
-  <div class="container mt-10">
-    <span  id="loader" class="circlespinner"></span>
-    <div>
-      @if ($errors->any())
-        <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
+  <section class=" md:mt-20 bg-gray-50">
+    <div class="  mt-10 py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
+            <div class="flex flex-col md:flex-row gap-4">
+                <div class="w-full">
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-4">
+                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th class="text-left font-semibold px-6 py-4 ml-2">Product</th>
+                                    <th class="text-left font-semibold px-6 py-4 ml-2">Price</th>
+                                    <th class="text-left font-semibold px-6 py-4 ml-2">Remove</th>
+                                    
+                                    
+                                </tr>
+                            </thead>
+                            <tbody >
+                              @php $total = 0 @endphp
+                              @if(session('cart'))
+                                @foreach(session('cart') as $id => $details)
+                                  @php $total += $details['price'] * $details['quantity'] @endphp
+                                  <tr data-id="{{$id}}" id="{{ $id }}" class="doc bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center">
+                                            <img class="w-8 h-8 md:h-16 md:w-16 mr-4" src="https://via.placeholder.com/150" alt="Product image">
+                                            <span class="font-semibold text-sm md:text-lg line-clamp-2">{{$details['name']}}</span>
+                                        </div>
+                                    </td>
+                                  
+                                  
+                                    <td class="px-6 py-4">${{$details['price']}}</td>
+                                    <td class="actions border" data-th="">
+                                      <button class="p-2  remove-from-cart">
+                                        <svg class="w-6 h-6 text-red-500 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z"/>
+                                        </svg>
+                                      </button>
+                                    </td>
+                                </tr>
+                              
+                                @endforeach
+                                @endif
+
+                                <tfoot>
+                                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                
+                                    <td class="px-6 py-4 text-lg md:xl font-semibold" colspan="1">Total</td>
+                                    <td class="px-6 py-4 text-lg md:xl font-semibold">
+                                      ${{$total}}
+                                      <input type="hidden" name="" class="" id="total" value="{{$total}}">
+                                    </td>
+                                  </tr>
+                                </tfoot>
+
+                                
+                                <!-- More product rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+              
+            </div>
+            <div class="bg-white py-3 px-4 rounded mt-10 shadow-md">
+              <div class="text-xl font-bold my-2 text-red-500">Select Mode Of Payment</div>
+              <form class="" action="{{url('make-payment')}}" method="post">
+                @csrf
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input checked id="bordered-radio-2" type="radio" value="pesapal" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="bordered-radio-2" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With PesaPal</label>
+                </div>
+                  <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input id="bordered-radio-1" disabled type="radio" value="seerbit" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With SeerBit</label>
+                </div>
+                </div>
+        
+            
+                  <input type="hidden" required name="amount" id="total_amount">
+                  <input type="hidden" name="docs[]" id="docs">
+            
+                  <button class="h-12 mt-4  text-bold text-lg btn bg-green-600 text-white rounded px-4" type="submit">Make Payment</button>
+              
+        
+              </form>
+        
+            </div>
         </div>
-      @endif
     </div>
-    <h3 class=" text-4xl font-bold my-2">Billing</h3>
-    <div>
-      <table id="cart" class="table border-collapse border bg-white">
-          <thead>
-                <tr>
-                  <th class="border" style="width:70%">Document Name</th>
-                  <th class="border" style="width:20%" class="text-center">Qty</th>
-                  <th class="border" style="width:5%" class="text-center">Price</th>
-                  <th class="border" style="width:5%">Remove</th>
-                </tr>
-          </thead>
-          <tbody>
-                @php $total = 0 @endphp
-                @if(session('cart'))
-                  @foreach(session('cart') as $id => $details)
-                    @php $total += $details['price'] * $details['quantity'] @endphp
-                    <tr data-id="{{$id}}" id="{{ $id }}" class="doc">
-                      <td data-th="Product" class="border">
-                        <div class="row">
-                            
-                            <div class="col-sm-12">
-                              <p class="nomargin">{{ Str::limit($details['name'],60) }}</p>
-                            </div>
-                        </div>
-                      </td>
-                        
-                      <td data-th="Quantity" class="border text-center">
-                        <input type="number" disabled value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
-                      </td>
-                      <td data-th="Subtotal"  class="text-center border">{{ $details['price'] * $details['quantity'] }}</td>
-                      <td class="actions border" data-th="">
-                        <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-trash-o"></i></button>
-                      </td>
-                    </tr>
-                  @endforeach
-                @endif
-          </tbody>
-          <tfooter>
-            <tr>
-                    <td colspan="2"></td>
-                    <td class="text-xl" ><strong>Total<strong> </td>
-                    <td  class="text-xl" >
-                    {{ number_format($total,2) }}
-                    <input type="hidden" name="" class="" id="total" value="{{$total}}">
-                    </td>
-            </tr>
-          </tfooter>
-      </table>
-    </div>
-
-    <div class="bg-white py-3 px-2">
-      <div class="text-xl font-bold my-2 text-red-500">Select Mode Of Payment</div>
-      <form class="" action="{{url('make-payment')}}" method="post">
-        @csrf
-        <div class="grid grid-cols-2 gap-4">
-          <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-            <input checked id="bordered-radio-2" type="radio" value="pesapal" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            <label for="bordered-radio-2" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With PesaPal</label>
-         </div>
-          <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-            <input id="bordered-radio-1" type="radio" value="seerbit" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-            <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With SeerBit</label>
-        </div>
-        </div>
-
-     
-          <input type="hidden" required name="amount" id="total_amount">
-          <input type="hidden" name="docs[]" id="docs">
-    
-          <button class="h-12 text-bold text-lg btn bg-green-600 text-white " type="submit">Make Payment</button>
-      
-
-      </form>
-
-    </div>
-  </div>
-
-
+  </section>
+ 
 @endsection
 @section('scripts')
 

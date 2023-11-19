@@ -4,25 +4,190 @@
 <title>{{$doc->title}}</title>
 @section('content')
 
-@if (\Session::has('success'))
-    <div class="alert alert-success">
-        {!! \Session::get('success') !!}   
-    </div>
-@endif
+<div class="px-6 mx-auto py-10 mt-20 max-w-screen-xl">
+    @if (\Session::has('success'))
+        <div class="alert alert-success">
+            {!! \Session::get('success') !!}   
+        </div>
+    @endif
+    <span id="loader" class="circlespinner"></span>
 
-<span id="loader" class="circlespinner"></span>
-<section class="">
-    <div>
-        <nav aria-label="breadcrumb" class="py-1"  >
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{url('search/')}}">Documents</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$doc->title}}</li>
-            </ol>
-        </nav>
+    <nav class="flex my-1" aria-label="Breadcrumb">
+        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+        <li class="inline-flex items-center">
+            <a href={{url('/')}} class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Home
+            </a>
+        </li>
+        <li>
+            <div class="flex items-center">
+            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="{{url('search/')}}" class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Documents</a>
+            </div>
+        </li>
+        <li aria-current="page">
+            <div class="flex items-center">
+            <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">{{$doc->title}}</span>
+            </div>
+        </li>
+        </ol>
+    </nav>
+
+    <div class="">
+        <div class="my-4 text-sm md:text-xl font-medium">{{$doc->title}}</div>
+        <div class="grid grid-cols-6 gap-6">
+            <div class="col-span-full md:col-span-4 bg-white p-4">
+                <div class="content-center mx-auto justify-content-center p-4  border border-gray-300 rounded" id="pdf-main-container ">
+                    <div class="flex justify-center"  id="pdf-contents">
+                        <div id="pdf-loader">
+                            <div class="spinner-border text-warning" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                        <div id="pdf-meta">
+                        
+                            <div id="page-count-container">
+                                <div >
+                                    Page <span id="pdf-current-page"></span>
+                                </div>
+                            </div>
+                        </div>
+                            
+                                
+                            
+                        <canvas id="pdf-canvas" class="h-300 md:h-[600px] w-[100%]"></canvas>
+                        <div id="pdf-buttons" class="mt-10">
+                            <div class="flex justify-between">
+                                <!-- Previous Button -->
+                                <button id="pdf-prev" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                                </svg>
+                                Previous
+                                </button>
+                                <button id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                Next
+                                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                </svg>
+                                </button>
+                            </div>
+                            
+                        </div>
+                        <div id="page-loader">
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <div>
+                    <h3 class=" py-2 font-semibold text-gray-600">Description</h3>
+                    <p class="text-sm">{{$doc->description}}</p>
+                </div>
+            </div>
+            <div class="col-span-full md:col-span-2">
+                <div class="border border-gray-200 p-4 mt-4">
+                    <div class="text-lg mb-2 p-1 flex justify-between border-b border-gray-200 ">Subject : <div>{{$doc->sname}}</div></div>
+                    <div class="text-lg mb-2 p-1 flex justify-between border-b border-gray-200">Unit Code: <span></span></div>
+                    <div class="text-lg mb-2 p-1 flex justify-between border-b border-gray-200">Unit: <span>{{$doc->cname}}</span></div>
+                    <div class="text-lg mb-2 p-1 flex justify-between border-b border-gray-200">Price: <span>${{number_format($doc->price,2)}}</span></div>
+                </div>  
+                <div class="border border-gray-200 p-2 text-right">
+                    <input type="hidden" name="" id="docId" value="{{$doc->id}}">
+                    <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" id="addToCart" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+                        <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+                        </svg>
+                       Add To Cart
+                    </button>
+                </div>
+
+                <div class="border border-gray-200 p-4 mt-4">
+                    <h3 class="title">Recommended for you</h3>
+                    <div class="owl-carousel active_course">
+                            @foreach($recommends as  $recommend)
+                          <div class="single_course">
+                            <div class="course_head">
+                                image
+                            </div>
+                            <div class="course_content">
+                              <span class="price">${{number_format($recommend->price)}}</span>
+                              <span class="tag mb-4 d-inline-block">{{$recommend->sname}}/ {{$recommend->cname}}</span>
+                              <h4 class="mb-3">
+                                <a href="{{url('document-preview/'.$recommend->slug)}}">{{$recommend->title}}</a>
+                              </h4>
+                              
+                              
+                            </div>
+                          </div>
+                           @endforeach
+                    </div>
+                </div>
+                
+            
+          
+        </div>
+    </div>
     </div>
 
-    <div class="document-section">
+    <button class="btn" onclick="my_modal_5.showModal()">open modal</button>
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Hello!</h3>
+    <p class="py-4">Press ESC key or click the button below to close</p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+
+    <div id="popup-modal" tabindex="-1" class=" bg-gray-600 bg-opacity-50 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+                <div class="p-4 md:p-5 text-center">
+                    <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                    </svg>
+                <h3 class="text-green-400">Success</h3> <i class="fa fa-check fa-lg text-success"></i>
+                <p class="py-4">Item added to your cart</p>
+                <div class="my-4">
+                    <a href="{{route('checkout')}}" class="text-white w-48 p-2 bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Checkout</a>
+
+                </div>
+                <div class="mt-8">
+                    <a type="button" href="{{route('search')}}" class="text-white bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center me-2" >Continue Shopping</a>
+                <button data-modal-hide="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+  
+    {{-- <div class="document-section">
+
+     
+
      <input type="hidden"  id="file2" value="{{$doc->filename}}">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -52,8 +217,6 @@
                                 <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
                             </div>
                             <canvas id="pdf-canvas"></canvas>
-                          
-                            
                             <div id="page-loader">
 
                             </div>
@@ -166,7 +329,7 @@
                 </div>
 
                 <div class="col-lg-12">
-<hr class="mt-3">
+            <hr class="mt-3">
           <h3 class="title">Recommended for you</h3>
             <div class="owl-carousel active_course">
                 @foreach($recommends as  $recommend)
@@ -203,10 +366,9 @@
         </div>
     </div>
 </div>
+</section>
 
-    </section>
-
-
+</div> --}}
 
 @endsection
 
@@ -214,79 +376,76 @@
 <!-- <script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@2.6.347/build/pdf.min.js">  -->
 <!-- </script> -->
 <script>
- $('#loader').hide();
-$("#download-image").on('click', function() {
+    var filename=$('#file2').val();
+    var filepath="{{route('get-s3-bucket-file',$doc->filename)}}"
+    var _PDF_DOC,
+        _CURRENT_PAGE,
+        _TOTAL_PAGES,
+        _PAGE_RENDERING_IN_PROGRESS = 0,
+        _CANVAS = document.querySelector('#pdf-canvas');
    
-	$(this).attr('href', $('#pdf-canvas').get(0).toDataURL());
-	
-	// Specfify download option with name
-	$(this).attr('download', 'page.png');
-});
+    $('#loader').hide();
+    $("#download-image").on('click', function() {
+	    $(this).attr('href', $('#pdf-canvas').get(0).toDataURL());
+	    // Specfify download option with name
+	    $(this).attr('download', 'page.png');
+    });
 
-$('#addToCart').click(function(e){
-    var id=$('#docId').val();
-    $('#loader').show();
-    e.preventDefault();
-    $.ajax({
-            url: '{{ url("add-to-cart") }}/'+id,
-            method: "get",
-           
-            success: function (response) {
-                $('#loader').hide();
-                $('#cartModal').modal('show');
-            }
-        });
+    $('#addToCart').click(function(e){
+        var id=$('#docId').val();
+        $('#loader').show();
+        e.preventDefault();
+        $.ajax({
+                url: '{{ url("add-to-cart") }}/'+id,
+                method: "get",
+            
+                success: function (response) {
+                    $('#loader').hide();
+                    $('#cartModal').modal('show');
+                }
+            });   
+    })
 
-    
-})
-var filename=$('#file2').val();
-var filepath="{{route('get-s3-bucket-file',$doc->filename)}}"
 
-var _PDF_DOC,
-    _CURRENT_PAGE,
-    _TOTAL_PAGES,
-    _PAGE_RENDERING_IN_PROGRESS = 0,
-    _CANVAS = document.querySelector('#pdf-canvas');
+    // initialize and load the PDF
+    async function showPDF(pdf_url) {
+        document.querySelector("#pdf-loader").style.display = 'block';
 
-// initialize and load the PDF
-async function showPDF(pdf_url) {
-    document.querySelector("#pdf-loader").style.display = 'block';
+        // get handle of pdf document
+        try {
+            _PDF_DOC = await pdfjsLib.getDocument({ url: pdf_url });
+        }
+        catch(error) {
+            alert(error.message);
+        }
 
-    // get handle of pdf document
-    try {
-        _PDF_DOC = await pdfjsLib.getDocument({ url: pdf_url });
+        // total pages in pdf
+        _TOTAL_PAGES = _PDF_DOC.numPages;
+        
+        // Hide the pdf loader and show pdf container
+        document.querySelector("#pdf-loader").style.display = 'none';
+        document.querySelector("#pdf-contents").style.display = 'block';
+        document.querySelector("#pdf-total-pages").innerHTML = _TOTAL_PAGES;
+
+        // show the first page
+        showPage(1);
     }
-    catch(error) {
-        alert(error.message);
-    }
 
-    // total pages in pdf
-    _TOTAL_PAGES = _PDF_DOC.numPages;
-    
-    // Hide the pdf loader and show pdf container
-    document.querySelector("#pdf-loader").style.display = 'none';
-    document.querySelector("#pdf-contents").style.display = 'block';
-    document.querySelector("#pdf-total-pages").innerHTML = _TOTAL_PAGES;
+    // load and render specific page of the PDF
+    async function showPage(page_no) {
+        _PAGE_RENDERING_IN_PROGRESS = 1;
+        _CURRENT_PAGE = page_no;
 
-    // show the first page
-    showPage(1);
-}
+        // disable Previous & Next buttons while page is being loaded
+        document.querySelector("#pdf-next").disabled = true;
+        document.querySelector("#pdf-prev").disabled = true;
 
-// load and render specific page of the PDF
-async function showPage(page_no) {
-    _PAGE_RENDERING_IN_PROGRESS = 1;
-    _CURRENT_PAGE = page_no;
+        // while page is being rendered hide the canvas and show a loading message
+        document.querySelector("#pdf-canvas").style.display = 'none';
+        document.querySelector("#page-loader").style.display = 'block';
 
-    // disable Previous & Next buttons while page is being loaded
-    document.querySelector("#pdf-next").disabled = true;
-    document.querySelector("#pdf-prev").disabled = true;
-
-    // while page is being rendered hide the canvas and show a loading message
-    document.querySelector("#pdf-canvas").style.display = 'none';
-    document.querySelector("#page-loader").style.display = 'block';
-
-    // update current page
-    document.querySelector("#pdf-current-page").innerHTML = page_no;
+        // update current page
+        document.querySelector("#pdf-current-page").innerHTML = page_no;
     
     // get handle of page
     try {

@@ -16,8 +16,8 @@
 
         <div class="flex items-center md:order-2">
             @guest
-                <a href="{{url('login')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg sm:text-md  md:text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</a>
-                <a href="{{url('register')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg sm:text-md md:text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</a>
+                <a href="{{url('login')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:text-md  md:text-lg px-4 py-1 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logindd</a>
+                <a href="{{url('register')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:text-md md:text-lg px-4 py-1 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</a>
             @else
                 @if(count((array) session('cart'))>0)
                     <div class="flex items-center ml-4">
@@ -54,22 +54,20 @@
 
                                 @if(session('cart'))
                                     @foreach(session('cart') as $id => $details)
-                                        <div class="row cart-detail">
-                                            <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                    
-                                            <img class="img-thumbnail" src="{{$details['image']}}" alt="">
-
+                                        <div class="grid grid-cols-2">
+                                            
+                                            <div class="text-sm">
+                                                <p class="text-sm"><span>{{ $details['name'] }}</span></p>
                                             </div>
-                                            <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                                <p class="text-md"><span>{{ $details['name'] }}</span></p>
-                                                <span class="price text-bold text-md"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                            <div>
+                                                <span class="font-semibold"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
                                             </div>
                                         </div>
                                     @endforeach
                               
-                                    <div class="row">
-                                        <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                                            <a href="{{ route('checkout') }}" class="btn btn-primary btn-block">Checkout</a>
+                                    <div class="my-4">
+                                        <div class="bg-red-100">
+                                            <a href="{{ route('checkout') }}" class="block text-center p-2 rounded bg-green-400 text-white ">Checkout</a>
                                         </div>
                                     </div>
                                 @endif

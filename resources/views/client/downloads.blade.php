@@ -23,6 +23,9 @@
                     Subject
                   </th>
                   <th scope="col" class="px-6 py-3">
+                   Title
+                  </th>
+                  <th scope="col" class="px-6 py-3">
                     Transaction Ref
                   </th>
                   <th scope="col" class="px-6 py-3">
@@ -48,6 +51,10 @@
               <td class="px-6 py-4">
                {{$item->sname}}
               </td>
+
+              <td class="px-6 py-4">
+                {{$item->title}}
+               </td>
               <td class="px-6 py-4">
                 {{$item->transactionId}}
               </td>

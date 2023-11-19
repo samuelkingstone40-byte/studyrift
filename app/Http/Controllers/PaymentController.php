@@ -163,12 +163,12 @@ class PaymentController extends Controller
     /** Process payment using paypal */
     public function process_pesapal_payment($request)
     {
-        $orders=$request->input('docs');
-     
+        $orders=session()->get('orders');;
+        $user=Auth::user();
         // save the transaction and mark as pending
         $transaction = new Transaction();
         try {
-            $transaction->user_id=Auth::user()->id;
+            $transaction->user_id=$user->id;
             $transaction->type="sales";
             $transaction->details="Sales";
             $transaction -> transId = Pesapal::random_reference();
@@ -196,9 +196,8 @@ class PaymentController extends Controller
             'amount' => $request->get('amount'),
             'description' => 'Document Sales',
             'type' => 'MERCHANT',
-            'first_name' => $request->get('fname'),
-            'last_name' => $request->get('lname'),
-            'email' => $request->get('email'),
+            'first_name' =>$user->name,
+            'email' => $user->email,
             'phonenumber' => $request->get('phone'),
             'reference' =>   $transaction -> transId,
             'height'=>'400px'
