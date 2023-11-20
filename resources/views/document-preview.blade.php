@@ -12,6 +12,8 @@
     @endif
     <span id="loader" class="circlespinner"></span>
 
+
+
     <nav class="flex my-1" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
         <li class="inline-flex items-center">
@@ -46,52 +48,41 @@
         <div class="grid grid-cols-6 gap-6">
             <div class="col-span-full md:col-span-4 bg-white p-4">
                 <div class="content-center mx-auto justify-content-center p-4  border border-gray-300 rounded" id="pdf-main-container ">
-                    <div class="flex justify-center"  id="pdf-contents">
-                        <div id="pdf-loader">
-                            <div class="spinner-border text-warning" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </div>
-                        <div id="pdf-meta">
-                        
-                            <div id="page-count-container">
-                                <div >
-                                    Page <span id="pdf-current-page"></span>
-                                </div>
-                            </div>
-                        </div>
-                            
-                                
-                            
-                        <canvas id="pdf-canvas" class="h-300 md:h-[600px] w-[100%]"></canvas>
-                        <div id="pdf-buttons" class="mt-10">
-                            <div class="flex justify-between">
-                                <!-- Previous Button -->
-                                <button id="pdf-prev" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                                </svg>
-                                Previous
-                                </button>
-                                <button id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                Next
-                                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                </svg>
-                                </button>
-                            </div>
-                            
-                        </div>
-                        <div id="page-loader">
-
-                        </div>
-                    </div>
+                    <div id="pdf-loader">Loading document ...</div>
+                    <div id="pdf-contents" class="p-2 bg-gray-50">
                     
+                       <canvas class="w-full max-h-full"  id="pdf-canvas" ></canvas>
+                      
+                       <div id="page-loader">Loading page ...</div>
+                    </div>
+                    <div id="pdf-meta" class="mt-5">
+                     <div id="pdf-buttons">
+                       <div class="flex justify-between">
+                         <!-- Previous Button -->
+                         <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                           <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                           </svg>
+                           Previous
+                         </a>
+                         <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                           Next
+                           <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                           </svg>
+                         </a>
+                       </div>
+                        
+                     </div>
+                     <div class="flex justify-start gap-2 mt-4" id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+                    </div>
                 </div>
+                
                 <div>
                     <h3 class=" py-2 font-semibold text-gray-600">Description</h3>
                     <p class="text-sm">{{$doc->description}}</p>
                 </div>
+                
             </div>
             <div class="col-span-full md:col-span-2">
                 <div class="border border-gray-200 p-4 mt-4">
@@ -138,19 +129,7 @@
     </div>
     </div>
 
-    <button class="btn" onclick="my_modal_5.showModal()">open modal</button>
-<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">Hello!</h3>
-    <p class="py-4">Press ESC key or click the button below to close</p>
-    <div class="modal-action">
-      <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
-      </form>
-    </div>
-  </div>
-</dialog>
+
 
 
     <div id="popup-modal" tabindex="-1" class=" bg-gray-600 bg-opacity-50 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
