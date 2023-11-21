@@ -3,10 +3,10 @@
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 @section('content')
 
-
-<div class="px-6 mx-auto py-10 mt-20 max-w-screen-xl">
-    <div class="md:flex  gap-5">
-        <div class="  md:smd:basis-1/4 border border-gray-300 rounded-md bg-gray-50 dark:bg-gray-800">
+<section  class="mt-20 h-auto overflow-hidden bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16">
+<div class="px-6 mx-1 md:mx-auto   max-w-screen-xl">
+    <div class="md:flex md:gap-5">
+        <div class="mb-3 md:basis-1/4 border border-gray-300 rounded-md bg-gray-50 dark:bg-gray-800">
             <div class="h-auto px-3 py-4 overflow-y-auto">
                 <h1>Search Materials</h1>
                 <div>
@@ -48,12 +48,12 @@
                
             </div>
         </div>
-        <div class=" md:basis-3/4">
+        <div class="md:basis-3/4">
         <div>
             @if(count($notes)>0)
             @foreach($notes as $index => $note)
-                <a href="{{url('document-preview/'.$note->slug)}}">
-                <div class="flex gap-5 mb-4 border border-b-gray-300 rounded">
+                <a  href="{{url('document-preview/'.$note->slug)}}">
+                <div class="p-4 md:flex gap-5 mb-4 border bg-white border-b-gray-300 rounded">
                     <div class=" m-2  rounded">    
                         <img src="{{route('get-s3-thumbnail',$note->id)}}" class="w-32 h-32" alt="{{route('get-s3-thumbnail',$note->id)}}"/> 
                     </div>
@@ -96,6 +96,7 @@
        
       </div>
 </div>
+</section>
 
 {{-- <section class="">
 
