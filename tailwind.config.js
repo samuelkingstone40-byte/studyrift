@@ -66,5 +66,14 @@ module.exports = {
   plugins: [
     require('flowbite/plugin'),
   ],
+
+  theme: {
+    extend: {
+      screens: {
+        'sm': '380px',
+        // => @media (min-width: 992px) { ... }
+      },
+    },
+  },
 }
 
