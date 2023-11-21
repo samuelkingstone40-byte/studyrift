@@ -6,7 +6,7 @@
             <a href={{url('/')}} class="flex items-center justify-between mr-4">
                 <img
                 src={{asset('/theme/img/site/logo.png')}}
-                class="mr-3 h-8"
+                class="mr-3 h-6 md:h-8"
                 alt="Studymerit Logo"
                 />
             </a>
