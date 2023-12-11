@@ -73,10 +73,10 @@
                     <input checked id="bordered-radio-2" type="radio" value="pesapal" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="bordered-radio-2" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With PesaPal</label>
                 </div>
-                  <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                  {{-- <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
                     <input id="bordered-radio-1" disabled type="radio" value="seerbit" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With SeerBit</label>
-                </div>
+                </div> --}}
                 </div>
         
             
