@@ -3,6 +3,9 @@
 @section('content')
   <section class=" md:mt-20 bg-gray-50">
     <div class="  mt-10 py-8">
+      @if($errors->any())
+        {{ implode('', $errors->all('<div>:message</div>')) }}
+      @endif
         <div class="container mx-auto px-4">
             <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
             <div class="flex flex-col md:flex-row gap-4">
@@ -73,10 +76,10 @@
                     <input checked id="bordered-radio-2" type="radio" value="pesapal" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="bordered-radio-2" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With PesaPal</label>
                 </div>
-                  {{-- <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
-                    <input id="bordered-radio-1" disabled type="radio" value="seerbit" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                    <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With SeerBit</label>
-                </div> --}}
+                   <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                    <input id="bordered-radio-1"  type="radio" value="intasend" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With Intasend</label>
+                </div>
                 </div>
         
             
@@ -87,6 +90,8 @@
               
         
               </form>
+
+             
         
             </div>
         </div>
