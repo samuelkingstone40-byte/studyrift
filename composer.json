@@ -12,6 +12,7 @@
         "doctrine/dbal": "^3.5",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intasend/intasend-php": "^1.1",
         "intervention/image": "^2.7",
         "josiasmontag/laravel-recaptchav3": "^1.0",
         "knox/pesapal": "^1.4",

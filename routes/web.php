@@ -77,11 +77,14 @@ Route::post('verify-payment',[App\Http\Controllers\PayPalPaymentController::clas
 Route::post('/login/admin', [App\Http\Controllers\Auth\LoginController::class,'adminLogin'])->name('adminLogin');
 Route::get('/login/admin', [App\Http\Controllers\Auth\LoginController::class, 'showAdminLoginForm']); 
 Route::post('/register/admin', [App\Http\Controllers\Auth\RegisterController::class,'createAdmin']);
+
 Route::middleware(['auth'])->group(function () {
-Route::post('make-payment',[PaymentController::class,'make_payment'])->name('make-payment');
-Route::get('/seerbit-access-token',[PaymentController::class,'get_seerbit_authorization_token']);
-Route::get('/seerbit-callback',[PaymentController::class,'handleSeerBitCallback']);
-Route::get('/checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
+    Route::post('make-payment',[PaymentController::class,'make_payment'])->name('make-payment');
+    Route::get('/seerbit-access-token',[PaymentController::class,'get_seerbit_authorization_token']);
+    Route::get('/seerbit-callback',[PaymentController::class,'handleSeerBitCallback']);
+    Route::get('/checkout', [App\Http\Controllers\PublicController::class, 'checkout'])->name('checkout');
+    Route::get('/intasend-payment-status',[PaymentController::class,'intasend_payment_status'])->name('intasend-payment-status');
+
 });
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
@@ -127,6 +130,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
     });
 
 });
+
+//intasend payement
 
 
 

@@ -8,21 +8,22 @@ use Knox\Pesapal\Facades\Pesapal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Redirect;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Document;
 use Exception;
+use IntaSend\IntaSendPHP\Checkout;
+use IntaSend\IntaSendPHP\Customer;
+use IntaSend\IntaSendPHP\Collection;
 
 class PaymentController extends Controller
 {
-    public function make_payment(Request $request){
-        $amount =$request->amount;
+    public function make_payment(Request $request)
+    {
+       
         $mode=$request->payment_mode;
-        $email=$request->email;
-
         $orders=$request->input('docs');
         //convert to a string
         $orderStr=implode(',',$orders);
@@ -32,20 +33,204 @@ class PaymentController extends Controller
         Session::put("orders",$arr);
         Session::save();
         
-
        // redirect to mode of payement
         if($mode == 'pesapal'){
             return $this->process_pesapal_payment($request);
         }
 
-        if($mode == 'seerbit'){
-            return $this->process_seerbit_payment($amount);
+        if($mode == 'intasend'){
+            return $this->checkout_intasend($request);
         }
-     }
+    }
+
+    /**Process payment using intasend */
+    public function checkout_intasend($request)
+    {
+        $credentials = [
+            'token'=>env('INTASEND_SECRET_KEY'),
+            'publishable_key'=>env('INTASEND_PUBLIC_KEY'),
+            'test'=>true,
+        ];
+
+        // order details
+        $document_ids=$request['docs'];
+        $total_amount=$request['amount'];
+        $user=Auth::user();
+        $name=$user->name;
+        // make array 
+        $array_name=explode(" ",$name);
+        if($total_amount && sizeof($document_ids)>0){
+           try {
+            $customer = new Customer();
+            $customer->first_name = $array_name[0];
+            $customer->last_name = $array_name[1];
+            $customer->email = $user->email;
+            $customer->country = "KE";
+          
+    
+            $amount = $total_amount;
+            $currency = "USD";
+            $country="Kenya";
+            $address="30148";
+            $comment="Test for payment";
+
+            $host = env("APP_URL");
+            $redirect_url = $host."/intasend-payment-status";
+            $ref_order_number = $this->generate_orderId();    
+            $checkout = new Checkout();
+            $checkout->init($credentials);
+            $resp = $checkout->create(
+                $amount = $amount,
+                $currency = $currency,
+                $customer = $customer,
+                $host=$host,
+                $redirect_url = $redirect_url, 
+                $api_ref =$ref_order_number, 
+                $comment = $comment, 
+                $method = null
+            );
+
+            //add client orders
+            $orders=$request->input('docs');
+            for($i=0; $i<sizeof($orders); $i++){
+                $orderId= $ref_order_number;
+                $transId='';
+                $status='pending';
+                $docId=$orders[$i];
+                $this->add_orders($orderId,$transId,$status,$docId);
+
+            }
+    
+            // Redirect the user to the URL to complete payment
+            return redirect($resp->url);
+          
+           } catch (Exception $ex) {
+             $message=$ex->getMessage();
+             $line=$ex->getLine();
+             $code=$ex->getCode();
+
+             $error=[
+                'message'=>$message,
+                'line'=>$line,
+                'code'=>$code
+             ];
+
+             return Redirect::back()->withErrors($error);
+           }
+        }
+    }
+
+    // Add your website and redirect url where the user will be redirected on success
+    public function intasend_payment_status(Request $request)
+    {    
+        $credentials = [
+            'token'=>env('INTASEND_SECRET_KEY'),
+            'publishable_key'=>env('INTASEND_PUBLIC_KEY'),
+            'test'=>false,
+        ];
+
+        $checkout_id=$request['tracking_id'];
+
+        // initiate class collection
+        $collection=new Collection();
+        $collection->init($credentials);
+        $response = $collection->status($checkout_id);
+        $payment_details=$response->invoice;
+
+        // persist payment to db
+        $transId=$payment_details->invoice_id;
+        $amount=$payment_details->value;
+        $state=$payment_details->state;
+        $orderId=$payment_details->api_ref;
+
+      
+        
+        //process order if payment is success
+        if($state=='COMPLETE'){
+            $status=1;
+            //record transaction
+            try {
+                $transaction =Transaction::create([
+                    'transId'=>$transId,
+                    'user_id'=>Auth::user()->id,
+                    'type'=>'sales',
+                    'amount'=>$amount,
+                    'details'=>'Document Purchase',
+                    'status'=>$status
+                ]);
+
+                
+                $transId=$transaction->id;
+                $request->session()->forget('cart');
+                return $this->confirm_order_payment($orderId,$transId,$amount);
+            } catch (Exception $ex) {
+                $message=$ex->getMessage();
+                $line=$ex->getLine();
+                $code=$ex->getCode();
+   
+                $error=[
+                   'message'=>$message,
+                   'line'=>$line,
+                   'code'=>$code
+                ];
+
+                return Redirect::back()->withErrors($error);
+            }
+          
+            
+        }else{
+            $error=$response->failed_reason;
+            $this->cancel_order_payment($orderId);
+            return Redirect::back()->withErrors($error);
+        }
+        
+    }
+
+    //confirm order after payment
+    public function confirm_order_payment($orderId,$transId)
+    {
+        DB::table('orders')
+            ->where('orderId',$orderId)
+            ->update(['transactionId'=>$transId]);
+        
+        //get orders for downloads
+        $orders=DB::table('orders')
+            ->select('docId')
+            ->where('orderId',$orderId)
+            ->where('transactionId',$transId)
+            ->where('status','new')
+            ->orderBy('id','desc')
+            ->get();
+
+        $docIds=[];
+        foreach ($orders as $order) {
+            $docIds[]=$order->docId;
+        }
+
+        $docIds=array_unique($docIds);
+        $documents=DB::table('documents')
+            ->whereIn('documents.id',$docIds)
+            ->leftJoin('files','files.document_id','=','documents.id')
+            ->leftJoin('subjects','subjects.id','=','documents.subject_id')
+            ->leftJoin('categories','categories.id','=','documents.category_id')
+            ->orderBy('documents.created_at','desc')
+            ->select('documents.*','files.filename','subjects.name as subject','categories.name as category')
+            ->get();
+
+       
+        $data['orders']=$documents;
+        return view('pay-success', $data);
+    }
+
+    //cancel order after payment failed
+    public function cancel_order_payment($orderId)
+    {
+
+    }
+
 
     //process seerbit payment
     public function process_seerbit_payment($amount){
-       
        // get user information
         $user=Auth::user();
         $email=$user->email;
@@ -181,7 +366,7 @@ class PaymentController extends Controller
 
         $status="Pending";
         $transId=$transaction -> transId;
-        $orderId=$transaction -> transId;
+        $orderId=$this->generate_orderId();
 
          for($i=0;$i< count($orders);$i++){
             $docId=$orders[$i];
@@ -235,7 +420,8 @@ class PaymentController extends Controller
                 'docId'=>$doc->id,
                 'earning'=>($doc->price)*0.7,
                 'income'=>($doc->price)*0.3,
-                'status' => 'New']);
+                'status' => 'New'
+            ]);
 
             $message=[
             'message'=>'your document has been purchased',
@@ -304,19 +490,33 @@ class PaymentController extends Controller
         $this->checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type);
     }
     //Confirm status of transaction and update the DB
-    public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type){
-    $status=Pesapal::getMerchantStatus($merchant_reference);
-    $payments = Transaction::where('trackingid',$trackingid)->first();
-    $payments -> status = $status;
-    $payments -> payment_method = "PESAPAL";//use the actual method though...
-    $payments -> save();
-    return "success";
+    public function checkpaymentstatus($trackingid,$merchant_reference,$pesapal_notification_type)
+    {
+        $status=Pesapal::getMerchantStatus($merchant_reference);
+        $payments = Transaction::where('trackingid',$trackingid)->first();
+        $payments -> status = $status;
+        $payments -> payment_method = "PESAPAL";//use the actual method though...
+        $payments -> save();
+        return "success";
+    }
+    
+    //generate a new order id
+    public function generate_orderId()
+    {
+       $orderId=5555;
+       //get the latest order
+       $last_order=DB::table('orders')->latest()->first();
+       if($last_order){
+            $current_id=$last_order->orderId;
+            $orderId=intval($current_id) + 1;
+       }
+       return $orderId;
     }
 
     public function update_orders(){
-    DB::table('orders')
-    ->where('status','Available')
-    ->update(['status'=>'Paid']);
+        DB::table('orders')
+        ->where('status','Available')
+        ->update(['status'=>'Paid']);
     }
  
     public function download_file($docId){
@@ -354,8 +554,8 @@ class PaymentController extends Controller
     }
 
     public function pay_success(Request $request){
-    $request->session()->forget('cart');
-    return view('pay-success');
+        $request->session()->forget('cart');
+        return view('pay-success');
     }
 
 

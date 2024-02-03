@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f69970325c208e85698fa0c00fc64f86",
+    "content-hash": "4415eacfbb59d11ea9dd4ae7628f031a",
     "packages": [
         {
             "name": "anhskohbo/no-captcha",
@@ -1881,6 +1881,51 @@
                 }
             ],
             "time": "2023-12-03T20:05:35+00:00"
+        },
+        {
+            "name": "intasend/intasend-php",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IntaSend/intasend-php.git",
+                "reference": "fa04d6fb2edb72479d3745977d8e1ebbb6e050a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IntaSend/intasend-php/zipball/fa04d6fb2edb72479d3745977d8e1ebbb6e050a2",
+                "reference": "fa04d6fb2edb72479d3745977d8e1ebbb6e050a2",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.0",
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "IntaSend\\IntaSendPHP\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kishan",
+                    "email": "kishanmnpatel@gmail.com"
+                },
+                {
+                    "name": "Felix CHERUIYOT",
+                    "email": "felix@intasend.com"
+                }
+            ],
+            "description": "The official PHP SDK for IntaSend Payment Gateway",
+            "support": {
+                "issues": "https://github.com/IntaSend/intasend-php/issues",
+                "source": "https://github.com/IntaSend/intasend-php/tree/v1.1.0"
+            },
+            "time": "2023-09-20T08:46:21+00:00"
         },
         {
             "name": "intervention/image",
