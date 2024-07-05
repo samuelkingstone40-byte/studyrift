@@ -182,7 +182,7 @@
                   </div>
                   <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
                 </div>
-                <canvas id="pdf-canvas" width="600"></canvas>
+                <canvas id="pdf-canvas" class="h-full w-full"></canvas>
                 <div id="page-loader">Loading page ...</div>
               </div>
               </div>
@@ -280,7 +280,7 @@ async function showPage(page_no) {
     }
 
     // original width of the pdf page at scale 1
-    var pdf_original_width = page.getViewport(1).width;
+    var pdf_original_width = page.getViewport(0.1).width;
     
     // as the canvas is of a fixed width we need to adjust the scale of the viewport where page is rendered
     var scale_required = _CANVAS.width / pdf_original_width;
@@ -290,7 +290,7 @@ async function showPage(page_no) {
 
     // set canvas height same as viewport height
     _CANVAS.height = viewport.height;
-    _CANVAS.width =860;
+    _CANVAS.width =viewport.width;
     // setting page loader height for smooth experience
     document.querySelector("#page-loader").style.height =  _CANVAS.height + 'px';
     document.querySelector("#page-loader").style.lineHeight = _CANVAS.height + 'px';

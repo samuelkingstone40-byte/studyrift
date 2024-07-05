@@ -77,18 +77,18 @@
       
       <div class="md:flex md:justify-start">
         @if($purchased)
-      <a href="{{url('download/'.$doc->id)}}" class="mb-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+      <a href="{{url('download/'.$doc->id)}}" class="mb-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 w-full text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
         <svg class="w-6 h-6 pr-2 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
         </svg>
         Download
       </a>
       @endif
-        <a href="{{url('edit-document/'.$doc->slug)}}" class="mb-2 mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 block py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <a href="{{url('edit-document/'.$doc->slug)}}" class="mb-2 mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 w-full py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
           Edit
         </a>
 
-        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class=" text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg block  text-sm px-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class=" text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg w-full py-2 text-sm px-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
          Delete
         </button>
       </div>
@@ -113,34 +113,38 @@
       </div>
       <div class="mb-4 card py-2">
         <input type="hidden"  id="file2" value="{{$doc->filename}}">
-        <div class="" id="pdf-main-container justify-content-center">
-                <div id="pdf-loader">Loading document ...</div>
-                 <div id="pdf-contents" class="px-4 mb-2">
-                    <canvas class=" h-full" width="800" height="900" id="pdf-canvas" ></canvas>
-                    <div id="page-loader">Loading page ...</div>
+        
+          <div class="" id="pdf-main-container justify-content-center">
+            <div id="pdf-loader">Loading document ...</div>
+             <div id="pdf-contents" class="px-4 mb-2">
+           
+                <canvas class=" w-full" id="pdf-canvas" ></canvas>
+                <div id="page-loader">Loading page ...</div>
+            </div>
+            <div id="pdf-meta" class="px-4">
+              <div id="pdf-buttons" class="flex justify-between items-center">
+                <div class="flex">
+                  <!-- Previous Button -->
+                  <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                    </svg>
+                    Previous
+                  </a>
+                  <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    Next
+                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                  </a>
                 </div>
-                <div id="pdf-meta" class="px-4">
-                  <div id="pdf-buttons" class="flex justify-between items-center">
-                    <div class="flex">
-                      <!-- Previous Button -->
-                      <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                        </svg>
-                        Previous
-                      </a>
-                      <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        Next
-                        <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                      </a>
-                    </div>
-                    <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
-    
-                  </div>
+                <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+
               </div>
-        </div>
+          </div>
+    </div>
+       
+     
       </div>
 
 
@@ -303,7 +307,7 @@ async function showPage(page_no) {
     }
 
     // original width of the pdf page at scale 1
-    var pdf_original_width = page.getViewport(1).width;
+    var pdf_original_width = page.getViewport(0.1).width;
     
     // as the canvas is of a fixed width we need to adjust the scale of the viewport where page is rendered
     var scale_required = _CANVAS.width / pdf_original_width;
