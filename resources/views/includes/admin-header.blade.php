@@ -7,7 +7,7 @@
                     <!-- ============================================================== -->
                     <!-- Logo -->
                     <!-- ============================================================== -->
-                    <div class="navbar-brand" style="background-color:gray">
+                    <div class="navbar-brand" style="background:#002347">
                         <!-- Logo icon -->
                         <a href="{{url('admin/dashboard')}}">
                             <b class="logo-icon">
@@ -211,7 +211,7 @@
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="{{url('admin/dashboard')}}"
                                 aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
-                        <li class="list-divider"></li>
+                      
 
                         <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/users')}}"
                                 aria-expanded="false"><i data-feather="users" class="feather-icon"></i><span
@@ -223,14 +223,14 @@
                             aria-expanded="false"><i data-feather="folder" class="feather-icon"></i><span
                                 class="hide-menu">Manage Documents </span></a>
                         <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/file-uploads')}}"
-                                aria-expanded="false"><i data-feather="arrow-up" class="feather-icon"></i><span
+                            <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/documents/uploads')}}"
+                                aria-expanded="false"><span
                                     class="hide-menu">Uploads
                                 </span></a>
                            </li>
 
-                            <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/sales')}}"
-                            aria-expanded="false"><i data-feather="arrow-down" class="feather-icon"></i><span
+                            <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/documents/downloads')}}"
+                            aria-expanded="false"><span
                                 class="hide-menu">Downloads
                             </span></a>
                          </li>
@@ -239,24 +239,28 @@
                        
                         <li class="sidebar-item"> <a class="sidebar-link has-arrow" href="javascript:void(0)"
                                 aria-expanded="false"><i data-feather="briefcase" class="feather-icon"></i><span
-                                    class="hide-menu">Accounting </span></a>
+                                    class="hide-menu">Finance</span></a>
                             <ul aria-expanded="false" class="collapse  first-level base-level-line">
-                            
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/withdrawals')}}"
-                                aria-expanded="false"><i data-feather="trending-down" class="feather-icon"></i><span
-                                    class="hide-menu">Withdrawals
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/general-ledger')}}"
-                                aria-expanded="false"><i data-feather="book-open" class="feather-icon"></i><span
-                                    class="hide-menu">General Ledger
-                                </span></a>
-                        </li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/transactions')}}"
-                                aria-expanded="false"><i data-feather="layers" class="feather-icon"></i><span
-                                    class="hide-menu">Transactions
-                                </span></a>
-                        </li>
+                                <li class="sidebar-item"> <a class="sidebar-link" href="{{route('finance-dashboard')}}"
+                                    aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
+                                        class="hide-menu">Dashboard
+                                    </span></a>
+                            </li>
+                                <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/withdrawals')}}"
+                                        aria-expanded="false"><i data-feather="trending-down" class="feather-icon"></i><span
+                                            class="hide-menu">Withdrawals
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/general-ledger')}}"
+                                        aria-expanded="false"><i data-feather="book-open" class="feather-icon"></i><span
+                                            class="hide-menu">General Ledger
+                                        </span></a>
+                                </li>
+                                <li class="sidebar-item"> <a class="sidebar-link" href="{{url('admin/transactions')}}"
+                                        aria-expanded="false"><i data-feather="layers" class="feather-icon"></i><span
+                                            class="hide-menu">Transactions
+                                        </span></a>
+                                </li>
                             </ul>
                         </li>
                         <li class="sidebar-item"> <a class="sidebar-link" href="{{ url('admin/blogs')}}"
@@ -288,8 +292,7 @@
                         </li>
                         
                         
-                        <li class="list-divider"></li>
-                        <li class="nav-small-cap text-white"><span class="hide-menu">Authentication</span></li>
+                      
 
                         
 

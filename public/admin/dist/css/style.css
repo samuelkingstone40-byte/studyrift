@@ -156,7 +156,7 @@ sup {
   top: -.5em; }
 
 a {
-  color: #fff3e1;
+  color: #00008B;
   text-decoration: none;
   background-color: transparent; }
   a:hover {
@@ -3077,6 +3077,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
+ 
   padding: 0.5rem 1rem; }
   .nav-link:hover, .nav-link:focus {
     text-decoration: none; }
@@ -3101,7 +3102,7 @@ input[type="button"].btn-block {
       border-color: transparent; }
   .nav-tabs .nav-link.active,
   .nav-tabs .nav-item.show .nav-link {
-    color: #4F5467;
+    color: 'red';
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff; }
   .nav-tabs .dropdown-menu {

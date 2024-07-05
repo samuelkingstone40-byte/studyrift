@@ -1,11 +1,7 @@
 <footer class="p-4 bg-white sm:p-6 border border-t-gray-300 dark:bg-gray-800">
   <div class="mx-auto ">
-      <div class="md:flex md:justify-between">
-          <div class="mb-6 md:mb-0">
-              <a href="{{url('/')}}" class="flex items-center">
-                  <img src="{{asset('theme/img/site/logo.png')}}" class="mr-3 h-8" alt="FlowBite Logo" />
-              </a>
-          </div>
+      <div class="">
+        
           <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Resources</h2>

@@ -68,22 +68,22 @@
 }
 
 </style>
-<div class="mt-10">
-  <div class="flex justify-between">
-    <div class="text-2xl font-semibold my-2">My Documents</div>
+<div class="px-4 mt-2">
+  <div class="">
+    <div class="text-xl md:text-2xl font-semibold my-2">My Uploaded Documents</div>
     <div>
-      <a href="{{url('upload')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:px-2 sm:py-1 lg:px-4 md:py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-        <svg class="w-8 h-8 text-white  pr-2 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M10 5.757v8.486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+      <a href="{{url('upload')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:px-4 sm:py-1 lg:px-4 md:py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <svg class="w-6 h-6 text-white  pr-2 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M10 5.757v8.http://127.0.0.1:8000/earnings486M5.757 10h8.486M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
         </svg>
         Add New Document
       </a>
      </div>
   </div>
 
-  <div class="mt-6 bg-white">
-    <div class=" border relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full py-2 text-sm text-left text-gray-500  dark:text-gray-400">
+  <div class="mt-4">
+    <div class="px-4 py-4 border  overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="table w-full py-2 text-sm text-left text-gray-500  dark:text-gray-400 uploads-table" >
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                   
@@ -161,10 +161,11 @@
 
 @endsection
 @section('scripts')
-<script type="text/javascript">
-  $(function () {
-    
-    var table = $('.yajra-datatable').DataTable({
+
+<script>
+$(document).ready(function (e) {   
+
+    var table = $('.uploads-table').DataTable({
         processing: true,
         serverSide: true,
         order:[0,"desc"],

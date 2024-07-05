@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{asset('theme/img/favicon.png')}}">
-    <title>Admin - NotesBank</title>
+    <title>Admin - StudyMerit</title>
     <!-- Custom CSS -->
     <link href="{{asset('admin/assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">
     <link href="{{asset('admin/assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
@@ -19,6 +19,7 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('admin/dist/css/style.css')}}" rel="stylesheet">
+    <link href="{{asset('admin/dist/css/custom.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -1,4 +1,22 @@
+.page-header{
+    font-size: 24px;
+    color: darkblue;
+    font-weight: 800;
+    margin: 5px 0 20px 0;
+    text-transform: uppercase;
+}
 
+.btn-view{
+    background-color: green;
+    padding:5px;
+    margin: 5px;
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+
+}
 
 #show-pdf-button {
 	width: 150px;
@@ -11,6 +29,7 @@
 }
 
 #pdf-main-container {
+	width: 100%;
 	margin: 10px auto;
 }
 
@@ -25,6 +44,7 @@
 
 #pdf-contents {
 	display: none;
+
 }
 
 #pdf-meta {
@@ -61,4 +81,3 @@
 	color: #999999;
 	font-size: 13px;
 }
-

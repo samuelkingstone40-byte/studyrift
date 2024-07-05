@@ -74,7 +74,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="{{asset('theme/vendors/owl-carousel/owl.carousel.min.js')}}"></script>
     <script src="{{asset('theme/js/owl-carousel-thumb.min.js')}}"></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <!-- <script src="{{asset('theme/js/jquery.ajaxchimp.min.js')}}"></script> -->
     <!-- <script src="{{asset('theme/js/mail-script.js')}}"></script> -->
     <!--gmaps Js-->

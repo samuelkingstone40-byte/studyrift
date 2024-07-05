@@ -66,8 +66,8 @@ class ClientController extends Controller
     }
 
     public function post_document(Request $request){
-        $timestamp=strtotime(date('Y-m-d h:i:s'));
 
+        $timestamp=strtotime(date('Y-m-d h:i:s'));
         $image = $request->input('thumb');
         $title = $request->input('title');
         $subject = $request->input('subject');
@@ -81,20 +81,22 @@ class ClientController extends Controller
       
         $data=array('user_id'=>$user,'title'=>$title,"subject_id"=>$subject,"category_id"=>$category,
         "description"=>$detail,"price"=>$price,'slug'=>$slug,'code'=>$code);
-        $doc=Document::create($data);
 
-        $docId=$doc->id;
-        $image_parts = explode(";base64,", $image);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-   
+        try {
+            $doc=Document::create($data);
+            $docId=$doc->id;
+            $image_parts = explode(";base64,", $image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
 
-      
-        Storage::put('documents-thumbnails/thumbnail-'.$docId, $image_base64);
-
- 
-        $this->uploadFile($docId,$request);
+            Storage::put('documents-thumbnails/thumbnail-'.$docId, $image_base64);
+     
+            $this->uploadFile($docId,$request);
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('errors', $th->getMessage());
+        }
+    
 
         return redirect()->route('view-document',$slug)->with('success', 'Your document upload successful');
     }
@@ -236,7 +238,7 @@ class ClientController extends Controller
             })
         
             ->addColumn('action', function($row){
-                    $actionBtn = '<a href="view-document/'.$row->slug.'" class="btn btn-success" style="margin-right:5px"> View Document</a><a href="/edit-document/'.$row->slug.'" class="btn btn-primary">Edit</a>';
+                    $actionBtn = '<a href="view-document/'.$row->slug.'"class="bg-green-600 text-white p-2 rounded text-md mr-2" > View</a><a href="/edit-document/'.$row->slug.'" class="bg-blue-600 text-white p-2 rounded text-md">Edit</a>';
                     return $actionBtn;
             })
                 ->rawColumns(['image','earning','action'])
@@ -316,7 +318,6 @@ class ClientController extends Controller
 
     public function uploadFile($docId , $request){
           $data = array();
-
           $validator = Validator::make($request->all(), [
                'file' => 'required|mimes:,pdf,docx|max:5120'
           ]);

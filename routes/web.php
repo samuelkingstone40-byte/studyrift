@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\DocumentController;
+use App\Http\Controllers\Admin\FinanceController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +48,7 @@ Route::post('update-profile', [App\Http\Controllers\ClientController::class, 'up
 Route::post('update-paypal', [App\Http\Controllers\ClientController::class, 'update_paypal'])->name('update-paypal');
 Route::post('update-password', [App\Http\Controllers\ClientController::class, 'update_password'])->name('update-password');
 Route::post('deactivate-account', [App\Http\Controllers\ClientController::class, 'deactivate_account'])->name('deactivate-account');
-Route::post('notes-update', [App\Http\Controllers\ClientController::class, 'notes_update'])->name('notes-update');
+Route::patch ('notes-update/{id}', [App\Http\Controllers\ClientController::class, 'documents_update'])->name('notes-update');
 Route::post('file-update', [App\Http\Controllers\ClientController::class, 'file_update'])->name('file-update');
 Route::post('notifications', [App\Http\Controllers\ClientController::class, 'fetch_notifications'])->name('notifications');
 Route::post('mark-as-read', [App\Http\Controllers\ClientController::class, 'mark_as_read'])->name(' mark-as-read');
@@ -86,21 +89,39 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/intasend-payment-status',[PaymentController::class,'intasend_payment_status'])->name('intasend-payment-status');
 
 });
+
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
-
     Route::group(['prefix' => 'admin'], function()  
     { 
-        Route::get('/dashboard',[\App\Http\Controllers\Admin\AdminController::class,'dashboard'])->name('admin');
-        Route::get('users',[\App\Http\Controllers\Admin\AdminController::class,'users'])->name('users');
-        Route::get('get_all_users',[\App\Http\Controllers\Admin\AdminController::class,'get_all_users'])->name('get_all_users');
-        Route::get('file-uploads',[\App\Http\Controllers\Admin\AdminController::class,'uploads'])->name('file-uploads');
+        //users
+        Route::get('users',[UserController::class,'users'])->name('users');
+        Route::get('get_all_users',[UserController::class,'get_all_users'])->name('get_all_users');
+        Route::get('user-profile/{id}',[UserController::class,'user_profile'])->name('user-profile');
+        Route::get('user-uploads/{id}',[UserController::class,'user_uploads'])->name('user-uploads');
+        Route::get('user-downloads/{id}',[UserController::class,'user_downloads'])->name('user-downloads');
+        Route::get('user-transactions/{id}',[UserController::class,'user_transactions'])->name('user-transactions');
+        Route::get('edit-profile/{id}',[UserController::class,'edit_user_profile'])->name('edit-user-profile');
+        Route::patch('deactivate-account/{id}',[UserController::class,'deactivate_account'])->name('deactivate-user-account');
+        Route::patch('activate-account/{id}',[UserController::class,'activate_account'])->name('activate-user-account');
+
+        //documents
+        Route::get('documents/uploads',[DocumentController::class,'uploads'])->name('uploads');
+        Route::get('documents/downloads',[DocumentController::class,'downloads'])->name('downloads');
+        Route::get('documents/fetch-uploads',[DocumentController::class,'fetch_uploads'])->name('fetch_uploads');
+        Route::get('fetch-downloads',[DocumentController::class,'fetch_downloads'])->name('fetch-downloads');
+        Route::get('documents/view/{id}',[DocumentController::class,'view'])->name('view');
+        Route::patch('deactivate-file/{id}',[DocumentController::class,'deactivate'])->name('deactivate-file');
+        Route::patch('publish-file/{id}',[DocumentController::class,'publish'])->name('publish-file');
+
+        //finance routes
+        Route::get('finance/',[FinanceController::class,'index'])->name('finance-dashboard');
+        Route::get('latest-sales',[FinanceController::class,'latest_sales'])->name('latest-sales');
+        
+        Route::get('dashboard',[\App\Http\Controllers\Admin\AdminController::class,'dashboard'])->name('admin');
         Route::get('get_all_uploads',[\App\Http\Controllers\Admin\AdminController::class,'get_all_uploads'])->name('get_all_uploads');
-        Route::get('user-profile/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_profile'])->name('user-profile');
-        Route::get('user-uploads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_uploads'])->name('user-uploads');
-        Route::get('user-downloads/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_downloads'])->name('user-downloads');
-        Route::get('user-transactions/{id}',[\App\Http\Controllers\Admin\AdminController::class,'user_transactions'])->name('user-transactions');
-        Route::get('document-view/{id}',[\App\Http\Controllers\Admin\AdminController::class,'document_view'])->name('document-view');
+       
+        Route::get('view/{id}',[\App\Http\Controllers\Admin\AdminController::class,'document_view'])->name('view');
         Route::post('deleteFile/{id}',[\App\Http\Controllers\Admin\AdminController::class,'delete_file'])->name('deleteFile');
 
         Route::get('general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'general_ledger'])->name('general-ledger');

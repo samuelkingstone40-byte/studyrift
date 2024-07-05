@@ -11,27 +11,21 @@
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" type="image/png" />
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    {{-- <link href="{{asset('theme/dist/css/tabler.css')}}" rel="stylesheet"/>
-    <link href="{{asset('theme/dist/css/tabler-flags.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('theme/dist/css/tabler-payments.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('theme/dist/css/tabler-vendors.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('theme/dist/css/demo.css')}}" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{asset('theme/css/custom.css')}}" /> --}}
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','G-K08LVCH03Q');</script>
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','G-K08LVCH03Q')
+    </script>
+
   </head>
   
   <body>
-
-   
-    
-
   <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=G-K08LVCH03Q"height="0" width="0" style="display:none;visibility:hidden"></iframe>
   </noscript>
+
     <div class="page">
       <header class="navbar navbar-expand-md navbar-bg d-print-none">
         <div class="container-top">
@@ -54,11 +48,12 @@
               <div class="btn-list">
                 <a href="{{route('search', array('search_text' => '') )}}" class="btn text-dark" target="_blank" rel="noreferrer">
                   <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
-                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <circle cx="10" cy="10" r="7"></circle>
-   <line x1="21" y1="21" x2="15" y2="15"></line>
-</svg>                 Browse
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="10" cy="10" r="7"></circle>
+                    <line x1="21" y1="21" x2="15" y2="15"></line>
+                  </svg>                 
+                   Browse
                 </a>
                 <a href="{{url('upload')}}" class="btn text-dark" target="_blank" rel="noreferrer">
                   <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
@@ -127,11 +122,11 @@
                   <a class="nav-link" href="{{url('uploads')}}" >
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-upload" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"></path>
-   <polyline points="9 15 12 12 15 15"></polyline>
-   <line x1="12" y1="12" x2="12" y2="21"></line>
-</svg>                    </span>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M7 18a4.6 4.4 0 0 1 0 -9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"></path>
+                      <polyline points="9 15 12 12 15 15"></polyline>
+                      <line x1="12" y1="12" x2="12" y2="21"></line>
+                    </svg>                    </span>
                     <span class="nav-link-title">
                       My Uploads
                     </span>
@@ -143,11 +138,11 @@
                     <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-cloud-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   
-   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-   <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4"></path>
-   <line x1="12" y1="13" x2="12" y2="22"></line>
-   <polyline points="9 19 12 22 15 19"></polyline>
-</svg>                    </span>
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                      <path d="M19 18a3.5 3.5 0 0 0 0 -7h-1a5 4.5 0 0 0 -11 -2a4.6 4.4 0 0 0 -2.1 8.4"></path>
+                      <line x1="12" y1="13" x2="12" y2="22"></line>
+                      <polyline points="9 19 12 22 15 19"></polyline>
+                    </svg>                    </span>
                     <span class="nav-link-title">
                       My Downloads
                     </span>
@@ -223,18 +218,18 @@
     </div>
    
     <!-- Libs JS -->
-    {{-- <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('theme/dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
     <script src="{{asset('theme/dist/libs/list.js/dist/list.min.js')}}" defer></script>
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <!-- Tabler Core -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
 
     <script src="{{asset('theme/dist/js/tabler.min.js')}}" defer ></script>
-    <script src="{{asset('theme/dist/js/demo.min.js')}}" defer></script> --}}
+    <script src="{{asset('theme/dist/js/demo.min.js')}}" defer></script> 
 
     @yield('scripts')
 
