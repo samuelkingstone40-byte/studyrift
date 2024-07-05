@@ -19,7 +19,7 @@
         <!--start side bar -->
         <div id="sidebar" class="z-50 w-64 h-screen bg-gray-900 text-white fixed transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
             <div class="flex justify-between items-center px-4 pt-4">
-                <a href="flex item-center pb-4 px-4 border-b border-b-gray-800" class="">
+                <a href="{{url('home')}}" class="flex item-center pb-2 px-2 border-b border-b-gray-800">
                     <img src="{{asset('theme/img/site/logo.png')}}" class="w-32 lg:w-full px-1 object-cover lg:p-4" alt="logo" srcset="">
                 </a>
                 <button class="lg:hidden" onclick="toggleSidebar()" >X</button>
