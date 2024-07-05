@@ -68,31 +68,32 @@
 
 <div class="px-4 bg-white">
 
-  <div class="flex justify-between my-2">
-    <div class="text-3xl font-semibold ">
+  <div class="md:flex md:justify-between my-2">
+    <div class=" text-lg md:text-2xl  font-semibold ">
       {{$doc->title}}
     </div>
     @include('partials.response-status')
-    <div>
-      @if($purchased)
-      <a href="{{url('download/'.$doc->id)}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+  
+      
+      <div class="md:flex md:justify-start">
+        @if($purchased)
+      <a href="{{url('download/'.$doc->id)}}" class="mb-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
         <svg class="w-6 h-6 pr-2 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 18">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 1v11m0 0 4-4m-4 4L4 8m11 4v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3"/>
         </svg>
         Download
       </a>
       @endif
-      <div class="flex justify-start">
-        <a href="{{url('edit-document/'.$doc->slug)}}" class="mr-2 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-          Edit File
+        <a href="{{url('edit-document/'.$doc->slug)}}" class="mb-2 mr-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 block py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+          Edit
         </a>
 
-        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class=" block text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-          Delete File
+        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class=" text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg block  text-sm px-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+         Delete
         </button>
       </div>
     </div>
-  </div>
+  
 
   <div class="flex">
     <div class="text-xl font-semibold mb-2">Subject : {{$doc->sname}}</div>

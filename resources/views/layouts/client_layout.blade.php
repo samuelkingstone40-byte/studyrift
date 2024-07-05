@@ -13,39 +13,39 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"rel="stylesheet"/>
-
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
     </head>
     <body class="bg-slate-50">
         <!--start side bar -->
         <div id="sidebar" class="z-50 w-64 h-screen bg-gray-900 text-white fixed transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
-            <div class="flex justify-between items-center p-2">
+            <div class="flex justify-between items-center px-4 pt-4">
                 <a href="flex item-center pb-4 px-4 border-b border-b-gray-800" class="">
-                    <img src="{{asset('theme/img/site/logo.png')}}" class="w-36 lg:w-full px-1 object-cover lg:p-4" alt="logo" srcset="">
+                    <img src="{{asset('theme/img/site/logo.png')}}" class="w-32 lg:w-full px-1 object-cover lg:p-4" alt="logo" srcset="">
                 </a>
                 <button class="lg:hidden" onclick="toggleSidebar()" >X</button>
             </div>    
           
-                <ul class="mt-4">
-                    <li class="mb-1 group active">
-                        <a href="{{url('home')}}" class="flex items-center p-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
+                <ul class="mt-2 mx-1 ">
+                    <li class="mb-4 group active">
+                        <a href="{{url('home')}}" class="flex items-center  px-4 py-2  text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
                             <i class="ri-home-line mr-3 text-lg"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="mb-1 group">
-                        <a href="{{url('downloads')}}" class="flex items-center p-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
+                    <li class="mb-4 group">
+                        <a href="{{url('downloads')}}" class="flex items-center px-4 py-2 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
                             <i class="ri-file-download-line mr-3 text-lg"></i>
                             <span>Downloads</span>
                         </a>
                     </li>
-                    <li class="mb-1 group" >
-                        <a href="{{url('uploads')}}" class="flex items-center p-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
+                    <li class="mb-4 group" >
+                        <a href="{{url('uploads')}}" class="flex items-center  px-4 py-2 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
                            <i class="ri-file-upload-line mr-3 text-lg"></i>
                             <span>Uploads</span>
                         </a>
                     </li>
-                    <li class="mb-1 group">
-                        <a href="{{url('earnings')}}" class="flex items-center p-4 text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
+                    <li class=" group">
+                        <a href="{{url('earnings')}}" class="flex items-center  px-4 py-2  text-gray-300 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white">
                             <i class="ri-exchange-dollar-line mr-3 text-lg"></i>
                             <span>Sales</span>
                         </a>
@@ -69,6 +69,18 @@
                         <button type="button" class="text-gray-400 w-8 h-8 rounded flex items-center justify-center hover:bg-gray-50 hover:text-gray-600">
                             <i class="ri-notification-3-line"></i>
                         </button>
+                    </li>
+
+                    <li class="mr-1">
+                        <a
+                href="{{ route('logout') }}"  onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"
+                  class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                  >Sign out
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
                     </li>
                 </ul>
             </div>
