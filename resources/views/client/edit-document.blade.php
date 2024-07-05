@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.client_layout')
 @section('content')
 <style type="text/css">
 
@@ -90,9 +90,10 @@
               </div>
             @endif
             <div class="row row-deck row-cards">
-             <div class="col-sm-7">
-               <form method="post" enctype="multipart/form-data" class="card" action="{{route('notes-update')}}">
+             <div class="col-sm-12">
+               <form method="post" enctype="multipart/form-data" class="card" action="{{route('notes-update',$doc->id)}}">
                @csrf
+               @method('PATCH')
                <input type="hidden" name="id" value="{{$doc->id}}">
                   <div class="card-header">
                     <h4 class="card-title">Document Information</h4>
@@ -165,24 +166,9 @@
 
            
 
-        <div class="col-sm-5">
-        <div class="card-body">
-        <form method="post" enctype="multipart/form-data" action="{{route('file-update')}}">
-               @csrf
-               <input type="hidden" name="id" value="{{$doc->id}}">
-             <div class="form-group">
-             <div class="mb-3">
-                            <div class="form-label">Choose New File </div>
-                            <input type="file"  name="file" id="file_upload" class="form-control" data-traget-resolution="image_resolution"
-                            
-                            accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
-                            <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
-                  </div>
+        <div class="col-sm-12">
 
-                  <button type="submit" class="btn btn-primary">Upload</button>
-
-             </form>
-        </div>
+    
             <div class="card mt-2">
               <div class="card-body">
               <input type="hidden"  id="file2" value="{{$doc->filename}}">
@@ -202,6 +188,26 @@
               </div>
               </div>
             </div>
+
+            <div class="card p-4 mt-2">
+              <div class="card-body">
+                <form method="post" enctype="multipart/form-data" action="{{route('file-update')}}">
+                       @csrf
+                       <input type="hidden" name="id" value="{{$doc->id}}">
+                     <div class="form-group">
+                     <div class="mb-3">
+                                    <div class="form-label">Choose New File </div>
+                                    <input type="file"  name="file" id="file_upload" class="form-control" data-traget-resolution="image_resolution"
+                                    
+                                    accept="application/pdf,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.slideshow,application/vnd.openxmlformats-officedocument.presentationml.presentation" />
+                                    <input data-required="image"   type="hidden"  name="thumb" id="thumb" >
+                          </div>
+        
+                          <button type="submit" class="btn btn-primary">Upload</button>
+        
+                     </form>
+                </div>
+            </div>
               
         </div>
          
@@ -216,7 +222,7 @@
 <script>
 
 var filename=$('#file2').val();
-var filepath="{{asset('files')}}/"+ filename
+var filepath="{{route('get-s3-bucket-file',$doc->filename)}}"
 
 var _PDF_DOC,
     _CURRENT_PAGE,

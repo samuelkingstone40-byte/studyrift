@@ -10,7 +10,13 @@
         </nav>
         <div class="row g-3">
             <div class="col-sm-12">
-                <h3 class="page-header">{{$user->name}}</h3>
+                <div class="d-flex bd-highlight">
+                    <div class="p-2 flex-grow-1 bd-highlight"> <h3 class="page-header">{{$user->name}}</h3></div>
+                    <div class="p-2 bd-highlight"><a href={{route('edit-user-profile',$user->id)}}> 
+                        <i class="ti-settings"></i>
+                        Settings</a></div>
+                  </div>
+               
                 <div class="row ">
                     <div class="col-lg-4 col-sm-12" >
                         <div class="card">

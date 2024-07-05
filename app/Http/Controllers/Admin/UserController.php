@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -180,6 +181,48 @@ class UserController extends Controller
         }
 
         return $earnings;
+    }
+
+    //update user settings
+    public function edit_user_profile($id)
+    {
+       $data=[];
+        try {
+            $user=$query=DB::table('users')->where('id',$id)->first();
+            $data['user']=$user;
+        } catch (\Throwable $th) {
+            return view('admin/users/edit-profile')->with('errors',$th->getMessage());
+        }
+        
+        return view('admin/users/edit-profile',$data);
+    }
+
+    //deactivate clients account 
+    public function deactivate_account($id)
+    {
+        try {
+            $deactivate=DB::table('users')
+            ->where('id', $id)
+            ->update(['status' => 0]);
+        } catch (\Throwable $th) {
+            return view('admin/users/edit-profile')->with('errors',$th->getMessage());
+        }
+
+        return Redirect::back()->with('success','User account deactivated successfully.');
+    }
+
+        //activate clients account 
+    public function activate_account($id)
+    {
+            try {
+                $deactivate=DB::table('users')
+                ->where('id', $id)
+                ->update(['status' => 1]);
+            } catch (\Throwable $th) {
+                return view('admin/users/edit-profile')->with('errors',$th->getMessage());
+            }
+    
+            return Redirect::back()->with('success','User account activated successfully.');
     }
 
 }

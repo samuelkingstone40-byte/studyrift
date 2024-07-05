@@ -4,7 +4,7 @@
         <div class=" mt-10">
           <!-- Summary -->
           <h1 class="text-3xl my-2 font-semibold">Dashboard</h1>
-          <div class="grid grid-cols-3 gap-4 mb-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <div>
               <div class="border bg-white rounded border-gray-300 mb-1 py-2 content-center flex flex-col items-center ">
                 <svg class="w-12 h-12 text-orange-400  dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">

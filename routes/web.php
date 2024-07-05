@@ -48,7 +48,7 @@ Route::post('update-profile', [App\Http\Controllers\ClientController::class, 'up
 Route::post('update-paypal', [App\Http\Controllers\ClientController::class, 'update_paypal'])->name('update-paypal');
 Route::post('update-password', [App\Http\Controllers\ClientController::class, 'update_password'])->name('update-password');
 Route::post('deactivate-account', [App\Http\Controllers\ClientController::class, 'deactivate_account'])->name('deactivate-account');
-Route::post('notes-update', [App\Http\Controllers\ClientController::class, 'notes_update'])->name('notes-update');
+Route::patch ('notes-update/{id}', [App\Http\Controllers\ClientController::class, 'documents_update'])->name('notes-update');
 Route::post('file-update', [App\Http\Controllers\ClientController::class, 'file_update'])->name('file-update');
 Route::post('notifications', [App\Http\Controllers\ClientController::class, 'fetch_notifications'])->name('notifications');
 Route::post('mark-as-read', [App\Http\Controllers\ClientController::class, 'mark_as_read'])->name(' mark-as-read');
@@ -89,9 +89,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/intasend-payment-status',[PaymentController::class,'intasend_payment_status'])->name('intasend-payment-status');
 
 });
+
 Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('/logout/admin', [App\Http\Controllers\Auth\LoginController::class,'AdminLogout'])->name('AdminLogout');
-
     Route::group(['prefix' => 'admin'], function()  
     { 
         //users
@@ -101,6 +101,9 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('user-uploads/{id}',[UserController::class,'user_uploads'])->name('user-uploads');
         Route::get('user-downloads/{id}',[UserController::class,'user_downloads'])->name('user-downloads');
         Route::get('user-transactions/{id}',[UserController::class,'user_transactions'])->name('user-transactions');
+        Route::get('edit-profile/{id}',[UserController::class,'edit_user_profile'])->name('edit-user-profile');
+        Route::patch('deactivate-account/{id}',[UserController::class,'deactivate_account'])->name('deactivate-user-account');
+        Route::patch('activate-account/{id}',[UserController::class,'activate_account'])->name('activate-user-account');
 
         //documents
         Route::get('documents/uploads',[DocumentController::class,'uploads'])->name('uploads');

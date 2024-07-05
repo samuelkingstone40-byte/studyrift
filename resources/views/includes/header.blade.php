@@ -10,11 +10,11 @@
                 </svg>
             </button>
             <a href="{{url('/')}}" class="flex ml-2 md:mr-24">
-                <img class="logo-2 w-16  sm:w-32 md:w-64" src="{{asset('theme/img/site/logo.png')}}" alt="" />
+                <img class="logo-2 w-16 sm:w-32 md:w-64 " src="{{asset('theme/img/site/logo.png')}}" alt="" />
             </a>
         </div>
 
-        <div class="flex items-center md:order-2">
+        <div class=" flex items-center md:order-2">
             @guest
                 <a href="{{url('login')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:text-md  md:text-lg px-4 py-1 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Logindd</a>
                 <a href="{{url('register')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:text-md md:text-lg px-4 py-1 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</a>

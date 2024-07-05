@@ -1,12 +1,13 @@
 <title>Uploads - Studymerit</title>
 @extends('layouts.client_layout')
 @section('content')
+
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">
 <div class="page-wrapper">
     <div class="mt-5">
           <!-- Page title -->
           <div class="text-3xl my-4 font-bold">Upload New Document</div>
-
+          @include('partials.response-status')
           <!--Form Section -->
           <section >
             <form method="post" enctype="multipart/form-data" class="bg-white p-6"  action="{{route('post-document')}}" >
@@ -63,13 +64,13 @@
                 <div class="item1 col-span-1">
                   <div class="relative z-0 w-full mb-6 group">
                     <label for="title" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Selling Price</label>
-                    <input type="text" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+                    <input type="text" id="price" name="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Price" required>
                   </div>
                 </div>
                 <div class="item2 col-span-1">
                   <div class="relative z-0 w-full mb-6 group">
                     <label for="code" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Earning</label>
-                    <input type="text" id="earning" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@flowbite.com" required>
+                    <input type="text" id="earning" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Earnings" required>
                   </div>
                 </div>
               </div>
@@ -255,7 +256,7 @@ async function showPage(page_no) {
 // click on "Show PDF" buuton
 
 $('#file_upload').change(function(){
-           
+          
            let reader = new FileReader();
           
            reader.onload = (e) => { 
@@ -265,8 +266,6 @@ $('#file_upload').change(function(){
              var image=$('#pdf-canvas').get(0).toDataURL()
              $('#filename').html(this.files[0].name);
           
-            
-            
              showPDF(e.target.result);
              
            }

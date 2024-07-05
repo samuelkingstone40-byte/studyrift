@@ -1,76 +1,78 @@
 @extends('layouts.client_layout')
 @section('content')
+
 <style type="text/css">
+    #show-pdf-button {
+      width: 150px;
+      display: block;
+      margin: 20px auto;
+    }
 
-#show-pdf-button {
-	width: 150px;
-	display: block;
-	margin: 20px auto;
-}
+    #file-to-upload {
+      display: none;
+    }
 
-#file-to-upload {
-	display: none;
-}
+    #pdf-main-container {
+      margin: 10px auto;
+    }
 
-#pdf-main-container {
-	margin: 10px auto;
-}
+    #pdf-loader {
+      display: none;
+      text-align: center;
+      color: #999999;
+      font-size: 13px;
+      line-height: 100px;
+      height: 100px;
+    }
 
-#pdf-loader {
-	display: none;
-	text-align: center;
-	color: #999999;
-	font-size: 13px;
-	line-height: 100px;
-	height: 100px;
-}
+    #pdf-contents {
+      display: none;
+    }
 
-#pdf-contents {
-	display: none;
-}
+    #pdf-meta {
+      overflow: hidden;
+      margin: 0 0 20px 0;
+    }
 
-#pdf-meta {
-	overflow: hidden;
-	margin: 0 0 20px 0;
-}
+    #pdf-buttons {
+      float: left;
+    }
 
-#pdf-buttons {
-	float: left;
-}
+    #page-count-container {
+      float: right;
+    }
 
-#page-count-container {
-	float: right;
-}
+    #pdf-current-page {
+      display: inline;
+    }
 
-#pdf-current-page {
-	display: inline;
-}
+    #pdf-total-pages {
+      display: inline;
+    }
 
-#pdf-total-pages {
-	display: inline;
-}
+    #pdf-canvas {
+      border: 1px solid rgba(0,0,0,0.2);
+      box-sizing: border-box;
+    }
 
-#pdf-canvas {
-	border: 1px solid rgba(0,0,0,0.2);
-	box-sizing: border-box;
-}
-
-#page-loader {
-	height: 100px;
-	line-height: 100px;
-	text-align: center;
-	display: none;
-	color: #999999;
-	font-size: 13px;
-}
+    #page-loader {
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      display: none;
+      color: #999999;
+      font-size: 13px;
+    }
 
 </style>
 
-<div  class="p-4 mt-10">
+<div class="px-4 bg-white">
+
   <div class="flex justify-between my-2">
     <div class="text-3xl font-semibold ">
       {{$doc->title}}
     </div>
+    @include('partials.response-status')
     <div>
       @if($purchased)
       <a href="{{url('download/'.$doc->id)}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -80,92 +82,113 @@
         Download
       </a>
       @endif
+      <div class="flex justify-start">
+        <a href="{{url('edit-document/'.$doc->slug)}}" class="mr-2 block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+          Edit File
+        </a>
+
+        <button data-modal-target="default-modal" data-modal-toggle="default-modal" class=" block text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+          Delete File
+        </button>
+      </div>
     </div>
   </div>
 
-  <div>
+  <div class="flex">
     <div class="text-xl font-semibold mb-2">Subject : {{$doc->sname}}</div>
     <div class="text-xl font-semibold mb-2">Category : {{$doc->cname}}</div>
     <div class="text-xl font-semibold mb-2">Price :${{$doc->price}}</div>
   </div>
 
-  <div class="my-2 flex items-center justify-center">
-    <input type="hidden"  id="file2" value="{{$doc->filename}}">
-    <div class="content-center  mx-auto max-w-screen-lg h-full" id="pdf-main-container justify-content-center">
-            <div id="pdf-loader">Loading document ...</div>
-             <div id="pdf-contents" class="p-4 ">
-             
-                <canvas class=" h-full" width="800" height="900" id="pdf-canvas" ></canvas>
-               
-                <div id="page-loader">Loading page ...</div>
-            </div>
-            <div id="pdf-meta" class="mt-5">
-              <div id="pdf-buttons">
-                <div class="flex">
-                  <!-- Previous Button -->
-                  <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                    </svg>
-                    Previous
-                  </a>
-                  <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                    Next
-                    <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                  </a>
-                </div>
-                 
-              </div>
-              <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
-          </div>
-    </div>
-  </div>
-
-  <div class="bg-white mt-10 mx-4 p-6">
-    <div>
-      <h3 class="text-xl font-semibold mb-2">Description</h3>
-      <p>
-        {{$doc->description}}
-      </p>
-    </div>
-  </div>
-
-  <div class="mt-2 mx-4"> 
-    <h3 class="text-xl font-semibold mb-2">Document Reviews</h3>
-     @foreach ($reviews as $review)
-      <div>
-        <div class="row">
-          <div class="col-auto">
-            <span class="avatar">{{$review->name}}</span>
-          </div>
-          <div class="col">
-            <div class="text-truncate">
-            {{$review->review}}
-            </div>
-            <div class="text-muted">
-            <div class="star">
-                @for($i=0;$i<=$review->rating;$i++)
-                <span class="ti-star checked"></span>
-                @endfor
-           </div>
-            </div>
-          </div>
-          <div class="col-auto align-self-center">
-            <div class="badge bg-primary"></div>
-          </div>
+  <div class="grid grid-cols-1 md:grid-cols-3">
+    <div class="md:col-span-2">
+      <div class="bg-white card mb-4">
+        <div class="card-body">
+          <h3 class="text-xl font-semibold mb-2">Description</h3>
+          <p>
+            {{$doc->description}}
+          </p>
         </div>
       </div>
-      @endforeach
+      <div class="mb-4 card py-2">
+        <input type="hidden"  id="file2" value="{{$doc->filename}}">
+        <div class="" id="pdf-main-container justify-content-center">
+                <div id="pdf-loader">Loading document ...</div>
+                 <div id="pdf-contents" class="px-4 mb-2">
+                    <canvas class=" h-full" width="800" height="900" id="pdf-canvas" ></canvas>
+                    <div id="page-loader">Loading page ...</div>
+                </div>
+                <div id="pdf-meta" class="px-4">
+                  <div id="pdf-buttons" class="flex justify-between items-center">
+                    <div class="flex">
+                      <!-- Previous Button -->
+                      <a href="#" id="pdf-prev" class="flex items-center justify-center px-3 h-8 mr-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                        </svg>
+                        Previous
+                      </a>
+                      <a href="#"  id="pdf-next" class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        Next
+                        <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                      </a>
+                    </div>
+                    <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
+    
+                  </div>
+              </div>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+    <div>
+      <div class="mx-4 card">
+        <div class="card-body">
+          <h3 class="text-xl font-semibold mb-2">Document Reviews</h3>
+          @foreach ($reviews as $review)
+           <div>
+             <div class="row">
+               <div class="col-auto">
+                 <span class="avatar">{{$review->name}}</span>
+               </div>
+               <div class="col">
+                 <div class="text-truncate">
+                 {{$review->review}}
+                 </div>
+                 <div class="text-muted">
+                 <div class="star">
+                     @for($i=0;$i<=$review->rating;$i++)
+                     <span class="ti-star checked"></span>
+                     @endfor
+                </div>
+                 </div>
+               </div>
+               <div class="col-auto align-self-center">
+                 <div class="badge bg-primary"></div>
+               </div>
+             </div>
+           </div>
+           @endforeach
+        </div>
+      </div>
+    </div>
   </div>
+
+
+
+
+
 
 
 
   <!-- Modal toggle -->
-<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="mx-4 my-4 block text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-  Delete File
-</button>
+
 
 <!-- Main modal -->
 <div id="default-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -288,8 +311,8 @@ async function showPage(page_no) {
     var viewport = page.getViewport(scale_required);
 
     // set canvas height same as viewport height
-    _CANVAS.height = viewport.height;
-    _CANVAS.width =860;
+    _CANVAS.height = (viewport.height);
+    _CANVAS.width =viewport.width;
     // setting page loader height for smooth experience
     document.querySelector("#page-loader").style.height =  _CANVAS.height + 'px';
     document.querySelector("#page-loader").style.lineHeight = _CANVAS.height + 'px';

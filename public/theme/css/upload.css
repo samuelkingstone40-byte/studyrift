@@ -1,7 +1,8 @@
 
-#show-pdf-button {
-	width: 100%;
 
+#show-pdf-button {
+	width: 150px;
+	display: block;
 	margin: 20px auto;
 }
 
@@ -10,8 +11,7 @@
 }
 
 #pdf-main-container {
-	width: 100%;
-	margin: 20px auto;
+	margin: 10px auto;
 }
 
 #pdf-loader {
@@ -61,3 +61,4 @@
 	color: #999999;
 	font-size: 13px;
 }
+
