@@ -1,4 +1,5 @@
 @extends('layouts.client_layout')
+<title> {{$doc->title}}</title>
 @section('content')
 <style type="text/css">
 
