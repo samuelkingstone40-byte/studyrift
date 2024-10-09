@@ -46,11 +46,10 @@
                 ajax: "{{route('fetch_uploads')}}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                   
                     {data: 'sname', name: 'sname'},
                     {data: 'cname', name: 'cname'},
                     {data: 'title', name: 'title'},
-                    {data: 'date', name: 'date'},
+                    {data: 'created_at', name: 'created_at'},
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
                 ]
