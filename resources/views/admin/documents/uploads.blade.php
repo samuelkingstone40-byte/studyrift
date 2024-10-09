@@ -18,10 +18,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Subject</th>
-                                    <th>Category</th>
+                                
                                     <th>Title</th>
-                                    <th>Uploaded At</th>
+                                   
                                     <th>Price($)</th>
                                     <th></th>
                                 
@@ -46,10 +45,9 @@
                 ajax: "{{route('fetch_uploads')}}",
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'sname', name: 'sname'},
-                    {data: 'cname', name: 'cname'},
+                    
                     {data: 'title', name: 'title'},
-                    {data: 'date', name: 'date'},
+                    
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
                 ]

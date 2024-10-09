@@ -27,7 +27,7 @@ class DocumentController extends Controller
             ->leftJoin('categories','documents.category_id','=','categories.id')
             ->select('documents.*','subjects.name as sname','categories.name as cname','users.name as uname')
             ->get();
-            return $data;
+          
             return DataTables::of($data)
             ->addIndexColumn()
             ->editColumn('title', function ($data) {
