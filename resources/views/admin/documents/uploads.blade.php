@@ -18,9 +18,10 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                
+                                    <th>Subject</th>
+                                    <th>Category</th>
                                     <th>Title</th>
-                                   
+                                    <th>Uploaded At</th>
                                     <th>Price($)</th>
                                     <th></th>
                                 
@@ -42,12 +43,26 @@
             var table = $('.table-uploads').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{route('fetch_uploads')}}",
+                ajax: {
+                url: "{{ route('fetch_uploads') }}",
+                type: 'GET',
+                error: function(xhr, status, error) {
+                    // Display error in console for debugging
+                    console.log('AJAX error: ', error);
+
+                    // Optionally alert the error or show in the UI
+                    alert('An error occurred while loading the data: ' + xhr.responseText);
+
+                    // You can also display the error within the DataTable
+                    $('.table-uploads').html('<tr><td colspan="6" class="text-center">Unable to load data</td></tr>');
+                }
+            },
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    
+                    {data: 'sname', name: 'sname'},
+                    {data: 'cname', name: 'cname'},
                     {data: 'title', name: 'title'},
-                    
+                    {data: 'date', name: 'date'},
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
                 ]
