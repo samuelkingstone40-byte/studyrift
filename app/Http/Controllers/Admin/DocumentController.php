@@ -20,13 +20,16 @@ class DocumentController extends Controller
 
     public function fetch_uploads(Request $request)
     {
+        $limit = $request->input('length'); // Number of records to fetch
+    $start = $request->input('start');   // Offset
         if ($request->ajax()) {
             $data = DB::table('documents')
             ->leftJoin('users','users.id','=','documents.user_id')
             ->leftJoin('subjects','documents.subject_id','=','subjects.id')
             ->leftJoin('categories','documents.category_id','=','categories.id')
             ->select('documents.*','subjects.name as sname','categories.name as cname','users.name as uname')
-            ->get();
+            ->limit($limit)
+            ->offset($start)->get(); // Apply offset
             return DataTables::of($data)
             ->editColumn('title', function ($data) {
                 return Str::limit($data->title, 30);

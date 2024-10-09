@@ -42,7 +42,6 @@
             var table = $('.table-uploads').DataTable({
                 processing: true,
                 serverSide: true,
-        
                 ajax: {
                 url: "{{ route('fetch_uploads') }}",
                 type: 'GET',
@@ -51,7 +50,7 @@
                     console.log('AJAX error: ', error);
 
                     // Optionally alert the error or show in the UI
-                    alert('An error occurred while loading the data: ' + xhr.responseText);
+                    alert('An error occurred while loading the data: ' + xhr);
 
                     // You can also display the error within the DataTable
                     $('.table-uploads').html('<tr><td colspan="6" class="text-center">Unable to load data</td></tr>');
@@ -64,8 +63,7 @@
                     {data: 'title', name: 'title'},
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
-                ],
-                pageLength: 1,
+                ]
             });
         });
     </script>
