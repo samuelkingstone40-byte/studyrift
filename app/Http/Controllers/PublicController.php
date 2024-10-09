@@ -312,8 +312,13 @@ class PublicController extends Controller
      */
 
     public function get_s3_bucket_file($filepath){
+        //check if exist
+
+        $file=DB::table('files')->where('filename',$filepath)->first();
+        if(!$file){
+            return abort(404);
+        }
         return Storage::get('files/'.$filepath);
-         
     }
 
     public function get_s3_thumbnail($id){
