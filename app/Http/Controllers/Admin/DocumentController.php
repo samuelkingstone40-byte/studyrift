@@ -53,14 +53,8 @@ class DocumentController extends Controller
                     ->make(true);
             }
         } catch (\Exception $e) {
-            // Log the error for debugging
             Log::error('Error fetching uploads: ' . $e->getMessage());
-    
-            // Return a JSON error message
-            return response()->json([
-                'error' => true,
-                'message' => 'An error occurred while fetching the uploads. Please try again later.'
-            ], 500);
+        return response()->json(['error' => 'Data fetch error. Please try again later.'], 500);
         }
     }
 
