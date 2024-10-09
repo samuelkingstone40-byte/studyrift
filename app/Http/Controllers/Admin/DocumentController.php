@@ -31,10 +31,7 @@ class DocumentController extends Controller
                     ->leftJoin('subjects', 'documents.subject_id', '=', 'subjects.id')
                     ->leftJoin('categories', 'documents.category_id', '=', 'categories.id')
                     ->select('documents.*', 'subjects.name as sname', 'categories.name as cname', 'users.name as uname')
-                    ->offset($start) // Apply offset
-                    ->limit($limit)  // Apply limit
-                    ->get();
-
+                  ->get();
                 
     
                 return DataTables::of($data)
@@ -60,7 +57,7 @@ class DocumentController extends Controller
             }
         } catch (\Exception $e) {
             Log::error('Error fetching uploads: ' . $e->getMessage());
-        return response()->json(['error' => 'Data fetch error. Please try again later.'], 500);
+        return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
