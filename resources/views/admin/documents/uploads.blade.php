@@ -48,7 +48,7 @@
                 type: 'GET',
                 error: function(xhr, status, error) {
                     // Display error in console for debugging
-                    console.log('AJAX error: ', error);
+                    console.log('AJAX error: ', xhr);
 
                     // Optionally alert the error or show in the UI
                     alert('An error occurred while loading the data: ' + xhr);
