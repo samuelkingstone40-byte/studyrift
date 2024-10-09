@@ -42,9 +42,14 @@
             var table = $('.table-uploads').DataTable({
                 processing: true,
                 serverSide: true,
+        
                 ajax: {
                 url: "{{ route('fetch_uploads') }}",
                 type: 'GET',
+                data: function (d) {
+                d.start = d.start; // Starting point (offset)
+                d.length = d.length; // Number of records to fetch (limit)
+            },
                 error: function(xhr, status, error) {
                     // Display error in console for debugging
                     console.log('AJAX error: ', error);

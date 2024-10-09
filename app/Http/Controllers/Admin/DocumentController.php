@@ -21,6 +21,8 @@ class DocumentController extends Controller
 
     public function fetch_uploads(Request $request)
     {
+        $limit = $request->input('length');
+    $start = $request->input('start');
         try {
             if ($request->ajax()) {
                 // Fetch the data from the database
@@ -29,9 +31,11 @@ class DocumentController extends Controller
                     ->leftJoin('subjects', 'documents.subject_id', '=', 'subjects.id')
                     ->leftJoin('categories', 'documents.category_id', '=', 'categories.id')
                     ->select('documents.*', 'subjects.name as sname', 'categories.name as cname', 'users.name as uname')
+                    ->offset($start) // Apply offset
+                    ->limit($limit)  // Apply limit
                     ->get();
 
-                    return $data;
+                
     
                 return DataTables::of($data)
                     ->addIndexColumn()
