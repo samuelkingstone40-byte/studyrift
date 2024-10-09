@@ -47,10 +47,10 @@
                 type: 'GET',
                 error: function(xhr, status, error) {
                     // Display error in console for debugging
-                    console.log('AJAX error: ', xhr);
+                    console.log('AJAX error: ', error);
 
                     // Optionally alert the error or show in the UI
-                    alert('An error occurred while loading the data: ' + xhr);
+                    alert('An error occurred while loading the data: ' + xhr.responseText);
 
                     // You can also display the error within the DataTable
                     $('.table-uploads').html('<tr><td colspan="6" class="text-center">Unable to load data</td></tr>');
