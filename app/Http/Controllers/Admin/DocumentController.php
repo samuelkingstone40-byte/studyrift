@@ -27,27 +27,29 @@ class DocumentController extends Controller
             ->leftJoin('categories','documents.category_id','=','categories.id')
             ->select('documents.*','subjects.name as sname','categories.name as cname','users.name as uname')
             ->get();
-            return $data;
+            
             return DataTables::of($data)
+            ->addIndexColumn()
             ->editColumn('title', function ($data) {
-                return Str::limit($data->title, 30);
+                return $data->title ? Str::limit($data->title, 30) : 'N/A';  // Handle null title
             })
-
+            ->editColumn('sname', function ($data) {
+                return $data->sname ?? 'N/A';  // Handle null subject name
+            })
+            ->editColumn('cname', function ($data) {
+                return $data->cname ?? 'N/A';  // Handle null category name
+            })
             ->editColumn('amount', function ($data) {
-                return number_format($data->price,2);
+                return $data->price !== null ? number_format($data->price, 2) : '0.00';  // Handle null price
             })
-
             ->editColumn('date', function ($data) {
-                $dt = Carbon::create($data->created_at);
-                return $dt->toDateString();
+                return $data->created_at ? Carbon::create($data->created_at)->toDateString() : 'N/A';  // Handle null date
             })
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="/admin/documents/view/'.$row->id.'" class="btn-view">View</a> ';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+            ->addColumn('action', function ($row) {
+                return '<a href="/admin/documents/view/'.$row->id.'" class="btn-view">View</a>';
+            })
+            ->rawColumns(['action'])
+            ->make(true);
         }
     }
 
