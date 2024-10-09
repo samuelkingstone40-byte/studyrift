@@ -64,7 +64,8 @@
                     {data: 'title', name: 'title'},
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
-                ]
+                ],
+                pageLength: 10,
             });
         });
     </script>

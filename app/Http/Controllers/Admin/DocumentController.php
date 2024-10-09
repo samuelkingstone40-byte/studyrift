@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Subject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -21,43 +20,33 @@ class DocumentController extends Controller
 
     public function fetch_uploads(Request $request)
     {
-        $limit = $request->input('length');
-    $start = $request->input('start');
-        try {
-            if ($request->ajax()) {
-                // Fetch the data from the database
-                $data = DB::table('documents')
-                    ->leftJoin('users', 'users.id', '=', 'documents.user_id')
-                    ->leftJoin('subjects', 'documents.subject_id', '=', 'subjects.id')
-                    ->leftJoin('categories', 'documents.category_id', '=', 'categories.id')
-                    ->select('documents.*', 'subjects.name as sname', 'categories.name as cname', 'users.name as uname')
-                  ->get();
-                
-    
-                return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->editColumn('title', function ($data) {
-                        return $data->title ? Str::limit($data->title, 30) : 'N/A';
-                    })
-                    ->editColumn('sname', function ($data) {
-                        return $data->sname ?? 'N/A';
-                    })
-                    ->editColumn('cname', function ($data) {
-                        return $data->cname ?? 'N/A';
-                    })
-                    ->editColumn('amount', function ($data) {
-                        return $data->price !== null ? number_format($data->price, 2) : '0.00';
-                    })
-                    
-                    ->addColumn('action', function ($data) {
-                        return '<a href="/admin/documents/view/'.$data->id.'" class="btn-view">View</a>';
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
-            }
-        } catch (\Exception $e) {
-            Log::error('Error fetching uploads: ' . $e->getMessage());
-        return response()->json(['error' => $e->getMessage()], 500);
+        if ($request->ajax()) {
+            $data = DB::table('documents')
+            ->leftJoin('users','users.id','=','documents.user_id')
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
+            ->select('documents.*','subjects.name as sname','categories.name as cname','users.name as uname')
+            ->get();
+            return DataTables::of($data)
+            ->editColumn('title', function ($data) {
+                return Str::limit($data->title, 30);
+            })
+
+            ->editColumn('amount', function ($data) {
+                return number_format($data->price,2);
+            })
+
+            ->editColumn('date', function ($data) {
+                $dt = Carbon::create($data->created_at);
+                return $dt->toDateString();
+            })
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                    $actionBtn = '<a href="/admin/documents/view/'.$row->id.'" class="btn-view">View</a> ';
+                    return $actionBtn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
     }
 
