@@ -35,6 +35,7 @@
     </div>
 </div>
 
+
 @endsection
 @section('scripts')
     <script type="text/javascript">
@@ -49,7 +50,7 @@
                     {data: 'sname', name: 'sname'},
                     {data: 'cname', name: 'cname'},
                     {data: 'title', name: 'title'},
-                    {data: 'created_at', name: 'created_at'},
+                    {data: 'date', name: 'date'},
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
                 ]
