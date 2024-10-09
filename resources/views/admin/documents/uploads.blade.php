@@ -21,7 +21,6 @@
                                     <th>Subject</th>
                                     <th>Category</th>
                                     <th>Title</th>
-                                    <th>Uploaded At</th>
                                     <th>Price($)</th>
                                     <th></th>
                                 
@@ -62,7 +61,6 @@
                     {data: 'sname', name: 'sname'},
                     {data: 'cname', name: 'cname'},
                     {data: 'title', name: 'title'},
-                    {data: 'date', name: 'date'},
                     {data: 'amount', name: 'amount'},
                     {data: 'action', name: 'action',  orderable: true, searchable: true},
                 ]

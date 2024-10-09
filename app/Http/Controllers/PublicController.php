@@ -113,6 +113,10 @@ class PublicController extends Controller
         ->leftJoin('categories','documents.category_id','=','categories.id')
         ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
+
+        if(!$file){
+            abort(404);
+        }
         $data['doc']=$file;
         $seller_id=$file->user_id;
         $seller_info=DB::table('users')

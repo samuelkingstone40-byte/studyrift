@@ -45,11 +45,9 @@ class DocumentController extends Controller
                     ->editColumn('amount', function ($data) {
                         return $data->price !== null ? number_format($data->price, 2) : '0.00';
                     })
-                    ->editColumn('date', function ($data) {
-                        return $data->created_at ? Carbon::create($data->created_at)->toDateString() : 'N/A';
-                    })
-                    ->addColumn('action', function ($row) {
-                        return '<a href="/admin/documents/view/'.$row->id.'" class="btn-view">View</a>';
+                    
+                    ->addColumn('action', function ($data) {
+                        return '<a href="/admin/documents/view/'.$data->id.'" class="btn-view">View</a>';
                     })
                     ->rawColumns(['action'])
                     ->make(true);
