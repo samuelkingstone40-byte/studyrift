@@ -315,7 +315,15 @@ class PublicController extends Controller
         //check if exist
 
         $file=DB::table('files')->where('filename',$filepath)->first();
+
+        //check if document exists
         if(!$file){
+            return abort(404);
+        }
+
+        $document=DB::table('documents')->where('id',$file->document_id);
+
+        if(!$document){
             return abort(404);
         }
         return Storage::get('files/'.$filepath);
