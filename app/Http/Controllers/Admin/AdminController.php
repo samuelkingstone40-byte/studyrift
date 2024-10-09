@@ -52,6 +52,13 @@ class AdminController extends Controller
         return $downloads;
     }
 
+    public function delete_file($id){
+        $file=DB::table('documents')
+        ->where('id',$id)
+        ->delete();
+        return redirect('admin/documents/uploads')->with('success', 'file deleted successfuly!'); 
+    }
+
    
 
 

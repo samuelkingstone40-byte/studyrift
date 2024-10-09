@@ -49,8 +49,10 @@ class PaymentController extends Controller
         $credentials = [
             'token'=>env('INTASEND_SECRET_KEY'),
             'publishable_key'=>env('INTASEND_PUBLIC_KEY'),
-            'live'=>true,
+            'live'=>env('INTASEND_ENVIRONMANT'),
         ];
+
+        return $credentials;
 
         // order details
         $document_ids=$request['docs'];

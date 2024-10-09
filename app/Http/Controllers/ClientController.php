@@ -510,7 +510,7 @@ class ClientController extends Controller
     public function file_delete($id){
         $file=DB::table('documents')
         ->where('id',$id)
-        ->update(['status'=>0]);
+        ->delete();
         return redirect('uploads')->with('success', 'file deleted successfuly!'); 
     }
 
