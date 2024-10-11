@@ -43,13 +43,15 @@ class PaymentController extends Controller
         }
     }
 
+
+
     /**Process payment using intasend */
     public function checkout_intasend($request)
     {
         $credentials = [
             'token'=>env('INTASEND_SECRET_KEY'),
             'publishable_key'=>env('INTASEND_PUBLIC_KEY'),
-            'live'=>env('INTASEND_ENVIRONMANT'),
+            'live'=>env('INTASEND_ENVIRONMENT'),
         ];
 
         return $credentials;
