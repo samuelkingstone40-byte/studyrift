@@ -54,8 +54,7 @@ class PaymentController extends Controller
             'live'=>env('INTASEND_ENVIRONMENT'),
         ];
 
-        return $credentials;
-
+       
         // order details
         $document_ids=$request['docs'];
         $total_amount=$request['amount'];
