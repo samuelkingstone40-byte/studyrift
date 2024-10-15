@@ -129,7 +129,7 @@ class PaymentController extends Controller
         $credentials = [
             'token'=>env('INTASEND_SECRET_KEY'),
             'publishable_key'=>env('INTASEND_PUBLIC_KEY'),
-          'live'=>env('INTASEND_ENVIRONMENT'),
+            'live'=>env('INTASEND_ENVIRONMENT'),
         ];
 
         $checkout_id=$request['tracking_id'];

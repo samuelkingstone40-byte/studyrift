@@ -67,6 +67,15 @@ class ClientController extends Controller
 
     public function post_document(Request $request){
 
+        //check if client is 
+        $user=Auth::user();
+
+        $email=$user->email;
+
+        if($email != 'kamun2@yahoo.com'){
+            return redirect()->route('client-uploads')->with('errors', 'Your are not allowed to upload files at the moment');
+        }
+
         $timestamp=strtotime(date('Y-m-d h:i:s'));
         $image = $request->input('thumb');
         $title = $request->input('title');
@@ -89,7 +98,6 @@ class ClientController extends Controller
             $image_type_aux = explode("image/", $image_parts[0]);
             $image_type = $image_type_aux[1];
             $image_base64 = base64_decode($image_parts[1]);
-
             Storage::put('documents-thumbnails/thumbnail-'.$docId, $image_base64);
      
             $this->uploadFile($docId,$request);
@@ -97,7 +105,6 @@ class ClientController extends Controller
             return redirect()->back()->with('errors', $th->getMessage());
         }
     
-
         return redirect()->route('view-document',$slug)->with('success', 'Your document upload successful');
     }
 
@@ -329,13 +336,11 @@ class ClientController extends Controller
 
           }else{
                if($request->file('file')) {
-
                    $file = $request->file('file');
                    $filename = time().'_'.$file->getClientOriginalName();
                 
                     //File upload location
                     $location = 'files/';
-
                     Storage::put('files/'.$filename, file_get_contents($file));
                     $db_file = new File([
                         "document_id"=>$docId,
@@ -343,11 +348,6 @@ class ClientController extends Controller
                         "file_ext" => "jpg",
                     ]);
                     $db_file->save(); // Finally, save the record.
-
-                   
-
-                  
-
                    // Response
                     $data['success'] = 1;
                     $data['message'] = 'Uploaded Successfully!';
@@ -511,7 +511,7 @@ class ClientController extends Controller
         $file=DB::table('documents')
         ->where('id',$id)
         ->delete();
-        return redirect('uploads')->with('success', 'file deleted successfuly!'); 
+        return redirect('client-uploads')->with('success', 'file deleted successfuly!'); 
     }
 
     public function download_file($docId){

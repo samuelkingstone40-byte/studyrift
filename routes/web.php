@@ -35,7 +35,7 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 
 Route::get('/upload', [App\Http\Controllers\ClientController::class, 'sell']);
 Route::post('post-document',[App\Http\Controllers\ClientController::class,'post_document'])->name('post-document');
-Route::get('/uploads',[App\Http\Controllers\ClientController::class,'uploads'])->name('uploads');
+Route::get('/uploads',[App\Http\Controllers\ClientController::class,'uploads'])->name('client-uploads');
 Route::get('profile',[App\Http\Controllers\ClientController::class,'profile'])->name('profile');
 Route::get('upload-files/{id}',[App\Http\Controllers\ClientController::class,'upload_files'])->name('upload-files');
 Route::post('/uploadFile', [App\Http\Controllers\ClientController::class, 'uploadFile'])->name('uploadFile');
@@ -113,6 +113,8 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('documents/view/{id}',[DocumentController::class,'view'])->name('view');
         Route::patch('deactivate-file/{id}',[DocumentController::class,'deactivate'])->name('deactivate-file');
         Route::patch('publish-file/{id}',[DocumentController::class,'publish'])->name('publish-file');
+        Route::post('deleteFile/{id}',[DocumentController::class,'delete_file'])->name('deleteFile');
+
 
         //finance routes
         Route::get('finance/',[FinanceController::class,'index'])->name('finance-dashboard');
@@ -122,7 +124,6 @@ Route::group(['middleware' => 'auth:admin'], function () {
         Route::get('get_all_uploads',[\App\Http\Controllers\Admin\AdminController::class,'get_all_uploads'])->name('get_all_uploads');
        
         Route::get('view/{id}',[\App\Http\Controllers\Admin\AdminController::class,'document_view'])->name('view');
-        Route::post('deleteFile/{id}',[\App\Http\Controllers\Admin\AdminController::class,'delete_file'])->name('deleteFile');
 
         Route::get('general-ledger',[\App\Http\Controllers\Admin\TransactionController::class,'general_ledger'])->name('general-ledger');
         Route::get('sales',[\App\Http\Controllers\Admin\TransactionController::class,'sales'])->name('sales');

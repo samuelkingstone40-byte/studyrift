@@ -71,6 +71,7 @@
 <div class="px-4 mt-2">
   <div class="">
     <div class="text-xl md:text-2xl font-semibold my-2">My Uploaded Documents</div>
+    @include('partials.response-status')
     <div>
       <a href="{{url('upload')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm sm:px-4 sm:py-1 lg:px-4 md:py-2 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         <svg class="w-6 h-6 text-white  pr-2 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">

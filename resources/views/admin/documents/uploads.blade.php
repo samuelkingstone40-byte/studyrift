@@ -10,6 +10,7 @@
     </nav>
     <h3 class="page-header"> documents uploads</h3>
     <div class="">
+        @include('partials.response-status')
         <div class="card">
             <div class="card-body">
                     <div class="table-responsive">

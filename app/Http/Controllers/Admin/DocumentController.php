@@ -106,10 +106,19 @@ class DocumentController extends Controller
 
     public function delete_file($id)
     {
-        $file=DB::table('documents')
-        ->where('id',$id)
-        ->update(['status'=>0]);
-        return redirect()->back()->with('success', 'file deleted successfuly!'); 
+        try {
+            $file=DB::table('documents')
+            ->where('id',$id)
+            ->delete();
+
+            //delete file 
+            DB::table('files')->where('document_id',$id)->delete();
+
+        } catch (\Throwable $th) {
+            return Redirect::back()->withErrors($th->getMessage());
+        }
+   
+        return redirect('admin/documents/uploads')->with('success', 'file deleted successfuly!'); 
     }
 
     public function deactivate($id){

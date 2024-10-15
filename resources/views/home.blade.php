@@ -2,6 +2,7 @@
 
 @section('content')
         <div class=" mt-10">
+          @include('partials.response-status');
           <!-- Summary -->
           <h1 class="text-3xl my-2 font-semibold">Dashboard</h1>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
