@@ -84,6 +84,8 @@ class PublicController extends Controller
         leftJoin('files', 'documents.id', '=', 'files.document_id')
         ->leftJoin('subjects','documents.subject_id','=','subjects.id')
         ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->join('users','users.id','=','documents.user_id')
+        ->where('users.status','=',1)
         ->whereNull('documents.status')
         ->select('documents.id','documents.title','documents.description','documents.slug','documents.price','files.filename','subjects.name as subject','categories.name as category')
         
@@ -108,11 +110,13 @@ class PublicController extends Controller
 
     public function document_preview($slug=null){
         $file=DB::table('documents')
-        ->where([['documents.slug','=',$slug]])
-        ->whereNull('documents.status')
+       
         ->leftJoin('files', 'documents.id', '=', 'files.document_id')
         ->leftJoin('subjects','documents.subject_id','=','subjects.id')
         ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->join('users','users.id','=','documents.user_id')
+        ->where([['documents.slug','=',$slug],['users.status','=',1]])
+        ->whereNull('documents.status')
         ->select('documents.*','files.filename','subjects.name as sname','categories.name as cname')
         ->first();
 
