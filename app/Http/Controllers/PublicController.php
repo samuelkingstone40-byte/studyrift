@@ -84,9 +84,10 @@ class PublicController extends Controller
         leftJoin('files', 'documents.id', '=', 'files.document_id')
         ->leftJoin('subjects','documents.subject_id','=','subjects.id')
         ->leftJoin('categories','documents.category_id','=','categories.id')
+        ->whereNull('documents.status')
         ->select('documents.id','documents.title','documents.description','documents.slug','documents.price','files.filename','subjects.name as subject','categories.name as category')
         
-
+         
         ->orderBy('documents.id','desc')
         ->paginate(10);
         
@@ -107,7 +108,8 @@ class PublicController extends Controller
 
     public function document_preview($slug=null){
         $file=DB::table('documents')
-        ->where('documents.slug',$slug)
+        ->where([['documents.slug','=',$slug]])
+        ->whereNull('documents.status')
         ->leftJoin('files', 'documents.id', '=', 'files.document_id')
         ->leftJoin('subjects','documents.subject_id','=','subjects.id')
         ->leftJoin('categories','documents.category_id','=','categories.id')

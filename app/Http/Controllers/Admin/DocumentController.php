@@ -23,6 +23,7 @@ class DocumentController extends Controller
 
         if ($request->ajax()) {
             $data = DB::table('documents')
+               
                 ->leftJoin('users','users.id','=','documents.user_id')
                 ->leftJoin('subjects','documents.subject_id','=','subjects.id')
                 ->leftJoin('categories','documents.category_id','=','categories.id')
