@@ -39,7 +39,7 @@ class DocumentController extends Controller
             })
 
             ->editColumn('title', function ($data) {
-                return Str::limit($data->title, 30);
+                return Str::limit($data->title, 100);
             })
 
 
