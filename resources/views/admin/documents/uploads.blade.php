@@ -58,7 +58,7 @@
                 }
             },
                 columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    
                     {data: 'sname', name: 'sname'},
                     {data: 'cname', name: 'cname'},
                     {data: 'title', name: 'title'},

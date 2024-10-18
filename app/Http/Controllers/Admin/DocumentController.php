@@ -20,20 +20,20 @@ class DocumentController extends Controller
 
     public function fetch_uploads(Request $request)
     {
-        $limit = $request->input('length'); // Number of records to fetch
-    $start = $request->input('start');   // Offset
+
         if ($request->ajax()) {
             $data = DB::table('documents')
-            ->leftJoin('users','users.id','=','documents.user_id')
-            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
-            ->leftJoin('categories','documents.category_id','=','categories.id')
-            ->select('documents.*','subjects.name as sname','categories.name as cname','users.name as uname')
-            ->limit($limit)
-            ->offset($start)->get(); // Apply offset
-            return DataTables::of($data)
+                ->leftJoin('users','users.id','=','documents.user_id')
+                ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+                ->leftJoin('categories','documents.category_id','=','categories.id')
+                ->select(['documents.id','documents.title','documents.category_id','documents.subject_id','documents.price','documents.created_at','subjects.name as sname','categories.name as cname','users.name as uname']);
+               
+            return DataTables::queryBuilder($data)
+
             ->editColumn('title', function ($data) {
                 return Str::limit($data->title, 30);
             })
+
 
             ->editColumn('amount', function ($data) {
                 return number_format($data->price,2);
