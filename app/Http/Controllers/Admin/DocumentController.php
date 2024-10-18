@@ -30,6 +30,14 @@ class DocumentController extends Controller
                
             return DataTables::queryBuilder($data)
 
+            ->filter(function ($query) {
+                // Apply custom search only on the "name" column
+                if (request()->has('search') && !empty(request('search')['value'])) {
+                    $keyword = request('search')['value'];
+                    $query->where('documents.title', 'like', "%{$keyword}%");
+                }
+            })
+
             ->editColumn('title', function ($data) {
                 return Str::limit($data->title, 30);
             })

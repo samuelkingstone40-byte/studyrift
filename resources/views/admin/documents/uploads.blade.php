@@ -63,7 +63,7 @@
                     {data: 'cname', name: 'cname'},
                     {data: 'title', name: 'title'},
                     {data: 'amount', name: 'amount'},
-                    {data: 'action', name: 'action',  orderable: true, searchable: true},
+                    {data: 'action', name: 'action',  orderable: true},
                 ]
             });
         });
