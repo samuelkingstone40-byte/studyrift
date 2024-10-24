@@ -105,7 +105,7 @@ class PaymentController extends Controller
             }
     
             // Redirect the user to the URL to complete payment
-            return redirect($resp->url);
+         
           
            } catch (Exception $ex) {
              $message=$ex->getMessage();
@@ -117,10 +117,14 @@ class PaymentController extends Controller
                 'line'=>$line,
                 'code'=>$code
              ];
-
+             return redirect()->back()->with('errors', $error); 
              return Redirect::back()->withErrors($error);
            }
+
+           return redirect($resp->url);
         }
+
+        return redirect()->back()->with('errors', 'Missing parameters'); 
     }
 
     // Add your website and redirect url where the user will be redirected on success
