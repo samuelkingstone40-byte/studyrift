@@ -4,7 +4,7 @@
   <section class=" md:mt-20 bg-gray-50">
     <div class="  mt-10 py-8">
       @if($errors->any())
-       <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
+       <div class="alert alert-danger alert-dismissible bg-danger text-black border-0 fade show"
                     role="alert">
         {{ implode('', $errors->all('<div>:message</div>')) }}
        </div>
