@@ -76,7 +76,7 @@ class PaymentController extends Controller
             $address="30148";
             $comment="Test for payment";
 
-            $host = env("APP_URL");
+            $host = config('intasend.host');
             $redirect_url = $host."/intasend-payment-status";
             $ref_order_number = $this->generate_orderId();    
             $checkout = new Checkout();
@@ -130,9 +130,9 @@ class PaymentController extends Controller
     public function intasend_payment_status(Request $request)
     {    
         $credentials = [
-            'token'=>env('INTASEND_SECRET_KEY'),
-            'publishable_key'=>env('INTASEND_PUBLIC_KEY'),
-            'live'=>env('INTASEND_ENVIRONMENT'),
+            'token'=>config('intasend.token'),
+            'publishable_key'=>config('intasend.publishable_key'),
+            'live'=>config('intasend.live'),
         ];
 
         $checkout_id=$request['tracking_id'];
