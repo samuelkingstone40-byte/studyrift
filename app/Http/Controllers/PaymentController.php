@@ -86,7 +86,7 @@ class PaymentController extends Controller
                 $currency = $currency,
                 $customer = $customer,
                 $host=$host_domain,
-                $redirect_url = $intasend_redirect_url, 
+                $redirect_url =  "https://studymerit.com/intasend-payment-status", 
                 $api_ref =$ref_order_number, 
                 $comment = $message, 
                 $method = null
