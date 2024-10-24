@@ -54,6 +54,8 @@ class PaymentController extends Controller
             'live'=>env('INTASEND_ENVIRONMENT'),
         ];
 
+        return dd($credentials);
+
        
         // order details
         $document_ids=$request['docs'];
@@ -349,7 +351,8 @@ class PaymentController extends Controller
     /** PESAPAL PAYMENTS */
 
     /** Process payment using paypal */
-    public function process_pesapal_payment($request)
+    public function 
+    process_pesapal_payment($request)
     {
         $orders=session()->get('orders');;
         $user=Auth::user();
