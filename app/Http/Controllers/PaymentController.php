@@ -65,8 +65,8 @@ class PaymentController extends Controller
         if($total_amount && sizeof($document_ids)>0){
            try {
             $customer = new Customer();
-            $customer->first_name = $array_name[0];
-            $customer->last_name = $array_name[1];
+            $customer->first_name = isset($array_name[0])?$array_name[0]:'Not Set';
+            $customer->last_name = isset($array_name[1])?$array_name[1]:'Not Set';
             $customer->email = $user->email;
             $customer->country = "KE";
           
@@ -75,7 +75,7 @@ class PaymentController extends Controller
             $currency = "USD";
             $country="Kenya";
             $address="30148";
-            $comment="Test for payment";
+            $comment="Payment for document";
 
             $host = env("APP_URL");
             $redirect_url = $host."/intasend-payment-status";

@@ -271,10 +271,6 @@ class PublicController extends Controller
         return Response::make(Storage::get($attachment), 200, $headers);
     }
 
-
-    
-
-
     public function paginationFilter($request)
     {
         $queryStr = "";
