@@ -3,7 +3,12 @@
 @section('content')
   <section class=" md:mt-20 bg-gray-50">
     <div class="  mt-10 py-8">
-     @include('partials.response-status')
+      @if($errors->any())
+      <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show"
+      role="alert">
+        {{ implode('', $errors->all('<div>:message</div>')) }}
+      </div>
+      @endif
         <div class="container mx-auto px-4">
             <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
             <div class="flex flex-col md:flex-row gap-4">
