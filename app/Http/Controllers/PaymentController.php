@@ -54,6 +54,8 @@ class PaymentController extends Controller
             'live'=>config('intasend.live'),
         ];
 
+        return dd($credentials);
+
        
         // order details
         $document_ids=$request['docs'];
