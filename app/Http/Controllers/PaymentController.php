@@ -118,7 +118,7 @@ class PaymentController extends Controller
                 'code'=>$code
              ];
              return redirect()->back()->with('errors', $error); 
-             return Redirect::back()->withErrors($error);
+            
            }
 
            return redirect($resp->url);
