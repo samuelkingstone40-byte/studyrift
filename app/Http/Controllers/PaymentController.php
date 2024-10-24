@@ -74,10 +74,10 @@ class PaymentController extends Controller
             $currency = "USD";
             $country="Kenya";
             $address="30148";
-            $comment="Test for payment";
+            $message="Test for payment";
 
-            $host = config('intasend.host');
-            $redirect_url = $host."/intasend-payment-status";
+            $host_domain = config('intasend.host');
+            $intasend_redirect_url = $host_domain."/intasend-payment-status";
             $ref_order_number = $this->generate_orderId();    
             $checkout = new Checkout();
             $checkout->init($credentials);
@@ -85,10 +85,10 @@ class PaymentController extends Controller
                 $amount = $amount,
                 $currency = $currency,
                 $customer = $customer,
-                $host=$host,
-                $redirect_url = $redirect_url, 
+                $host=$host_domain,
+                $redirect_url = $intasend_redirect_url, 
                 $api_ref =$ref_order_number, 
-                $comment = $comment, 
+                $comment = $message, 
                 $method = null
             );
 
