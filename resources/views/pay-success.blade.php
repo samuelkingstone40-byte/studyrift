@@ -17,8 +17,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php sizeof($orders) @endphp
-                    @if(sizeof($orders)>0)
+                    
+                    @if(count($orders)>0)
                         @foreach($orders as $id => $details)
                             {{-- @php $total += $details->price * $details->quantity @endphp --}}
                             <tr data-id="{{ $id }}" >

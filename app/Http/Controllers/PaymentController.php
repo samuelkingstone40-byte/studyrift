@@ -464,7 +464,6 @@ class PaymentController extends Controller
 
         $docIds=array_unique($docIds);
         // get the documents 
-
         $documents=DB::table('documents')
             ->whereIn('documents.id',$docIds)
             ->leftJoin('files','files.document_id','=','documents.id')
