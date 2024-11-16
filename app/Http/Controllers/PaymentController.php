@@ -224,6 +224,8 @@ class PaymentController extends Controller
     
             $data['orders'] = $documents??[];
         });
+
+        return dd($data);
     
         return view('pay-success', $data);
     }
