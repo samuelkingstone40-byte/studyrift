@@ -4,7 +4,7 @@
 <section class="">
     <div class="">
         <div class="bg-white p-4 my-3 shadow rounded">
-            <h1 class="display-5 text-success text-center">
+            <h1 class="text-success text-center">
                 Success! <i class="fa fa-smile-o" aria-hidden="true"></i>
             </h1>
             <p class="lead my-4 text-center">
