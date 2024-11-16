@@ -63,7 +63,34 @@ public function paymentsuccess(Request $request)//just tells u payment has gone 
    $payments -> status = 'PENDING';
    $payments -> save();
 
-   $request->session()->forget('cart');
+   $data=[];
+        $user_id=Auth::user()->id;
+        $orders=DB::table('orders')
+            ->select('docId')
+            ->where('user_id',$user_id)
+            ->where('status','new')
+            ->orderBy('id','desc')
+            ->get();
+
+        $docIds=[];
+        foreach ($orders as $order) {
+            $docIds[]=$order->docId;
+        }
+
+        $docIds=array_unique($docIds);
+        // get the documents 
+        $documents=DB::table('documents')
+            ->whereIn('documents.id',$docIds)
+            ->leftJoin('files','files.document_id','=','documents.id')
+            ->leftJoin('subjects','subjects.id','=','documents.subject_id')
+            ->leftJoin('categories','categories.id','=','documents.category_id')
+            ->orderBy('documents.created_at','desc')
+            ->select('documents.*','files.filename','subjects.name as subject','categories.name as category')
+            ->get();
+
+        $request->session()->forget('cart');
+        $data['orders']=$documents;
+        return view('pay-success', $data);
    //go back home
    //$payments=Payment::all();
    return view('pay-success', compact('payments'));
