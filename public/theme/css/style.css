@@ -184,10 +184,10 @@ button:focus {
 /*---------------------------------------------------- */
 /*----------------------------------------------------*/
 .section_gap {
-  padding: 50px 0; }
+  margin: 50px; }
   @media (max-width: 991px) {
     .section_gap {
-      padding: 5px ; } }
+      margin: 5px ; } }
 
 .section_gap_top {
   padding-top: 130px; }
