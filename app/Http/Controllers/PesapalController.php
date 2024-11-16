@@ -67,7 +67,7 @@ public function paymentsuccess(Request $request)//just tells u payment has gone 
         $user_id=Auth::user()->id;
         $orders=DB::table('orders')
             ->select('docId')
-            ->where('user_id',$user_id)
+            ->where(['user_id'=>$user_id,'transactionId'=>$ref])
             ->where('status','new')
             ->orderBy('id','desc')
             ->get();
