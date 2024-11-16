@@ -1,8 +1,8 @@
 @extends('layouts.app')
 <title>Payment-Studymerit</title>
 @section('content')
-<section class="section_gap">
-    <div class="container">
+<section class="">
+    <div class="">
         <div class="container bg-white p-4 my-3 shadow rounded">
             <h1 class="display-5 text-success text-center">
                 Success! <i class="fa fa-smile-o" aria-hidden="true"></i>
