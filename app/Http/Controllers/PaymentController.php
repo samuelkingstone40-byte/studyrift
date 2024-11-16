@@ -222,7 +222,7 @@ class PaymentController extends Controller
                 )
                 ->get();
     
-            $data['orders'] = $documents;
+            $data['orders'] = $documents??[];
         });
     
         return view('pay-success', $data);
