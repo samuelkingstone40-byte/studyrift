@@ -57,7 +57,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <input type="hidden" id="email" value="{{Auth::user()->email}}">
     @endguest
 
-    <div class="">
+    <div class="p-4 mt-10">
      @yield('content')
     </div>
 
