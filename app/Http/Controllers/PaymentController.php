@@ -195,38 +195,36 @@ class PaymentController extends Controller
     //confirm order after payment
     public function confirm_order_payment($orderId,$transId)
     {
-        DB::transaction(function () use ($orderId, $transId, &$data) {
-            // Update order transaction ID
-            Order::where('orderId', $orderId)
-                ->update(['transactionId' => $transId]);
-    
-            // Get unique document IDs for the given order
-            $docIds = Order::where('orderId', $orderId)
-                ->where('transactionId', $transId)
-                ->where('status', 'new')
-                ->orderBy('id', 'desc')
-                ->pluck('docId')
-                ->unique();
-    
-            // Fetch documents with associated details
-            $documents = Document::whereIn('documents.id', $docIds)
-                ->leftJoin('files', 'files.document_id', '=', 'documents.id')
-                ->leftJoin('subjects', 'subjects.id', '=', 'documents.subject_id')
-                ->leftJoin('categories', 'categories.id', '=', 'documents.category_id')
-                ->orderBy('documents.created_at', 'desc')
-                ->select(
-                    'documents.*',
-                    'files.filename',
-                    'subjects.name as subject',
-                    'categories.name as category'
-                )
-                ->get();
-    
-            $data['orders'] = $documents??[];
-        });
+        DB::table('orders')
+            ->where('orderId',$orderId)
+            ->update(['transactionId'=>$transId]);
+        
+        //get orders for downloads
+        $orders=DB::table('orders')
+            ->select('docId')
+            ->where('orderId',$orderId)
+            ->where('transactionId',$transId)
+            ->where('status','new')
+            ->orderBy('id','desc')
+            ->get();
 
-        return dd($data);
-    
+        $docIds=[];
+        foreach ($orders as $order) {
+            $docIds[]=$order->docId;
+        }
+
+        $docIds=array_unique($docIds);
+        $documents=DB::table('documents')
+            ->whereIn('documents.id',$docIds)
+            ->leftJoin('files','files.document_id','=','documents.id')
+            ->leftJoin('subjects','subjects.id','=','documents.subject_id')
+            ->leftJoin('categories','categories.id','=','documents.category_id')
+            ->orderBy('documents.created_at','desc')
+            ->select('documents.*','files.filename','subjects.name as subject','categories.name as category')
+            ->get();
+
+       
+        $data['orders']=$documents;
         return view('pay-success', $data);
     }
 
@@ -477,6 +475,11 @@ class PaymentController extends Controller
 
         $request->session()->forget('cart');
         $data['orders']=$documents;
+
+        //return $data;
+
+        //go back home
+        //$payments=Payment::all();
         return view('pay-success', $data);
     }
 
@@ -534,7 +537,10 @@ class PaymentController extends Controller
             ->where('docId',$docId)
             ->where('user_id',Auth::user()->id)
             ->get();
-            // ->update(['status' => 'Available'])       
+            // ->update(['status' => 'Available']);
+
+        return $order;
+       
     
         $downloads = session()->get('downlads', []);
         $downloads[] = [
