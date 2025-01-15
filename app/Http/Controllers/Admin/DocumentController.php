@@ -131,6 +131,7 @@ class DocumentController extends Controller
             if($file_path){
                 $file_name=$file_path->filename;
                 Storage::disk('s3')->delete($file_name);
+                DB::table('files')->where('document_id',$id)->delete();
             }
 
 
