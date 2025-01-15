@@ -8,6 +8,7 @@ use App\Models\Subject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -120,8 +121,18 @@ class DocumentController extends Controller
             ->where('id',$id)
             ->delete();
 
+            //get file path
+
+            $file_path=DB::table('files')->where('document_id',$id)->first();
+            
             //delete file 
             DB::table('files')->where('document_id',$id)->delete();
+
+            if($file_path){
+                $file_name=$file_path->filename;
+                Storage::disk('s3')->delete($file_name);
+            }
+
 
         } catch (\Throwable $th) {
             return Redirect::back()->withErrors($th->getMessage());
