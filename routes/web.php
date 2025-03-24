@@ -154,9 +154,6 @@ Route::group(['middleware' => 'auth:admin'], function () {
 });
 
 //intasend payement
-
-
-
 Route::get('pesapal-callback',[App\Http\Controllers\PesapalAPIController::class,'handleCallback'])->name('pesapal-callback');
 Route::get('pesapal-ipn', ['as'=>'pesapal-ipn', 'uses'=>'Knox\Pesapal\PesapalAPIController@handleIPN']);
 Route::get('donepayment',[App\Http\Controllers\PesapalController::class,'paymentsuccess'])->name('paymentsuccess');

@@ -199,6 +199,14 @@ class PublicController extends Controller
         ->leftJoin('files as f', 'd.id', '=', 'f.document_id')
         ->select('d.*','f.filename')
         ->first();
+
+        //get file uploaded path
+
+        $document_id=$product->id;
+        $file=DB::table('files')
+            ->where('document_id',$document_id)
+            ->select('filename')
+            ->first();
            
         $cart = session()->get('cart', []);
    
@@ -209,19 +217,18 @@ class PublicController extends Controller
                 "name" => $product->title,
                 "quantity" => 1,
                 "price" => $product->price,
-                "image" => "sdf"
+                "image" => $product->filename
             ];
         }
            
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Product added to cart successfully!');
     }
-   
     /**
      * Write code on Method
      *
      * @return response()
-     */
+    */
     public function update(Request $request)
     {
         if($request->id && $request->quantity){
@@ -259,7 +266,6 @@ class PublicController extends Controller
         return view('privacy');
     }
 
-    
     public function download_file($filename){
         //$filepath = public_path('files/'.$filename);
         $attachment = 'files/'.$filename;
@@ -339,7 +345,6 @@ class PublicController extends Controller
         }
    
     }
-
 
     public function update_notes_table(){
         

@@ -32,11 +32,10 @@
                                   <tr data-id="{{$id}}" id="{{ $id }}" class="doc bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <td class="px-6 py-4">
                                         <div class="flex items-center">
-                                            <img class="w-8 h-8 md:h-16 md:w-16 mr-4" src="https://via.placeholder.com/150" alt="Product image">
+                                            <img class="w-10 h-10 md:h-24 md:w-24 mr-4" src="{{route('get-s3-thumbnail',$id)}}" alt="Product image">
                                             <span class="font-semibold text-sm md:text-lg line-clamp-2">{{$details['name']}}</span>
                                         </div>
                                     </td>
-                                  
                                   
                                     <td class="px-6 py-4">${{$details['price']}}</td>
                                     <td class="actions border" data-th="">
@@ -121,9 +120,6 @@
       }
       return orders
     }
-
-
-     
     $(".update-cart").change(function (e) {
         e.preventDefault();
         $('#loader').show();
@@ -162,14 +158,6 @@
             });
         }
     });
-
-   
-
-
-  
-
-
-
 });
 
 
