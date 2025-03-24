@@ -413,7 +413,6 @@ class ClientController extends Controller
         }
     }
 
-
     public function earnings(){
         $data['current_earnings']=DB::table('orders')
         ->where('owner_id',Auth::id())
