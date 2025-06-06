@@ -11,7 +11,7 @@
 
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" sizes="48*48" type="image/png" />
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    
+      <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
       new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -32,21 +32,21 @@
     </header>
 
     <main class="">
-    @guest
-    <input type="hidden" id="user_id" value="">
-    <input type="hidden" id="name" value="">
-    <input type="hidden" id="email" value="">
-    @else
-    <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
-    <input type="hidden" id="name" value="{{Auth::user()->name}}">
-    <input type="hidden" id="email" value="{{Auth::user()->email}}">
-    @endguest
+      @guest
+        <input type="hidden" id="user_id" value="">
+        <input type="hidden" id="name" value="">
+        <input type="hidden" id="email" value="">
+      @else
+        <input type="hidden" id="user_id" value="{{Auth::user()->id}}">
+        <input type="hidden" id="name" value="{{Auth::user()->name}}">
+        <input type="hidden" id="email" value="{{Auth::user()->email}}">
+      @endguest
 
-     @yield('content')
+      @yield('content')
     </main>
 
     @include('includes.footer')
-    <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -125,7 +125,6 @@
         
       })
     </script>
-   
     @yield('scripts')
 
   </body>

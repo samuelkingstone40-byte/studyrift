@@ -6,6 +6,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\DocumentController;
 use App\Http\Controllers\Admin\FinanceController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -58,18 +59,16 @@ Route::post('post-review',[App\Http\Controllers\ClientController::class,'post_re
 Route::get('earnings', [App\Http\Controllers\ClientController::class, 'earnings'])->name('earnings');
 Route::get('fetch-earnings', [App\Http\Controllers\ClientController::class, 'fetch_earnings'])->name('fetch-earnings');
 Route::post('fileDelete/{id}',[\App\Http\Controllers\ClientController::class,'file_delete'])->name('fileDelete');
-
 Route::post('uploadImg',[App\Http\Controllers\ClientController::class,'upload_profile_img'])->name('uploadImg');
 
-Route::get('search/', [App\Http\Controllers\PublicController::class,'documents'])->name('search');
-Route::get('document-preview/{slug}', [App\Http\Controllers\PublicController::class,'document_preview']);
-Route::get('cart', [App\Http\Controllers\PublicController::class, 'cart'])->name('cart');
-
-Route::get('update-notes-table',[App\Http\Controllers\PublicController::class,'update_notes_table'])->name('update-notes-table');
-
-Route::get('add-to-cart/{id}', [App\Http\Controllers\PublicController::class, 'addToCart'])->name('add.to.cart');
-Route::patch('update-cart', [App\Http\Controllers\PublicController::class, 'update'])->name('update.cart');
-Route::delete('remove-from-cart', [App\Http\Controllers\PublicController::class, 'remove'])->name('remove.from.cart');
+Route::get('search', [PublicController::class,'documents'])->name('search');
+Route::get('search_files',[PublicController::class,'search_files'])->name('search_files');
+Route::get('document-preview/{slug}',[PublicController::class,'document_preview']);
+Route::get('cart', [PublicController::class, 'cart'])->name('cart');
+Route::get('update-notes-table',[PublicController::class,'update_notes_table'])->name('update-notes-table');
+Route::get('add-to-cart/{id}', [PublicController::class, 'addToCart'])->name('add.to.cart');
+Route::patch('update-cart', [PublicController::class, 'update'])->name('update.cart');
+Route::delete('remove-from-cart', [PublicController::class, 'remove'])->name('remove.from.cart');
 
 Route::get('pay-failed',[App\Http\Controllers\PayPalPaymentController::class,'pay_failed'])->name('pay-failed');
 Route::get('payment-complete',[PaymentController::class,'payment_complete'])->name('payment-complete');

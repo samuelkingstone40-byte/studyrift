@@ -355,6 +355,33 @@ class PublicController extends Controller
                    
     }
 
+    public function search_files(Request $request){
+   
+        if($request->ajax()){
+            $output='';
+            $search_text = $request->input('search');
+            $files =DB::table('documents')
+                ->where('title','like','%'.$search_text.'%')
+                ->select(['id','title','slug'])
+                ->get();
+
+            if($files->count()>0){
+                foreach($files as $file){
+                    $output .='
+                       <li class="border-b border-gray-200 dark:border-gray-700">
+                        <a  href="/document-preview/' . $file->slug. '"    class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">'.htmlspecialchars($file->title).'</a>
+                    </li>';
+
+                }
+                return response($output);
+            }else{
+                return response('<li>No documents found</li>');
+            }
+        
+
+        }
+    }
+
 
            
 
