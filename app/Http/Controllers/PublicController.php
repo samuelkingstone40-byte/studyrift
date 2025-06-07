@@ -368,14 +368,16 @@ class PublicController extends Controller
             if($files->count()>0){
                 foreach($files as $file){
                     $output .='
-                       <li class="border-b border-gray-200 dark:border-gray-700">
-                        <a  href="/document-preview/' . $file->slug. '"    class="block w-full text-left px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">'.htmlspecialchars($file->title).'</a>
-                    </li>';
+                    <li class="block break-words border-b px-4 py-2 w-full lg:w-64 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <a href="/document-preview/'.$file->slug.'" class="block break-words">
+                        '.htmlspecialchars($file->title).'
+                    </a>
+                ';
 
                 }
                 return response($output);
             }else{
-                return response('<li>No documents found</li>');
+                return response('<li class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">No documents found</li>');
             }
         
 

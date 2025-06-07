@@ -1,19 +1,19 @@
 @extends('layouts.default')
 <title>Buy-Studymerit</title>
 @section('content')
-  <section class=" md:mt-20 bg-gray-50">
-    <div class="  mt-10 py-8">
+  <section class=" bg-gray-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
+    <div class="py-8">
       @if($errors->any())
        <div class="alert alert-danger alert-dismissible bg-danger text-black border-0 fade show"
                     role="alert">
         {{ implode('', $errors->all('<div>:message</div>')) }}
        </div>
       @endif
-        <div class="container mx-auto px-4">
-            <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
+        <div class="mx-auto py-16 px-4">
+            <h1 class="text-2xl py-2 font-semibold">Shopping Cart</h1>
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="w-full">
-                    <div class="bg-white rounded-lg shadow-md p-6 mb-4">
+                    <div class="bg-white rounded-lg border  p-6 mb-4">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -69,16 +69,16 @@
                 </div>
               
             </div>
-            <div class="bg-white py-3 px-4 rounded mt-10 shadow-md">
+            <div class="bg-white py-3 px-4 rounded mt-10 border border-gray-200 dark:border-gray-700">
               <div class="text-xl font-bold my-2 text-red-500">Select Mode Of Payment</div>
               <form class="" action="{{url('make-payment')}}" method="post">
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
-                  <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                  <div class="flex col-span-2 lg:col-span-1 items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
                     <input checked id="bordered-radio-2" type="radio" value="pesapal" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="bordered-radio-2" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With PesaPal</label>
                 </div>
-                   <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+                   <div class="flex col-span-2 lg:col-span-1 items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
                     <input id="bordered-radio-1"  type="radio" value="intasend" name="payment_mode" class="w-6 h-6 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                     <label for="bordered-radio-1" class="w-full py-4 ml-2 text-md font-medium text-gray-900 dark:text-gray-300">Pay With Intasend</label>
                 </div>
