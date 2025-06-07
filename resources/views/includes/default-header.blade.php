@@ -1,9 +1,8 @@
 
     <nav class="fixed inset-x-0 top-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 sm:px-6 lg:px-8 py-3 shadow-sm">
-      <div class="">
+        <div class="">
+          <div  class="flex items-center justify-between w-full mb-2">
 
-        <div class="flex flex-col md:flex-row  gap-4 lg:items-start justify-between">
-          <div  class="order-2 md:order-1">
             <a href={{url('/')}} class="flex items-center justify-between mr-4">
                 <img
                 src={{asset('/theme/img/site/logo.png')}}
@@ -11,58 +10,35 @@
                 alt="Studymerit Logo"
                 />
             </a>
-          </div>
-               
-              
-          <div class="relative md:order-3 w-full">
-            <div class="absolute inset-y-0 start-0 flex items-center ps-6 pointer-events-none">
-                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 21 21">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.15 5.6h.01m3.337 1.913h.01m-6.979 0h.01M5.541 11h.01M15 15h2.706a1.957 1.957 0 0 0 1.883-1.325A9 9 0 1 0 2.043 11.89 9.1 9.1 0 0 0 7.2 19.1a8.62 8.62 0 0 0 3.769.9A2.013 2.013 0 0 0 13 18v-.857A2.034 2.034 0 0 1 15 15Z"/>
-                        </svg>
-            </div>
-            <input type="text" autocomplete="false"  id="search_text" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search notes, exams,..." >
-                   
-            <div id="dropdown" class="z-10 hidden absolute w-full  left-0  mt-2 p-2 border border-gray-300 rounded bg-white">
-              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button" id="results">   </ul>
-            </div>
-          </div>
 
-           <div class="order-3 sm:mt-2">
-            <div class="flex items-center gap-4 w-full">
-              @guest
-                <div class="flex justify-center gap-1 md:gap-4" >
+            <div class="">
+              <div class="flex justify-between items-center gap-4 w-full">
+                @guest
+                  <div class="flex justify-center gap-1 md:gap-4" >
                     <a href="{{url('login')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm   md:text-lg px-1 md:px-4 py-1 text-center  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</a>
                     <a href="{{url('register')}}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded text-sm  md:text-lg px-1 md:px-4 py-1 text-center   dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</a>
-                </div>
-              @else
-              <button
-                type="button"
-                data-drawer-toggle="drawer-navigation"
-                aria-controls="drawer-navigation"
-                class="p-2 mr-1 text-gray-500 rounded-lg md:hidden hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-                  <span class="sr-only">Toggle search</span>
-                  <svg aria-hidden="true" class="w-6 h-6 md:w-8 md:h-8" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <path clip-rule="evenodd" fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"></path>
-                  </svg>
-              </button>
-              @if(count((array) session('cart'))>0)
-                <div class="flex items-center ml-4">
-                  <div>
-                      <button type="button" class="flex text-lg " aria-expanded="false" data-dropdown-toggle="dropdown-cart">
-                          <span class="sr-only">Open user menu</span>
-                          <svg class="w-6 h-6 md:w-8 md:h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
-                          </svg>
+                  </div>
+                @else
+                <div class="">
+                
+                @if(count((array) session('cart'))>0)
+                  <div class="flex items-center ml-4">
+                    <div>
+                      <button type="button" class="flex" aria-expanded="false" data-dropdown-toggle="dropdown-cart">
+                        <span class="sr-only">Open user menu</span>
+                        <svg class="w-6 h-6 md:w-6 md:h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+                        </svg>
                       </button>
                       <span class="sr-only">Orders</span>
-                      <div class="absolute inline-flex items-center justify-center w-7 h-7 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 ml-4  dark:border-gray-900">
-                          {{ count((array) session('cart')) }}
+                      <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-0 ml-4  dark:border-gray-900">
+                        {{ count((array) session('cart')) }}
                       </div>
-                  </div>
+                    </div>
       
-                  <div class="z-50 w-96 hidden my-6  text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-cart">
-                    <div class="px-4 py-3 border border-gray-100" role="none">
-                      <div class="flex justify-between py-2 text-lg text-gray-600 font-semibold">
+                    <div class="z-50 w-72 hidden my-6  text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-cart">
+                      <div class="px-4 py-3 border border-gray-100" role="none">
+                        <div class="flex justify-between py-2 text-lg text-gray-600 font-semibold">
                         <div class=""> 
                           Items ( {{ count((array) session('cart')) }} )
                         </div>
@@ -73,11 +49,10 @@
                           @endforeach
                           Total : <span class="text-red-600">${{ $total }}</span>
                         </div>
-                      </div>
-                      <hr/>
-
-                    @if(session('cart'))
-                        <table class="w-full border border-gray-300 p-4">
+                        </div>
+                        <hr/>
+                        @if(session('cart'))
+                          <table class="w-full border border-gray-300 p-4">
                           <thead>
                               <tr>
                                   <th class="text-left text-sm font-semibold p-4">Product</th>
@@ -94,54 +69,50 @@
                                   </tr>
                               @endforeach
                           </tbody>
-                        </table>
-                        <div class="my-4">
-                          <div class="text-right">
-                            <a href="{{ route('checkout') }}" class="w-full rounded border border-gray-300 bg-green-400 p-2 text-white">Checkout</a>
+                          </table>
+                          <div class="my-4">
+                            <div class="text-right">
+                              <a href="{{ route('checkout') }}" class="w-full rounded border border-gray-300 bg-green-400 p-2 text-white">Checkout</a>
+                            </div>
                           </div>
-                        </div>
-                    @endif
+                        @endif
+                      </div>
                     </div>
                   </div>
-                </div>
-              @endif
-            </div>
-            <button
-              type="button"
-              data-dropdown-toggle="apps-dropdown"
-              class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
-              <span class="sr-only">View notifications</span>
-              <!-- Icon -->
-              <svg class="w-6 h-6 md:w-8 md:h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 21">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C15 15.4 15 16 14.462 16H1.538C1 16 1 15.4 1 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 8 3.464ZM4.54 16a3.48 3.48 0 0 0 6.92 0H4.54Z"/>
-                </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div
-              class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
-              id="apps-dropdown">
-              <div
-                class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-600 dark:text-gray-300"
-              >
-                Notifications
+                @endif
               </div>
-              
-              
-            </div>
+              <button
+                type="button"
+                data-dropdown-toggle="apps-dropdown"
+                class="p-2 text-gray-500 rounded-lg hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
+                <span class="sr-only">View notifications</span>
+                <!-- Icon -->
+                <svg class="w-6 h-6 md:w-8 md:h-8 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 21">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M8 3.464V1.1m0 2.365a5.338 5.338 0 0 1 5.133 5.368v1.8c0 2.386 1.867 2.982 1.867 4.175C15 15.4 15 16 14.462 16H1.538C1 16 1 15.4 1 14.807c0-1.193 1.867-1.789 1.867-4.175v-1.8A5.338 5.338 0 0 1 8 3.464ZM4.54 16a3.48 3.48 0 0 0 6.92 0H4.54Z"/>
+                  </svg>
+              </button>
+              <!-- Dropdown menu -->
+              <div
+                class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
+                id="apps-dropdown">
+                <div  class="block py-2 px-4 text-base font-medium text-center text-gray-700 bg-gray-50 dark:bg-gray-600 dark:text-gray-300">
+                  Notifications
+                </div>
+              </div>
 
-            <button
-              type="button"
-              class="flex  text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-              id="user-menu-button"
-              aria-expanded="false"
-              data-dropdown-toggle="dropdown">
-              <span class="sr-only">Open user menu</span>
-              <svg class="w-6 h-6 md:w-8 md:h-8 bg-white text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+              <button
+                type="button"
+                class="flex  text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                id="user-menu-button"
+                aria-expanded="false"
+                data-dropdown-toggle="dropdown">
+                <span class="sr-only">Open user menu</span>
+                <svg class="w-6 h-6 md:w-8 md:h-8 bg-white text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M10 19a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0 0a8.949 8.949 0 0 0 4.951-1.488A3.987 3.987 0 0 0 11 14H9a3.987 3.987 0 0 0-3.951 3.512A8.948 8.948 0 0 0 10 19Zm3-11a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                 </svg>
-            </button>
-            <!-- Dropdown menu -->
-            <div
+              </button>
+              <!-- Dropdown menu -->
+              <div
               class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 rounded-xl"
               id="dropdown">
               <div class="py-3 px-4">
@@ -224,17 +195,24 @@
                   </form>
                 </li>
               </ul>
+              </div>
+              </div>
+              @endguest
             </div>
-            @endguest
-        </div>
-       
-      </div>
-                
-           
-        </div>
-     
-    </nav>
+          </div>
+        </div>  
+        <div class="mx-auto relative">
+        <input type="text" autocomplete="off" id="search_text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Search notes, exams,...">
 
+        <div id="dropdown" class="z-10 hidden absolute w-[300px] left-0 bg-white px-4 mt-2 py-2 border border-gray-300 rounded shadow max-h-60 overflow-y-auto">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 space-y-1" aria-labelledby="dropdown-button" id="results">
+          
+        </div>
+        </div>
+ 
+    </nav>
     <script type="text/javascript">
       $(document).ready(function(){
         $('#search_text').on('keyup',function(){
@@ -250,8 +228,7 @@
                  $('#results').html(data)
               }
             })
-          }
-          
+          } 
         })
       })
     </script>
