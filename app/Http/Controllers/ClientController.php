@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Note;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use DataTables;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -20,8 +20,8 @@ use App\Models\Review;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
-use Image;
-use Response;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Response;
 
 
 class ClientController extends Controller
@@ -158,7 +158,7 @@ class ClientController extends Controller
     }
 
     public function documents_update(Request $request){
-        $slug = \Str::slug($request->input('title'));
+        $slug = Str::slug($request->input('title'));
         $documents=DB::table('documents')
         ->where('id',$request->get("id"))
         ->update([
@@ -281,6 +281,7 @@ class ClientController extends Controller
          return redirect()->back()->with('success', 'Your details have been updated');   
 
     }
+
     public function update_paypal(Request $request){
         $user=DB::table('users')
          ->where('id',Auth::id())
@@ -290,6 +291,7 @@ class ClientController extends Controller
          return redirect()->back()->with('success', 'Your paypal email has been updated');   
 
     }
+
     public function update_password(Request $request){
         
         $request->validate([
@@ -510,7 +512,15 @@ class ClientController extends Controller
         $file=DB::table('documents')
         ->where('id',$id)
         ->delete();
-        return redirect('client-uploads')->with('success', 'file deleted successfuly!'); 
+
+        $fileRecord = DB::table('files')->where('document_id', $id)->first();
+        if ($fileRecord && isset($fileRecord->filename)) {
+            Storage::delete('files/' . $fileRecord->filename);
+            DB::table('files')->where('document_id', $id)->delete();
+        }
+
+        // delete file from aws
+        return redirect('uploads')->with('success', 'file deleted successfuly!'); 
     }
 
     public function download_file($docId){
@@ -519,9 +529,10 @@ class ClientController extends Controller
         ->select('documents.*','files.filename')
         ->first();
 
-        // update status of order if its first time download
 
-        DB::table('orders')
+
+        // update status of order if its first time download
+        $update_status=DB::table('orders')
             ->where('status','New')
             ->where('docId',$docId)
             ->where('user_id',Auth::user()->id)
