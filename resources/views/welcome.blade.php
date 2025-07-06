@@ -2,23 +2,33 @@
 
 @section('content')
 
-  <section class="bg-center  bg-no-repeat bg-[url('/theme/img/site/banner2.jpg')] bg-gray-600 bg-blend-multiply bg-cover">
-    <div class="px-4 mx-auto  max-w-screen-xl text-center py-48 lg:py-56">
-        <h1 class="mb-4  font-extrabold tracking-tight leading-none text-white text-xl md:text-3xl lg:text-4xl">GET QUALITY NOTES IN ONE PLACE</h1>
-        <p class="mb-8  font-normal text-gray-300 text-lg lg:text-2xl sm:px-16 lg:px-48">Find study materials, textbooks and other study instruments for all subjects.</p>
-        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-            <a href={{route('login')}} class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                Login
-                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                </svg>
-            </a>
-            <a href="{{url('/search')}}" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
-                Browse For Materials
-            </a>  
+  <section class="bg-slate-50">
+    <div class="px-4 mx-auto  max-w-screen-xl text-center pb-6 pt-48 lg:pt-48">
+    <div class="my-4">
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+      Find study resources<br class="block sm:hidden" />
+      <span class="text-yellow-300">or share your notes</span>
+    </h1>
+     
+      <div class="text-lg sm:text-xl opacity-90 mb-6">Access a variety of study materials to help with your academic success</div>
+    </div>
+    <div class="my-2">
+      <div class="mx-auto relative">
+        <input type="text" autocomplete="off" id="search_text2"
+          class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search notes, exams,...">
+        <div id="dropdown-search2" class="z-10 hidden absolute w-full left-0 bg-white px-4 mt-2 py-2 border border-gray-300 rounded shadow max-h-60 overflow-y-auto">
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 space-y-1" aria-labelledby="dropdown-button" id="results2">
         </div>
-  
-      
+      </div>
+    </div>
+    <div>
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        @foreach ($categories as $category )
+          <a href="{{route('search', ['category' => 3])}}" class="bg-gray-50 p-4 hover:bg-blue-200 text-center border rounded font-semibold text-gray-600">{{$category->name}}</a>
+        @endforeach
+      </div>
+    </div>
     </div>
   </section>
 
@@ -44,6 +54,7 @@
                 <dt class="mb-2 text-2xl mb:text-4xl font-extrabold">1000s</dt>
                 <dd class="text-gray-500 dark:text-gray-400">Students</dd>
             </div>
+            
             
         </dl>
     </div>
@@ -273,3 +284,25 @@
   </section>
 
 @endsection
+@section('scripts')
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#search_text2').on('keyup',function(){
+          var query=$(this).val();
+          if(query.length>0){
+            $.ajax({
+              type:'get',
+              url:'{{route('search_files') }}',
+              data:{'search':query},
+              success:function(data){
+                 var dropdown = $('#dropdown-search2');
+                 dropdown.show();
+                 $('#results2').html(data)
+              }
+            })
+          } 
+        })
+      })
+    </script>
+
+    @endsection

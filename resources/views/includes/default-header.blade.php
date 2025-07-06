@@ -10,7 +10,6 @@
                 alt="Studymerit Logo"
                 />
             </a>
-
             <div class="">
               <div class="flex justify-between items-center gap-4 w-full">
                 @guest
@@ -201,16 +200,16 @@
             </div>
           </div>
         </div>  
-        <div class="mx-auto relative">
-        <input type="text" autocomplete="off" id="search_text"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="Search notes, exams,...">
 
-        <div id="dropdown" class="z-10 hidden absolute w-[300px] left-0 bg-white px-4 mt-2 py-2 border border-gray-300 rounded shadow max-h-60 overflow-y-auto">
+
+      <div class="mx-auto relative">
+        <input type="text" autocomplete="off" id="search_text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-12 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search notes, exams,...">
+        <div id="dropdown-search" class="z-10 hidden absolute w-[300px] left-0 bg-white px-4 mt-2 py-2 border border-gray-300 rounded shadow max-h-60 overflow-y-auto">
           <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 space-y-1" aria-labelledby="dropdown-button" id="results">
-          
         </div>
-        </div>
+      </div>
  
     </nav>
     <script type="text/javascript">
@@ -223,7 +222,7 @@
               url:'{{route('search_files') }}',
               data:{'search':query},
               success:function(data){
-                 var dropdown = $('#dropdown');
+                 var dropdown = $('#dropdown-search');
                  dropdown.show();
                  $('#results').html(data)
               }

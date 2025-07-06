@@ -12,9 +12,9 @@ use Response;
 
 class PublicController extends Controller
 {
-
     public function index(){
         $data['uploads']=$this->popular_downloads();
+        $data['categories']=$this->getCategories();
         return view('welcome',$data);
     }
 
@@ -32,7 +32,6 @@ class PublicController extends Controller
 
         return $downloads;
     }
-
 
     public  function buildSQLQueryFromFilter($request)
     {
@@ -71,27 +70,27 @@ class PublicController extends Controller
         return $sqlQuery;
     }
 
-    
     public function documents(Request $request){
-    
         $search_text=strip_tags($request->get('search_text'));
+        $category=$request->get('category');
         $notes =DB::table('documents');
 
         if($search_text){
             $notes->where('documents.title','like','%'.$search_text.'%');
         }
+        if($category){
+            $notes->where('documents.category_id','=',$category);
+        }
         $notes=$notes->
         leftJoin('files', 'documents.id', '=', 'files.document_id')
-        ->leftJoin('subjects','documents.subject_id','=','subjects.id')
-        ->leftJoin('categories','documents.category_id','=','categories.id')
-        ->join('users','users.id','=','documents.user_id')
-        ->where('users.status','=',1)
-        ->whereNull('documents.status')
-        ->select('documents.id','documents.title','documents.description','documents.slug','documents.price','files.filename','subjects.name as subject','categories.name as category')
-        
-         
-        ->orderBy('documents.id','desc')
-        ->paginate(10);
+            ->leftJoin('subjects','documents.subject_id','=','subjects.id')
+            ->leftJoin('categories','documents.category_id','=','categories.id')
+            ->join('users','users.id','=','documents.user_id')
+            ->where('users.status','=',1)
+            ->whereNull('documents.status')
+            ->select('documents.id','documents.title','documents.description','documents.slug','documents.price','files.filename','subjects.name as subject','categories.name as category')
+            ->orderBy('documents.id','desc')
+            ->paginate(10);
         
         $data['subjects']=$this->getSubjects();
         $data['categories']=$this->getCategories();
@@ -368,7 +367,7 @@ class PublicController extends Controller
             if($files->count()>0){
                 foreach($files as $file){
                     $output .='
-                    <li class="block break-words border-b px-4 py-2 w-full lg:w-64 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                    <li class="block break-words border-b px-4 py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <a href="/document-preview/'.$file->slug.'" class="block break-words">
                         '.htmlspecialchars($file->title).'
                     </a>
@@ -382,20 +381,5 @@ class PublicController extends Controller
         
 
         }
-    }
-
-
-           
-
-         
-
-     
-
-    
-    
-    
-
-    
-
-   
+    }   
 }

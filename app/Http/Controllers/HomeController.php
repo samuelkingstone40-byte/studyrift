@@ -36,6 +36,7 @@ class HomeController extends Controller
         ->sum('earning');
         $data['downloads']=$this->recent_dowloads();
         $data['sales']=$this->recent_sales();
+        $data['categories']=$this->getCategories();
         return view('home',$data);
     }
 
@@ -64,5 +65,10 @@ class HomeController extends Controller
 
         return $documents;
     }
+
+    public function getCategories(){
+        return DB::table('categories')->orderBy('name','desc')->get();
+    }
+
     
 }

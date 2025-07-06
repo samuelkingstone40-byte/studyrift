@@ -90,13 +90,6 @@
         </main>
 
     
-     
-       
-        
-        
-        
-  
-     
      <!-- Libs JS -->
      <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
      <script src="{{asset('admin/assets/libs/popper.js/dist/umd/popper.min.js')}}"></script>
