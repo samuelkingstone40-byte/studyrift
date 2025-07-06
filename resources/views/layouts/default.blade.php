@@ -11,6 +11,7 @@
 
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" sizes="48*48" type="image/png" />
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+      <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
       <script src="{{asset('theme/js/jquery-3.2.1.min.js')}}"></script>
     <script>
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -48,23 +49,20 @@
     @include('includes.footer')
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
-   
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="{{asset('theme/js/bootstrap.min.js')}}"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
     <script src="{{asset('theme/js/gmaps.min.js')}}"></script> 
     <script src="{{asset('pdfjs/build/pdf.js')}}"></script>
-  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.2.228/pdf.min.js"></script>
    
     <script>
-
-       document.tidioIdentify = {
-       distinct_id: $('#user_id').val(), // Unique visitor ID in your system
-       email: $('#email').val(), // visitor email
-       name: $('#name').val() // Visitor name
+      document.tidioIdentify = {
+        distinct_id: $('#user_id').val(), // Unique visitor ID in your system
+        email: $('#email').val(), // visitor email
+        name: $('#name').val() // Visitor name
     
-};
+     };
     </script>
     <script src="//code.tidio.co/mu88s7xwwrvlzzyhy4e17htqi2xrgcg8.js" async></script>
     <script>
