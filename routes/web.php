@@ -58,7 +58,7 @@ Route::post('post-review',[App\Http\Controllers\ClientController::class,'post_re
 
 Route::get('earnings', [App\Http\Controllers\ClientController::class, 'earnings'])->name('earnings');
 Route::get('fetch-earnings', [App\Http\Controllers\ClientController::class, 'fetch_earnings'])->name('fetch-earnings');
-Route::post('fileDelete/{id}',[\App\Http\Controllers\ClientController::class,'file_delete'])->name('fileDelete');
+Route::delete('fileDelete/{id}',[\App\Http\Controllers\ClientController::class,'file_delete'])->name('fileDelete');
 Route::post('uploadImg',[App\Http\Controllers\ClientController::class,'upload_profile_img'])->name('uploadImg');
 
 Route::get('search', [PublicController::class,'documents'])->name('search');
