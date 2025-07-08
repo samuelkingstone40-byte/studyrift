@@ -14,7 +14,7 @@ class PublicController extends Controller
 {
     public function index(){
         $data['uploads']=$this->popular_downloads();
-        $data['categories']=$this->getCategories();
+        $data['categories']=$this->getFilteredCategories();
         return view('welcome',$data);
     }
 
@@ -105,6 +105,18 @@ class PublicController extends Controller
 
     public function getCategories(){
         return DB::table('categories')->orderBy('name','desc')->get();
+    }
+
+    public function getFilteredCategories(){
+        $categories =DB::table('categories')->orderBy('name','desc')
+        ->get()
+        ->reject(function ($category) {
+            return in_array($category->name, ['VATI-RN', 'VATI-PN','RN Comprehensive Predictor','NECLEX-PN','NCLEX-RN','NCLEX',
+        'HESI EXIT RN EXAM','HESI','Ati pediatrics proctored','ATI MEDICAL SURGICAL']); // Categories to exclude
+        })
+        ->values();
+
+        return $categories;
     }
 
     public function document_preview($slug=null){

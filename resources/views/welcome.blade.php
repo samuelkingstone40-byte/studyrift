@@ -1,9 +1,27 @@
 @extends('layouts.default')
 
 @section('content')
-
-  <section class="bg-slate-50">
-    <div class="px-4 mx-auto  max-w-screen-xl text-center pb-6 pt-48 lg:pt-48">
+<section class="bg-center  bg-no-repeat bg-[url('/theme/img/site/banner2.jpg')] bg-gray-600 bg-blend-multiply bg-cover">
+    <div class="px-4 mx-auto  max-w-screen-xl text-center py-48 lg:py-56">
+        <h1 class="mb-4  font-extrabold tracking-tight leading-none text-white text-xl md:text-3xl lg:text-4xl">GET QUALITY NOTES IN ONE PLACE</h1>
+        <p class="mb-8  font-normal text-gray-300 text-lg lg:text-2xl sm:px-16 lg:px-48">Find study materials, textbooks and other study instruments for all subjects.</p>
+        <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+            <a href={{route('login')}} class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                Login
+                <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </a>
+            <a href="{{url('/search')}}" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
+                Browse For Materials
+            </a>  
+        </div>
+  
+      
+    </div>
+  </section>
+  <section class="bg-slate-50 ">
+    <div class="px-4 mx-auto  py-4 max-w-screen-xl text-center">
     <div class="my-4">
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4">
       Find study resources<br class="block sm:hidden" />
