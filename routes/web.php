@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+
 Route::get('/', [App\Http\Controllers\PublicController::class,'index'])->name('welcome');
 Route::get('/about-us',[App\Http\Controllers\PublicController::class,'about'])->name('about');
 Route::get('/contact-us',[App\Http\Controllers\PublicController::class,'contact'])->name('contact');
