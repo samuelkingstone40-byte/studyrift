@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         }
        
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+             return redirect()->intended(url()->previous() ?? route('/'));
         }
 
         return $next($request);
