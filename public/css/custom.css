@@ -9,3 +9,44 @@ ul{
     padding: 0;
 }
 
+a{
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul{
+    padding: 0;
+}
+
+/* Pesapal Payment Form Optimization */
+iframe[src*="pesapal"] {
+    width: 100% !important;
+    min-height: 750px !important;
+    height: auto !important;
+    border: none !important;
+    display: block !important;
+}
+
+.payment-container {
+    overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+    iframe[src*="pesapal"] {
+        min-height: 850px !important;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    iframe[src*="pesapal"] {
+        min-height: 700px !important;
+    }
+}
+
+@media (min-width: 1025px) {
+    iframe[src*="pesapal"] {
+        min-height: 680px !important;
+    }
+}
+

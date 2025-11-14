@@ -7,7 +7,7 @@
     <meta name = "description" content = " Find study materials, textbooks and other study instruments for all subjects. Find all the documents you need by looking for your subject." />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Get quality notes in one place')</title>
+    <title>Get quality notes in one place</title>
 
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" sizes="48*48" type="image/png" />
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -125,6 +125,5 @@
     </script>
     @yield('scripts')
 
-    <script src="{{ asset('js/hide-payment-search.js') }}"></script>
   </body>
 </html>
