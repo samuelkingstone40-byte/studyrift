@@ -17,4 +17,4 @@ RUN chown -R www-data:www-data /var/www
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "php artisan config:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=8080"]
+CMD ["sh", "-c", "touch /var/www/database/database.sqlite && php artisan migrate --force && php artisan config:cache && php artisan view:cache && php artisan serve --host=0.0.0.0 --port=8080"]
