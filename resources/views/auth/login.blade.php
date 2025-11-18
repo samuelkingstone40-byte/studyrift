@@ -1,7 +1,7 @@
 
 
 @extends('layouts.default')
-<link href="{{asset('theme/css/login.css')}}" rel="stylesheet">
+<link href="{{secure_asset('theme/css/login.css')}}" rel="stylesheet">
 <title>Login-Studymerit</title>
 
 @section('content')

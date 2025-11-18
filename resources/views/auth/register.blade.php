@@ -1,7 +1,7 @@
 
 @extends('layouts.default')
 <title>Register-Studymerit</title>
-<link href="{{asset('theme/css/login.css')}}" rel="stylesheet">
+<link href="{{secure_asset('theme/css/login.css')}}" rel="stylesheet">
 @section('content')
 
 <section class="bg-gray-50  dark:bg-gray-900">
