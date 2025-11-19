@@ -1,5 +1,5 @@
 @extends('layouts.default')
-<title>Term of use-Studymerit</title>
+<title>Terms of Use - Study Rift</title>
 @section('content')
 <section class="pt-10 h-auto bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16">
     <div class="p-8 mx-auto my-10 bg-white sm:px-6 lg:px-8 max-w-7xl">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Blog-Studymerit</title>
+<title>Blog - Study Rift</title>
 @section('content')
 <div class="row">
     <div class="col-lg-12">

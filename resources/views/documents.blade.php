@@ -1,5 +1,5 @@
 @extends('layouts.default')
-<title>Buy-Studymerit </title>
+<title>Buy - Study Rift</title>
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 @section('content')
 

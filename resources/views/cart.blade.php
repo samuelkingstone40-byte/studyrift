@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Buy-Studymerit</title>
+<title>Buy - Study Rift</title>
 @section('content')
 
 <span  id="loader" class="circlespinner"></span>

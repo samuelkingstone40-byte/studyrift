@@ -1,5 +1,5 @@
 @extends('layouts.default')
-<title>Cart Checkout - Studymerit</title>
+<title>Cart Checkout - Study Rift</title>
 @section('content')
   <section class=" bg-gray-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
     <div class="py-8">

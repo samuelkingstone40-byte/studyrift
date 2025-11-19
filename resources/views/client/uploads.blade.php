@@ -1,4 +1,4 @@
-<title>Uploads - Studymerit</title>
+<title>Uploads - Study Rift</title>
 @extends('layouts.client_layout')
 @section('content')
 
