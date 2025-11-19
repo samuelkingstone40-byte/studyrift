@@ -143,7 +143,7 @@
       // This function sets up the details of the transaction, including the amount and line item details.
       return actions.order.create({
         application_context: {
-          brand_name : 'Study Merit',
+          brand_name : 'Study Rift',
           user_action : 'PAY_NOW',
         },
         purchase_units: [{
@@ -231,9 +231,9 @@
        },
        
        customizations: {
-         title: "Study Merit",
+         title: "Study Rift",
          description: "Payment for study notes",
-         logo: "https://studymerit.com/theme/img/logo2.png",
+         logo: "https://studyrift.com/theme/img/logo2.png",
        },
        callback : function(data){
          var transid=data.transaction_id;

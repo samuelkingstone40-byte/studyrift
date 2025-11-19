@@ -8,13 +8,13 @@
     <div class="">
      
       <p class="pb-2">
-        Study Merits.com created the privacy strategy to describe how individuals’ information is collected, secured, and utilized.
-         The privacy policy document may be modified by study merit from time to time. The Study Merits ' users will communicate any changes to this privacy policy using email or a notice on the site. 
+        Study Rifts.com created the privacy strategy to describe how individuals’ information is collected, secured, and utilized.
+         The privacy policy document may be modified by study rift from time to time. The Study Rifts ' users will communicate any changes to this privacy policy using email or a notice on the site. 
       </p>
 
       <h5 class="font-semibold text-xl py-4">How studyMerits collects and processes the privacy policy
 
-        StudyMerits Profile:
+        StudyRifts Profile:
         </h5>
       <p class="leading-normal">
         You must create a Profile to upload or download Study papers on the Platform. You will be requested to provide specific information about yourself when creating a Profile.
@@ -22,7 +22,7 @@
 
       </p>
       <p>
-        Your email address, username, and password, as well as your name, must all be entered. You can also use your Facebook account to sign in. You must grant studyMerits one-time access to a restricted set of information from your Facebook profile, including your email address first and last names. You have complete control over the information you have provided in your Profile. You can withdraw your consent to use your data for this purpose by sending an email to privacy@studymerits.com.
+        Your email address, username, and password, as well as your name, must all be entered. You can also use your Facebook account to sign in. You must grant studyMerits one-time access to a restricted set of information from your Facebook profile, including your email address first and last names. You have complete control over the information you have provided in your Profile. You can withdraw your consent to use your data for this purpose by sending an email to privacy@studyrifts.com.
       </p>
       
     

@@ -12,7 +12,7 @@
               </h2>
             
               <p  class="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
-                Studymerit is an online resource platform where students can make money on the side as they learn. The site has been up since 2021 and has impacted many students across the globe. Our study material, content and summaries cover a vast variety of books and topics. Study Merit makes it easy, quick and simple to buy or sell your study notes at your determined price.
+                Studymerit is an online resource platform where students can make money on the side as they learn. The site has been up since 2021 and has impacted many students across the globe. Our study material, content and summaries cover a vast variety of books and topics. Study Rift makes it easy, quick and simple to buy or sell your study notes at your determined price.
               </p>
               <p  class="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
                 Studymerit is passionate about giving students access to the learning they want, when they want it in the most effective way possible. We're a small team dedicated to this goal and we've worked hard on building, testing, refining and then launching the tool you are looking at today. We hope you enjoy using it as much as we enjoyed creating it.
