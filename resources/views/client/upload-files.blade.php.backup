@@ -3,46 +3,13 @@
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">
-
-@php
-// Hardcoded categories
-$categories = [
-    ['id' => 1, 'name' => 'Math'],
-    ['id' => 2, 'name' => 'Nursing'],
-    ['id' => 3, 'name' => 'Science'],
-    ['id' => 4, 'name' => 'Biology'],
-    ['id' => 5, 'name' => 'Chemistry'],
-    ['id' => 6, 'name' => 'Physics'],
-    ['id' => 7, 'name' => 'History'],
-    ['id' => 8, 'name' => 'English'],
-    ['id' => 9, 'name' => 'Computer Science'],
-    ['id' => 10, 'name' => 'Business'],
-    ['id' => 11, 'name' => 'Economics'],
-    ['id' => 12, 'name' => 'Psychology'],
-];
-
-// Hardcoded subjects
-$subjects = [
-    ['id' => 1, 'name' => 'Exam'],
-    ['id' => 2, 'name' => 'Quiz'],
-    ['id' => 3, 'name' => 'Assignment'],
-    ['id' => 4, 'name' => 'Notes'],
-    ['id' => 5, 'name' => 'Practice Test'],
-    ['id' => 6, 'name' => 'Study Guide'],
-    ['id' => 7, 'name' => 'Homework'],
-    ['id' => 8, 'name' => 'Lab Report'],
-    ['id' => 9, 'name' => 'Midterm'],
-    ['id' => 10, 'name' => 'Final'],
-];
-@endphp
-
 <section class="section_gap">
   <div class="container">
     <div class="row">
     <div class="col-md-12">
                     <div class="tab-pane active documents documents-panel">
                       @foreach($files as $file)
-
+                      
                         <div class="document success">
                             <div class="document-body">
                               @if($file->file_ext=="xls")
@@ -59,9 +26,9 @@ $subjects = [
                             </div>
                         </div>
                         @endforeach
-
-
-
+                        
+                        
+                   
                 </div>
             </div>
         </div>
@@ -77,35 +44,13 @@ $subjects = [
           <form method="POST" enctype="multipart/form-data" id="upload_image_form" action="javascript:void(0)" >
             <div class="item-inner">
                 <div class="item-content">
-
-                    <!-- CATEGORY DROPDOWN -->
-                    <div class="form-group mb-3">
-                        <label for="category_id"><b>Category</b> <span class="text-danger">*</span></label>
-                        <select name="category_id" id="category_id" class="form-control" required>
-                            <option value="">-- Select Category --</option>
-                            @foreach($categories as $category)
-                                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <!-- SUBJECT DROPDOWN -->
-                    <div class="form-group mb-3">
-                        <label for="subject_id"><b>Subject</b> <span class="text-danger">*</span></label>
-                        <select name="subject_id" id="subject_id" class="form-control" required>
-                            <option value="">-- Select Subject --</option>
-                            @foreach($subjects as $subject)
-                                <option value="{{ $subject['id'] }}">{{ $subject['name'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
+                  
                     <div class="image-upload">
-
-                        <label style="cursor: pointer;" for="file_upload">
+                   
+                        <label style="cursor: pointer;" for="file_upload"> 
                         <div class="h-100">
                                 <div class="dplay-tbl">
-
+                                 
                                     <div class="dplay-tbl-cell"> <i class="fa fa-cloud-upload"></i>
                                         <h5><b>Choose Your Image to Upload</b></h5>
                                         <h6 class="mt-10 mb-70">Or Drop Your Image Here</h6>
@@ -113,12 +58,12 @@ $subjects = [
                                 </div>
                                 <label class="py-2" id="filename"></label>
                             </div>
-
-                            <!--upload-content-->
+                         
+                            <!--upload-content--> 
                             <input data-required="image" type="file" name="file" id="file_upload" class="image-input" data-traget-resolution="image_resolution" value="">
                             <button type="submit"  value="Upload" id="but_upload"  class="btn btn-primary">Upload</button>
-                          </label>
-
+                          </label> 
+                     
                       </div>
                 </div>
                 <!--item-content-->
@@ -126,10 +71,10 @@ $subjects = [
             <!--item-inner-->
         </form>
     </div>
-
+ 
     <!--item-->
 </div>
-
+      
 
 
 </div>
@@ -142,32 +87,32 @@ $subjects = [
 @section('scripts')
 <script>
 $(document).ready(function (e) {
-
+   
    $.ajaxSetup({
        headers: {
            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
    });
-
+  
    $('#file_upload').change(function(){
-
+           
     let reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = (e) => { 
       $('#filename').html(this.files[0].name);
-      $('#image_preview_container').attr('src', e.target.result);
+      $('#image_preview_container').attr('src', e.target.result); 
     }
 
-    reader.readAsDataURL(this.files[0]);
-
+    reader.readAsDataURL(this.files[0]); 
+  
    });
-
+  
    $('#upload_image_form').submit(function(e) {
 
      e.preventDefault();
-
+  
      var formData = new FormData(this);
-
+  
      $.ajax({
         type:'POST',
         url: "{{ url('uploadFile')}}",
@@ -188,5 +133,5 @@ $(document).ready(function (e) {
 </script>
 
 
-
+ 
 @endsection
