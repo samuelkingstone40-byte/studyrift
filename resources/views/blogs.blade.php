@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Blogs - Study Rift</title>
+<title>Blogs - studyrift</title>
 @section('content')
         <!--================Blog Area =================-->
         <section class="blog_area section_gap">

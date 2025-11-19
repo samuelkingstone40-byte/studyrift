@@ -2,7 +2,7 @@
 
 @extends('layouts.default')
 <link href="{{secure_asset('theme/css/login.css')}}" rel="stylesheet">
-<title>Login - Study Rift</title>
+<title>Login - studyrift</title>
 
 @section('content')
   <section class="bg-gray-50  dark:bg-gray-900">

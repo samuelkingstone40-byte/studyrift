@@ -1,4 +1,4 @@
-<title>Uploads - Study Rift</title>
+<title>Uploads - studyrift</title>
 @extends('layouts.client_layout')
 @section('content')
 

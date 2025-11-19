@@ -1,5 +1,5 @@
 @extends('layouts.default')
-<title>About - Study Rift</title>
+<title>About - studyrift</title>
 @section('content')
 
 <section class="pt-10 h-full overflow-hidden bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16">
@@ -8,14 +8,14 @@
 
           <div>
               <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Hey 👋 Welcome to 
-                  <br class="block sm:hidden" />Study Rift
+                  <br class="block sm:hidden" />studyrift
               </h2>
             
               <p  class="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
-                Study Rift is an online resource platform where students can make money on the side as they learn. The site has been up since 2021 and has impacted many students across the globe. Our study material, content and summaries cover a vast variety of books and topics. Study Rift makes it easy, quick and simple to buy or sell your study notes at your determined price.
+                studyrift is an online resource platform where students can make money on the side as they learn. The site has been up since 2021 and has impacted many students across the globe. Our study material, content and summaries cover a vast variety of books and topics. studyrift makes it easy, quick and simple to buy or sell your study notes at your determined price.
               </p>
               <p  class="max-w-lg mt-3 text-xl leading-relaxed text-gray-600 md:mt-8">
-                Study Rift is passionate about giving students access to the learning they want, when they want it in the most effective way possible. We're a small team dedicated to this goal and we've worked hard on building, testing, refining and then launching the tool you are looking at today. We hope you enjoy using it as much as we enjoyed creating it.
+                studyrift is passionate about giving students access to the learning they want, when they want it in the most effective way possible. We're a small team dedicated to this goal and we've worked hard on building, testing, refining and then launching the tool you are looking at today. We hope you enjoy using it as much as we enjoyed creating it.
               </p>
 
             

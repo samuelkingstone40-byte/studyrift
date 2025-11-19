@@ -1,5 +1,5 @@
 @extends('layouts.default')
-<title>Privacy Policy - Study Rift</title>
+<title>Privacy Policy - studyrift</title>
 @section('content')
 
 <section class="pt-10 h-full overflow-hidden bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16">
@@ -8,11 +8,11 @@
     <div class="">
      
       <p class="pb-2">
-        Study Rifts.com created the privacy strategy to describe how individuals’ information is collected, secured, and utilized.
-         The privacy policy document may be modified by study rift from time to time. The Study Rifts ' users will communicate any changes to this privacy policy using email or a notice on the site. 
+        studyrifts.com created the privacy strategy to describe how individuals’ information is collected, secured, and utilized.
+         The privacy policy document may be modified by study rift from time to time. The studyrifts ' users will communicate any changes to this privacy policy using email or a notice on the site. 
       </p>
 
-      <h5 class="font-semibold text-xl py-4">How Study Rift collects and processes the privacy policy
+      <h5 class="font-semibold text-xl py-4">How studyrift collects and processes the privacy policy
 
         StudyRifts Profile:
         </h5>
@@ -22,7 +22,7 @@
 
       </p>
       <p>
-        Your email address, username, and password, as well as your name, must all be entered. You can also use your Facebook account to sign in. You must grant Study Rift one-time access to a restricted set of information from your Facebook profile, including your email address first and last names. You have complete control over the information you have provided in your Profile. You can withdraw your consent to use your data for this purpose by sending an email to privacy@studyrifts.com.
+        Your email address, username, and password, as well as your name, must all be entered. You can also use your Facebook account to sign in. You must grant studyrift one-time access to a restricted set of information from your Facebook profile, including your email address first and last names. You have complete control over the information you have provided in your Profile. You can withdraw your consent to use your data for this purpose by sending an email to privacy@studyrifts.com.
       </p>
       
     

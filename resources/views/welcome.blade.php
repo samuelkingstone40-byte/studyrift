@@ -239,7 +239,7 @@
                       <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/>
                   </svg> 
                   <blockquote>
-                      <p class="text-lg mb:text-2xl font-medium text-gray-900 dark:text-white">"I got to know of Study Rift from a class mate who had used the site before, I uploaded my notes from a medical class and within a day, I had sold all but one. The site is quit useful to anyone who has quality class content."</p>
+                      <p class="text-lg mb:text-2xl font-medium text-gray-900 dark:text-white">"I got to know of studyrift from a class mate who had used the site before, I uploaded my notes from a medical class and within a day, I had sold all but one. The site is quit useful to anyone who has quality class content."</p>
                   </blockquote>
                   <figcaption class="flex items-center justify-center mt-6 space-x-3">
                       <img class="w-6 h-6 rounded-full" src="{{('theme/img/testimonials/t4.png')}}" alt="profile picture">
@@ -259,7 +259,7 @@
                       <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/>
                   </svg> 
                   <blockquote>
-                      <p class="text-lg mb:text-2xl font-medium text-gray-900 dark:text-white">"I think Study Rift is a great way to share your work and help others, while also earning money for your efforts. I believe it's a very useful tool."</p>
+                      <p class="text-lg mb:text-2xl font-medium text-gray-900 dark:text-white">"I think studyrift is a great way to share your work and help others, while also earning money for your efforts. I believe it's a very useful tool."</p>
                   </blockquote>
                   <figcaption class="flex items-center justify-center mt-6 space-x-3">
                       <img class="w-6 h-6 rounded-full" src="{{('theme/img/testimonials/t5.png')}}" alt="profile picture">

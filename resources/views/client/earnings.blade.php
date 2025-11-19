@@ -1,5 +1,5 @@
 @extends('layouts.client_layout')
-<title>Earnings - Study Rift</title>
+<title>Earnings - studyrift</title>
 
 
 

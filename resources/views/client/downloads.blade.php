@@ -1,6 +1,6 @@
 
 @extends('layouts.client_layout')
-<title>Downloads - Study Rift</title>
+<title>Downloads - studyrift</title>
 @section('content')
 
 <section class="mt-10">

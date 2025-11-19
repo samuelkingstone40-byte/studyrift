@@ -7,7 +7,7 @@
                 <img
                 src={{asset('/theme/img/site/logo.png')}}
                 class="mr-3 h-6 md:h-8"
-                alt="Study Rift Logo"
+                alt="studyrift Logo"
                 />
             </a>
             <div class="">

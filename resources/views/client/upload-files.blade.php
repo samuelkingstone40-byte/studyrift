@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Upload - Study Rift</title>
+<title>Upload - studyrift</title>
 @section('content')
 <link rel="stylesheet" href="{{asset('theme/css/documents.css')}}">
 <link rel="stylesheet" href="{{asset('theme/css/upload.css')}}">

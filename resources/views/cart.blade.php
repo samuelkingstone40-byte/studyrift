@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<title>Buy - Study Rift</title>
+<title>Buy - studyrift</title>
 @section('content')
 
 <span  id="loader" class="circlespinner"></span>
@@ -143,7 +143,7 @@
       // This function sets up the details of the transaction, including the amount and line item details.
       return actions.order.create({
         application_context: {
-          brand_name : 'Study Rift',
+          brand_name : 'studyrift',
           user_action : 'PAY_NOW',
         },
         purchase_units: [{
@@ -231,7 +231,7 @@
        },
        
        customizations: {
-         title: "Study Rift",
+         title: "studyrift",
          description: "Payment for study notes",
          logo: "https://studyrift.com/theme/img/logo2.png",
        },

@@ -1,6 +1,6 @@
 
 @extends('layouts.default')
-<title>Register - Study Rift</title>
+<title>Register - studyrift</title>
 <link href="{{secure_asset('theme/css/login.css')}}" rel="stylesheet">
 @section('content')
 
