@@ -52,7 +52,7 @@ class LoginController extends Controller
            // 'g-recaptcha-response' => 'required|recaptchav3:validate,0.5'
         ]);
 
-        if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if (Aut::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/admin/dashboard');
         }
@@ -64,7 +64,7 @@ class LoginController extends Controller
 
        
        
-        if(Auth::guard('admin')->check()) // this means that the admin was logged in.
+        if(Aut::guard('admin')->check()) // this means that the admin was logged in.
       {
         auth()->guard()->logout();
 
