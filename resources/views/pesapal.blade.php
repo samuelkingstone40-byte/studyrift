@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title', 'Secure Payment - Studymerit')
+@section('title', 'Secure Payment - StudyRift')
 @section('content')
 <style>
 /* Pesapal iframe styling to prevent scrolling */
@@ -35,7 +35,7 @@ section iframe {
 
 <section class="py-8 md:py-12 bg-gray-50">
     <div class="w-full text-center mb-4">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Secure Payment - Studymerit</h1>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">Secure Payment - StudyRift</h1>
         <p class="text-gray-600 mt-2 text-sm md:text-base">Complete your payment safely and securely below.</p>
     </div>
     <div class="payment-container bg-white rounded-lg shadow-sm">

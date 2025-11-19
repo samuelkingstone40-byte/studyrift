@@ -14,7 +14,7 @@
 
     
     <link rel="icon" href="{{asset('theme/img/site/favicon.png')}}" sizes="48*48" type="image/png" />
-    <title>{{ config('app.name', 'Studymerit') }}</title>
+    <title>{{ config('app.name', 'StudyRift') }}</title>
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
