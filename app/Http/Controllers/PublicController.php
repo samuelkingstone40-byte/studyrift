@@ -360,7 +360,7 @@ class PublicController extends Controller
     public function update_notes_table(){
         
 
-       $path= "https://studymerit.s3.amazonaws.com/documents/1687387642_CUPS+Printer+Driver.pdf";
+       $path= "https://studyrift.s3.amazonaws.com/documents/1687387642_CUPS+Printer+Driver.pdf";
 
        return Storage::get('documents/1687390644_1687199849_20230427094221_644a437de6e05_karen_floyd_abdominal_pain_1___1_(1).pdf');
                    

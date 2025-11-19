@@ -86,7 +86,7 @@ class PaymentController extends Controller
                 $currency = $currency,
                 $customer = $customer,
                 $host=$host_domain,
-                $redirect_url =  "https://studymerit.com/intasend-payment-status", 
+                $redirect_url =  "https://studyrift.com/intasend-payment-status", 
                 $api_ref =$ref_order_number, 
                 $comment = $message, 
                 $method = null
@@ -249,7 +249,7 @@ class PaymentController extends Controller
   
         $payload = [ 
             "amount" => $amount,
-            "callbackUrl" =>'https://www.studymerit.com/seerbit-callback',
+            "callbackUrl" =>'https://www.studyrift.com/seerbit-callback',
             "country" => "US",
             "fullname"=>$name,
             "currency" => "USD",

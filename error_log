@@ -1,35 +1,35 @@
-[14-Feb-2022 17:01:21 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:01:21 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+[14-Feb-2022 17:01:21 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:01:21 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:06:32 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:06:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+  thrown in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:06:32 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:06:32 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:09:13 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:09:13 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+  thrown in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:09:13 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:09:13 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:14:08 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:14:08 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+  thrown in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:14:08 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:14:08 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:14:44 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:14:44 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+  thrown in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:14:44 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:14:44 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:44:34 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:44:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+  thrown in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:44:34 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:44:34 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:44:49 UTC] PHP Warning:  require(/home/studymerit/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studymerit/app/artisan on line 18
-[14-Feb-2022 17:44:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studymerit/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studymerit/app/artisan:18
+  thrown in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:44:49 UTC] PHP Warning:  require(/home/studyrift/app/vendor/autoload.php): Failed to open stream: No such file or directory in /home/studyrift/app/artisan on line 18
+[14-Feb-2022 17:44:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/studyrift/app/vendor/autoload.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/studyrift/app/artisan:18
 Stack trace:
 #0 {main}
-  thrown in /home/studymerit/app/artisan on line 18
+  thrown in /home/studyrift/app/artisan on line 18
