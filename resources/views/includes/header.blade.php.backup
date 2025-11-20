@@ -10,7 +10,7 @@
                 </svg>
             </button>
             <a href="{{url('/')}}" class="flex ml-2 md:mr-24">
-                <img class="logo-2 w-16 sm:w-32 md:w-64 " src="{{asset('images/studyrift-logo.png')}}" alt="" />
+                <img class="logo-2 w-16 sm:w-32 md:w-64 " src="{{asset('theme/img/site/logo.png')}}" alt="" />
             </a>
         </div>
 
