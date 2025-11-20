@@ -5,7 +5,7 @@
 
             <a href={{url('/')}} class="flex items-center justify-between mr-4">
                 <img
-                src={{asset('/theme/img/site/logo.png')}}
+                src="{{ asset('images/studyrift-logo.png') }}"
                 class="mr-3 h-6 md:h-8"
                 alt="studyrift Logo"
                 />
